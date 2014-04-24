@@ -1,0 +1,74 @@
+<div class="cl-page" id="createUser">
+    <div class="hide" id="facebookLoad" data-element-to-be-toggled="popover-context" data-element-to-be-closed="popover-context">
+  <div class="cl-popover align-right pop-from-header">
+    <div class="cl-article padded">
+      <div class="cl-loading-wrapper">
+        <div class="cl-loading">
+          <div class="cl-loading-1"></div>
+          <div class="cl-loading-2"></div>
+          <div class="cl-loading-3"></div>
+          <div class="cl-loading-4"></div>
+          <div class="cl-loading-5"></div>
+          <div class="cl-loading-6"></div>
+          <div class="cl-loading-7"></div>
+          <div class="cl-loading-8"></div>
+        </div>
+      </div>
+      <h4 id="loadingText">Huidige locatie ophalen...</h4>
+    </div>
+  </div>
+  <div class="cl-modal-backdrop"></div>
+</div>
+
+  <div class="cl-bar-title">
+    <a href="#dashboard" class="cl-btn cl-btn-header" data-transition="slide-out" id="searchButton">
+      <i class="entypo-icon">&#59237;</i>
+    </a>
+    <div class="cl-title">REGISTREER</div>
+  </div>
+  <div class="cl-content" >
+
+  	<div class="cl-message">
+  		Er is nog geen gebruiker gekoppeld aan dit email adres, wil je een nieuwe gebruiker aanmaken?
+  	</div>
+
+
+	<form class="cl-form padded" id="createUserForm" action="javascript:;">
+		<input type="email" name="email" placeholder="Email adres" id="emailInput" required/>
+
+    <hr/>
+
+    <input type="text" name="name" placeholder="Naam" id="nameInput" required/>
+
+    <hr/>
+
+		<input type="password" name="password" placeholder="Paswoord" id="passwordInput" required/>
+		
+    <hr/>
+
+    <input type="password" name="password_valid" placeholder="Bevestig paswoord" id="passwordValidateInput" equalto="#passwordInput" required/>
+
+    <hr/>
+
+    <div class="radio-list" id="genderSelect"> 
+     <label for="sex-1">
+       <input type="radio" id="sex-1" name="genderradios" required>Man</label>
+       <label for="sex-0" class="">
+       <input type="radio" id="sex-0" name="genderradios">Vrouw</label>
+    </div>
+
+    <h4>Leeftijd</h4>
+    <span id="range" class="hide"></span>
+    <input type="range" min="8" max="60" name="age" value="0" id="ageSlider" required/>
+
+    <hr/>
+	</form>
+
+
+  </div>
+   <div class="button-container">
+      <a  href="javascript:;" id="createUserButton" class="cl-btn cl-depth-btn ">Gebruiker aanmaken</a>
+    </div>
+</div>
+
+

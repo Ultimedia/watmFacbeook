@@ -1,0 +1,39 @@
+<div class="cl-page" id="settings">
+  <div class="cl-bar-title">
+      <a href="#profile" class="cl-btn" data-transition="slide-out">
+        <i class="entypo-icon">&#59237;</i>
+      </a>
+    <div class="cl-title">Instellingen</div>
+  </div>
+  <div class="cl-content">
+
+      <div id="avatarSection">
+        <% if(user.avatar !== "default.png"){ %>
+            <span id="userAvatar" style="background: url('<%= imagePath %><%= user.avatar %>') no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; " class="avid"></span>
+        <% }else{ %>
+            <span id="userAvatar" class="avid"></span>
+        <% } %>        
+
+        <h2><%= user.name %></h2>
+        <div class="center">
+          <a href="javascript:;" class="cl-btn flat-green btn-small" id="changeAvatar">Kies een nieuwe foto</a>
+          <a href="javascript:;" id="signOutButton" class="cl-btn flat-green btn-small">Afmelden</a>
+        </div>
+      </div>
+
+      <form id="mediaForm" action="javascript:;" methode="POST">
+        <input type="file" name="file" class="hide" id="nonNativeFileField" accept="image/gif, image/jpeg, image/png"/>
+      </form>
+
+      <div id="favouriteSportSection">
+        <h4>Jouw favoriete sporten</h4>
+        <div id="favouriteSportList">
+        <div>
+          <a class="sportselector-btn" href="javascript:;" id="sportselector"></a><span>Wijzig</span>
+        </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,30 @@
+<div id="praktischContent">
+   <div class="cl-form" id="goingList">
+       <div class="radio-list">
+         <label for="going-1" class="checked">
+           <input type="radio" id="going-1" name="demo-radios" checked=""> Ik ga</label>
+           <label for="going-0" class="">
+           <input type="radio" id="going-0" name="demo-radios"> Ik ga niet</label>
+       </div>
+    </div>
+
+    <div class="cl-message hide" id="goingFullMessage">
+      Deze activiteit is volzet.
+    </div>
+
+    <h4>Sport</h4>
+    <span><%= sport_title %></span>
+    <hr/>
+
+    <h4>Wanneer</h4>
+    <span><%= date %></span>
+    <hr/>
+
+    <h4>Aanwezig</h4>
+    <span id="participantStat"><%= going %> / <%= participants %></span>
+    <ul id="aanwezigContent">
+    </ul>
+    <hr/>
+    
+    <p><%= description %> </p>
+</div>

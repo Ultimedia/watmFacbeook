@@ -1,0 +1,1726 @@
+/* line 17, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* apply a natural box layout model to all elements */
+/* line 5, ../../../../Development/dev/sass/application.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* line 10, ../../../../Development/dev/sass/application.scss */
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-attachment: fixed;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+/* line 23, ../../../../Development/dev/sass/application.scss */
+.clear {
+  clear: both;
+}
+
+/* Error box */
+/* line 28, ../../../../Development/dev/sass/application.scss */
+label.error {
+  background: #da5555;
+  display: block;
+  padding: 8px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+  animation: fadein 0.5s;
+  -moz-animation: fadein 0.5s;
+  -webkit-animation: fadein 0.5s;
+  -o-animation: fadein 0.5s;
+  position: relative;
+  font-size: 13px;
+  font-weight: 100;
+  clear: both;
+}
+
+/* line 44, ../../../../Development/dev/sass/application.scss */
+label.error:after {
+  bottom: 100%;
+  left: 36px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-bottom-color: #da5555;
+  border-width: 7px;
+  margin-left: -25px;
+}
+
+/* line 59, ../../../../Development/dev/sass/application.scss */
+form .cl-btn {
+  width: 100% !important;
+}
+
+/* line 63, ../../../../Development/dev/sass/application.scss */
+#activity-header {
+  height: 150px;
+  width: 100%;
+  position: relative;
+}
+
+/* line 69, ../../../../Development/dev/sass/application.scss */
+#activityMap, #map {
+  height: 150px;
+  width: 100%;
+}
+
+/* line 77, ../../../../Development/dev/sass/application.scss */
+#sortBar p, #searchBar p {
+  float: left;
+}
+
+/* line 83, ../../../../Development/dev/sass/application.scss */
+#sortBar select {
+  width: 170px;
+  margin-top: 12px;
+}
+
+/* line 88, ../../../../Development/dev/sass/application.scss */
+.entypo-icon {
+  font-size: 3em;
+  font-family: 'EntypoRegular';
+  font-style: inherit;
+}
+
+/* line 96, ../../../../Development/dev/sass/application.scss */
+#navigateButton {
+  display: inline-block;
+  background: #fff;
+  float: right;
+}
+
+/* line 108, ../../../../Development/dev/sass/application.scss */
+#createActivity .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar.flex .cl-btn:nth-child(2):not(:last-child),
+#profile .cl-btn-toolbar .cl-btn,
+#navigationView .cl-btn-toolbar .cl-btn {
+  border-radius: 0;
+  margin-right: 0;
+  padding: 8px 0;
+  margin: 0;
+  background: #d55353;
+}
+
+/* line 116, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar .cl-btn.active, #navigationTabs .cl-btn-toolbar .cl-btn.active {
+  background: #fff !important;
+  color: #d55353;
+}
+
+/* line 122, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 126, ../../../../Development/dev/sass/application.scss */
+#activityDetail hr {
+  background-color: #fff;
+  border: #000 1px dotted;
+  border-style: none none dotted;
+  color: #fff;
+}
+
+/* line 136, ../../../../Development/dev/sass/application.scss */
+#availibleBar .cl-btn {
+  background: #c68436;
+}
+
+/* line 140, ../../../../Development/dev/sass/application.scss */
+#availibleBar .cl-btn:first-child {
+  background: #af7633;
+}
+
+/* line 144, ../../../../Development/dev/sass/application.scss */
+#createActivityTabs, #navigationTabs {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 149, ../../../../Development/dev/sass/application.scss */
+#createActivityTabs .active, #profileTabs .active, #navigationTabs .active {
+  background: #fff;
+  color: #000000;
+}
+
+/* line 154, ../../../../Development/dev/sass/application.scss */
+#profile .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 159, ../../../../Development/dev/sass/application.scss */
+#map_canvas, #googleMap {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Create new user page */
+/* line 171, ../../../../Development/dev/sass/application.scss */
+#createUserForm input.error, #loginForm input.error {
+  margin-bottom: 0;
+}
+
+/* Login page */
+/* line 178, ../../../../Development/dev/sass/application.scss */
+.error-box {
+  background: #da5555;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* line 188, ../../../../Development/dev/sass/application.scss */
+.error-box.hide {
+  display: none;
+}
+
+/* line 191, ../../../../Development/dev/sass/application.scss */
+.error-box.show {
+  display: block;
+}
+
+/* line 195, ../../../../Development/dev/sass/application.scss */
+#FBloginButton {
+  margin-bottom: 10px;
+}
+
+/**
+* Pageslider
+*/
+/* line 202, ../../../../Development/dev/sass/application.scss */
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 209, ../../../../Development/dev/sass/application.scss */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 219, ../../../../Development/dev/sass/application.scss */
+.page.page-left {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* line 224, ../../../../Development/dev/sass/application.scss */
+.page.page-center {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 229, ../../../../Development/dev/sass/application.scss */
+.page.page-right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+/* line 234, ../../../../Development/dev/sass/application.scss */
+.page.transition {
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+}
+
+/**
+* Backbone autocomplete
+*/
+/* line 243, ../../../../Development/dev/sass/application.scss */
+ul.autocomplete {
+  display: none;
+  position: absolute;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 3px 0;
+  width: 100% !important;
+  z-index: 1000;
+}
+
+/* line 253, ../../../../Development/dev/sass/application.scss */
+ul.autocomplete li {
+  list-style: none;
+  margin: 0;
+  padding: 12px 7px;
+}
+
+/* line 259, ../../../../Development/dev/sass/application.scss */
+ul.autocomplete li.active, ul.autocomplete li:hover {
+  cursor: pointer;
+  background-color: #d3d3d3;
+}
+
+/* line 264, ../../../../Development/dev/sass/application.scss */
+ul.autocomplete li a {
+  color: #3d3d3d;
+  text-decoration: none;
+}
+
+/* line 270, ../../../../Development/dev/sass/application.scss */
+.align-center {
+  text-align: center;
+}
+
+/* line 276, ../../../../Development/dev/sass/application.scss */
+.field > span {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+/* line 281, ../../../../Development/dev/sass/application.scss */
+.field input[type=text] {
+  width: 100%;
+}
+
+/* line 284, ../../../../Development/dev/sass/application.scss */
+.field input[type=button] {
+  float: right;
+}
+
+/* line 294, ../../../../Development/dev/sass/application.scss */
+#friendsListView div {
+  float: left;
+}
+/* line 298, ../../../../Development/dev/sass/application.scss */
+#friendsListView div, #friendsListView .friendsBox {
+  display: inline-block;
+}
+
+/* Page specific */
+/* line 308, ../../../../Development/dev/sass/application.scss */
+#waarContent #map_canvas {
+  height: 400px;
+}
+
+/* line 315, ../../../../Development/dev/sass/application.scss */
+#navigationView #map_canvas {
+  height: 50%;
+}
+/* line 319, ../../../../Development/dev/sass/application.scss */
+#navigationView #directions {
+  height: 50%;
+}
+
+/* line 328, ../../../../Development/dev/sass/application.scss */
+#myInvitationsTable .cl-table-cell {
+  padding: 10px 0;
+}
+/* line 332, ../../../../Development/dev/sass/application.scss */
+#myInvitationsTable .cl-table-cell a {
+  display: inline-block;
+}
+/* line 336, ../../../../Development/dev/sass/application.scss */
+#myInvitationsTable .cl-btn-group.float {
+  display: inline-block;
+  float: right;
+}
+
+/*
+* Final styling 
+*/
+/* line 347, ../../../../Development/dev/sass/application.scss */
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+/* line 351, ../../../../Development/dev/sass/application.scss */
+input.error {
+  border: 1px solid #e54c2e !important;
+}
+
+/**
+* FORM PAGES
+*/
+/* line 359, ../../../../Development/dev/sass/application.scss */
+#home, #createUser, #createActivity, #settings {
+  background: #303d4d url("../../common/img/home_background.png") top left;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+/* line 367, ../../../../Development/dev/sass/application.scss */
+#home .cl-btn-header, #createUser .cl-btn-header, #createActivity .cl-btn-header, #settings .cl-btn-header {
+  border: 0;
+  padding: 0;
+}
+/* line 372, ../../../../Development/dev/sass/application.scss */
+#home .cl-content, #createUser .cl-content, #createActivity .cl-content, #settings .cl-content {
+  background: none;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+/* line 378, ../../../../Development/dev/sass/application.scss */
+#home .cl-content hr, #createUser .cl-content hr, #createActivity .cl-content hr, #settings .cl-content hr {
+  color: #FF0000;
+  border: none;
+  border-top: 1px solid #67737d;
+  height: 1px;
+}
+/* line 385, ../../../../Development/dev/sass/application.scss */
+#home .cl-content #loginBox, #createUser .cl-content #loginBox, #createActivity .cl-content #loginBox, #settings .cl-content #loginBox {
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  opacity: .93;
+  /* layer alpha */
+  background-color: #2f3d4d;
+  /* color overlay */
+  -moz-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.07);
+  /* inner glow */
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.07);
+  /* inner glow */
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.07);
+  /* inner glow */
+}
+/* line 397, ../../../../Development/dev/sass/application.scss */
+#home .cl-content h4, #createUser .cl-content h4, #createActivity .cl-content h4, #settings .cl-content h4 {
+  color: #fff;
+  font-family: "bitteritalic";
+  padding: 10px 0;
+}
+/* line 403, ../../../../Development/dev/sass/application.scss */
+#home .cl-content #home_logo, #createUser .cl-content #home_logo, #createActivity .cl-content #home_logo, #settings .cl-content #home_logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 40px;
+}
+/* line 410, ../../../../Development/dev/sass/application.scss */
+#home .cl-content input[type=email], #home .cl-content input[type=password], #home .cl-content input[type=text], #home .cl-content input[type=date], #home .cl-content input[type=time], #home .cl-content textarea, #createUser .cl-content input[type=email], #createUser .cl-content input[type=password], #createUser .cl-content input[type=text], #createUser .cl-content input[type=date], #createUser .cl-content input[type=time], #createUser .cl-content textarea, #createActivity .cl-content input[type=email], #createActivity .cl-content input[type=password], #createActivity .cl-content input[type=text], #createActivity .cl-content input[type=date], #createActivity .cl-content input[type=time], #createActivity .cl-content textarea, #settings .cl-content input[type=email], #settings .cl-content input[type=password], #settings .cl-content input[type=text], #settings .cl-content input[type=date], #settings .cl-content input[type=time], #settings .cl-content textarea {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 20px 0 20px 10px;
+  font-size: 1.1em;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin: 0;
+}
+/* line 420, ../../../../Development/dev/sass/application.scss */
+#home .cl-content input[type=email], #createUser .cl-content input[type=email], #createActivity .cl-content input[type=email], #settings .cl-content input[type=email] {
+  padding-left: 34px;
+  background: url("assets/mail-icon@x2.png") no-repeat 10px 15px/15px 12px;
+}
+/* line 425, ../../../../Development/dev/sass/application.scss */
+#home .cl-content input[type=password], #createUser .cl-content input[type=password], #createActivity .cl-content input[type=password], #settings .cl-content input[type=password] {
+  padding-left: 34px;
+  background: url("assets/lock-icon@x2.png") no-repeat 10px 12px/12px 16px;
+}
+/* line 430, ../../../../Development/dev/sass/application.scss */
+#home .cl-content #nameInput, #createUser .cl-content #nameInput, #createActivity .cl-content #nameInput, #settings .cl-content #nameInput {
+  padding-left: 34px;
+  background: url("assets/speech-icon@x2.png") no-repeat 10px 12px/15px 15px;
+}
+/* line 435, ../../../../Development/dev/sass/application.scss */
+#home .cl-content #passwordInput, #home .cl-content #passwordValidateInput, #createUser .cl-content #passwordInput, #createUser .cl-content #passwordValidateInput, #createActivity .cl-content #passwordInput, #createActivity .cl-content #passwordValidateInput, #settings .cl-content #passwordInput, #settings .cl-content #passwordValidateInput {
+  height: auto;
+  padding: 12px 0 12px 34px;
+}
+
+/**
+* CreateUser
+*/
+/* line 448, ../../../../Development/dev/sass/application.scss */
+#facebookLoad .cl-popover {
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+}
+/* line 454, ../../../../Development/dev/sass/application.scss */
+#facebookLoad .cl-popover h4 {
+  padding-left: 40px;
+  font-family: "bitteritalic";
+}
+/* line 461, ../../../../Development/dev/sass/application.scss */
+#facebookLoad .cl-loading-wrapper {
+  width: 30px;
+  height: 30px;
+}
+
+/* line 468, ../../../../Development/dev/sass/application.scss */
+#createUser, #createActivity, #settings {
+  background: #2f404b;
+}
+/* line 473, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-content, #createActivity .cl-content, #settings .cl-content {
+  height: calc(100% - 140px);
+}
+/* line 477, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-message, #createActivity .cl-message, #settings .cl-message {
+  padding: 10px;
+  background-color: #fef5e4;
+  line-height: 1.6em;
+}
+/* line 483, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form, #createActivity .cl-form, #settings .cl-form {
+  position: relative;
+}
+/* line 486, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form .radio-list, #createActivity .cl-form .radio-list, #settings .cl-form .radio-list {
+  padding-left: 34px;
+  background: url("assets/name-icon@x2.png") no-repeat 10px 12px/15px 15px;
+}
+/* line 491, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form .radio-list label, #createActivity .cl-form .radio-list label, #settings .cl-form .radio-list label {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 3px;
+}
+/* line 500, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form .radio-list label.checked, #createActivity .cl-form .radio-list label.checked, #settings .cl-form .radio-list label.checked {
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+/* line 506, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form .radio-list label:first-child.checked, #createActivity .cl-form .radio-list label:first-child.checked, #settings .cl-form .radio-list label:first-child.checked {
+  background: #23cddd;
+}
+/* line 510, ../../../../Development/dev/sass/application.scss */
+#createUser .cl-form .radio-list label:last-child.checked, #createActivity .cl-form .radio-list label:last-child.checked, #settings .cl-form .radio-list label:last-child.checked {
+  background: #ff7f66;
+}
+
+/* line 517, ../../../../Development/dev/sass/application.scss */
+#createUser #range, #createUser #participants, #watContent #range, #watContent #participants {
+  width: auto;
+  height: auto;
+  text-align: center;
+  background: #23cddd;
+  padding: 7px 12px;
+  float: right;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+/* line 529, ../../../../Development/dev/sass/application.scss */
+#createUser h4, #watContent h4 {
+  float: left;
+}
+
+/**
+* Loading
+*/
+/* line 538, ../../../../Development/dev/sass/application.scss */
+#loading {
+  background: #303d4d url("../../common/img/loading_background.png") center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+/* line 546, ../../../../Development/dev/sass/application.scss */
+#loading h2 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding-top: 20px;
+  vertical-align: middle;
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  display: inline-block;
+}
+/* line 557, ../../../../Development/dev/sass/application.scss */
+#loading h2 small {
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+}
+
+/**
+* Select sports
+*/
+/* line 571, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content {
+  background: #fef5e4;
+  height: calc(100% - 182px);
+}
+/* line 575, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content #favouriteSportList {
+  width: 100%;
+}
+/* line 578, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content #favouriteSportList div {
+  float: left;
+  display: inline-block;
+}
+/* line 582, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content #favouriteSportList div span {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+}
+/* line 588, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content #favouriteSportList div a {
+  width: 86px;
+  height: 86px;
+  background: #d2d2d2;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 40px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+}
+/* line 608, ../../../../Development/dev/sass/application.scss */
+#favouriteSportsSelector .cl-content #favouriteSportList div a.selected .layer {
+  background-color: rgba(86, 192, 189, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 86px;
+  height: 86px;
+  border-radius: 40px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  pointer-events: none;
+}
+
+/**
+* Dashboard
+*/
+/* line 630, ../../../../Development/dev/sass/application.scss */
+#dashboard {
+  position: relative;
+}
+/* line 634, ../../../../Development/dev/sass/application.scss */
+#dashboard .cl-bar-title .add-icon {
+  display: block;
+  padding: 14px;
+  background: url("assets/add-icon@x2.png") no-repeat center right/20px 20px;
+  height: 20px;
+  width: 20px;
+}
+/* line 642, ../../../../Development/dev/sass/application.scss */
+#dashboard .cl-bar-title .search-icon {
+  display: block;
+  padding: 14px;
+  background: url("assets/search-icon@x2.png") no-repeat center left/18px 18px;
+  height: 18px;
+  width: 18px;
+}
+/* line 651, ../../../../Development/dev/sass/application.scss */
+#dashboard #fullScreenButton {
+  width: 36px;
+  height: 40px;
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  top: 74px;
+  background: #378488 url("assets/fullscreen-icon@x2.png") no-repeat center center/15px 15px;
+}
+/* line 661, ../../../../Development/dev/sass/application.scss */
+#dashboard .cl-content {
+  height: calc(100% - 262px);
+  background: #1f3146;
+}
+/* line 665, ../../../../Development/dev/sass/application.scss */
+#dashboard .cl-content .cl-message {
+  padding: 20px 10px;
+  background-color: #fef5e4;
+  line-height: 1.6em;
+}
+/* line 672, ../../../../Development/dev/sass/application.scss */
+#dashboard #sortBar {
+  background-color: #d95555;
+  /* layer fill content */
+  z-index: 1000;
+}
+/* line 676, ../../../../Development/dev/sass/application.scss */
+#dashboard #sortBar select {
+  background: none;
+  border: 0;
+  -webkit-appearance: none;
+  margin: 0;
+  line-height: 44px;
+  position: absolute;
+  left: 105px;
+  width: 100%;
+  text-transform: uppercase;
+}
+/* line 689, ../../../../Development/dev/sass/application.scss */
+#dashboard #map_canvas {
+  height: 110px;
+  border-left: 3px solid #d95555;
+  border-right: 3px solid #d95555;
+}
+/* line 697, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell {
+  background: #4fbab6;
+  margin-bottom: 2px;
+}
+/* line 701, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .full {
+  position: absolute;
+  right: 0;
+  top: 15px;
+  background-color: #d95555;
+  padding: 5px;
+  color: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-transform: uppercase;
+  font-family: "source_sans_prosemibold";
+}
+/* line 714, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell span {
+  margin: 5px 10px;
+}
+/* line 718, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell a {
+  padding: 0;
+}
+/* line 722, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell h3 {
+  margin: 5px 0;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+/* line 729, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell h3 small {
+  font-size: 14px;
+  font-weight: normal;
+}
+/* line 736, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer {
+  display: block;
+  background: #378488;
+}
+/* line 740, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul {
+  margin: 0 10px;
+}
+/* line 743, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul li {
+  font-size: 12px;
+  display: inline-block;
+  color: #fff;
+  padding-left: 20px;
+  min-height: 36px;
+}
+/* line 751, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul .table-location {
+  padding-left: 20px;
+  background: url("assets/cursor-icon@x2.png") no-repeat 0 10px/11px 15px;
+  margin-right: 30px;
+  float: left;
+  line-height: 36px;
+}
+/* line 759, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul .table-friends {
+  background: url("assets/friend-icon@x2.png") no-repeat 0 12px/13px 13px;
+}
+/* line 762, ../../../../Development/dev/sass/application.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul .table-friends .avatar {
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-rafisu: 25px;
+  margin: 6px 0 0 5px;
+  float: left;
+}
+
+/* line 780, ../../../../Development/dev/sass/application.scss */
+#container.landscape #dashboard {
+  height: 100%;
+}
+/* line 783, ../../../../Development/dev/sass/application.scss */
+#container.landscape #dashboard #titleBar, #container.landscape #dashboard #searchBar, #container.landscape #dashboard #fullScreenButton, #container.landscape #dashboard .cl-content, #container.landscape #dashboard #mainNav, #container.landscape #dashboard #sortBar {
+  display: none;
+}
+/* line 787, ../../../../Development/dev/sass/application.scss */
+#container.landscape #dashboard #map_canvas {
+  height: 100%;
+  border-bottom: 3px solid #d95555;
+  border-top: 3px solid #d95555;
+  background: #d95555;
+}
+/* line 797, ../../../../Development/dev/sass/application.scss */
+#container.landscape #activityDetail #activityDetailTabs, #container.landscape #activityDetail .cl-content {
+  display: none;
+}
+/* line 801, ../../../../Development/dev/sass/application.scss */
+#container.landscape #activityDetail #activity-header, #container.landscape #activityDetail #activityMap {
+  height: 100%;
+}
+
+/* line 812, ../../../../Development/dev/sass/application.scss */
+#mainNav {
+  background: #31414f;
+  height: 54px;
+}
+/* line 816, ../../../../Development/dev/sass/application.scss */
+#mainNav .tab-item {
+  position: relative;
+  text-align: center;
+  width: auto;
+  float: left;
+  margin: 12px 11px;
+  height: auto;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  display: block;
+}
+/* line 828, ../../../../Development/dev/sass/application.scss */
+#mainNav .tab-item a .tab-label {
+  color: #fff;
+  font-family: "source_sans_prosemibold";
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 10px;
+}
+/* line 839, ../../../../Development/dev/sass/application.scss */
+#mainNav .active .tab-label {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border: 1px solid #fff;
+}
+
+/* line 849, ../../../../Development/dev/sass/application.scss */
+#dashboard.mapOpen #sortBar {
+  display: none;
+}
+/* line 852, ../../../../Development/dev/sass/application.scss */
+#dashboard.mapOpen .cl-content {
+  display: none;
+}
+/* line 856, ../../../../Development/dev/sass/application.scss */
+#dashboard.mapOpen #map_canvas {
+  height: calc(100% - 108px);
+  border-left: 3px solid #d95555;
+  border-right: 3px solid #d95555;
+}
+/* line 862, ../../../../Development/dev/sass/application.scss */
+#dashboard.mapOpen #fullScreenButton {
+  background: #378488 url("assets/normalscreen-icon@x2.png") no-repeat center center/15px 15px;
+}
+
+/** 
+* Settings
+*/
+/* line 875, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content {
+  padding: 0;
+  height: calc(100% - 74px);
+  background: #2f404b;
+}
+/* line 880, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content h4 {
+  text-align: center;
+}
+/* line 884, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content h2 {
+  font-size: 1.2em;
+  color: #fff;
+}
+/* line 889, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content li {
+  padding: 15px 10px;
+}
+/* line 893, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #favouriteSportSection {
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 10px;
+  background: #72848f;
+}
+/* line 899, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #favouriteSportSection div {
+  float: left;
+  display: inline-block;
+}
+/* line 903, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #favouriteSportSection div span {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+}
+/* line 909, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #favouriteSportSection div a {
+  width: 86px;
+  height: 86px;
+  background: #d2d2d2;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 40px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+}
+/* line 929, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #favouriteSportSection div a.sportselector-btn {
+  background: #4cd6d1 url("assets/add-sport-icon@x2.png") no-repeat center center/18px 18px;
+}
+/* line 935, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #avatarSection {
+  padding-top: 20px;
+  margin-bottom: 10px;
+  overflow: auto;
+  clear: both;
+}
+/* line 941, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #avatarSection .center {
+  text-align: center;
+  display: block;
+  padding: 10px 0;
+}
+/* line 947, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #avatarSection #userAvatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+  border-radius: 80px;
+  margin: 0 auto;
+  border: 1px solid #f4f4f4;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 958, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #avatarSection h2 {
+  display: block;
+  text-align: center;
+  padding: 5px 0;
+}
+/* line 964, ../../../../Development/dev/sass/application.scss */
+#settings .cl-content #avatarSection #avatarFunctionality {
+  display: inline-block;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+/**
+* Activity Detail
+*/
+/* line 976, ../../../../Development/dev/sass/application.scss */
+#activityDetail {
+  background: #31424f;
+}
+/* line 979, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-message {
+  padding: 10px;
+  background-color: #fef5e4;
+  line-height: 1.6em;
+  margin-bottom: 10px;
+}
+/* line 988, ../../../../Development/dev/sass/application.scss */
+#activityDetail #popover .cl-popover {
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  border-radius: 0;
+}
+/* line 994, ../../../../Development/dev/sass/application.scss */
+#activityDetail #popover .cl-popover ul {
+  margin: 20px 0;
+  padding: 0;
+}
+/* line 998, ../../../../Development/dev/sass/application.scss */
+#activityDetail #popover .cl-popover ul li {
+  list-style-type: none;
+  margin: 0;
+}
+/* line 1006, ../../../../Development/dev/sass/application.scss */
+#activityDetail .user_avatar {
+  display: inline-block;
+  border-radius: 42px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  width: 50px;
+  height: 50px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+/* line 1023, ../../../../Development/dev/sass/application.scss */
+#activityDetail #mediaContent #addMediaButton {
+  width: 100%;
+  margin-bottom: 20px;
+}
+/* line 1029, ../../../../Development/dev/sass/application.scss */
+#activityDetail #mediaContent #mediaContenList img {
+  width: 100%;
+  height: auto;
+}
+/* line 1034, ../../../../Development/dev/sass/application.scss */
+#activityDetail #mediaContent #mediaContenList .user-box {
+  background: #dadada;
+  padding: 10px 5px;
+  margin: 0 0 35px 0;
+}
+/* line 1042, ../../../../Development/dev/sass/application.scss */
+#activityDetail #activityInfo {
+  height: 40px;
+  width: 100%;
+  background: rgba(55, 55, 55, 0.5);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  padding: 0 10px;
+}
+/* line 1051, ../../../../Development/dev/sass/application.scss */
+#activityDetail #activityInfo span {
+  float: left;
+  line-height: 40px;
+}
+/* line 1056, ../../../../Development/dev/sass/application.scss */
+#activityDetail #activityInfo #navigateButton {
+  padding: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #252d34;
+}
+/* line 1064, ../../../../Development/dev/sass/application.scss */
+#activityDetail #activityDetailTabs {
+  margin-bottom: 0;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+/* line 1071, ../../../../Development/dev/sass/application.scss */
+#activityDetail #activityDetailTabs .cl-btn {
+  font-size: 11px;
+}
+/* line 1076, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content {
+  padding: 0 5px 0 5px;
+  background: #31424f;
+  overflow-y: auto;
+  height: calc(100% - 54px);
+}
+/* line 1086, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #activityContent {
+  background: #fff;
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* line 1095, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #praktischContent, #activityDetail .cl-content #mediaContent, #activityDetail .cl-content #messagesContent ul {
+  padding: 10px 10px 0 10px;
+  padding-bottom: 20px;
+}
+/* line 1100, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #praktischContent span, #activityDetail .cl-content #mediaContent span, #activityDetail .cl-content #messagesContent ul span {
+  float: right;
+  color: #31414f;
+}
+/* line 1107, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #aanwezigContent div {
+  float: left;
+  margin-right: 5px;
+}
+/* line 1113, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content h4 {
+  display: inline-block;
+  font-family: "source_sans_prosemibold";
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* line 1120, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content hr {
+  color: #FF0000;
+  border: none;
+  border-top: 1px solid #d55353;
+  height: 1px;
+  margin: 12px 0 24px 0;
+  clear: both;
+  display: block;
+}
+/* line 1130, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #messagesContent ul {
+  padding-bottom: 10px;
+}
+/* line 1131, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #messagesContent ul .cl-message {
+  padding: 20px 10px;
+  background-color: #fef5e4;
+  line-height: 1.6em;
+}
+/* line 1141, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #messageBox {
+  background: #e6e6e6;
+  border-top: 1px solid #cacaca;
+  z-index: 20000;
+  overflow: auto;
+  padding: 5px 10px;
+}
+/* line 1148, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #messageBox #messageSubmit {
+  width: 100px !important;
+  float: right;
+}
+/* line 1153, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #messageBox #messageInput {
+  border: 0;
+  -webkit-appereance: none;
+  border-radius: 3px;
+  -wekit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  width: 100%;
+  height: 37px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 3px 0 0 7px;
+}
+/* line 1167, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message {
+  margin: 0 0 15px 0;
+  clear: both;
+}
+/* line 1171, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message h3 {
+  font-size: 1.1em;
+  display: block;
+  float: none;
+  margin-bottom: 4px;
+  color: #31414f;
+  font-family: "source_sans_prosemibold";
+}
+/* line 1180, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 42px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  width: 50px;
+  height: 50px;
+  float: left;
+  background: #f1f1f1;
+}
+/* line 1192, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message .messageBody {
+  position: relative;
+  height: auto;
+  padding: 0px;
+  background: #dadada;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 58px;
+}
+/* line 1204, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message .messageBody p {
+  color: #31414f;
+}
+/* line 1209, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message .messageBody:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  border-style: solid;
+  border-width: 13px 13px 13px 0;
+  border-color: transparent #dadada;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+/* line 1223, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content .message:odd {
+  display: none;
+}
+/* line 1227, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #goingList {
+  margin-bottom: 30px;
+}
+/* line 1230, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #goingList label {
+  border: 1px solid #378488;
+  color: #252d34;
+  text-align: center;
+}
+/* line 1236, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #goingList label:first-child {
+  border-right: none;
+}
+/* line 1240, ../../../../Development/dev/sass/application.scss */
+#activityDetail .cl-content #goingList .checked {
+  background: #4cd6d1;
+  color: #252d34;
+}
+
+/* line 1248, ../../../../Development/dev/sass/application.scss */
+#searchBar {
+  padding: 1px 5px;
+  height: auto;
+  background: #b04646 !important;
+}
+/* line 1253, ../../../../Development/dev/sass/application.scss */
+#searchBar #searchForm input[type=search] {
+  -webkit-appearance: none;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  border-radius: 0;
+  padding: .8em .6em .8em .6em;
+  font-size: 1em;
+  border: 0;
+  display: block;
+  height: 40px;
+  background: #b04646;
+  padding-left: 28px;
+  background: url("assets/search-icon@x2.png") no-repeat 10px 14px/12px 12px;
+}
+
+/** 
+* Create Activity
+*/
+/* line 1276, ../../../../Development/dev/sass/application.scss */
+#createActivity .cl-content {
+  height: calc(100% - 192px);
+}
+/* line 1281, ../../../../Development/dev/sass/application.scss */
+#createActivity #createActivityTabs .active {
+  background: #2e3e4b;
+  color: #fff;
+}
+/* line 1288, ../../../../Development/dev/sass/application.scss */
+#createActivity #wieContent .friend-box {
+  margin: 15px;
+  width: 100px;
+  display-inline: block;
+  float: left;
+}
+/* line 1294, ../../../../Development/dev/sass/application.scss */
+#createActivity #wieContent .friend-box h3 {
+  color: #fff;
+}
+/* line 1298, ../../../../Development/dev/sass/application.scss */
+#createActivity #wieContent .friend-box .cl-btn {
+  clear: both;
+}
+/* line 1302, ../../../../Development/dev/sass/application.scss */
+#createActivity #wieContent .friend-box .friend-avatar {
+  border-radius: 56px;
+  -webkit-border-radius: 56px;
+  -moz-border-radius: 56px;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+/* line 1316, ../../../../Development/dev/sass/application.scss */
+#container.keyboard #createActivity .cl-content {
+  height: calc(100% - 122px);
+}
+/* line 1320, ../../../../Development/dev/sass/application.scss */
+#container.keyboard #createActivity .button-container {
+  display: none;
+}
+/* line 1326, ../../../../Development/dev/sass/application.scss */
+#container.keyboard #createUser .cl-content {
+  height: calc(100% - 80px);
+}
+/* line 1330, ../../../../Development/dev/sass/application.scss */
+#container.keyboard #createUser .button-container {
+  display: none;
+}
+
+/**
+*  Planner
+*/
+/* line 1343, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content {
+  height: calc(100% - 108px);
+  background: #e4e4e4;
+}
+/* line 1348, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-bar {
+  background: #fef5e4;
+}
+/* line 1350, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-bar .cl-bar-text {
+  color: #2f404c;
+}
+/* line 1355, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-table-cell {
+  margin-bottom: 2px;
+}
+/* line 1358, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-table-cell span {
+  margin: 5px 10px;
+}
+/* line 1362, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-table-cell a {
+  padding: 0;
+}
+/* line 1366, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-table-cell h3 {
+  margin: 5px 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #2d3d4a;
+}
+/* line 1373, ../../../../Development/dev/sass/application.scss */
+#planner .cl-content .cl-table-cell h3 small {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/**
+* Avatar
+*/
+/* line 1387, ../../../../Development/dev/sass/application.scss */
+#avatarView #barContainer #bars {
+  padding: 10px;
+  width: 30%;
+  position: absolute;
+  top: 30%;
+  z-index: 1000;
+}
+/* line 1394, ../../../../Development/dev/sass/application.scss */
+#avatarView #barContainer #bars h4 {
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+/* line 1399, ../../../../Development/dev/sass/application.scss */
+#avatarView #barContainer #bars progress {
+  margin-bottom: 10px;
+}
+/* line 1405, ../../../../Development/dev/sass/application.scss */
+#avatarView #avatar {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+/* line 1410, ../../../../Development/dev/sass/application.scss */
+#avatarView #avatar .avatar-container #avatarDisplay, #avatarView #avatar .avatar-container #equipmentDisplay {
+  position: relative;
+  z-index: 5;
+}
+/* line 1415, ../../../../Development/dev/sass/application.scss */
+#avatarView #avatar .avatar-container #equipmentDisplay {
+  background: url("common/avatar/equipment_male_20.png") no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 200px;
+  left: 0;
+  bottom: 54px;
+}
+/* line 1424, ../../../../Development/dev/sass/application.scss */
+#avatarView #avatar .avatar-container #avatarFloor {
+  height: 150px;
+  position: fixed;
+  width: 100%;
+  bottom: 54px;
+  left: 0;
+  background: #ededed;
+  z-index: 1;
+  display: none;
+}
+
+/**
+*  Profile
+*/
+/* line 1444, ../../../../Development/dev/sass/application.scss */
+#profile #profileTabs .active {
+  background: #fff;
+  color: #d55353;
+}
+/* line 1450, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content {
+  height: calc(100% - 156px);
+  background: #fff;
+}
+/* line 1454, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .friend-box {
+  margin: 10px;
+  width: 100px;
+  display-inline: block;
+  float: left;
+}
+/* line 1460, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .friend-box h3 {
+  color: #31414f;
+  text-align: center;
+  font-size: 1.4em;
+  font-family: "source_sans_prosemibold";
+}
+/* line 1467, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .friend-box .friend-avatar {
+  border-radius: 56px;
+  -webkit-border-radius: 56px;
+  -moz-border-radius: 56px;
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+/* line 1476, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .friend-box .removeFriend {
+  float: left;
+  clear: both;
+  width: 100px;
+  text-align: center;
+  margin-top: 10px;
+}
+/* line 1485, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .cl-bar {
+  background: #fef5e4;
+}
+/* line 1487, ../../../../Development/dev/sass/application.scss */
+#profile .cl-content .cl-bar .cl-bar-text {
+  color: #2f404c;
+}
+
+/* line 1494, ../../../../Development/dev/sass/application.scss */
+#challengeView {
+  background: #e4e4e4;
+}
+/* line 1498, ../../../../Development/dev/sass/application.scss */
+#challengeView .badge_img {
+  float: left;
+  display: inline-block;
+  margin-right: 5px;
+}
+/* line 1504, ../../../../Development/dev/sass/application.scss */
+#challengeView .challenge-item {
+  padding: 10px 5px;
+  margin-bottom: 2px;
+  min-height: 76px;
+}
+/* line 1508, ../../../../Development/dev/sass/application.scss */
+#challengeView .challenge-item a {
+  min-height: 20px;
+  vertical-align: center;
+}
+/* line 1513, ../../../../Development/dev/sass/application.scss */
+#challengeView .challenge-item p {
+  padding-right: 90px;
+  font-size: 12px;
+  line-height: 1.4em;
+}
+/* line 1521, ../../../../Development/dev/sass/application.scss */
+#challengeView #myChallengesOverviewTable p {
+  padding-right: 0;
+}
+/* line 1526, ../../../../Development/dev/sass/application.scss */
+#challengeView .cl-btn {
+  display: inline-block;
+  width: auto;
+  float: right;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+/* line 1535, ../../../../Development/dev/sass/application.scss */
+#challengeView h3 {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+/* line 1541, ../../../../Development/dev/sass/application.scss */
+#challengeView #progressContainer {
+  width: 100%;
+  display: block;
+  padding: 10px 0;
+}
+/* line 1546, ../../../../Development/dev/sass/application.scss */
+#challengeView #progressContainer progress {
+  width: 100%;
+}
+/* line 1553, ../../../../Development/dev/sass/application.scss */
+#challengeView #badgesOverview .badge_img, #challengeView #myChallengesOverviewTable .badge_img, #challengeView #challengesOverviewTable .badge_img, #challengeView #badgesView .badge_img {
+  float: left;
+  display: inline-block;
+  border-radius: 42px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  width: 50px;
+  height: 50px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 5px;
+  margin-top: 0;
+  float: left;
+}
+
+/** 
+* Friend
+*/
+/* line 1575, ../../../../Development/dev/sass/application.scss */
+#friendView {
+  position: relative;
+  height: calc(100%-61px);
+}
+/* line 1579, ../../../../Development/dev/sass/application.scss */
+#friendView #friendAddContainer {
+  padding: 10px;
+  clear: both;
+}
+/* line 1585, ../../../../Development/dev/sass/application.scss */
+#friendView #avatarView #barContainer {
+  display: none;
+}
+/* line 1590, ../../../../Development/dev/sass/application.scss */
+#friendView #avatarView {
+  height: 300px;
+  position: relative;
+}
+/* line 1595, ../../../../Development/dev/sass/application.scss */
+#friendView .avatar {
+  display: inline-block;
+  width: 100%;
+  height: 170px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  float: left;
+}
+/* line 1606, ../../../../Development/dev/sass/application.scss */
+#friendView #badgesView {
+  overflow: auto;
+  padding: 0 0 10px 10px;
+  background: #d6d4c7;
+}
+/* line 1611, ../../../../Development/dev/sass/application.scss */
+#friendView #badgesView .badge_img {
+  float: left;
+  display: inline-block;
+  border-radius: 42px;
+  -webkit-border-radius: 42px;
+  -moz-border-radius: 42px;
+  width: 50px;
+  height: 50px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 5px;
+  margin-top: 0;
+  float: left;
+}
+/* line 1629, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content {
+  padding: 0;
+  clear: both;
+  height: calc(100% - 20px);
+}
+/* line 1635, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #mediaContainer .user-box {
+  background: #dadada;
+  padding: 10px 5px;
+  margin: 0 0 35px 0;
+}
+/* line 1642, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #avatarView {
+  height: 250px;
+}
+/* line 1646, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #avatarView #avatarDisplay {
+  height: 200px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: bock;
+  z-index: 200;
+}
+/* line 1655, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #avatarView #avatar {
+  height: auto;
+  padding: 0;
+}
+/* line 1660, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #avatarView #avatar .avatar-container #avatarFloor {
+  position: absolute;
+  height: 100px;
+  bottom: 0;
+  display: none;
+}
+/* line 1667, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content h3 {
+  font-family: "source_sans_prosemibold";
+  text-transform: uppercase;
+  font-size: 12px;
+  text-align: right;
+  padding: 10px;
+  display: block;
+}
+/* line 1676, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #mediaContainer {
+  clear: both;
+  padding: 0 10px 10px 10px;
+}
+/* line 1680, ../../../../Development/dev/sass/application.scss */
+#friendView .cl-content #mediaContainer img {
+  width: 100%;
+  height: auto;
+}
+
+/* line 1689, ../../../../Development/dev/sass/application.scss */
+#noConnection .cl-message {
+  padding: 10px;
+  display: block;
+  line-height: 1.4em;
+}
+
+/**
+* Navigation
+*/
+/* line 1702, ../../../../Development/dev/sass/application.scss */
+#navigationView .cl-content {
+  height: calc(100% - 54px);
+}
+
+/* line 1709, ../../../../Development/dev/sass/application.scss */
+#profileContent, .avatar-page, #avatarView, #avatar {
+  height: 100%;
+}
+
+/** 
+* Offline
+*/
+/* line 1721, ../../../../Development/dev/sass/application.scss */
+#container.offline #createActivityButton, #container.offline #goingList, #container.offline #addMediaButton, #container.offline #messageBox, #container.offline #sportSelectorButton, #container.offline #changeAvatar, #container.offline #mediaButton, #container.offline #friendsButton, #container.offline #favouriteSportSection, #container.offline #navigateButton, #container.offline #challengesButton, #container.offline #shareButton {
+  display: none;
+}
+/* line 1724, ../../../../Development/dev/sass/application.scss */
+#container.offline #dashboard #map_canvas {
+  display: none;
+}
+/* line 1727, ../../../../Development/dev/sass/application.scss */
+#container.offline #dashboard .cl-content {
+  height: calc(100% - 152px);
+}
+
+/**
+* Running on a device but in the webbrowser
+*/

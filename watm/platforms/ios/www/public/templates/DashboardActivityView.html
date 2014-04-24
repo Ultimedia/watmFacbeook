@@ -1,0 +1,26 @@
+<div class="cl-table-cell">
+<a href="#activity/<%= activity.activity_id %>">
+    <span class="label"><h3><%= activity.title %><small> <%= activity.date %> <%= activity.time %></small></h3></span>
+
+    <% if (activity.full == true) { %>
+
+        <span class="full">Volzet</span>
+
+    <% } %>
+    
+    <div class="dashboard-footer">
+        <ul>
+            <li class="table-location">
+                <%= activity.location %>
+            </li>
+            <li class="table-friends">
+                <% _.each(friends, function(friend) { %> 
+                    <% if(friend.going == 1) { %> 
+                    <span class="avatar" style="background: #f1f1f1 url('<%= imagePath %><%= friend.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+                    <% } %>
+                <% }); %>
+            </li>
+        </ul>
+    </div>
+</a>
+</div>
