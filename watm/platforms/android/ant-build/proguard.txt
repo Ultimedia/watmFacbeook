@@ -1,5 +1,5 @@
 # view AndroidManifest.xml #generated:6
--keep class be.devine.ko.watm { <init>(...); }
+-keep class be.devine.watm.watm { <init>(...); }
 
 # view AndroidManifest.xml #generated:13
 -keep class com.facebook.LoginActivity { <init>(...); }

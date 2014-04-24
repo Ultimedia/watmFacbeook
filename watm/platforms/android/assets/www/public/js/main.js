@@ -619,9 +619,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       Backbone.on('FacebookWallPostCompleteEvent', appData.views.ActivityDetailView.wallPostCompleteHandler);
       
       // share doesn't work on the device at the moment
-      if(appData.settings.native){
-        appData.services.facebookService.facebookWallpost(appData.views.ActivityDetailView.model);
-      }
+      appData.services.facebookService.facebookWallpost(appData.views.ActivityDetailView.model);
     },
 
 
@@ -2368,11 +2366,9 @@ appData.views.HomeView = Backbone.View.extend({
         appData.events.userLoggedInEvent.bind("userLoggedInHandler", this.userLoggedInHandler);
         appData.events.userLoggedInErrorEvent.bind("userLoggedInErrorHandler", this.userLoggedInErrorHandler);
         appData.events.userLoggedInPasswordErrorEvent.bind("userLoggedInPasswordErrorHandler", this.userLoggedInPasswordErrorHandler);
-        appData.events.facebookLoginEvent.bind("facebookLoginHandler", this.facebookLoginHandler);
         appData.events.facebookLoginErrorEvent.bind("facebookLoginErrorHandler", this.facebookLoginErrorHandler);
         appData.events.facebookGetFriendsEvent.bind("facebookGetFriendsHandler", this.facebookGetFriendsHandler);
         appData.events.facebookGetFriendsErrorEvent.bind("userLoggedInPasswordErrorHandler", this.facebookGetFriendErrorHandler);
-        appData.events.facebookGetProfileDataEvent.bind("facebookProfileDataHandler", this.facebookProfileDataHandler);
         appData.events.getUserFromFacebookIDEvent.bind("facebookGetIDHandler", this.facebookGetIDHandler)
         appData.events.facebookUserToSQLEvent.bind('facebookUserToSQLSuccesHandler', this.facebookUserToSQLSuccesHandler);
         appData.events.locationHomeEvent.bind('locationSuccesHandler', this.locationSuccesHandler);
@@ -2380,6 +2376,10 @@ appData.views.HomeView = Backbone.View.extend({
         
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
+
+        appData.views.HomeView.facebookLoginHandler = this.facebookLoginHandler;
+        appData.views.HomeView.facebookProfileDataHandler = this.facebookProfileDataHandler;
+
 
         appData.views.HomeView.locationErrorHandler = this.locationErrorHandler;
     }, 
@@ -2480,28 +2480,25 @@ appData.views.HomeView = Backbone.View.extend({
 
     facebookProfileDataHandler: function(){
         // get friends
-        appData.services.facebookService.getFacebookFriends();
+        Backbone.off('facebookProfileDataHandler');
+        appData.services.facebookService.getUserFromFacebookID();
     },
 
     facebookLoginHandler: function(){
         // fetch profile data
-        appData.services.facebookService.getProfileData();
+        Backbone.off("facebookLoginHandler");
+        Backbone.on('facebookProfileDataHandler', appData.views.HomeView.facebookProfileDataHandler);
 
+        appData.services.facebookService.getProfileData();
         $('#facebookLoad').removeClass('hide');
     },
 
-    facebookGetFriendsHandler: function(){
-        // finished loading facebook data, forward to login screen
-        appData.services.facebookService.getUserFromFacebookID();
-    },
-
     facebookClickHandler: function(){
-        if(appData.settings.facebookConnect){
-            appData.services.facebookService.facebookLogin();
-        }else{
+        Backbone.on("facebookLoginHandler", appData.views.HomeView.facebookLoginHandler);
+        if(!appData.settings.native){
             appData.services.facebookService.facebookConnect();
-            appData.services.facebookService.facebookLogin();
         }
+        appData.services.facebookService.facebookLogin();
     },
 
     facebookLoginErrorHandler: function(){
@@ -2575,14 +2572,12 @@ appData.views.LoadingView = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template(this.model.attributes));
     	appData.settings.currentPageHTML = this.$el;
-        alert('jaezffzefee');
 
         // load the data
         appData.services.phpService.getActivities(true);
         return this;
     },
     activitiesLoadedHandler: function(){
-        alert('jaezffzefee');
         appData.services.phpService.getSports();
     },
 
@@ -2647,7 +2642,6 @@ appData.views.LoadingView = Backbone.View.extend({
         window.localStorage.setItem("userModel", JSON.stringify(appData.models.userModel));
 
         appData.settings.dataLoaded = true;
-        appData.views.LoadingView.destroy_view();
 
 
         if(appData.models.userModel.attributes.myFavouriteSports.length > 0){
@@ -2660,14 +2654,6 @@ appData.views.LoadingView = Backbone.View.extend({
 
     destroy_view: function() {
 
-    //COMPLETELY UNBIND THE VIEW
-    this.undelegateEvents();
-
-    this.$el.removeData().unbind(); 
-
-    //Remove view from DOM
-    this.remove();  
-    Backbone.View.prototype.remove.call(this);
 
     }
 
@@ -3484,7 +3470,7 @@ appData.views.SettingsView = Backbone.View.extend({
 
 
       // back to the landing page
-      window.location.hash = "#";
+      location.reload(); 
     },   
 
     avatarUpdatedHandler: function(){
@@ -3718,16 +3704,12 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
     
     dashboard: function () {
-        alert('hier');
         appData.settings.created = false;
         if(appData.settings.userLoggedIn){
-            alert('logged');
 
             if(appData.settings.dataLoaded){    
-            alert('data');            
                 appData.slider.slidePage(new appData.views.DashboardView().render().$el);
             }else{
-                alert('loading');
                 window.location.hash = "loading";
             }
         }else{
@@ -4162,20 +4144,8 @@ appData.services.FacebookServices = Backbone.Model.extend({
 	},
 
 	facebookConnect: function(){
-		if(appData.settings.native){
+		if(!appData.settings.native){
 
-			// connect facebook API for mobile apps
-	        try {
-	        	FB.init({ 
-	        		appId: "595730207182331", 
-	        		nativeInterface: CDV.FB
-	        	});
-
-	        	appData.settings.facebookConnect = true;
-	        } catch (e) {
-	        	alert(e);
-	        }
-    	}else{
     		try {
 
 	            FB.init({
@@ -4187,7 +4157,6 @@ appData.services.FacebookServices = Backbone.Model.extend({
 				alert(e);
 			}
     	}
-
 	},
 
 	facebookUserToSQL: function(){
@@ -4237,17 +4206,59 @@ appData.services.FacebookServices = Backbone.Model.extend({
 	},
 
 	facebookLogin: function(){
-		FB.login(function(response) {
-		   if (response.authResponse) {
-		    appData.settings.userLoggedIn = true;
-			appData.events.facebookLoginEvent.trigger("facebookLoginHandler");
-		   } else {
-			alert("Je kan nu niet inloggen met Facebook, probeer het later opnieuw");
-		   }
-	    },{ scope: "email" });
+    	
+		if(appData.settings.native){
+	    	var fbLoginSuccess = function (userData) {
+
+	    		console.log(userData.authResponse + "maarten");
+
+			   	if (userData.authResponse) {
+			    	appData.settings.userLoggedIn = true;
+
+					// store the data in the user profile
+					appData.models.userModel.attributes.facebookUser = true;
+					appData.models.userModel.attributes.name = userData.name;
+					appData.models.userModel.attributes.email = userData.email;
+
+					var gender;
+					if(userData.gender == "male"){
+						gender = 1;
+					}else{
+						gender = 0;
+					}
+
+					appData.models.userModel.attributes.gender = gender;
+					appData.models.userModel.attributes.facebook_id =userData.id;
+
+					facebookConnectPlugin.api("/me/picture", function(response) {
+						appData.models.userModel.attributes.facebook_avatar = response.data.url;
+					});
+
+					Backbone.trigger("facebookLoginHandler");
+				}else{
+					alert("Je kan nu niet inloggen met Facebook, probeer het later opnieuw");
+				}
+			}
+
+	    	facebookConnectPlugin.login(["basic_info"], 
+	    	    fbLoginSuccess, 
+	    	    function (error) { alert("" + error) }
+	    	);
+    	}else{
+			FB.login(function(response) {
+			   if (response.authResponse) {
+			    appData.settings.userLoggedIn = true;
+				Backbone.trigger("facebookLoginHandler");
+			   } else {
+				alert("Je kan nu niet inloggen met Facebook, probeer het later opnieuw");
+			   }
+		    },{ scope: "email" });
+		}
 	},
 
 	facebookWallpost: function(activityModel){
+
+		console.log(activityModel);
 
 		var params = {
 			method: 'feed',
@@ -4257,67 +4268,87 @@ appData.services.FacebookServices = Backbone.Model.extend({
 			description: activityModel.attributes.description
 		};
 
-		FB.ui(params, function(response){ 
-			if (response && response.post_id) {
-		      alert('Post was published.');
-		    } else {
-		      alert('Post was not published.');
-		    }
+		if(appData.settings.native){
+		    facebookConnectPlugin.getLoginStatus( 
+		        function (status) { 
+		            facebookConnectPlugin.showDialog(params, 
+		                function (result) {
+          					Backbone.trigger('FacebookWallPostCompleteEvent');
+		               	}, 
+		            function (e) {
+						Backbone.trigger('FacebookWallPostCompleteEvent');
+		            });
+		        }
+		    );
+		}else{
+			FB.ui(params, function(response){ 
+				if (response && response.post_id) {
+			    } else {
+			    }
 
-			Backbone.trigger('FacebookWallPostCompleteEvent');
-		});
+				Backbone.trigger('FacebookWallPostCompleteEvent');
+			});
+		}
 	},
 
 	getProfileData:function(){
 		
-		FB.api('/me', {fields:['id','name','email','username','age_range','gender','hometown','link','favorite_athletes','favorite_teams']}, function(response) {
+		if(!appData.settings.native){
 
-			// store the date in the user profile
-			appData.models.userModel.attributes.facebookUser = true;
-			appData.models.userModel.attributes.name = response.name;
-			appData.models.userModel.attributes.email = response.email;
-			
-			if(response.age_range.min){
-			appData.models.userModel.attributes.age = response.age_range.min;
-			}
-			
-			// out of scope
-			//appData.models.userModel.attributes.facebook_data.favorite_athletes = response.favorite_athletes;
-			//appData.models.userModel.attributes.facebook_data.favorite_teams = response.favorite_teams;
-			//appData.models.userModel.attributes.facebook_data.hometown = response.hometown.name;
-			//appData.models.userModel.attributes.facebook_data.username = response.name;
-	
-			var gender;
-			if(response.gender == "male"){
-				gender = 1;
-			}else{
-				gender = 0;
-			}
+			FB.api('/me', {fields:['id','name','email','username','age_range','gender','hometown','link','favorite_athletes','favorite_teams']}, function(response) {
 
-			appData.models.userModel.attributes.gender = gender;
-			appData.models.userModel.attributes.facebook_id = response.id;
+				// store the date in the user profile
+				appData.models.userModel.attributes.facebookUser = true;
+				appData.models.userModel.attributes.name = response.name;
+				appData.models.userModel.attributes.email = response.email;
+				
+				if(response.age_range.min){
+				appData.models.userModel.attributes.age = response.age_range.min;
+				}
+				
+				// out of scope
+				//appData.models.userModel.attributes.facebook_data.favorite_athletes = response.favorite_athletes;
+				//appData.models.userModel.attributes.facebook_data.favorite_teams = response.favorite_teams;
+				//appData.models.userModel.attributes.facebook_data.hometown = response.hometown.name;
+				//appData.models.userModel.attributes.facebook_data.username = response.name;
+		
+				var gender;
+				if(response.gender == "male"){
+					gender = 1;
+				}else{
+					gender = 0;
+				}
 
-			FB.api("/me/picture", function(response) {
-				appData.models.userModel.attributes.facebook_avatar = response.data.url;
-				appData.events.facebookGetProfileDataEvent.trigger("facebookProfileDataHandler");
+				appData.models.userModel.attributes.gender = gender;
+				appData.models.userModel.attributes.facebook_id = response.id;
+
+				FB.api("/me/picture", function(response) {
+					appData.models.userModel.attributes.facebook_avatar = response.data.url;
+					Backbone.trigger("facebookProfileDataHandler");
+				});
+
 			});
-
-		});
+		}else{
+			Backbone.trigger("facebookProfileDataHandler");
+		}
 	},
 
 	getFacebookFriends: function(){
+		// out of scope
+		/*
 		FB.api('/me/friends', { fields: 'id, name, picture' },  function(response) {
 	    	if (response.error) {
 	        	appData.events.facebookGetFriendsErrorEvent.trigger("facebookGetFriendErrorHandler");
 
 	    	} else {
-
+				appData.models.userModel.attributes.friends= [];
 				appData.models.userModel.attributes.friends = new UsersCollection(response.data);
 
 				// succesfully signed in via Facebook
-	        	appData.events.facebookGetFriendsEvent.trigger("facebookGetFriendsHandler");
 	    	}
-		});
+		});*/
+		appData.models.userModel.attributes.friends= [];
+       	appData.events.facebookGetFriendsEvent.trigger("facebookGetFriendsHandler");
 	}
 
 });
@@ -4697,9 +4728,6 @@ appData.services.PhpServices = Backbone.Model.extend({
 			dataType:'json',
 			data: "url="+imageName+"&user_id="+appData.models.userModel.attributes.user_id+"&type="+1+"&activity_id="+activity_id,
 			success:function(data){
-				alert(imageName);
-				alert(activity_id);
-
         		Backbone.trigger('addPhotoToDatabaseHandler');
 				appData.services.avatarService.addScore("media");
 			}
@@ -4821,8 +4849,6 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
   	updateChallenge: function(challenge_id, status, completed){
-  		
-  		
   		$.ajax({
 			url:appData.settings.servicePath + appData.settings.updateChallengeService,
 			type:'POST',
@@ -4835,7 +4861,6 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
   	addSport: function(sport_title, description, icon){
-
   		$.ajax({
 			url:appData.settings.servicePath + appData.settings.addSportService,
 			type:'POST',
@@ -4848,7 +4873,6 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
   	getFriends: function(sport_title, description, icon){
-
   		$.ajax({
 			url:appData.settings.servicePath + appData.settings.getFriendsService,
 			type:'POST',
@@ -4864,7 +4888,6 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
 	addFriend: function(friend_id, friend_from_id){
-
 		$.ajax({
 			url:appData.settings.servicePath + appData.settings.addFriendService,
 			type:'POST',
@@ -4892,7 +4915,6 @@ appData.services.PhpServices = Backbone.Model.extend({
     },
 
     getUserMedia: function(userID){
-
 		$.ajax({
 			url:appData.settings.servicePath + appData.settings.getUserMediaService,
 			type:'POST',

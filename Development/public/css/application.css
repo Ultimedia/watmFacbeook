@@ -1,0 +1,674 @@
+/* line 17, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* apply a natural box layout model to all elements */
+/* line 5, ../../dev/sass/application.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* line 10, ../../dev/sass/application.scss */
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-color: #E4E4E4;
+  background-image: linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -webkit-linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -ms-linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a7a7a7), color-stop(0.51, #e4e4e4));
+  background-attachment: fixed;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+/* line 35, ../../dev/sass/application.scss */
+form .cl-btn {
+  width: 100% !important;
+}
+
+/**
+ * Styles to fix the new iOS 7 transparent status bar
+ */
+/* line 43, ../../dev/sass/application.scss */
+#ios7statusbar {
+  width: 100%;
+  height: 20px;
+  background-color: white;
+  position: fixed;
+  z-index: 10000;
+}
+
+/* line 50, ../../dev/sass/application.scss */
+.ios7 .ui-page, .ios7 .ui-header, .ios7 .ui-pane {
+  margin-top: 20px;
+}
+
+/* line 55, ../../dev/sass/application.scss */
+#activity-header {
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+
+/* line 61, ../../dev/sass/application.scss */
+#activityMap, #map {
+  height: 200px;
+  width: 100%;
+}
+
+/* line 66, ../../dev/sass/application.scss */
+#activityInfo {
+  height: 40px;
+  width: 100%;
+  background: rgba(55, 55, 55, 0.9);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  padding: 0 5px;
+}
+
+/* line 76, ../../dev/sass/application.scss */
+#activityInfo span {
+  float: left;
+}
+
+/* line 80, ../../dev/sass/application.scss */
+#activityInfo #navigateButton {
+  padding: 10px;
+  margin-top: 2px;
+}
+
+/* line 85, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell h3, #profileTable .cl-table-cell h3 {
+  margin: 5px 0;
+}
+
+/* line 89, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul, #profileTable .cl-table-cell ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+/* line 94, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul li, #profileTable .cl-table-cell ul li {
+  display: inline-block;
+  background: #bfbfbf;
+  padding: 1px 4px;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
+
+/* line 102, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell {
+  margin-top: 0px;
+}
+
+/* line 106, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul li .entypo-icon, #profileTable .cl-table-cell ul li .entypo-icon {
+  font-size: 22px;
+}
+
+/* line 110, ../../dev/sass/application.scss */
+#sortBar p, #searchBar p {
+  float: left;
+}
+
+/* line 114, ../../dev/sass/application.scss */
+#searchBar {
+  padding: 10px;
+  height: auto;
+  background: #757575 !important;
+}
+
+/* line 119, ../../dev/sass/application.scss */
+#searchForm input[type=search] {
+  border: 0;
+  width: 100%;
+  border-radius: 0;
+  padding: .8em .6em .8em .6em;
+  font-size: 1em;
+  border: 0;
+  display: block;
+  height: 2.5em;
+}
+
+/* line 131, ../../dev/sass/application.scss */
+#sortBar select {
+  width: 170px;
+  margin-top: 12px;
+}
+
+/* line 136, ../../dev/sass/application.scss */
+.entypo-icon {
+  font-size: 3em;
+  font-family: 'EntypoRegular';
+  font-style: inherit;
+}
+
+/* ios specific */
+/* line 144, ../../dev/sass/application.scss */
+.cl-bar-title {
+  height: 68px;
+}
+
+/* line 149, ../../dev/sass/application.scss */
+.cl-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title {
+  line-height: 80px;
+}
+
+/* line 153, ../../dev/sass/application.scss */
+.cl-bar-title a {
+  display: inline-block;
+}
+
+/* line 157, ../../dev/sass/application.scss */
+.cl-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn, .cl-bar-title > .cl-btn:last-child, .cl-modal .cl-modal-bar-title > .cl-btn:last-child, .cl-bar-footer > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-footer > .cl-modal-title + .btn, .cl-bar-footer > .cl-btn:last-child, .cl-bar > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar > .cl-modal-title + .btn, .cl-bar > .cl-btn:last-child {
+  top: 20px;
+}
+
+/* line 161, ../../dev/sass/application.scss */
+.cl-bar-title > .cl-btn, .cl-modal .cl-modal-bar-title > .cl-btn, .cl-bar-footer > .cl-btn, .cl-bar > .cl-btn {
+  top: 20px;
+}
+
+/* line 167, ../../dev/sass/application.scss */
+#navigateButton {
+  display: inline-block;
+  background: #fff;
+  float: right;
+}
+
+/* line 173, ../../dev/sass/application.scss */
+#activityContent {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* line 178, ../../dev/sass/application.scss */
+#activityContent h4 {
+  display: inline-block;
+  width: 80px;
+}
+
+/* line 187, ../../dev/sass/application.scss */
+#createActivity .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar.flex .cl-btn:nth-child(2):not(:last-child),
+#profile .cl-btn-toolbar .cl-btn,
+#navigationView .cl-btn-toolbar .cl-btn {
+  border-radius: 0;
+  margin-right: 0;
+  padding: 5px 0;
+  margin: 0;
+}
+
+/* line 194, ../../dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar .cl-btn.active, #navigationTabs .cl-btn-toolbar .cl-btn.active {
+  background: #eeeeee;
+  color: #000000;
+}
+
+/* line 199, ../../dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 203, ../../dev/sass/application.scss */
+#activityDetail hr {
+  background-color: #fff;
+  border: #000 1px dotted;
+  border-style: none none dotted;
+  color: #fff;
+}
+
+/* line 210, ../../dev/sass/application.scss */
+#praktischContent ul {
+  display: inline-block;
+  padding-left: 0;
+}
+
+/* line 215, ../../dev/sass/application.scss */
+#praktischContent ul li {
+  display: inline-block;
+}
+
+/* line 219, ../../dev/sass/application.scss */
+#praktischContent ul li {
+  border: 1px solid #5b5b5b;
+  padding: 5px;
+}
+
+/* line 224, ../../dev/sass/application.scss */
+#activityDetailTabs {
+  margin-bottom: 10px;
+}
+
+/* line 228, ../../dev/sass/application.scss */
+#availibleBar .cl-btn {
+  background: #c68436;
+}
+
+/* line 232, ../../dev/sass/application.scss */
+#availibleBar .cl-btn:first-child {
+  background: #af7633;
+}
+
+/* line 236, ../../dev/sass/application.scss */
+#createActivityTabs, #navigationTabs {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 241, ../../dev/sass/application.scss */
+#createActivityTabs .active, #profileTabs .active, #navigationTabs .active {
+  background: #eeeeee;
+  color: #000000;
+}
+
+/* line 246, ../../dev/sass/application.scss */
+#profile .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 250, ../../dev/sass/application.scss */
+#home .cl-content {
+  padding-top: 10px;
+}
+
+/* line 254, ../../dev/sass/application.scss */
+#addMediaButton {
+  width: 100%;
+}
+
+/* line 258, ../../dev/sass/application.scss */
+#smallImage {
+  max-width: 100%;
+}
+
+/* line 262, ../../dev/sass/application.scss */
+#map_canvas, #googleMap {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Create new user page */
+/* line 273, ../../dev/sass/application.scss */
+#createUserForm label.error, #loginForm label.error, #watForm label.error {
+  background: red;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* line 282, ../../dev/sass/application.scss */
+#createUserForm input.error, #loginForm input.error {
+  margin-bottom: 0;
+}
+
+/* Login page */
+/* line 288, ../../dev/sass/application.scss */
+.error-box {
+  background: red;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* line 297, ../../dev/sass/application.scss */
+.error-box.hide {
+  display: none;
+}
+
+/* line 300, ../../dev/sass/application.scss */
+.error-box.show {
+  display: block;
+}
+
+/* line 305, ../../dev/sass/application.scss */
+#FBloginButton {
+  margin-bottom: 10px;
+}
+
+/**
+* Pageslider
+*/
+/* line 312, ../../dev/sass/application.scss */
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 319, ../../dev/sass/application.scss */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 329, ../../dev/sass/application.scss */
+.page.page-left {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* line 334, ../../dev/sass/application.scss */
+.page.page-center {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 339, ../../dev/sass/application.scss */
+.page.page-right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+/* line 344, ../../dev/sass/application.scss */
+.page.transition {
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+}
+
+/**
+* Backbone autocomplete
+*/
+/* line 353, ../../dev/sass/application.scss */
+ul.autocomplete {
+  display: none;
+  position: absolute;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 3px 0;
+  width: 100% !important;
+  z-index: 1000;
+}
+
+/* line 363, ../../dev/sass/application.scss */
+ul.autocomplete li {
+  list-style: none;
+  margin: 0;
+  padding: 5px 7px;
+}
+
+/* line 369, ../../dev/sass/application.scss */
+ul.autocomplete li.active, ul.autocomplete li:hover {
+  cursor: pointer;
+  background-color: #d3d3d3;
+}
+
+/* line 374, ../../dev/sass/application.scss */
+ul.autocomplete li a {
+  color: #3d3d3d;
+  text-decoration: none;
+}
+
+/* line 381, ../../dev/sass/application.scss */
+#loading {
+  background: #258dc8;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #258dc8), color-stop(100%, #258dc8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #258dc8 0%, #258dc8 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#258dc8', endColorstr='#258dc8',GradientType=0 );
+  /* IE6-9 */
+  display: table;
+}
+
+/* line 393, ../../dev/sass/application.scss */
+#loading h2 {
+  display: table-cell;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 2em;
+}
+
+/* line 402, ../../dev/sass/application.scss */
+#loading h2 small {
+  font-size: 0.6em;
+}
+
+/* line 406, ../../dev/sass/application.scss */
+.align-center {
+  text-align: center;
+}
+
+/* line 410, ../../dev/sass/application.scss */
+.cl-message {
+  padding: 10px;
+  background-color: #c3c3c3;
+}
+
+/* line 416, ../../dev/sass/application.scss */
+.field > span {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+/* line 421, ../../dev/sass/application.scss */
+.field input[type=text] {
+  width: 100%;
+}
+
+/* line 424, ../../dev/sass/application.scss */
+.field input[type=button] {
+  float: right;
+}
+
+/* line 428, ../../dev/sass/application.scss */
+.message {
+  margin: 0 0 15px 0;
+}
+/* line 432, ../../dev/sass/application.scss */
+.message .messageHeader {
+  display: block;
+}
+/* line 436, ../../dev/sass/application.scss */
+.message .messageHeader img, .message .messageHeader h3 {
+  float: left;
+}
+/* line 440, ../../dev/sass/application.scss */
+.message .messageHeader h3 {
+  font-size: 1.2em;
+}
+/* line 444, ../../dev/sass/application.scss */
+.message .messageHeader img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+/* line 453, ../../dev/sass/application.scss */
+.message .messageBody {
+  clear: both;
+}
+
+/* line 461, ../../dev/sass/application.scss */
+#challengesList .cl-table-cell {
+  padding: 10px;
+}
+/* line 465, ../../dev/sass/application.scss */
+#challengesList h3 {
+  font-size: 1.2em;
+}
+/* line 469, ../../dev/sass/application.scss */
+#challengesList .badge_img {
+  float: left;
+}
+/* line 473, ../../dev/sass/application.scss */
+#challengesList .status {
+  display: block;
+}
+
+/* line 480, ../../dev/sass/application.scss */
+#friendsListView div {
+  float: left;
+}
+/* line 484, ../../dev/sass/application.scss */
+#friendsListView div, #friendsListView .friendsBox {
+  display: inline-block;
+}
+
+/* Page specific */
+/* line 493, ../../dev/sass/application.scss */
+#home .cl-bar-title {
+  height: 140px;
+  display: table;
+}
+/* line 498, ../../dev/sass/application.scss */
+#home .cl-title {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 506, ../../dev/sass/application.scss */
+#dashboard #sortBar {
+  background: #8d7069;
+}
+
+/* line 512, ../../dev/sass/application.scss */
+#waarContent #map_canvas {
+  height: 400px;
+}
+
+/* line 519, ../../dev/sass/application.scss */
+#navigationView #map_canvas {
+  height: 50%;
+}
+/* line 523, ../../dev/sass/application.scss */
+#navigationView #directions {
+  height: 50%;
+}
+
+/* line 528, ../../dev/sass/application.scss */
+#favouriteSportList {
+  display: table;
+}
+/* line 531, ../../dev/sass/application.scss */
+#favouriteSportList div {
+  float: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 536, ../../dev/sass/application.scss */
+#favouriteSportList div a {
+  min-width: 70px;
+  min-height: 70px;
+  background: #d2d2d2;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+}
+/* line 547, ../../dev/sass/application.scss */
+#favouriteSportList div a.selected {
+  background: #fff;
+}
+
+/* line 554, ../../dev/sass/application.scss */
+#favouriteSportsSelector #confirm {
+  top: 0;
+}
+/* line 558, ../../dev/sass/application.scss */
+#favouriteSportsSelector ul.autocomplete {
+  position: absolute;
+}

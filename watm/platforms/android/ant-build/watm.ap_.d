@@ -148,7 +148,6 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/cordova.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/cordova_plugins.js \
-/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/dindex.html \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/facebook-js-sdk.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/img \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/index.html \

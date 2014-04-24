@@ -40,12 +40,11 @@
     <script>
         if (navigator.userAgent.toLowerCase().match(/iphone/) || navigator.userAgent.toLowerCase().match(/android/)) {
             document.write('<script charset="utf-8" src="facebook-js-sdk.js"><\/script>');
+            document.write('<script charset="utf-8" src="cdv-plugin-fb-connect.js"><\/script>');
         }else{
             document.write('<script charset="utf-8" src="public/js/vendor/facebook-js-sdk.js"><\/script>');
         }
     </script>
-    <script src="cdv-plugin-fb-connect.js" type="text/javascript"></script>
-
   </head>
   <body>
     <div id="container">

@@ -1,0 +1,318 @@
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.cl-bar-title .cl-btn{
+  background: none;
+}
+
+.cl-bar-footer .cl-btn{
+  background: red;
+}
+
+.cl-btn {
+  @include button-skin($accent-color);
+  @include button-skin-hover($accent-color);
+
+  display: block;
+  cursor: pointer;
+  position: relative;
+  
+  /* Fixes when <button> is used */
+  border: none;
+  -webkit-appearance: none;
+
+  text-align: center;
+  font-size: 13px;
+  line-height: 32px;
+
+  /* Bar buttons */
+  .cl-bar-title &,
+  .cl-bar-footer &,
+  .cl-bar & {
+    padding: 0 7px;
+    [data-os="android"] & {
+      padding: 0 10px;
+    }
+    margin: 5px;
+    font-size: 13px;
+  }
+
+  .cl-content > & {
+    margin: 0 10px;
+  }
+}
+
+/* ==========================================================================
+   Button positioning, toolbars, groups
+   ========================================================================== */
+
+/* Button positioning within page bars
+   ========================================================================== */
+
+.cl-bar-title,
+.cl-bar-footer,
+.cl-bar {
+  // If no aligment is specified align left
+  > .cl-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  > .cl-title + .btn, // if there is a button right after .title it should probably be right aligned
+  > .cl-btn:last-child { // if there is a button the last child it should probably be right aligned
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+  }
+  > .cl-btn.align-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+  }
+  > .cl-btn.align-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+  }
+  // If you have multiple buttons they should be grouped in .cl-btn-toolbar with a .float class for positioning
+  .cl-btn-toolbar {
+    &.align-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: auto;
+    }
+    &.align-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      left: auto;
+    }
+  }
+  // Button group aka segemented control in middle
+  .cl-btn-group.align-center {
+    .cl-btn {
+      position: static;
+      margin: 5px -1px 5px 0;
+      width: 25%;
+    }
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    margin: 0 auto;
+  }
+  // Title positioning
+  .cl-title.align-left {
+    position: absolute;
+    top: 0;
+    left: 12px;
+  }
+}
+
+/* Button toolbars
+   You should specify an implementation [flex|float]
+   ========================================================================== */
+
+.cl-btn-toolbar.flex {
+  padding: 0 10px;
+  display: -webkit-flex;
+  display: flex;
+  .cl-btn {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+  .cl-btn {
+    &:first-child {
+      margin-right: 5px;
+    }
+    &:nth-child(2):not(:last-child),
+    &:nth-child(3):not(:last-child),
+    &:nth-child(4):not(:last-child) {
+      margin: 0 5px;
+    }
+    &:last-child {
+      margin-left: 5px;
+    }
+    &:only-child {
+      margin: 0;
+    }
+  }
+}
+
+
+
+.cl-btn-toolbar.float {
+  display: block;
+  @include pie-clearfix;
+  .cl-btn {
+    float: left;
+  }
+}
+
+/* ==========================================================================
+   Button group aka segmented control
+   ========================================================================== */
+
+.cl-btn-group {
+  padding: 0 10px;
+  .cl-btn {
+    padding: 0;
+    @include border-radius(0);
+
+    line-height: 30px; // 2px less than normal to account for borders
+    [data-os="android"] & {
+      line-height: 38px; // 2px less than normal to account for borders
+    }
+
+    border: 1px solid darken($accent-color, 5%);
+    border-right-width: 0;
+    &.active, &:hover {
+      color: $very-light-color;
+      background: darken($accent-color, 5%);
+    }
+    &:first-child {
+      @include border-left-radius($border-radius);
+    }
+    &:last-child {
+      @include border-right-radius($border-radius);
+      border-right-width: 1px;
+    }
+    .bar &,
+    .bar-title &,
+    .bar-footer & {
+      position: relative;
+    }
+  }
+}
+
+/* Specify an implementation for positioning 
+   ========================================================================== */
+
+.cl-btn-group.flex {
+  display: -webkit-flex;
+  display: flex;
+  .cl-btn {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+}
+
+.cl-btn-group.float {
+  display: block;
+  @include pie-clearfix;
+  .cl-btn {
+    float: left;
+    width: 120px;
+  }
+}
+
+/* Different skin for headers
+   ========================================================================== */
+
+.cl-bar-title,
+.cl-bar-footer,
+.cl-bar {
+  .cl-btn-group {
+    .cl-btn {
+      border: 1px solid darken($accent-color, 8%);
+      color: $very-light-color;
+      &.active, &:hover {
+        background: darken($accent-color, 8%);
+      }
+    } 
+  }
+}
+
+
+.cl-depth-btn{
+    color: #fff;
+    border-radius: 0;
+    padding: 7px 0;
+    text-transform: uppercase;
+    font-family: "source_sans_prosemibold";
+    background-color: #4ebab6 !important; /* layer fill content */
+    -moz-box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    -webkit-box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAuMDQiLz4KICAgPC9saW5lYXJHcmFkaWVudD4KCjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2hhdDApIiAvPgo8L3N2Zz4=); /* gradient overlay */
+    background-image: -moz-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+}
+
+.cl-depth-btn.blue{
+    background-color: #4573dd !important; /* layer fill content */
+    -moz-box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    -webkit-box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    box-shadow: 0 5px 10px rgba(16,40,90,.6), inset 0 1px 1px rgba(255,255,255,.6); /* drop shadow and inner shadow */
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iaGF0MCIgZ3JhZGllbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHgxPSI1MCUiIHkxPSIxMDAlIiB4Mj0iNTAlIiB5Mj0iLTEuNDIxMDg1NDcxNTIwMmUtMTQlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwLjEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAuMDQiLz4KICAgPC9saW5lYXJHcmFkaWVudD4KCjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2hhdDApIiAvPgo8L3N2Zz4=); /* gradient overlay */
+    background-image: -moz-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: -o-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: -webkit-linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */
+    background-image: linear-gradient(bottom, rgba(255,255,255,.1) 0%, rgba(255,255,255,.04) 100%); /* gradient overlay */   
+}
+
+
+.cl-line-btn{
+    border-radius: 0;
+    padding: 7px 0;
+    border: 1px solid #fff;
+    background: none;
+    text-transform: uppercase;
+    font-family: "source_sans_prosemibold";
+    margin-top: 10px;
+    opacity: .93; /* layer alpha */
+    background-color: #2f3d4d; /* color overlay */
+    &:hover,
+    &:active {
+      background-color: #fff;
+      color: #2f3d4d;
+    }
+}
+
+.button-container{
+  padding: 10px;
+  background: #23272d;
+
+  input[type=submit]{
+    width: 100%;
+  }
+}
+
+
+.cl-btn.flat-green{
+  background: #4cd6d1 !important;
+  color: #252d34;
+  width: auto; 
+  font-size: 11px;
+}
+
+.cl-btn.btn-small{
+  width: 40%;
+  display: inline-block;
+}
+
+
+.cl-bar-title a{
+  display: inline-block;
+}
+
+.cl-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn, .cl-bar-title > .cl-btn:last-child, .cl-modal .cl-modal-bar-title > .cl-btn:last-child, .cl-bar-footer > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-footer > .cl-modal-title + .btn, .cl-bar-footer > .cl-btn:last-child, .cl-bar > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar > .cl-modal-title + .btn, .cl-bar > .cl-btn:last-child {
+  top: 20px;
+}
+
+.cl-bar-title > .cl-btn, .cl-modal .cl-modal-bar-title > .cl-btn, .cl-bar-footer > .cl-btn, .cl-bar > .cl-btn{
+  top: 20px;
+}
+

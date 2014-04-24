@@ -1,0 +1,60 @@
+<div class="cl-page">
+    <div class="cl-bar-title">
+        <a href="javascript:;" class="cl-btn" data-transition="slide-out" id="searchButton">
+        <i class="entypo-icon">&#128269;</i>
+        </a>
+        <div class="cl-title">Activiteiten</div>
+        <a href="#createActivity" class="cl-btn" data-transition="slide-out">
+        <i class="entypo-icon">&#57347;</i>
+        </a>
+    </div>
+
+    <div class="cl-content">
+
+        <div class="cl-bar" id="sortBar">
+            <p class="cl-bar-text">Sorteer op</p>
+              <select id="sortActivities">
+                <option value="Afstand">Afstand</option>
+                <option value="Buurt">Buurt</option>
+                <option value="Favoriete Sporten">Favoriete Sporten</option>
+              </select>
+
+        </div>
+
+        <div class="cl-bar hide" id="searchBar">
+            <p class="cl-bar-text">Zoek</p>
+            <input type="search"/>
+        </div>
+
+
+        <div class="cl-table" id="activityTable" style="overflow: scroll;">
+
+        </div>
+    </div>
+
+
+
+    <nav class="tab-bar">
+        <ul>
+            <li class="tab-item active">
+                <a href="#dashboard">
+                <span class="icon icon-app-square"></span>
+                <div class="tab-label">Activiteiten</div>
+                </a>
+            </li>
+            <li class="tab-item">
+                <a href="#planner">
+                <span class="icon icon-app-square"></span>
+                <div class="tab-label">Planning</div>
+                </a>
+            </li>
+            <li class="tab-item">
+                <a href="#profile">
+                <span class="icon icon-app-square"></span>
+                <div class="tab-label">Profiel</div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+

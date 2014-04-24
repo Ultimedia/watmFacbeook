@@ -1,4 +1,4 @@
-/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-gen/be/devine/ko/R.java \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-gen/be/devine/watm/R.java \
  : /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/FacebookLib/res/drawable/com_facebook_button_blue.xml \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/FacebookLib/res/drawable/com_facebook_button_blue_focused.9.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/FacebookLib/res/drawable/com_facebook_button_blue_normal.9.png \

@@ -1,0 +1,4990 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Clank CSS framework
+   ========================================================================== */
+/* line 17, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/*  Device wraps
+    Set this to true if you are using device frames i.e. like the demo at getclank.com
+   ========================================================================== */
+/*  Operating system defaults
+    Used to determine the sizing of elements
+   ========================================================================== */
+/*  Default style variables 
+   ========================================================================== */
+/* Colors
+   Quickly change the colors of your app using these variables
+   Note that a "light text on dark background" scheme is not fully supported yet
+   ========================================================================== */
+/* Stylistic choices
+   Quickly change the style of your app using these variables
+   ========================================================================== */
+/* For this release we are focussing on iOS7
+   Enforce iOS7 flatness
+   ========================================================================== */
+/* Media queries, always based on 16px base value.
+   ========================================================================== */
+/* Master z-index list
+   ========================================================================== */
+/* Fonts 
+   ========================================================================== */
+/* CSS3 calc
+   ========================================================================== */
+/* Alternate clearfix that does not rely on overflow: hidden;
+   ========================================================================== */
+/* Unstyled
+   ========================================================================== */
+/* Text shadows
+  @todo make this dependant on text color
+   ========================================================================== */
+/* Gradients
+   ========================================================================== */
+/* Buttons
+   ========================================================================== */
+/*
+ * 'rem' is a Sass mixin that converts pixel values to rem values for whatever property is passed to it.
+ * It returns two lines of code — one of the regular pixel values (for IE), and another with the
+ * converted rem values (for everyone else). Special thanks to Chris Epstein (http://chriseppstein.github.com)
+ * and Martin Bavio (http://martinbavio.com) for the help and code!
+ *
+ * Sample input:
+ * .element {
+ *   @include rem('padding',10px 0 2px 5px);
+ * }
+ *
+ * Sample output:
+ * .element {
+ *   padding: 10px 0 2px 5px;
+ *   padding: 1rem 0 0.2rem 0.5rem;
+ * }
+ *
+ */
+/* Links
+   ========================================================================== */
+/* Links when color inversed */
+/* Animations
+   ========================================================================== */
+/* ==========================================================================
+  Base
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/_base.scss */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 10, ../../dev/sass/clank/_base.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 14, ../../dev/sass/clank/_base.scss */
+.cl-device-body *, .cl-device-body *:before, .cl-device-body *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 20, ../../dev/sass/clank/_base.scss */
+.cl-device-body {
+  padding: 0;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+/* line 33, ../../dev/sass/clank/_base.scss */
+.cl-device-body > .cl-bar-title, .cl-modal .cl-device-body > .cl-modal-bar-title, .cl-device-body > .cl-content, .cl-device-body > .cl-bar-footer {
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+  Typography
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_article.scss */
+.cl-article {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.5;
+  color: #333333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* Typography */
+  /* For footnotes */
+  /* Code
+     ========================================================================== */
+}
+/* line 7, ../../dev/sass/clank/components/_article.scss */
+.cl-article.padded {
+  margin: 10px;
+}
+/* line 21, ../../dev/sass/clank/components/_article.scss */
+.cl-article a {
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+/* line 219, ../../dev/sass/clank/_mixins.scss */
+.cl-article a {
+  text-decoration: none;
+}
+/* line 222, ../../dev/sass/clank/_mixins.scss */
+.cl-article a:link {
+  color: #1d60b2;
+  border-bottom: 1px solid #bad9ff;
+}
+/* line 226, ../../dev/sass/clank/_mixins.scss */
+.cl-article a:visited {
+  color: #513c90;
+  border-bottom: 1px solid #8e75da;
+}
+/* line 232, ../../dev/sass/clank/_mixins.scss */
+.cl-article a:hover, .cl-article a:active, .cl-article a:focus {
+  color: #1876e6;
+  border-bottom: 1px solid #68adff;
+}
+/* line 235, ../../dev/sass/clank/_mixins.scss */
+.content p .cl-article a:hover, .content li .cl-article a:hover, .content p .cl-article a:active, .content li .cl-article a:active, .content p .cl-article a:focus, .content li .cl-article a:focus {
+  background: #e7f2ff;
+}
+/* line 27, ../../dev/sass/clank/components/_article.scss */
+.cl-article .cl-btn:link,
+.cl-article .cl-btn:visited {
+  border: none;
+  color: white;
+}
+/* line 34, ../../dev/sass/clank/components/_article.scss */
+.cl-article strong {
+  font-weight: 700;
+  color: black;
+}
+/* line 39, ../../dev/sass/clank/components/_article.scss */
+.cl-article p {
+  margin: 0 0 12px;
+  margin: 0 0 0.92308rem;
+}
+/* line 41, ../../dev/sass/clank/components/_article.scss */
+.cl-article p + p {
+  margin-top: 0;
+}
+/* line 44, ../../dev/sass/clank/components/_article.scss */
+.cl-article p.intro {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 19px;
+  font-size: 1.46154rem;
+  line-height: 1.33;
+}
+/* line 51, ../../dev/sass/clank/components/_article.scss */
+.cl-article blockquote {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0 12px 24px;
+  margin: 0 0 0.92308rem 1.84615rem;
+  color: #666666;
+}
+/* line 272, ../../dev/sass/clank/_mixins.scss */
+.cl-article blockquote a:link, .cl-article blockquote a:visited {
+  color: #7F7F7F;
+  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+}
+/* line 279, ../../dev/sass/clank/_mixins.scss */
+.cl-article blockquote a:hover, .cl-article blockquote a:active, .cl-article blockquote a:focus {
+  color: #000;
+  border-bottom: none;
+}
+/* line 58, ../../dev/sass/clank/components/_article.scss */
+.cl-article blockquote cite {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #000;
+  display: block;
+  text-align: right;
+  font-style: normal;
+  font-size: 13px;
+  font-size: 1rem;
+}
+/* line 68, ../../dev/sass/clank/components/_article.scss */
+.cl-article h1, .cl-article h2, .cl-article h3, .cl-article h4 {
+  color: black;
+  padding: 0;
+  margin: 0 0 12px;
+  margin: 0 0 0.92308rem;
+}
+/* line 74, ../../dev/sass/clank/components/_article.scss */
+.cl-article h1, .cl-article h2, .cl-article h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.1;
+}
+/* line 79, ../../dev/sass/clank/components/_article.scss */
+.cl-article h1, .cl-article h2 {
+  font-size: 32px;
+  font-size: 2.46154rem;
+}
+/* line 83, ../../dev/sass/clank/components/_article.scss */
+.cl-article h3 {
+  font-size: 19px;
+  font-size: 1.46154rem;
+  margin: 0 0 12px;
+  margin: 0 0 0.92308rem;
+}
+/* line 88, ../../dev/sass/clank/components/_article.scss */
+.cl-article h4 {
+  margin: 0;
+  font-size: 13px;
+  font-size: 1rem;
+  margin: 0 0 12px;
+  margin: 0 0 0.92308rem;
+}
+/* line 97, ../../dev/sass/clank/components/_article.scss */
+.cl-article h1 a,
+.cl-article h1 a:link,
+.cl-article h1 a:visited, .cl-article h2 a,
+.cl-article h2 a:link,
+.cl-article h2 a:visited, .cl-article h3 a,
+.cl-article h3 a:link,
+.cl-article h3 a:visited {
+  border: none;
+  color: #000;
+}
+/* line 103, ../../dev/sass/clank/components/_article.scss */
+.cl-article h1 a:hover,
+.cl-article h1 a:active,
+.cl-article h1 a:focus, .cl-article h2 a:hover,
+.cl-article h2 a:active,
+.cl-article h2 a:focus, .cl-article h3 a:hover,
+.cl-article h3 a:active,
+.cl-article h3 a:focus {
+  border-bottom: 1px solid #9CC6F9;
+  color: #0067E3;
+}
+/* line 110, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ul,
+.cl-article .content ol {
+  padding: 0 0 12px;
+  padding: 0 0 0.92308rem;
+  margin: 0 0 0 24px;
+  margin: 0 0 0 1.84615rem;
+}
+/* line 113, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ul ul, .cl-article .content ul ol,
+.cl-article .content ol ul,
+.cl-article .content ol ol {
+  padding: 0;
+}
+/* line 118, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ul li {
+  list-style: disc;
+}
+/* line 120, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ul li ol li {
+  list-style: decimal;
+}
+/* line 125, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ol li {
+  list-style: decimal;
+}
+/* line 127, ../../dev/sass/clank/components/_article.scss */
+.cl-article .content ol li ul li {
+  list-style: disc;
+}
+/* line 133, ../../dev/sass/clank/components/_article.scss */
+.cl-article .footnotes {
+  border-top: 1px solid #aaaaaa;
+  padding-top: 8px;
+  padding-top: 0.61538rem;
+}
+/* line 139, ../../dev/sass/clank/components/_article.scss */
+.cl-article ol li:target,
+.cl-article sup:target {
+  background: #FFA;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+/* line 147, ../../dev/sass/clank/components/_article.scss */
+.cl-article pre {
+  margin: 0 0 12px;
+  margin: 0 0 0.92308rem;
+  padding: 10px;
+  padding: 0.76923rem;
+  font-size: 14px;
+  font-size: 1.07692rem;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background: #dddddd;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  /* css-3 */
+  white-space: -moz-pre-wrap;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
+}
+/* line 160, ../../dev/sass/clank/components/_article.scss */
+.cl-article pre + pre {
+  border-bottom-radius: 4px;
+  border-bottom-radius: 0.30769rem;
+}
+/* line 165, ../../dev/sass/clank/components/_article.scss */
+.cl-article code {
+  font-family: Menlo, Consolas, "Courier New", monospace;
+  font-size: 87%;
+}
+/* line 170, ../../dev/sass/clank/components/_article.scss */
+.cl-article em code {
+  font-style: normal;
+}
+/* line 174, ../../dev/sass/clank/components/_article.scss */
+.cl-article .footnotes ol {
+  width: 90%;
+  position: relative;
+  left: 32px;
+  left: 2.46154rem;
+  font-size: 13px;
+  font-size: 1rem;
+}
+/* line 179, ../../dev/sass/clank/components/_article.scss */
+.cl-article .footnotes ol li {
+  margin-bottom: 4px;
+  margin-bottom: 0.30769rem;
+}
+/* line 182, ../../dev/sass/clank/components/_article.scss */
+.cl-article .footnotes ol p {
+  margin: 0;
+}
+/* line 187, ../../dev/sass/clank/components/_article.scss */
+.cl-article ul, .cl-article ol {
+  padding: 0;
+  margin-bottom: 12px;
+  margin-bottom: 0.92308rem;
+  /* make use of collapsing margins */
+}
+/* line 192, ../../dev/sass/clank/components/_article.scss */
+.cl-article ol > li {
+  list-style: decimal;
+}
+/* line 196, ../../dev/sass/clank/components/_article.scss */
+.cl-article ul > li {
+  list-style: disc;
+}
+/* line 202, ../../dev/sass/clank/components/_article.scss */
+.cl-article > ul ul, .cl-article > ul ol, .cl-article > ol ul, .cl-article > ol ol {
+  margin: 0;
+}
+/* line 205, ../../dev/sass/clank/components/_article.scss */
+.cl-article > ul li, .cl-article > ol li {
+  margin-left: 24px;
+  margin-left: 1.84615rem;
+}
+
+/* Article width layout
+   ========================================================================== */
+/* line 263, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered {
+  margin: 12px 0;
+}
+/* line 265, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered img {
+  max-width: 100%;
+}
+/* line 284, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered > h1, .cl-article-centered > h2, .cl-article-centered > h3, .cl-article-centered > h4, .cl-article-centered > p, .cl-article-centered > ul, .cl-article-centered > ol, .cl-article-centered > header, .cl-article-centered > footer, .cl-article-centered > blockquote, .cl-article-centered > .dont-stretch, .cl-article-centered > .highlight, .cl-article-centered > .table, .cl-article-centered > .footnotes, .cl-article-centered > pre, .cl-article-centered > .video-outer-wrap {
+  width: 100%;
+  max-width: 92%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 225, ../../dev/sass/clank/components/_article.scss */
+[data-device="nexus7-portrait"] .cl-article-centered > h1, [data-device="nexus7-portrait"] .cl-article-centered > h2, [data-device="nexus7-portrait"] .cl-article-centered > h3, [data-device="nexus7-portrait"] .cl-article-centered > h4, [data-device="nexus7-portrait"] .cl-article-centered > p, [data-device="nexus7-portrait"] .cl-article-centered > ul, [data-device="nexus7-portrait"] .cl-article-centered > ol, [data-device="nexus7-portrait"] .cl-article-centered > header, [data-device="nexus7-portrait"] .cl-article-centered > footer, [data-device="nexus7-portrait"] .cl-article-centered > blockquote, [data-device="nexus7-portrait"] .cl-article-centered > .dont-stretch, [data-device="nexus7-portrait"] .cl-article-centered > .highlight, [data-device="nexus7-portrait"] .cl-article-centered > .table, [data-device="nexus7-portrait"] .cl-article-centered > .footnotes, [data-device="nexus7-portrait"] .cl-article-centered > pre, [data-device="nexus7-portrait"] .cl-article-centered > .video-outer-wrap {
+  max-width: 80%;
+}
+/* line 229, ../../dev/sass/clank/components/_article.scss */
+[data-device="ipad3-portrait"] .cl-article-centered > h1, [data-device="ipad3-portrait"] .cl-article-centered > h2, [data-device="ipad3-portrait"] .cl-article-centered > h3, [data-device="ipad3-portrait"] .cl-article-centered > h4, [data-device="ipad3-portrait"] .cl-article-centered > p, [data-device="ipad3-portrait"] .cl-article-centered > ul, [data-device="ipad3-portrait"] .cl-article-centered > ol, [data-device="ipad3-portrait"] .cl-article-centered > header, [data-device="ipad3-portrait"] .cl-article-centered > footer, [data-device="ipad3-portrait"] .cl-article-centered > blockquote, [data-device="ipad3-portrait"] .cl-article-centered > .dont-stretch, [data-device="ipad3-portrait"] .cl-article-centered > .highlight, [data-device="ipad3-portrait"] .cl-article-centered > .table, [data-device="ipad3-portrait"] .cl-article-centered > .footnotes, [data-device="ipad3-portrait"] .cl-article-centered > pre, [data-device="ipad3-portrait"] .cl-article-centered > .video-outer-wrap {
+  max-width: 80%;
+}
+/* line 233, ../../dev/sass/clank/components/_article.scss */
+[data-device="nexus7-landscape"] .cl-article-centered > h1, [data-device="nexus7-landscape"] .cl-article-centered > h2, [data-device="nexus7-landscape"] .cl-article-centered > h3, [data-device="nexus7-landscape"] .cl-article-centered > h4, [data-device="nexus7-landscape"] .cl-article-centered > p, [data-device="nexus7-landscape"] .cl-article-centered > ul, [data-device="nexus7-landscape"] .cl-article-centered > ol, [data-device="nexus7-landscape"] .cl-article-centered > header, [data-device="nexus7-landscape"] .cl-article-centered > footer, [data-device="nexus7-landscape"] .cl-article-centered > blockquote, [data-device="nexus7-landscape"] .cl-article-centered > .dont-stretch, [data-device="nexus7-landscape"] .cl-article-centered > .highlight, [data-device="nexus7-landscape"] .cl-article-centered > .table, [data-device="nexus7-landscape"] .cl-article-centered > .footnotes, [data-device="nexus7-landscape"] .cl-article-centered > pre, [data-device="nexus7-landscape"] .cl-article-centered > .video-outer-wrap {
+  max-width: 70%;
+}
+/* line 237, ../../dev/sass/clank/components/_article.scss */
+[data-device="ipad3-landscape"] .cl-article-centered > h1, [data-device="ipad3-landscape"] .cl-article-centered > h2, [data-device="ipad3-landscape"] .cl-article-centered > h3, [data-device="ipad3-landscape"] .cl-article-centered > h4, [data-device="ipad3-landscape"] .cl-article-centered > p, [data-device="ipad3-landscape"] .cl-article-centered > ul, [data-device="ipad3-landscape"] .cl-article-centered > ol, [data-device="ipad3-landscape"] .cl-article-centered > header, [data-device="ipad3-landscape"] .cl-article-centered > footer, [data-device="ipad3-landscape"] .cl-article-centered > blockquote, [data-device="ipad3-landscape"] .cl-article-centered > .dont-stretch, [data-device="ipad3-landscape"] .cl-article-centered > .highlight, [data-device="ipad3-landscape"] .cl-article-centered > .table, [data-device="ipad3-landscape"] .cl-article-centered > .footnotes, [data-device="ipad3-landscape"] .cl-article-centered > pre, [data-device="ipad3-landscape"] .cl-article-centered > .video-outer-wrap {
+  max-width: 70%;
+}
+/* line 290, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered > .cl-data-table, .cl-article-centered > .dont-stretch {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 245, ../../dev/sass/clank/components/_article.scss */
+[data-device="nexus7-portrait"] .cl-article-centered > .cl-data-table, [data-device="nexus7-portrait"] .cl-article-centered > .dont-stretch {
+  width: 80%;
+}
+/* line 249, ../../dev/sass/clank/components/_article.scss */
+[data-device="ipad3-portrait"] .cl-article-centered > .cl-data-table, [data-device="ipad3-portrait"] .cl-article-centered > .dont-stretch {
+  width: 80%;
+}
+/* line 253, ../../dev/sass/clank/components/_article.scss */
+[data-device="nexus7-landscape"] .cl-article-centered > .cl-data-table, [data-device="nexus7-landscape"] .cl-article-centered > .dont-stretch {
+  width: 70%;
+}
+/* line 257, ../../dev/sass/clank/components/_article.scss */
+[data-device="ipad3-landscape"] .cl-article-centered > .cl-data-table, [data-device="ipad3-landscape"] .cl-article-centered > .dont-stretch {
+  width: 70%;
+}
+/* line 295, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered > img.dont-stretch {
+  display: block;
+}
+/* line 298, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered > hr {
+  width: 58%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 303, ../../dev/sass/clank/components/_article.scss */
+.cl-article-centered > blockquote {
+  width: 80%;
+  position: relative;
+  left: 12px;
+  left: 0.92308rem;
+}
+
+/* ==========================================================================
+   Base layout
+   ========================================================================== */
+/* Page level */
+/* line 7, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-page {
+  text-align: left;
+  font-size: 13px;
+  word-wrap: break-word;
+  width: 100%;
+  height: 100%;
+  height: -moz-calc(100% - 20px);
+  height: -o-calc(100% - 20px);
+  height: -webkit-calc(100% - 20px);
+  height: calc(100% - 20px);
+  /* minus status bar height */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Content */
+/* line 19, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-content {
+  background: #eeeeee;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  height: -moz-calc(100% - 92px);
+  height: -o-calc(100% - 92px);
+  height: -webkit-calc(100% - 92px);
+  height: calc(100% - 92px);
+}
+/* line 30, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-content {
+  height: -moz-calc(100% - 50px);
+  height: -o-calc(100% - 50px);
+  height: -webkit-calc(100% - 50px);
+  height: calc(100% - 50px);
+}
+/* line 34, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-content.has-footer-bar {
+  height: -moz-calc(100% - 88px);
+  height: -o-calc(100% - 88px);
+  height: -webkit-calc(100% - 88px);
+  height: calc(100% - 88px);
+}
+/* line 36, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-content.has-footer-bar {
+  height: -moz-calc(100% - 100px);
+  height: -o-calc(100% - 100px);
+  height: -webkit-calc(100% - 100px);
+  height: calc(100% - 100px);
+}
+/* line 42, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-content.cl-content__full-height .full-height {
+  height: 100%;
+}
+
+/* Bar layout */
+/* line 52, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-title, .cl-modal .cl-modal-bar-title,
+.cl-bar,
+.cl-bar-footer {
+  *zoom: 1;
+  overflow: hidden;
+  width: 100%;
+  min-height: 44px;
+  height: 44px;
+  position: relative;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-bar-title:after, .cl-modal .cl-modal-bar-title:after,
+.cl-bar:after,
+.cl-bar-footer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 59, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-bar-title, [data-os="android"] .cl-modal .cl-modal-bar-title, .cl-modal [data-os="android"] .cl-modal-bar-title, [data-os="android"]
+.cl-bar, [data-os="android"]
+.cl-bar-footer {
+  min-height: 50px;
+  height: 50px;
+}
+
+/* line 66, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* line 74, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title {
+  text-align: center;
+  line-height: 44px;
+  margin: 0 auto;
+  -webkit-hyphens: auto;
+}
+/* line 78, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="ios"] .cl-bar-title .cl-title, [data-os="ios"] .cl-modal .cl-modal-bar-title .cl-title, .cl-modal [data-os="ios"] .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title [data-os="ios"] .cl-bar-title .cl-modal-title, [data-os="ios"] .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal [data-os="ios"] .cl-modal-bar-title .cl-modal-title {
+  font-weight: 500;
+}
+/* line 81, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-bar-title .cl-title, [data-os="android"] .cl-modal .cl-modal-bar-title .cl-title, .cl-modal [data-os="android"] .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title [data-os="android"] .cl-bar-title .cl-modal-title, [data-os="android"] .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal [data-os="android"] .cl-modal-bar-title .cl-modal-title {
+  line-height: 50px;
+}
+
+/**
+ * Text in a bar
+ * sample markup: <p class="cl-bar-text">My text</p>
+ */
+/* line 95, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-text {
+  margin: 0;
+  padding: 0;
+  color: white;
+  line-height: 44px;
+}
+/* line 103, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-bar-text {
+  line-height: 50px;
+}
+/* line 108, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar .cl-bar-text, .cl-bar-title .cl-bar-text, .cl-modal .cl-modal-bar-title .cl-bar-text, .cl-bar-footer .cl-bar-text {
+  margin: 0 10px;
+}
+/* line 114, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-text.align-left {
+  margin-left: 7px;
+}
+/* line 117, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-text.align-right {
+  text-align: right;
+  margin-right: 7px;
+}
+
+/**
+ * Bar title
+ * Sample markup: <h1 class="cl-title"></h1>
+ */
+/* line 128, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+  color: white;
+  line-height: 44px;
+}
+/* line 140, ../../dev/sass/clank/components/_base-layout.scss */
+[data-os="android"] .cl-title, [data-os="android"] .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal .cl-modal-bar-title [data-os="android"] .cl-modal-title {
+  line-height: 50px;
+}
+
+/**
+ * Bar backgrounds
+ */
+/* line 151, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-title, .cl-modal .cl-modal-bar-title,
+.cl-bar-footer,
+.cl-bar {
+  background: #18788b;
+}
+
+/* line 180, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-footer {
+  background: #FFF;
+  /* The upper highlight */
+}
+/* line 183, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-bar-footer:before {
+  content: " ";
+  height: 1px;
+  width: 100%;
+  background: #bbbbbb;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Addition - back chevron
+   ========================================================================== */
+/* line 199, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-btn [class^="icon-app-"],
+.cl-btn [class*=" icon-app-"] {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+/* line 205, ../../dev/sass/clank/components/_base-layout.scss */
+.cl-btn .icon-ios7-back-chevron,
+.cl-btn .icon-android4-back-chevron {
+  font-size: 140%;
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn, .cl-modal .cl-modal-bar-title .cl-btn {
+  background: none;
+}
+
+/* line 9, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn {
+  display: block;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  padding: 3px 0;
+  /* Fixes when <button> is used */
+  border: none;
+  -webkit-appearance: none;
+  text-align: center;
+  font-size: 13px;
+  line-height: 32px;
+  /* Bar buttons */
+  /* Buttons with icons in */
+  /* Less min width for icon only type buttons */
+}
+/* line 111, ../../dev/sass/clank/_mixins.scss */
+.cl-btn, .cl-btn:link, .cl-btn:visited {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  background: #18788b;
+  color: white;
+}
+/* line 132, ../../dev/sass/clank/_mixins.scss */
+.cl-btn:hover, .cl-btn:active, .cl-btn:focus, .cl-btn.active {
+  background: #105260;
+  color: white;
+}
+/* line 28, ../../dev/sass/clank/components/_buttons.scss */
+[data-os="android"] .cl-btn {
+  line-height: 40px;
+  font-weight: 700;
+}
+/* line 36, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn, .cl-modal .cl-modal-bar-title .cl-btn, .cl-bar-footer .cl-btn, .cl-bar .cl-btn {
+  padding: 0 7px;
+  margin: 5px;
+  font-size: 13px;
+}
+/* line 38, ../../dev/sass/clank/components/_buttons.scss */
+[data-os="android"] .cl-bar-title .cl-btn, [data-os="android"] .cl-modal .cl-modal-bar-title .cl-btn, .cl-modal [data-os="android"] .cl-modal-bar-title .cl-btn, [data-os="android"] .cl-bar-footer .cl-btn, [data-os="android"] .cl-bar .cl-btn {
+  padding: 0 10px;
+}
+/* line 47, ../../dev/sass/clank/components/_buttons.scss */
+.cl-content > .cl-btn {
+  margin: 0 10px;
+}
+/* line 52, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn.cl-btn-icon {
+  white-space: nowrap;
+  padding: 0 7px 0 21px;
+}
+/* line 55, ../../dev/sass/clank/components/_buttons.scss */
+[data-os="android"] .cl-btn.cl-btn-icon {
+  padding: 0 7px 0 21px;
+}
+/* line 61, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn.cl-btn-icon, .cl-modal .cl-modal-bar-title .cl-btn.cl-btn-icon, .cl-bar-footer .cl-btn.cl-btn-icon, .cl-bar .cl-btn.cl-btn-icon {
+  padding: 0 7px 0 21px;
+}
+/* line 63, ../../dev/sass/clank/components/_buttons.scss */
+[data-os="android"] .cl-bar-title .cl-btn.cl-btn-icon, [data-os="android"] .cl-modal .cl-modal-bar-title .cl-btn.cl-btn-icon, .cl-modal [data-os="android"] .cl-modal-bar-title .cl-btn.cl-btn-icon, [data-os="android"] .cl-bar-footer .cl-btn.cl-btn-icon, [data-os="android"] .cl-bar .cl-btn.cl-btn-icon {
+  padding: 0 7px 0 21px;
+}
+/* line 69, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn.cl-btn-icon-only {
+  width: 35px;
+  font-size: 19px;
+}
+
+/* Primary buttons */
+/* line 111, ../../dev/sass/clank/_mixins.scss */
+.cl-btn-primary, .cl-btn-primary:link, .cl-btn-primary:visited {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  background: #1cbede;
+  color: white;
+}
+/* line 132, ../../dev/sass/clank/_mixins.scss */
+.cl-btn-primary:hover, .cl-btn-primary:active, .cl-btn-primary:focus, .cl-btn-primary.active {
+  background: #105260;
+  color: white;
+}
+
+/* Subtle buttons */
+/* line 111, ../../dev/sass/clank/_mixins.scss */
+.cl-btn-subtle, .cl-btn-subtle:link, .cl-btn-subtle:visited {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+  background: #e1e1e1;
+  color: black;
+}
+/* line 132, ../../dev/sass/clank/_mixins.scss */
+.cl-btn-subtle:hover, .cl-btn-subtle:active, .cl-btn-subtle:focus, .cl-btn-subtle.active {
+  background: #105260;
+  color: white;
+}
+
+/* Disabled buttons */
+/* line 93, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-disabled, .cl-btn-disabled:link, .cl-btn-disabled:hover, .cl-btn-disabled:active, .cl-btn-disabled:focus {
+  background: #e1e1e1;
+  color: #AAA;
+  text-shadow: none;
+  pointer-events: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* ==========================================================================
+   Button positioning, toolbars, groups
+   ========================================================================== */
+/* Button positioning within page bars
+   ========================================================================== */
+/* line 120, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title > .cl-btn, .cl-modal .cl-modal-bar-title > .cl-btn,
+.cl-bar-footer > .cl-btn,
+.cl-bar > .cl-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 126, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn,
+.cl-bar-title > .cl-btn:last-child,
+.cl-modal .cl-modal-bar-title > .cl-btn:last-child,
+.cl-bar-footer > .cl-title + .btn,
+.cl-modal .cl-modal-bar-title .cl-bar-footer > .cl-modal-title + .btn,
+.cl-bar-footer > .cl-btn:last-child,
+.cl-bar > .cl-title + .btn,
+.cl-modal .cl-modal-bar-title .cl-bar > .cl-modal-title + .btn,
+.cl-bar > .cl-btn:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+}
+/* line 132, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title > .cl-btn.align-center, .cl-modal .cl-modal-bar-title > .cl-btn.align-center,
+.cl-bar-footer > .cl-btn.align-center,
+.cl-bar > .cl-btn.align-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+}
+/* line 141, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title > .cl-btn.align-right, .cl-modal .cl-modal-bar-title > .cl-btn.align-right,
+.cl-bar-footer > .cl-btn.align-right,
+.cl-bar > .cl-btn.align-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+}
+/* line 149, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-toolbar.align-right, .cl-modal .cl-modal-bar-title .cl-btn-toolbar.align-right,
+.cl-bar-footer .cl-btn-toolbar.align-right,
+.cl-bar .cl-btn-toolbar.align-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+}
+/* line 155, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-toolbar.align-left, .cl-modal .cl-modal-bar-title .cl-btn-toolbar.align-left,
+.cl-bar-footer .cl-btn-toolbar.align-left,
+.cl-bar .cl-btn-toolbar.align-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  left: auto;
+}
+/* line 163, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-group.align-center, .cl-modal .cl-modal-bar-title .cl-btn-group.align-center,
+.cl-bar-footer .cl-btn-group.align-center,
+.cl-bar .cl-btn-group.align-center {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  margin: 0 auto;
+}
+/* line 164, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-group.align-center .cl-btn, .cl-modal .cl-modal-bar-title .cl-btn-group.align-center .cl-btn,
+.cl-bar-footer .cl-btn-group.align-center .cl-btn,
+.cl-bar .cl-btn-group.align-center .cl-btn {
+  position: static;
+  margin: 5px -1px 5px 0;
+  width: 25%;
+}
+/* line 178, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-title.align-left, .cl-modal .cl-modal-bar-title .cl-title.align-left, .cl-modal .cl-modal-bar-title .align-left.cl-modal-title,
+.cl-bar-footer .cl-title.align-left,
+.cl-bar-footer .cl-modal .cl-modal-bar-title .align-left.cl-modal-title,
+.cl-modal .cl-modal-bar-title .cl-bar-footer .align-left.cl-modal-title,
+.cl-bar .cl-title.align-left,
+.cl-bar .cl-modal .cl-modal-bar-title .align-left.cl-modal-title,
+.cl-modal .cl-modal-bar-title .cl-bar .align-left.cl-modal-title {
+  position: absolute;
+  top: 0;
+  left: 12px;
+}
+
+/* Button toolbars
+   You should specify an implementation [flex|float]
+   ========================================================================== */
+/* line 189, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex {
+  padding: 0 10px;
+  display: -webkit-flex;
+  display: flex;
+}
+/* line 193, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex .cl-btn {
+  -webkit-flex: 1;
+  flex: 1;
+}
+/* line 198, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex .cl-btn:first-child {
+  margin-right: 5px;
+}
+/* line 203, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex .cl-btn:nth-child(2):not(:last-child), .cl-btn-toolbar.flex .cl-btn:nth-child(3):not(:last-child), .cl-btn-toolbar.flex .cl-btn:nth-child(4):not(:last-child) {
+  margin: 0 5px;
+}
+/* line 206, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex .cl-btn:last-child {
+  margin-left: 5px;
+}
+/* line 209, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.flex .cl-btn:only-child {
+  margin: 0;
+}
+
+/* line 215, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.float {
+  display: block;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-btn-toolbar.float:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 218, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-toolbar.float .cl-btn {
+  float: left;
+}
+
+/* ==========================================================================
+   Button group aka segmented control
+   ========================================================================== */
+/* line 227, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group {
+  padding: 0 10px;
+}
+/* line 229, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group .cl-btn {
+  padding: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  line-height: 30px;
+  border: 1px solid #146575;
+  border-right-width: 0;
+}
+/* line 234, ../../dev/sass/clank/components/_buttons.scss */
+[data-os="android"] .cl-btn-group .cl-btn {
+  line-height: 38px;
+}
+/* line 240, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group .cl-btn.active, .cl-btn-group .cl-btn:hover {
+  color: white;
+  background: #146575;
+}
+/* line 244, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group .cl-btn:first-child {
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+/* line 247, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group .cl-btn:last-child {
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-width: 1px;
+}
+/* line 253, ../../dev/sass/clank/components/_buttons.scss */
+.bar .cl-btn-group .cl-btn, .bar-title .cl-btn-group .cl-btn, .bar-footer .cl-btn-group .cl-btn {
+  position: relative;
+}
+
+/* Specify an implementation for positioning 
+   ========================================================================== */
+/* line 262, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group.flex {
+  display: -webkit-flex;
+  display: flex;
+}
+/* line 265, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group.flex .cl-btn {
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+/* line 271, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group.float {
+  display: block;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-btn-group.float:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 274, ../../dev/sass/clank/components/_buttons.scss */
+.cl-btn-group.float .cl-btn {
+  float: left;
+  width: 120px;
+}
+
+/* Different skin for headers
+   ========================================================================== */
+/* line 287, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-group .cl-btn, .cl-modal .cl-modal-bar-title .cl-btn-group .cl-btn,
+.cl-bar-footer .cl-btn-group .cl-btn,
+.cl-bar .cl-btn-group .cl-btn {
+  border: 1px solid #125a68;
+  color: white;
+}
+/* line 290, ../../dev/sass/clank/components/_buttons.scss */
+.cl-bar-title .cl-btn-group .cl-btn.active, .cl-modal .cl-modal-bar-title .cl-btn-group .cl-btn.active, .cl-bar-title .cl-btn-group .cl-btn:hover, .cl-modal .cl-modal-bar-title .cl-btn-group .cl-btn:hover,
+.cl-bar-footer .cl-btn-group .cl-btn.active,
+.cl-bar-footer .cl-btn-group .cl-btn:hover,
+.cl-bar .cl-btn-group .cl-btn.active,
+.cl-bar .cl-btn-group .cl-btn:hover {
+  background: #125a68;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/* Form wrapper
+   ========================================================================== */
+/* line 9, ../../dev/sass/clank/components/_forms.scss */
+.cl-form.padded {
+  margin: 10px;
+}
+
+/* Basic input types
+   ========================================================================== */
+/* line 19, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input, .cl-form select, .cl-form textarea, .cl-form option {
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+/* line 22, ../../dev/sass/clank/components/_forms.scss */
+[data-os="android"] .cl-form input, [data-os="android"] .cl-form select, [data-os="android"] .cl-form textarea, [data-os="android"] .cl-form option {
+  font-family: Roboto, Droid Sans, sans-serif;
+}
+/* line 27, ../../dev/sass/clank/components/_forms.scss */
+.cl-form textarea {
+  min-height: 88px;
+}
+/* line 50, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="text"],
+.cl-form input[type="password"],
+.cl-form input[type="datetime"],
+.cl-form input[type="datetime-local"],
+.cl-form input[type="date"],
+.cl-form input[type="month"],
+.cl-form input[type="time"],
+.cl-form input[type="week"],
+.cl-form input[type="number"],
+.cl-form input[type="email"],
+.cl-form input[type="url"],
+.cl-form input[type="search"],
+.cl-form input[type="tel"],
+.cl-form input[type="color"],
+.cl-form input[type="range"],
+.cl-form select,
+.cl-form textarea,
+.cl-form .radio-list,
+.cl-form .checkbox-list {
+  margin-bottom: 10px;
+}
+/* line 55, ../../dev/sass/clank/components/_forms.scss */
+.cl-form > .cl-btn-toolbar,
+.cl-form > .cl-btn {
+  margin-bottom: 10px;
+}
+/* line 59, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="range"] {
+  width: 100%;
+}
+/* line 79, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="text"],
+.cl-form input[type="password"],
+.cl-form input[type="datetime"],
+.cl-form input[type="datetime-local"],
+.cl-form input[type="date"],
+.cl-form input[type="month"],
+.cl-form input[type="time"],
+.cl-form input[type="week"],
+.cl-form input[type="number"],
+.cl-form input[type="email"],
+.cl-form input[type="url"],
+.cl-form input[type="search"],
+.cl-form input[type="tel"],
+.cl-form input[type="color"],
+.cl-form textarea,
+.cl-form select {
+  width: 100%;
+  padding: 4px;
+  height: 34px;
+  background: #FFF;
+  border-radius: 3px;
+  border: 1px solid #AAA;
+}
+/* line 89, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="text"]:focus,
+.cl-form input[type="password"]:focus,
+.cl-form input[type="datetime"]:focus,
+.cl-form input[type="datetime-local"]:focus,
+.cl-form input[type="date"]:focus,
+.cl-form input[type="month"]:focus,
+.cl-form input[type="time"]:focus,
+.cl-form input[type="week"]:focus,
+.cl-form input[type="number"]:focus,
+.cl-form input[type="email"]:focus,
+.cl-form input[type="url"]:focus,
+.cl-form input[type="search"]:focus,
+.cl-form input[type="tel"]:focus,
+.cl-form input[type="color"]:focus,
+.cl-form textarea:focus,
+.cl-form select:focus {
+  border-color: rgba(28, 190, 222, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(28, 190, 222, 0.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(28, 190, 222, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(28, 190, 222, 0.6);
+}
+/* line 99, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[disabled],
+.cl-form textarea[disabled] {
+  background: #DDD;
+}
+/* line 103, ../../dev/sass/clank/components/_forms.scss */
+.cl-form select[multiple] {
+  min-height: 100px;
+}
+/* line 106, ../../dev/sass/clank/components/_forms.scss */
+.cl-form select[multiple] option {
+  height: 44px;
+  line-height: 44px;
+}
+
+/* Radio and checkbox lists
+   ========================================================================== */
+/* line 118, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list,
+.cl-form .checkbox-list {
+  display: -webkit-flex;
+  padding: 0;
+}
+/* line 121, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list input,
+.cl-form .checkbox-list input {
+  visibility: hidden;
+  position: absolute;
+  top: -9000em;
+  left: -9000em;
+}
+/* line 127, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list label,
+.cl-form .checkbox-list label {
+  line-height: 42px;
+  -webkit-flex: 1;
+  flex: 1;
+  background: #FFF;
+  border: 1px solid #dddddd;
+  border-width: 1px 1px 1px 0;
+  padding: 10px;
+  line-height: 1.5;
+  position: relative;
+  right: 1px;
+}
+/* line 134, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list label:first-child,
+.cl-form .checkbox-list label:first-child {
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-width: 1px;
+}
+/* line 138, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list label:last-child,
+.cl-form .checkbox-list label:last-child {
+  left: -1px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+/* line 146, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list label:hover,
+.cl-form .checkbox-list label:hover {
+  background: #18788b;
+  border-color: #18788b;
+  color: #FFF;
+}
+/* line 151, ../../dev/sass/clank/components/_forms.scss */
+.cl-form .radio-list label.checked,
+.cl-form .checkbox-list label.checked {
+  background: #18788b;
+  border-color: #18788b;
+  color: #FFF;
+}
+
+/* Range input (slider)
+   ========================================================================== */
+/* line 165, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="range"] {
+  -webkit-appearance: none;
+  height: 30px;
+  background: none;
+  position: relative;
+}
+/* line 170, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type="range"]:after {
+  content: " .";
+  background-color: #888;
+  height: 2px;
+  font-size: 0;
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+/* line 184, ../../dev/sass/clank/components/_forms.scss */
+.cl-form input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+  position: relative;
+  border-radius: 100%;
+  border: 1px solid #444;
+  background: #FFF;
+}
+
+/* ==========================================================================
+   Alerts (iOS type alerts similar to a javascript alert)
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1202000202;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  bottom: 0;
+}
+/* line 20, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-box {
+  z-index: 120203202;
+  margin: auto;
+  width: 90%;
+  padding: 12px 0 0;
+  text-align: center;
+  background: white;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+@media all and (min-width: 768px) {
+  /* line 20, ../../dev/sass/clank/components/_alerts.scss */
+  .cl-alert .cl-alert-box {
+    width: 300px;
+  }
+}
+/* line 34, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-title {
+  font-size: 16px;
+  padding: 0 12px 6px;
+}
+/* line 39, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-message {
+  padding: 4px 12px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+/* line 46, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-title,
+.cl-alert .cl-alert-message {
+  margin: 0;
+}
+/* line 51, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-btn-group {
+  padding: 0;
+  border-top: 1px solid #B3B5B9;
+  display: -webkit-flex;
+  display: flex;
+}
+/* line 57, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-btn {
+  -webkit-flex: 1;
+  flex: 1;
+  color: #18788b;
+  padding: 12px 0;
+  font-size: 17px;
+}
+/* line 65, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-btn:hover, .cl-alert .cl-alert-btn:active, .cl-alert .cl-alert-btn:focus {
+  background: rgba(24, 120, 139, 0.25);
+}
+/* line 68, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-btn:first-child {
+  border-right: 1px solid #B3B5B9;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+/* line 72, ../../dev/sass/clank/components/_alerts.scss */
+.cl-alert .cl-alert-btn:last-child {
+  font-weight: 700;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/* Base tables
+   ========================================================================== */
+/* line 8, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table {
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Baseline table styles
+   ========================================================================== */
+/* line 17, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table {
+  width: 100%;
+  margin-bottom: 12px;
+  /* Cells */
+  /* Bottom align for column headings */
+  /* Account for multiple tbody instances */
+}
+/* line 22, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table th,
+.cl-data-table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+/* line 28, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table th {
+  font-weight: 700;
+  color: #333333;
+}
+/* line 33, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table thead th {
+  vertical-align: bottom;
+}
+/* line 42, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table caption + thead tr:first-child th,
+.cl-data-table caption + thead tr:first-child td,
+.cl-data-table colgroup + thead tr:first-child th,
+.cl-data-table colgroup + thead tr:first-child td,
+.cl-data-table thead:first-child tr:first-child th,
+.cl-data-table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+/* line 46, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+/* Condensed table w/ half padding
+   ========================================================================== */
+/* line 56, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table-condensed th,
+.cl-data-table-condensed td {
+  padding: 4px 5px;
+}
+
+/* Bordered table
+   ========================================================================== */
+/* line 65, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table-bordered {
+  border: 1px solid #dddddd;
+  border-left: 0;
+}
+/* line 69, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table-bordered th,
+.cl-data-table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+/* Table with zebra striping
+   ========================================================================== */
+/* line 80, ../../dev/sass/clank/components/_data-table.scss */
+.cl-data-table-striped tbody > tr:nth-child(odd) > td,
+.cl-data-table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #dddddd;
+}
+
+/* ==========================================================================
+   Toggle styles (to be used with toggles.js)
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle {
+  position: relative;
+  width: 75px;
+  height: 28px;
+  background-color: #eee;
+  border: 1px solid #bbb;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+/* line 14, ../../dev/sass/clank/components/_toggles.scss */
+[data-os="ios"] .cl-toggle {
+  border-radius: 20px;
+}
+
+/* Text indicating "on" or "off". Default is "off" */
+/* line 20, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle:before {
+  position: absolute;
+  right: 13px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #777;
+  text-shadow: 0 1px #FFF;
+  text-transform: uppercase;
+  content: "Off";
+}
+
+/* Sliding handle */
+/* line 32, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle-handle {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  background-color: #fff;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transition: -webkit-transform 0.1s ease-in-out, border 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, border 0.1s ease-in-out;
+}
+/* line 52, ../../dev/sass/clank/components/_toggles.scss */
+[data-os="ios"] .cl-toggle-handle {
+  border-radius: 100%;
+}
+
+/* Active state for toggle */
+/* line 58, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle.active {
+  background-color: #18788b;
+  border: 1px solid #18788b;
+}
+
+/* Active state for toggle handle */
+/* line 73, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle.active .cl-toggle-handle {
+  border-color: #18788b;
+  -webkit-transform: translate3d(48px, 0, 0);
+  transform: translate3d(48px, 0, 0);
+}
+
+/* Change "off" to "on" for active state */
+/* line 80, ../../dev/sass/clank/components/_toggles.scss */
+.cl-toggle.active:before {
+  right: auto;
+  left: 15px;
+  color: #FFF;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
+  content: "On";
+}
+
+/* ==========================================================================
+   Slider styles (to be used with sliders.js)
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Width/height of slider */
+/* line 12, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider > ul,
+.cl-slider > ul > li {
+  width: 100%;
+  height: -moz-calc(100%);
+  height: -o-calc(100%);
+  height: -webkit-calc(100%);
+  height: calc(100%);
+}
+/* line 15, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider > ul img,
+.cl-slider > ul > li img {
+  max-width: 100%;
+}
+
+/* Outer wrapper for slider */
+/* line 21, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider {
+  overflow: hidden;
+}
+
+/* Inner wrapper for slider (width of all slides together) */
+/* line 26, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider > ul {
+  position: relative;
+  white-space: nowrap;
+  -webkit-transition: all 0 linear;
+  transition: all 0 linear;
+  font-size: 0;
+}
+
+/* Individual slide */
+/* line 35, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider > ul > li {
+  display: inline-block;
+  vertical-align: top;
+  /* Ensure that li always aligns to top */
+}
+
+/* Required reset of font-size to same as standard body */
+/* line 41, ../../dev/sass/clank/components/_sliders.scss */
+.cl-slider > ul > li > * {
+  font-size: 14px;
+}
+
+/* For photo sliders
+ * Add an extra .cl-photo-slider class
+   ========================================================================== */
+/* line 49, ../../dev/sass/clank/components/_sliders.scss */
+.cl-photo-slider {
+  height: 100%;
+}
+
+/* line 53, ../../dev/sass/clank/components/_sliders.scss */
+.cl-photo-slider > ul > li {
+  text-align: center;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+/* line 60, ../../dev/sass/clank/components/_sliders.scss */
+.cl-photo-slider > ul > li img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Pager
+   Paginate the slider
+   ========================================================================== */
+/* line 73, ../../dev/sass/clank/components/_sliders.scss */
+.paginated {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  bottom: 12px;
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  z-index: 3;
+  display: -webkit-flex;
+  -webkit-justify-content: flex-start;
+}
+/* line 84, ../../dev/sass/clank/components/_sliders.scss */
+.paginated .pagination {
+  width: 100%;
+  text-align: center;
+}
+/* line 87, ../../dev/sass/clank/components/_sliders.scss */
+.paginated .pagination a {
+  color: #000;
+  font-size: 30px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=33);
+  opacity: 0.33;
+}
+/* line 91, ../../dev/sass/clank/components/_sliders.scss */
+.paginated .pagination a.active {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* line 100, ../../dev/sass/clank/components/_sliders.scss */
+.cl-photo-slider + .paginated .pagination a {
+  color: #FFF;
+}
+
+/* ==========================================================================
+   Loading spinner
+   ========================================================================== */
+@-webkit-keyframes rotation {
+  /* line 12, ../../dev/sass/clank/components/_loading.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 13, ../../dev/sass/clank/components/_loading.scss */
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-moz-keyframes rotation {
+  /* line 16, ../../dev/sass/clank/components/_loading.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 17, ../../dev/sass/clank/components/_loading.scss */
+  to {
+    -moz-transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes rotation {
+  /* line 20, ../../dev/sass/clank/components/_loading.scss */
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  /* line 21, ../../dev/sass/clank/components/_loading.scss */
+  to {
+    -o-transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  /* line 24, ../../dev/sass/clank/components/_loading.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 25, ../../dev/sass/clank/components/_loading.scss */
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* line 29, ../../dev/sass/clank/components/_loading.scss */
+.cl-loading-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 42, ../../dev/sass/clank/components/_loading.scss */
+.cl-loading {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  -webkit-animation: rotation 1s infinite linear;
+  -moz-animation: rotation .1s infinite linear;
+  -o-animation: rotation 1s infinite linear;
+  animation: rotation 1s infinite linear;
+  border: 2px solid rgba(24, 120, 139, 0.15);
+  border-radius: 100%;
+}
+/* line 53, ../../dev/sass/clank/components/_loading.scss */
+.cl-loading:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  height: 100%;
+  width: 100%;
+  border-top: 2px solid rgba(24, 120, 139, 0.8);
+  border-left: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-radius: 100%;
+}
+
+/* line 69, ../../dev/sass/clank/components/_loading.scss */
+.cl-loading-big {
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  position: relative;
+  -webkit-animation: rotation 1s infinite linear;
+  -moz-animation: rotation .1s infinite linear;
+  -o-animation: rotation 1s infinite linear;
+  animation: rotation 1s infinite linear;
+  border: 6px solid rgba(24, 120, 139, 0.15);
+  border-radius: 100%;
+}
+/* line 80, ../../dev/sass/clank/components/_loading.scss */
+.cl-loading-big:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  height: 100%;
+  width: 100%;
+  border-top: 6px solid rgba(24, 120, 139, 0.8);
+  border-left: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-radius: 100%;
+}
+
+/* Table views
+   ========================================================================== */
+/* ==========================================================================
+   Table view
+   ========================================================================== */
+/* line 32, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table {
+  *zoom: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin: 0 0;
+  width: 100%;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-table:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 37, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table + .cl-table {
+  padding-top: 0;
+}
+
+/* line 44, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-title {
+  padding: 0;
+  margin: 10px 10px 0 10px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #666666;
+}
+/* line 50, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-title + .cl-table {
+  padding-top: 5px;
+  margin-top: 0;
+}
+/* line 54, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-title + .input-group {
+  padding-top: 5px;
+}
+
+/* line 61, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell {
+  font-size: 14px;
+  min-height: 44px;
+  position: relative;
+  width: 100%;
+  background: white;
+}
+/* line 12, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell:hover, .cl-table-cell:active, .cl-table-cell:focus, .cl-table-cell.active {
+  color: white;
+  background: #18788b;
+}
+/* line 14, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell:hover a, .cl-table-cell:hover .disclosure-help, .cl-table-cell:hover .icon, .cl-table-cell:active a, .cl-table-cell:active .disclosure-help, .cl-table-cell:active .icon, .cl-table-cell:focus a, .cl-table-cell:focus .disclosure-help, .cl-table-cell:focus .icon, .cl-table-cell.active a, .cl-table-cell.active .disclosure-help, .cl-table-cell.active .icon {
+  color: white;
+}
+
+/* line 70, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row {
+  margin: 0 15px;
+  *zoom: 1;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-table-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 80, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row > .cl-table-cell {
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-table-row > .cl-table-cell:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 82, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row > .cl-table-cell:first-child {
+  float: left;
+}
+/* line 85, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row > .cl-table-cell:last-child {
+  float: right;
+}
+
+/* line 93, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row .cl-table-cell:first-child {
+  width: -moz-calc(50% - 1px);
+  width: -o-calc(50% - 1px);
+  width: -webkit-calc(50% - 1px);
+  width: calc(50% - 1px);
+}
+/* line 96, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row .cl-table-cell:last-child {
+  width: -moz-calc(50%);
+  width: -o-calc(50%);
+  width: -webkit-calc(50%);
+  width: calc(50%);
+}
+/* line 102, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-2-3 .cl-table-cell:first-child {
+  width: -moz-calc(40% - 1px);
+  width: -o-calc(40% - 1px);
+  width: -webkit-calc(40% - 1px);
+  width: calc(40% - 1px);
+}
+/* line 105, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-2-3 .cl-table-cell:last-child {
+  width: -moz-calc(60% - 1px);
+  width: -o-calc(60% - 1px);
+  width: -webkit-calc(60% - 1px);
+  width: calc(60% - 1px);
+}
+/* line 112, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-3-7 .cl-table-cell:first-child {
+  width: -moz-calc(30% - 1px);
+  width: -o-calc(30% - 1px);
+  width: -webkit-calc(30% - 1px);
+  width: calc(30% - 1px);
+}
+/* line 115, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-3-7 .cl-table-cell:last-child {
+  width: -moz-calc(70%);
+  width: -o-calc(70%);
+  width: -webkit-calc(70%);
+  width: calc(70%);
+}
+/* line 122, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-1-3 .cl-table-cell:first-child {
+  width: -moz-calc(25% - 1px);
+  width: -o-calc(25% - 1px);
+  width: -webkit-calc(25% - 1px);
+  width: calc(25% - 1px);
+}
+/* line 125, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-row.split-1-3 .cl-table-cell:last-child {
+  width: -moz-calc(75%);
+  width: -o-calc(75%);
+  width: -webkit-calc(75%);
+  width: calc(75%);
+}
+
+/* line 134, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell {
+  position: relative;
+}
+/* line 136, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell:after {
+  content: " ";
+  width: 100%;
+  width: -moz-calc(100% - 15px);
+  width: -o-calc(100% - 15px);
+  width: -webkit-calc(100% - 15px);
+  width: calc(100% - 15px);
+  height: 0;
+  border-bottom: 1px solid #CCC;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+/* line 151, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell:last-of-type:after, .cl-table-cell.last-of-type:after {
+  content: none;
+}
+/* line 156, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell a {
+  display: block;
+  padding: 0 15px;
+  min-height: 44px;
+  color: black;
+  border: none;
+}
+/* line 164, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell > p {
+  display: block;
+  padding: 0 15px;
+  margin: 0;
+}
+/* line 171, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell .label {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 10px 0;
+  display: inline-block;
+}
+/* line 180, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell .disclosure-help {
+  font-weight: 400;
+  position: absolute;
+  right: 30px;
+  top: 0;
+  color: #AAA;
+}
+/* line 189, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell .meta {
+  font-weight: 400;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=66);
+  opacity: 0.66;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+/* line 198, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-cell .icon-ios-arrow-right {
+  font-size: 19px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-weight: 700;
+  color: #AAA;
+}
+
+/* line 211, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-view-btn {
+  *zoom: 1;
+  background: white;
+  width: 100%;
+  line-height: 33px;
+  font-size: 12px;
+  text-align: center;
+  position: relative;
+  top: 0;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.cl-table-view-btn:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* line 223, ../../dev/sass/clank/components/_table-view.scss */
+.cl-table-view-btn > a {
+  display: block;
+  color: #18788b;
+}
+
+/* ==========================================================================
+   Help text
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_help-txt.scss */
+.cl-help-text {
+  text-align: center;
+  max-width: 95%;
+  font-size: 13px;
+  margin: 0 auto;
+  padding: 0 0 12px;
+}
+/* line 12, ../../dev/sass/clank/components/_help-txt.scss */
+.cl-help-text a {
+  color: #666;
+  text-decoration: underline;
+}
+/* line 15, ../../dev/sass/clank/components/_help-txt.scss */
+.cl-help-text a:hover {
+  color: #333;
+}
+
+/* ==========================================================================
+  Utilities
+   ========================================================================== */
+/* line 6, ../../dev/sass/clank/components/_utilities.scss */
+.hide {
+  display: none;
+}
+
+/* line 9, ../../dev/sass/clank/components/_utilities.scss */
+.show {
+  display: block;
+}
+
+/* line 14, ../../dev/sass/clank/components/_utilities.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/* Popover
+   Requires .align-left or .align-right class
+   ========================================================================== */
+/* line 6, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover {
+  padding: 5px 0;
+  background: #FFF;
+  border-radius: 8px;
+  position: absolute;
+  width: 300px;
+  z-index: 1100202;
+}
+/* line 15, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover:after {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  content: "";
+}
+/* line 23, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.align-right {
+  right: 10px;
+}
+/* line 25, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.align-right:after {
+  right: 15%;
+}
+/* line 29, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.align-left {
+  left: 10px;
+}
+/* line 31, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.align-left:after {
+  left: 15%;
+}
+/* line 36, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.pop-from-header {
+  top: 55px;
+}
+/* line 38, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.pop-from-header:after {
+  top: -10px;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #FFF transparent;
+}
+/* line 45, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.pop-from-footer {
+  bottom: 55px;
+}
+/* line 47, ../../dev/sass/clank/components/_popover.scss */
+.cl-popover.pop-from-footer:after {
+  bottom: -10px;
+  border-width: 10px 10px 0 10px;
+  border-color: #FFF stransparent transparent transparent;
+}
+
+/* Badge 
+   ========================================================================== */
+/* line 4, ../../dev/sass/clank/components/_badge.scss */
+.badge {
+  background: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 400;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  padding: 4px 6px;
+}
+/* line 12, ../../dev/sass/clank/components/_badge.scss */
+.cl-btn .badge {
+  line-height: 1;
+  margin-top: -3px;
+}
+
+/* ==========================================================================
+  Tab bar
+   ========================================================================== */
+/* line 5, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-bar {
+  bottom: 0;
+  height: 44px;
+  padding: 0;
+}
+/* line 9, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-bar > ul {
+  width: 300px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0;
+  list-style: none;
+  *zoom: 1;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
+.tab-bar > ul:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* line 20, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-item {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  width: 100px;
+  margin: 0 auto;
+  float: left;
+}
+/* line 29, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-item .tab-label,
+.tab-item .icon {
+  color: #666666;
+  position: relative;
+}
+/* line 35, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-item .tab-label {
+  margin-top: -2px;
+  font-size: 10px;
+  font-weight: 400;
+}
+/* line 41, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-item .icon {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  line-height: 1;
+}
+/* line 52, ../../dev/sass/clank/components/_tab-bar.scss */
+.tab-item.active .tab-label,
+.tab-item.active .icon, .tab-item:active .tab-label,
+.tab-item:active .icon {
+  color: #18788b;
+}
+
+/* ==========================================================================
+  Notifications
+   ========================================================================== */
+/* line 63, ../../dev/sass/clank/components/_tab-bar.scss */
+.notification {
+  background: #E42C31;
+  z-index: 100;
+  border-radius: 7.5px;
+  min-width: 15px;
+  min-height: 15px;
+  line-height: 15px;
+  font-size: 10px;
+  color: #FFF;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  right: -7.5px;
+}
+
+/* line 5, ../../dev/sass/clank/components/_close.scss */
+.close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  font-size: 20px;
+  font-weight: 7000;
+  color: white;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=4000);
+  opacity: 40;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 20, ../../dev/sass/clank/components/_close.scss */
+.close:link, .close:visited {
+  border: none;
+}
+/* line 24, ../../dev/sass/clank/components/_close.scss */
+.close:hover, .close:focus {
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10000);
+  opacity: 100;
+}
+
+/* line 35, ../../dev/sass/clank/components/_close.scss */
+button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+/* ==========================================================================
+  Alerts (bootstrap style alerts)
+   ========================================================================== */
+/* line 8, ../../dev/sass/clank/components/_alerts-alt.scss */
+.alert {
+  padding: 8px 34px 8px 14px;
+  position: relative;
+  margin: 0 0 12px;
+  background-color: #dddddd;
+  border: 1px solid #aaaaaa;
+  font-size: 14px;
+  font-weight: 700;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px;
+}
+/* line 17, ../../dev/sass/clank/components/_alerts-alt.scss */
+.alert p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* line 28, ../../dev/sass/clank/components/_alerts-alt.scss */
+.alert-success a,
+.alert-error a {
+  color: white;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s;
+}
+/* line 288, ../../dev/sass/clank/_mixins.scss */
+.alert-success a:link,
+.alert-error a:link {
+  color: #FFF;
+  color: white;
+  border-bottom: 1px solid #444;
+  border-color: rgba(255, 255, 255, 0.33);
+}
+/* line 294, ../../dev/sass/clank/_mixins.scss */
+.alert-success a:visited,
+.alert-error a:visited {
+  color: #DDD;
+  color: white;
+  border-bottom: 1px solid #444;
+  border-color: rgba(255, 255, 255, 0.33);
+}
+/* line 302, ../../dev/sass/clank/_mixins.scss */
+.alert-success a:hover, .alert-success a:active, .alert-success a:focus,
+.alert-error a:hover,
+.alert-error a:active,
+.alert-error a:focus {
+  color: #FFF;
+  border-bottom: 1px solid #444;
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
+/* line 34, ../../dev/sass/clank/components/_alerts-alt.scss */
+.alert-success {
+  background-color: #092d34;
+  border-color: #092d34;
+  color: white;
+}
+
+/* line 40, ../../dev/sass/clank/components/_alerts-alt.scss */
+.alert-error {
+  background-color: #e78774;
+  border-color: #e78774;
+  color: white;
+}
+
+/* Clank modal
+   This is an iPad style modal for views with smaller content (e.g. log in)
+   ========================================================================== */
+/*
+  Component animations
+  Adapted from bootstrap
+*/
+/* line 10, ../../dev/sass/clank/components/_modal.scss */
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  -moz-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+
+/* line 18, ../../dev/sass/clank/components/_modal.scss */
+.fade.in {
+  opacity: 1;
+}
+
+/* Backdrop
+   ========================================================================== */
+/* line 25, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 800;
+  background-color: black;
+}
+/* line 34, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal-backdrop.fade {
+  opacity: 0;
+}
+
+/* line 38, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal-backdrop,
+.cl-modal-backdrop.fade.in {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+
+/* line 43, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  z-index: 10001;
+  width: 90%;
+  margin-left: -45%;
+}
+/* line 58, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal .cl-modal-content {
+  padding: 20px;
+  background: #FFF;
+}
+/* line 64, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal.fade {
+  -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, top 0.3s ease-out;
+  transition: opacity 0.3s linear, top 0.3s ease-out;
+  top: -25%;
+}
+/* line 68, ../../dev/sass/clank/components/_modal.scss */
+.cl-modal.fade.in {
+  top: 20%;
+}
+
+/* General */
+/* line 3, ../../dev/sass/clank/components/_animations.scss */
+.cl-animation-reverse {
+  -o-animation-direction: reverse;
+  -moz-animation-direction: reverse;
+  -webkit-animation-direction: reverse;
+  animation-direction: reverse;
+}
+
+/* Slide */
+@-webkit-keyframes slide-in {
+  /* line 10, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 100%;
+  }
+
+  /* line 11, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: 0;
+  }
+}
+
+@-moz-keyframes slide-in {
+  /* line 10, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 100%;
+  }
+
+  /* line 11, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: 0;
+  }
+}
+
+@-o-keyframes slide-in {
+  /* line 10, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 100%;
+  }
+
+  /* line 11, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: 0;
+  }
+}
+
+@keyframes slide-in {
+  /* line 10, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 100%;
+  }
+
+  /* line 11, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: 0;
+  }
+}
+
+@-webkit-keyframes slide-out {
+  /* line 15, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 0;
+  }
+
+  /* line 16, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: -100%;
+  }
+}
+
+@-moz-keyframes slide-out {
+  /* line 15, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 0;
+  }
+
+  /* line 16, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: -100%;
+  }
+}
+
+@-o-keyframes slide-out {
+  /* line 15, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 0;
+  }
+
+  /* line 16, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: -100%;
+  }
+}
+
+@keyframes slide-out {
+  /* line 15, ../../dev/sass/clank/components/_animations.scss */
+  from {
+    margin-left: 0;
+  }
+
+  /* line 16, ../../dev/sass/clank/components/_animations.scss */
+  to {
+    margin-left: -100%;
+  }
+}
+
+/* line 19, ../../dev/sass/clank/components/_animations.scss */
+*[data-animate*='cl-slide'] > div {
+  position: absolute;
+  width: 100%;
+}
+
+/* line 24, ../../dev/sass/clank/components/_animations.scss */
+.cl-slide-enter {
+  -o-animation-name: slide-in;
+  -moz-animation-name: slide-in;
+  -webkit-animation-name: slide-in;
+  animation-name: slide-in;
+  -o-animation-duration: 350ms;
+  -moz-animation-duration: 350ms;
+  -webkit-animation-duration: 350ms;
+  animation-duration: 350ms;
+}
+
+/* line 29, ../../dev/sass/clank/components/_animations.scss */
+.cl-slide-leave {
+  -o-animation-name: slide-out;
+  -moz-animation-name: slide-out;
+  -webkit-animation-name: slide-out;
+  animation-name: slide-out;
+  -o-animation-duration: 350ms;
+  -moz-animation-duration: 350ms;
+  -webkit-animation-duration: 350ms;
+  animation-duration: 350ms;
+}
+
+/* Pop */
+@-webkit-keyframes pop-in {
+  /* line 37, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  /* line 38, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 39, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-moz-keyframes pop-in {
+  /* line 37, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  /* line 38, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 39, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-o-keyframes pop-in {
+  /* line 37, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  /* line 38, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 39, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes pop-in {
+  /* line 37, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  /* line 38, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 39, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes pop-out {
+  /* line 43, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+
+  /* line 44, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 45, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-moz-keyframes pop-out {
+  /* line 43, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+
+  /* line 44, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 45, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-o-keyframes pop-out {
+  /* line 43, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+
+  /* line 44, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 45, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes pop-out {
+  /* line 43, ../../dev/sass/clank/components/_animations.scss */
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+
+  /* line 44, ../../dev/sass/clank/components/_animations.scss */
+  50% {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  /* line 45, ../../dev/sass/clank/components/_animations.scss */
+  100% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+/* line 48, ../../dev/sass/clank/components/_animations.scss */
+.cl-pop-enter {
+  -o-animation-name: pop-in;
+  -moz-animation-name: pop-in;
+  -webkit-animation-name: pop-in;
+  animation-name: pop-in;
+  -o-animation-duration: 350ms;
+  -moz-animation-duration: 350ms;
+  -webkit-animation-duration: 350ms;
+  animation-duration: 350ms;
+}
+
+/* line 53, ../../dev/sass/clank/components/_animations.scss */
+.cl-pop-leave {
+  -o-animation-name: pop-out;
+  -moz-animation-name: pop-out;
+  -webkit-animation-name: pop-out;
+  animation-name: pop-out;
+  -o-animation-duration: 350ms;
+  -moz-animation-duration: 350ms;
+  -webkit-animation-duration: 350ms;
+  animation-duration: 350ms;
+}
+
+/* ==========================================================================
+   Custom application CSS
+   ========================================================================== */
+/* line 17, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* apply a natural box layout model to all elements */
+/* line 5, ../../dev/sass/application.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* line 10, ../../dev/sass/application.scss */
+body {
+  -webkit-touch-callout: none;
+  /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;
+  /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-color: #E4E4E4;
+  background-image: linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -webkit-linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -ms-linear-gradient(top, #a7a7a7 0%, #e4e4e4 51%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a7a7a7), color-stop(0.51, #e4e4e4));
+  background-attachment: fixed;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+/* line 35, ../../dev/sass/application.scss */
+form .cl-btn {
+  width: 100% !important;
+}
+
+/**
+ * Styles to fix the new iOS 7 transparent status bar
+ */
+/* line 43, ../../dev/sass/application.scss */
+#ios7statusbar {
+  width: 100%;
+  height: 20px;
+  background-color: white;
+  position: fixed;
+  z-index: 10000;
+}
+
+/* line 50, ../../dev/sass/application.scss */
+.ios7 .ui-page, .ios7 .ui-header, .ios7 .ui-pane {
+  margin-top: 20px;
+}
+
+/* line 55, ../../dev/sass/application.scss */
+#activity-header {
+  height: 200px;
+  width: 100%;
+  position: relative;
+}
+
+/* line 61, ../../dev/sass/application.scss */
+#activityMap, #map {
+  height: 200px;
+  width: 100%;
+}
+
+/* line 66, ../../dev/sass/application.scss */
+#activityInfo {
+  height: 40px;
+  width: 100%;
+  background: rgba(55, 55, 55, 0.9);
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  padding: 0 5px;
+}
+
+/* line 76, ../../dev/sass/application.scss */
+#activityInfo span {
+  float: left;
+}
+
+/* line 80, ../../dev/sass/application.scss */
+#activityInfo #navigateButton {
+  padding: 10px;
+  margin-top: 2px;
+}
+
+/* line 85, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell h3, #profileTable .cl-table-cell h3 {
+  margin: 5px 0;
+}
+
+/* line 89, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul, #profileTable .cl-table-cell ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+/* line 94, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul li, #profileTable .cl-table-cell ul li {
+  display: inline-block;
+  background: #bfbfbf;
+  padding: 1px 4px;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
+
+/* line 102, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell {
+  margin-top: 0px;
+}
+
+/* line 106, ../../dev/sass/application.scss */
+#activityTable .cl-table-cell ul li .entypo-icon, #profileTable .cl-table-cell ul li .entypo-icon {
+  font-size: 22px;
+}
+
+/* line 110, ../../dev/sass/application.scss */
+#sortBar p, #searchBar p {
+  float: left;
+}
+
+/* line 114, ../../dev/sass/application.scss */
+#searchBar {
+  padding: 10px;
+  height: auto;
+  background: #757575 !important;
+}
+
+/* line 119, ../../dev/sass/application.scss */
+#searchForm input[type=search] {
+  border: 0;
+  width: 100%;
+  border-radius: 0;
+  padding: .8em .6em .8em .6em;
+  font-size: 1em;
+  border: 0;
+  display: block;
+  height: 2.5em;
+}
+
+/* line 131, ../../dev/sass/application.scss */
+#sortBar select {
+  width: 170px;
+  margin-top: 12px;
+}
+
+/* line 136, ../../dev/sass/application.scss */
+.entypo-icon {
+  font-size: 3em;
+  font-family: 'EntypoRegular';
+  font-style: inherit;
+}
+
+/* ios specific */
+/* line 144, ../../dev/sass/application.scss */
+.cl-bar-title, .cl-modal .cl-modal-bar-title {
+  height: 68px;
+}
+
+/* line 149, ../../dev/sass/application.scss */
+.cl-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal .cl-modal-bar-title .cl-modal-title {
+  line-height: 80px;
+}
+
+/* line 153, ../../dev/sass/application.scss */
+.cl-bar-title a, .cl-modal .cl-modal-bar-title a {
+  display: inline-block;
+}
+
+/* line 157, ../../dev/sass/application.scss */
+.cl-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title .cl-modal-bar-title > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title > .cl-modal-title + .btn, .cl-bar-title > .cl-btn:last-child, .cl-modal .cl-modal-bar-title > .cl-btn:last-child, .cl-modal .cl-modal-bar-title > .cl-btn:last-child, .cl-bar-footer > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-footer > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar-footer > .cl-modal-title + .btn, .cl-bar-footer > .cl-btn:last-child, .cl-bar > .cl-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar > .cl-modal-title + .btn, .cl-modal .cl-modal-bar-title .cl-bar > .cl-modal-title + .btn, .cl-bar > .cl-btn:last-child {
+  top: 20px;
+}
+
+/* line 161, ../../dev/sass/application.scss */
+.cl-bar-title > .cl-btn, .cl-modal .cl-modal-bar-title > .cl-btn, .cl-modal .cl-modal-bar-title > .cl-btn, .cl-bar-footer > .cl-btn, .cl-bar > .cl-btn {
+  top: 20px;
+}
+
+/* line 167, ../../dev/sass/application.scss */
+#navigateButton {
+  display: inline-block;
+  background: #fff;
+  float: right;
+}
+
+/* line 173, ../../dev/sass/application.scss */
+#activityContent {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* line 178, ../../dev/sass/application.scss */
+#activityContent h4 {
+  display: inline-block;
+  width: 80px;
+}
+
+/* line 187, ../../dev/sass/application.scss */
+#createActivity .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar .cl-btn,
+#activityDetail .cl-btn-toolbar.flex .cl-btn:nth-child(2):not(:last-child),
+#profile .cl-btn-toolbar .cl-btn,
+#navigationView .cl-btn-toolbar .cl-btn {
+  border-radius: 0;
+  margin-right: 0;
+  padding: 5px 0;
+  margin: 0;
+}
+
+/* line 194, ../../dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar .cl-btn.active, #navigationTabs .cl-btn-toolbar .cl-btn.active {
+  background: #eeeeee;
+  color: #000000;
+}
+
+/* line 199, ../../dev/sass/application.scss */
+#activityDetail .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 203, ../../dev/sass/application.scss */
+#activityDetail hr {
+  background-color: #fff;
+  border: #000 1px dotted;
+  border-style: none none dotted;
+  color: #fff;
+}
+
+/* line 210, ../../dev/sass/application.scss */
+#praktischContent ul {
+  display: inline-block;
+  padding-left: 0;
+}
+
+/* line 215, ../../dev/sass/application.scss */
+#praktischContent ul li {
+  display: inline-block;
+}
+
+/* line 219, ../../dev/sass/application.scss */
+#praktischContent ul li {
+  border: 1px solid #5b5b5b;
+  padding: 5px;
+}
+
+/* line 224, ../../dev/sass/application.scss */
+#activityDetailTabs {
+  margin-bottom: 10px;
+}
+
+/* line 228, ../../dev/sass/application.scss */
+#availibleBar .cl-btn {
+  background: #c68436;
+}
+
+/* line 232, ../../dev/sass/application.scss */
+#availibleBar .cl-btn:first-child {
+  background: #af7633;
+}
+
+/* line 236, ../../dev/sass/application.scss */
+#createActivityTabs, #navigationTabs {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 241, ../../dev/sass/application.scss */
+#createActivityTabs .active, #profileTabs .active, #navigationTabs .active {
+  background: #eeeeee;
+  color: #000000;
+}
+
+/* line 246, ../../dev/sass/application.scss */
+#profile .cl-btn-toolbar.flex {
+  padding: 0;
+}
+
+/* line 250, ../../dev/sass/application.scss */
+#home .cl-content {
+  padding-top: 10px;
+}
+
+/* line 254, ../../dev/sass/application.scss */
+#addMediaButton {
+  width: 100%;
+}
+
+/* line 258, ../../dev/sass/application.scss */
+#smallImage {
+  max-width: 100%;
+}
+
+/* line 262, ../../dev/sass/application.scss */
+#map_canvas, #googleMap {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Create new user page */
+/* line 273, ../../dev/sass/application.scss */
+#createUserForm label.error, #loginForm label.error, #watForm label.error {
+  background: red;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* line 282, ../../dev/sass/application.scss */
+#createUserForm input.error, #loginForm input.error {
+  margin-bottom: 0;
+}
+
+/* Login page */
+/* line 288, ../../dev/sass/application.scss */
+.error-box {
+  background: red;
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* line 297, ../../dev/sass/application.scss */
+.error-box.hide {
+  display: none;
+}
+
+/* line 300, ../../dev/sass/application.scss */
+.error-box.show {
+  display: block;
+}
+
+/* line 305, ../../dev/sass/application.scss */
+#FBloginButton {
+  margin-bottom: 10px;
+}
+
+/**
+* Pageslider
+*/
+/* line 312, ../../dev/sass/application.scss */
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 319, ../../dev/sass/application.scss */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 329, ../../dev/sass/application.scss */
+.page.page-left {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+/* line 334, ../../dev/sass/application.scss */
+.page.page-center {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 339, ../../dev/sass/application.scss */
+.page.page-right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+/* line 344, ../../dev/sass/application.scss */
+.page.transition {
+  -webkit-transition-duration: .25s;
+  transition-duration: .25s;
+}
+
+/**
+* Backbone autocomplete
+*/
+/* line 353, ../../dev/sass/application.scss */
+ul.autocomplete {
+  display: none;
+  position: absolute;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 3px 0;
+  width: 100% !important;
+  z-index: 1000;
+}
+
+/* line 363, ../../dev/sass/application.scss */
+ul.autocomplete li {
+  list-style: none;
+  margin: 0;
+  padding: 5px 7px;
+}
+
+/* line 369, ../../dev/sass/application.scss */
+ul.autocomplete li.active, ul.autocomplete li:hover {
+  cursor: pointer;
+  background-color: #d3d3d3;
+}
+
+/* line 374, ../../dev/sass/application.scss */
+ul.autocomplete li a {
+  color: #3d3d3d;
+  text-decoration: none;
+}
+
+/* line 381, ../../dev/sass/application.scss */
+#loading {
+  background: #258dc8;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #258dc8), color-stop(100%, #258dc8));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #258dc8 0%, #258dc8 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #258dc8 0%, #258dc8 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#258dc8', endColorstr='#258dc8',GradientType=0 );
+  /* IE6-9 */
+  display: table;
+}
+
+/* line 393, ../../dev/sass/application.scss */
+#loading h2 {
+  display: table-cell;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 2em;
+}
+
+/* line 402, ../../dev/sass/application.scss */
+#loading h2 small {
+  font-size: 0.6em;
+}
+
+/* line 406, ../../dev/sass/application.scss */
+.align-center {
+  text-align: center;
+}
+
+/* line 410, ../../dev/sass/application.scss */
+.cl-message {
+  padding: 10px;
+  background-color: #c3c3c3;
+}
+
+/* line 416, ../../dev/sass/application.scss */
+.field > span {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+/* line 421, ../../dev/sass/application.scss */
+.field input[type=text] {
+  width: 100%;
+}
+
+/* line 424, ../../dev/sass/application.scss */
+.field input[type=button] {
+  float: right;
+}
+
+/* line 428, ../../dev/sass/application.scss */
+.message {
+  margin: 0 0 15px 0;
+}
+/* line 432, ../../dev/sass/application.scss */
+.message .messageHeader {
+  display: block;
+}
+/* line 436, ../../dev/sass/application.scss */
+.message .messageHeader img, .message .messageHeader h3 {
+  float: left;
+}
+/* line 440, ../../dev/sass/application.scss */
+.message .messageHeader h3 {
+  font-size: 1.2em;
+}
+/* line 444, ../../dev/sass/application.scss */
+.message .messageHeader img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+/* line 453, ../../dev/sass/application.scss */
+.message .messageBody {
+  clear: both;
+}
+
+/* line 461, ../../dev/sass/application.scss */
+#challengesList .cl-table-cell {
+  padding: 10px;
+}
+/* line 465, ../../dev/sass/application.scss */
+#challengesList h3 {
+  font-size: 1.2em;
+}
+/* line 469, ../../dev/sass/application.scss */
+#challengesList .badge_img {
+  float: left;
+}
+/* line 473, ../../dev/sass/application.scss */
+#challengesList .status {
+  display: block;
+}
+
+/* line 480, ../../dev/sass/application.scss */
+#friendsListView div {
+  float: left;
+}
+/* line 484, ../../dev/sass/application.scss */
+#friendsListView div, #friendsListView .friendsBox {
+  display: inline-block;
+}
+
+/* Page specific */
+/* line 493, ../../dev/sass/application.scss */
+#home .cl-bar-title, #home .cl-modal .cl-modal-bar-title, .cl-modal #home .cl-modal-bar-title {
+  height: 140px;
+  display: table;
+}
+/* line 498, ../../dev/sass/application.scss */
+#home .cl-title, #home .cl-modal .cl-modal-bar-title .cl-modal-title, .cl-modal .cl-modal-bar-title #home .cl-modal-title {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* line 506, ../../dev/sass/application.scss */
+#dashboard #sortBar {
+  background: #8d7069;
+}
+
+/* line 512, ../../dev/sass/application.scss */
+#waarContent #map_canvas {
+  height: 400px;
+}
+
+/* line 519, ../../dev/sass/application.scss */
+#navigationView #map_canvas {
+  height: 50%;
+}
+/* line 523, ../../dev/sass/application.scss */
+#navigationView #directions {
+  height: 50%;
+}
+
+/* line 528, ../../dev/sass/application.scss */
+#favouriteSportList {
+  display: table;
+}
+/* line 531, ../../dev/sass/application.scss */
+#favouriteSportList div {
+  float: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 536, ../../dev/sass/application.scss */
+#favouriteSportList div a {
+  min-width: 70px;
+  min-height: 70px;
+  background: #d2d2d2;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+}
+/* line 547, ../../dev/sass/application.scss */
+#favouriteSportList div a.selected {
+  background: #fff;
+}
+
+/* line 554, ../../dev/sass/application.scss */
+#favouriteSportsSelector #confirm {
+  top: 0;
+}
+/* line 558, ../../dev/sass/application.scss */
+#favouriteSportsSelector ul.autocomplete {
+  position: absolute;
+}
+
+@font-face {
+  font-family: 'EntypoRegular';
+  src: url("../../common/fonts/entypo.eot");
+  src: url("../../common/fonts/entypo.eot?#iefix") format("embedded-opentype"), url("../../common/fonts/entypo.woff") format("woff"), url("../../common/fonts/entypo.ttf") format("truetype"), url("../../common/fonts/entypo.svg#EntypoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EntypoSocialRegular';
+  src: url("../../common/fonts/entypo-social.eot");
+  src: url("../../common/fonts/entypo-social.eot?#iefix") format("embedded-opentype"), url("../../common/font/entypo-social.woff") format("woff"), url("../../common/font/entypo-social.ttf") format("truetype"), url("../../common/font/entypo-social.svg#EntypoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 25, ../../dev/sass/entypo.scss */
+.entypo {
+  font-family: 'EntypoRegular';
+  font-size: 2em;
+  font-weight: normal;
+  line-height: 0;
+}
+
+/* line 32, ../../dev/sass/entypo.scss */
+.entypo-social {
+  font-family: 'EntypoSocialRegular';
+  font-size: 2em;
+  font-weight: normal;
+  line-height: 0;
+}
+
+/* line 39, ../../dev/sass/entypo.scss */
+.entypo.phone:before {
+  content: '\1F4DE';
+}
+
+/* line 40, ../../dev/sass/entypo.scss */
+.entypo.mobile:before {
+  content: '\1F4F1';
+}
+
+/* line 41, ../../dev/sass/entypo.scss */
+.entypo.mouse:before {
+  content: '\E789';
+}
+
+/* line 42, ../../dev/sass/entypo.scss */
+.entypo.address:before {
+  content: '\E723';
+}
+
+/* line 43, ../../dev/sass/entypo.scss */
+.entypo.mail:before {
+  content: '\2709';
+}
+
+/* line 44, ../../dev/sass/entypo.scss */
+.entypo.paper-plane:before {
+  content: '\1F53F';
+}
+
+/* line 45, ../../dev/sass/entypo.scss */
+.entypo.pencil:before {
+  content: '\270E';
+}
+
+/* line 46, ../../dev/sass/entypo.scss */
+.entypo.feather:before {
+  content: '\2712';
+}
+
+/* line 47, ../../dev/sass/entypo.scss */
+.entypo.attach:before {
+  content: '\1F4CE';
+}
+
+/* line 48, ../../dev/sass/entypo.scss */
+.entypo.inbox:before {
+  content: '\E777';
+}
+
+/* line 49, ../../dev/sass/entypo.scss */
+.entypo.reply:before {
+  content: '\E712';
+}
+
+/* line 50, ../../dev/sass/entypo.scss */
+.entypo.reply-all:before {
+  content: '\E713';
+}
+
+/* line 51, ../../dev/sass/entypo.scss */
+.entypo.forward:before {
+  content: '\27A6';
+}
+
+/* line 52, ../../dev/sass/entypo.scss */
+.entypo.user:before {
+  content: '\1F464';
+}
+
+/* line 53, ../../dev/sass/entypo.scss */
+.entypo.users:before {
+  content: '\1F465';
+}
+
+/* line 54, ../../dev/sass/entypo.scss */
+.entypo.add-user:before {
+  content: '\E700';
+}
+
+/* line 55, ../../dev/sass/entypo.scss */
+.entypo.vcard:before {
+  content: '\E722';
+}
+
+/* line 56, ../../dev/sass/entypo.scss */
+.entypo.export:before {
+  content: '\E715';
+}
+
+/* line 57, ../../dev/sass/entypo.scss */
+.entypo.location:before {
+  content: '\E724';
+}
+
+/* line 58, ../../dev/sass/entypo.scss */
+.entypo.map:before {
+  content: '\E727';
+}
+
+/* line 59, ../../dev/sass/entypo.scss */
+.entypo.compass:before {
+  content: '\E728';
+}
+
+/* line 60, ../../dev/sass/entypo.scss */
+.entypo.direction:before {
+  content: '\27A2';
+}
+
+/* line 61, ../../dev/sass/entypo.scss */
+.entypo.hair-cross:before {
+  content: '\1F3AF';
+}
+
+/* line 62, ../../dev/sass/entypo.scss */
+.entypo.share:before {
+  content: '\E73C';
+}
+
+/* line 63, ../../dev/sass/entypo.scss */
+.entypo.shareable:before {
+  content: '\E73E';
+}
+
+/* line 64, ../../dev/sass/entypo.scss */
+.entypo.heart:before {
+  content: '\2665';
+}
+
+/* line 65, ../../dev/sass/entypo.scss */
+.entypo.heart-empty:before {
+  content: '\2661';
+}
+
+/* line 66, ../../dev/sass/entypo.scss */
+.entypo.star:before {
+  content: '\2605';
+}
+
+/* line 67, ../../dev/sass/entypo.scss */
+.entypo.star-empty:before {
+  content: '\2606';
+}
+
+/* line 68, ../../dev/sass/entypo.scss */
+.entypo.thumbs-up:before {
+  content: '\1F44D';
+}
+
+/* line 69, ../../dev/sass/entypo.scss */
+.entypo.thumbs-down:before {
+  content: '\1F44E';
+}
+
+/* line 70, ../../dev/sass/entypo.scss */
+.entypo.chat:before {
+  content: '\E720';
+}
+
+/* line 71, ../../dev/sass/entypo.scss */
+.entypo.comment:before {
+  content: '\E718';
+}
+
+/* line 72, ../../dev/sass/entypo.scss */
+.entypo.quote:before {
+  content: '\275E';
+}
+
+/* line 73, ../../dev/sass/entypo.scss */
+.entypo.home:before {
+  content: '\2302';
+}
+
+/* line 74, ../../dev/sass/entypo.scss */
+.entypo.popup:before {
+  content: '\E74C';
+}
+
+/* line 75, ../../dev/sass/entypo.scss */
+.entypo.search:before {
+  content: '\1F50D';
+}
+
+/* line 76, ../../dev/sass/entypo.scss */
+.entypo.flashlight:before {
+  content: '\1F526';
+}
+
+/* line 77, ../../dev/sass/entypo.scss */
+.entypo.print:before {
+  content: '\E716';
+}
+
+/* line 78, ../../dev/sass/entypo.scss */
+.entypo.bell:before {
+  content: '\1F514';
+}
+
+/* line 79, ../../dev/sass/entypo.scss */
+.entypo.link:before {
+  content: '\1F517';
+}
+
+/* line 80, ../../dev/sass/entypo.scss */
+.entypo.flag:before {
+  content: '\2691';
+}
+
+/* line 81, ../../dev/sass/entypo.scss */
+.entypo.cog:before {
+  content: '\2699';
+}
+
+/* line 82, ../../dev/sass/entypo.scss */
+.entypo.tools:before {
+  content: '\2692';
+}
+
+/* line 83, ../../dev/sass/entypo.scss */
+.entypo.trophy:before {
+  content: '\1F3C6';
+}
+
+/* line 84, ../../dev/sass/entypo.scss */
+.entypo.tag:before {
+  content: '\E70C';
+}
+
+/* line 85, ../../dev/sass/entypo.scss */
+.entypo.camera:before {
+  content: '\1F4F7';
+}
+
+/* line 86, ../../dev/sass/entypo.scss */
+.entypo.megaphone:before {
+  content: '1F4E3';
+}
+
+/* line 87, ../../dev/sass/entypo.scss */
+.entypo.moon:before {
+  content: '\0045';
+}
+
+/* line 88, ../../dev/sass/entypo.scss */
+.entypo.palette:before {
+  content: '\1F3A8';
+}
+
+/* line 89, ../../dev/sass/entypo.scss */
+.entypo.leaf:before {
+  content: '\1F342';
+}
+
+/* line 90, ../../dev/sass/entypo.scss */
+.entypo.note:before {
+  content: '\266A';
+}
+
+/* line 91, ../../dev/sass/entypo.scss */
+.entypo.beamed-note:before {
+  content: '\266B';
+}
+
+/* line 92, ../../dev/sass/entypo.scss */
+.entypo.new:before {
+  content: '\1F4A5';
+}
+
+/* line 93, ../../dev/sass/entypo.scss */
+.entypo.graduation-cap:before {
+  content: '\1F393';
+}
+
+/* line 94, ../../dev/sass/entypo.scss */
+.entypo.book:before {
+  content: '\1F4D5';
+}
+
+/* line 95, ../../dev/sass/entypo.scss */
+.entypo.newspaper:before {
+  content: '\1F4F0';
+}
+
+/* line 96, ../../dev/sass/entypo.scss */
+.entypo.bag:before {
+  content: '\1F45C';
+}
+
+/* line 97, ../../dev/sass/entypo.scss */
+.entypo.airplane:before {
+  content: '\2708';
+}
+
+/* line 98, ../../dev/sass/entypo.scss */
+.entypo.lifebuoy:before {
+  content: '\E788';
+}
+
+/* line 99, ../../dev/sass/entypo.scss */
+.entypo.eye:before {
+  content: '\E70A';
+}
+
+/* line 100, ../../dev/sass/entypo.scss */
+.entypo.clock:before {
+  content: '\1F554';
+}
+
+/* line 101, ../../dev/sass/entypo.scss */
+.entypo.mic:before {
+  content: '\1F3A4';
+}
+
+/* line 102, ../../dev/sass/entypo.scss */
+.entypo.calendar:before {
+  content: '\1F4C5';
+}
+
+/* line 103, ../../dev/sass/entypo.scss */
+.entypo.flash:before {
+  content: '\26A1';
+}
+
+/* line 104, ../../dev/sass/entypo.scss */
+.entypo.thunder-cloud:before {
+  content: '\26C8';
+}
+
+/* line 105, ../../dev/sass/entypo.scss */
+.entypo.droplet:before {
+  content: '\1F4A7';
+}
+
+/* line 106, ../../dev/sass/entypo.scss */
+.entypo.cd:before {
+  content: '\1F4BF';
+}
+
+/* line 107, ../../dev/sass/entypo.scss */
+.entypo.briefcase:before {
+  content: '\1F4BC';
+}
+
+/* line 108, ../../dev/sass/entypo.scss */
+.entypo.air:before {
+  content: '\1F4A8';
+}
+
+/* line 109, ../../dev/sass/entypo.scss */
+.entypo.hourglass:before {
+  content: '\23F3';
+}
+
+/* line 110, ../../dev/sass/entypo.scss */
+.entypo.gauge:before {
+  content: '\1F6C7';
+}
+
+/* line 111, ../../dev/sass/entypo.scss */
+.entypo.language:before {
+  content: '\1F394';
+}
+
+/* line 112, ../../dev/sass/entypo.scss */
+.entypo.network:before {
+  content: '\E776';
+}
+
+/* line 113, ../../dev/sass/entypo.scss */
+.entypo.key:before {
+  content: '\1F511';
+}
+
+/* line 114, ../../dev/sass/entypo.scss */
+.entypo.battery:before {
+  content: '\1F50B';
+}
+
+/* line 115, ../../dev/sass/entypo.scss */
+.entypo.bucket:before {
+  content: '\1F4FE';
+}
+
+/* line 116, ../../dev/sass/entypo.scss */
+.entypo.magnet:before {
+  content: '\E7A1';
+}
+
+/* line 117, ../../dev/sass/entypo.scss */
+.entypo.drive:before {
+  content: '\1F4FD';
+}
+
+/* line 118, ../../dev/sass/entypo.scss */
+.entypo.cup:before {
+  content: '\2615';
+}
+
+/* line 119, ../../dev/sass/entypo.scss */
+.entypo.rocket:before {
+  content: '\1F680';
+}
+
+/* line 120, ../../dev/sass/entypo.scss */
+.entypo.brush:before {
+  content: '\E79A';
+}
+
+/* line 121, ../../dev/sass/entypo.scss */
+.entypo.suitcase:before {
+  content: '\1F6C6';
+}
+
+/* line 122, ../../dev/sass/entypo.scss */
+.entypo.traffic-cone:before {
+  content: '\1F6C8';
+}
+
+/* line 123, ../../dev/sass/entypo.scss */
+.entypo.globe:before {
+  content: '\1F30E';
+}
+
+/* line 124, ../../dev/sass/entypo.scss */
+.entypo.keyboard:before {
+  content: '\2328';
+}
+
+/* line 125, ../../dev/sass/entypo.scss */
+.entypo.browser:before {
+  content: '\E74E';
+}
+
+/* line 126, ../../dev/sass/entypo.scss */
+.entypo.publish:before {
+  content: '\E74D';
+}
+
+/* line 127, ../../dev/sass/entypo.scss */
+.entypo.progress-3:before {
+  content: '\E76B';
+}
+
+/* line 128, ../../dev/sass/entypo.scss */
+.entypo.progress-2:before {
+  content: '\E76A';
+}
+
+/* line 129, ../../dev/sass/entypo.scss */
+.entypo.progress-1:before {
+  content: '\E769';
+}
+
+/* line 130, ../../dev/sass/entypo.scss */
+.entypo.progress-0:before {
+  content: '\E768';
+}
+
+/* line 131, ../../dev/sass/entypo.scss */
+.entypo.light-down:before {
+  content: '\1F505';
+}
+
+/* line 132, ../../dev/sass/entypo.scss */
+.entypo.light-up:before {
+  content: '\1F506';
+}
+
+/* line 133, ../../dev/sass/entypo.scss */
+.entypo.adjust:before {
+  content: '\25D1';
+}
+
+/* line 134, ../../dev/sass/entypo.scss */
+.entypo.code:before {
+  content: '\E714';
+}
+
+/* line 135, ../../dev/sass/entypo.scss */
+.entypo.monitor:before {
+  content: '\1F4BB';
+}
+
+/* line 136, ../../dev/sass/entypo.scss */
+.entypo.infinity:before {
+  content: '\221E';
+}
+
+/* line 137, ../../dev/sass/entypo.scss */
+.entypo.light-bulb:before {
+  content: '\1F4A1';
+}
+
+/* line 138, ../../dev/sass/entypo.scss */
+.entypo.credit-card:before {
+  content: '\1F4B3';
+}
+
+/* line 139, ../../dev/sass/entypo.scss */
+.entypo.database:before {
+  content: '\1F4F8';
+}
+
+/* line 140, ../../dev/sass/entypo.scss */
+.entypo.voicemail:before {
+  content: '\2707';
+}
+
+/* line 141, ../../dev/sass/entypo.scss */
+.entypo.clipboard:before {
+  content: '\1F4CB';
+}
+
+/* line 142, ../../dev/sass/entypo.scss */
+.entypo.cart:before {
+  content: '\E73D';
+}
+
+/* line 143, ../../dev/sass/entypo.scss */
+.entypo.box:before {
+  content: '\1F4E6';
+}
+
+/* line 144, ../../dev/sass/entypo.scss */
+.entypo.ticket:before {
+  content: '\1F3AB';
+}
+
+/* line 145, ../../dev/sass/entypo.scss */
+.entypo.rss:before {
+  content: '\E73A';
+}
+
+/* line 146, ../../dev/sass/entypo.scss */
+.entypo.signal:before {
+  content: '\1F4F6';
+}
+
+/* line 147, ../../dev/sass/entypo.scss */
+.entypo.thermometer:before {
+  content: '\1F4FF';
+}
+
+/* line 148, ../../dev/sass/entypo.scss */
+.entypo.water:before {
+  content: '\1F4A6';
+}
+
+/* line 149, ../../dev/sass/entypo.scss */
+.entypo.sweden:before {
+  content: '\F601';
+}
+
+/* line 150, ../../dev/sass/entypo.scss */
+.entypo.line-graph:before {
+  content: '\1F4C8';
+}
+
+/* line 151, ../../dev/sass/entypo.scss */
+.entypo.pie-chart:before {
+  content: '\25F4';
+}
+
+/* line 152, ../../dev/sass/entypo.scss */
+.entypo.bar-graph:before {
+  content: '\1F4CA';
+}
+
+/* line 153, ../../dev/sass/entypo.scss */
+.entypo.area-graph:before {
+  content: '\1F53E';
+}
+
+/* line 154, ../../dev/sass/entypo.scss */
+.entypo.lock:before {
+  content: '\1F512';
+}
+
+/* line 155, ../../dev/sass/entypo.scss */
+.entypo.lock-open:before {
+  content: '\1F513';
+}
+
+/* line 156, ../../dev/sass/entypo.scss */
+.entypo.logout:before {
+  content: '\E741';
+}
+
+/* line 157, ../../dev/sass/entypo.scss */
+.entypo.login:before {
+  content: '\E740';
+}
+
+/* line 158, ../../dev/sass/entypo.scss */
+.entypo.check:before {
+  content: '\2713';
+}
+
+/* line 159, ../../dev/sass/entypo.scss */
+.entypo.cross:before {
+  content: '\274C';
+}
+
+/* line 160, ../../dev/sass/entypo.scss */
+.entypo.squared-minus:before {
+  content: '\229F';
+}
+
+/* line 161, ../../dev/sass/entypo.scss */
+.entypo.squared-plus:before {
+  content: '\229E';
+}
+
+/* line 162, ../../dev/sass/entypo.scss */
+.entypo.squared-cross:before {
+  content: '\274E';
+}
+
+/* line 163, ../../dev/sass/entypo.scss */
+.entypo.circled-minus:before {
+  content: '\2296';
+}
+
+/* line 164, ../../dev/sass/entypo.scss */
+.entypo.circled-plus:before {
+  content: '\2295';
+}
+
+/* line 165, ../../dev/sass/entypo.scss */
+.entypo.circled-cross:before {
+  content: '\2716';
+}
+
+/* line 166, ../../dev/sass/entypo.scss */
+.entypo.minus:before {
+  content: '\2796';
+}
+
+/* line 167, ../../dev/sass/entypo.scss */
+.entypo.plus:before {
+  content: '\2795';
+}
+
+/* line 168, ../../dev/sass/entypo.scss */
+.entypo.erase:before {
+  content: '\232B';
+}
+
+/* line 169, ../../dev/sass/entypo.scss */
+.entypo.block:before {
+  content: '\1F6AB';
+}
+
+/* line 170, ../../dev/sass/entypo.scss */
+.entypo.info:before {
+  content: '\2139';
+}
+
+/* line 171, ../../dev/sass/entypo.scss */
+.entypo.circled-info:before {
+  content: '\E705';
+}
+
+/* line 172, ../../dev/sass/entypo.scss */
+.entypo.help:before {
+  content: '\2753';
+}
+
+/* line 173, ../../dev/sass/entypo.scss */
+.entypo.circled-help:before {
+  content: '\E704';
+}
+
+/* line 174, ../../dev/sass/entypo.scss */
+.entypo.warning:before {
+  content: '\26A0';
+}
+
+/* line 175, ../../dev/sass/entypo.scss */
+.entypo.cycle:before {
+  content: '\1F504';
+}
+
+/* line 176, ../../dev/sass/entypo.scss */
+.entypo.cw:before {
+  content: '\27F3';
+}
+
+/* line 177, ../../dev/sass/entypo.scss */
+.entypo.ccw:before {
+  content: '\27F2';
+}
+
+/* line 178, ../../dev/sass/entypo.scss */
+.entypo.shuffle:before {
+  content: '\1F500';
+}
+
+/* line 179, ../../dev/sass/entypo.scss */
+.entypo.back:before {
+  content: '\1F519';
+}
+
+/* line 180, ../../dev/sass/entypo.scss */
+.entypo.level-down:before {
+  content: '\21B3';
+}
+
+/* line 181, ../../dev/sass/entypo.scss */
+.entypo.retweet:before {
+  content: '\E717';
+}
+
+/* line 182, ../../dev/sass/entypo.scss */
+.entypo.loop:before {
+  content: '\1F501';
+}
+
+/* line 183, ../../dev/sass/entypo.scss */
+.entypo.back-in-time:before {
+  content: '\E771';
+}
+
+/* line 184, ../../dev/sass/entypo.scss */
+.entypo.level-up:before {
+  content: '\21B0';
+}
+
+/* line 185, ../../dev/sass/entypo.scss */
+.entypo.switch:before {
+  content: '\21C6';
+}
+
+/* line 186, ../../dev/sass/entypo.scss */
+.entypo.numbered-list:before {
+  content: '\E005';
+}
+
+/* line 187, ../../dev/sass/entypo.scss */
+.entypo.add-to-list:before {
+  content: '\E003';
+}
+
+/* line 188, ../../dev/sass/entypo.scss */
+.entypo.layout:before {
+  content: '\268F';
+}
+
+/* line 189, ../../dev/sass/entypo.scss */
+.entypo.list:before {
+  content: '\2630';
+}
+
+/* line 190, ../../dev/sass/entypo.scss */
+.entypo.text-doc:before {
+  content: '\1F4C4';
+}
+
+/* line 191, ../../dev/sass/entypo.scss */
+.entypo.text-doc-inverted:before {
+  content: '\E731';
+}
+
+/* line 192, ../../dev/sass/entypo.scss */
+.entypo.doc:before {
+  content: '\E730';
+}
+
+/* line 193, ../../dev/sass/entypo.scss */
+.entypo.docs:before {
+  content: '\E736';
+}
+
+/* line 194, ../../dev/sass/entypo.scss */
+.entypo.landscape-doc:before {
+  content: '\E737';
+}
+
+/* line 195, ../../dev/sass/entypo.scss */
+.entypo.picture:before {
+  content: '\1F304';
+}
+
+/* line 196, ../../dev/sass/entypo.scss */
+.entypo.video:before {
+  content: '\1F3AC';
+}
+
+/* line 197, ../../dev/sass/entypo.scss */
+.entypo.music:before {
+  content: '\1F3B5';
+}
+
+/* line 198, ../../dev/sass/entypo.scss */
+.entypo.folder:before {
+  content: '\1F4C1';
+}
+
+/* line 199, ../../dev/sass/entypo.scss */
+.entypo.archive:before {
+  content: '\E800';
+}
+
+/* line 200, ../../dev/sass/entypo.scss */
+.entypo.trash:before {
+  content: '\E729';
+}
+
+/* line 201, ../../dev/sass/entypo.scss */
+.entypo.upload:before {
+  content: '\1F4E4';
+}
+
+/* line 202, ../../dev/sass/entypo.scss */
+.entypo.download:before {
+  content: '\1F4E5';
+}
+
+/* line 203, ../../dev/sass/entypo.scss */
+.entypo.save:before {
+  content: '\1F4BE';
+}
+
+/* line 204, ../../dev/sass/entypo.scss */
+.entypo.install:before {
+  content: '\E778';
+}
+
+/* line 205, ../../dev/sass/entypo.scss */
+.entypo.cloud:before {
+  content: '\2601';
+}
+
+/* line 206, ../../dev/sass/entypo.scss */
+.entypo.upload-cloud:before {
+  content: '\E711';
+}
+
+/* line 207, ../../dev/sass/entypo.scss */
+.entypo.bookmark:before {
+  content: '\1F516';
+}
+
+/* line 208, ../../dev/sass/entypo.scss */
+.entypo.bookmarks:before {
+  content: '\1F4D1';
+}
+
+/* line 209, ../../dev/sass/entypo.scss */
+.entypo.open-book:before {
+  content: '\1F4D6';
+}
+
+/* line 210, ../../dev/sass/entypo.scss */
+.entypo.play:before {
+  content: '\25B6';
+}
+
+/* line 211, ../../dev/sass/entypo.scss */
+.entypo.paus:before {
+  content: '\2016';
+}
+
+/* line 212, ../../dev/sass/entypo.scss */
+.entypo.record:before {
+  content: '\25CF';
+}
+
+/* line 213, ../../dev/sass/entypo.scss */
+.entypo.stop:before {
+  content: '\25A0';
+}
+
+/* line 214, ../../dev/sass/entypo.scss */
+.entypo.ff:before {
+  content: '\23E9';
+}
+
+/* line 215, ../../dev/sass/entypo.scss */
+.entypo.fb:before {
+  content: '\23EA';
+}
+
+/* line 216, ../../dev/sass/entypo.scss */
+.entypo.to-start:before {
+  content: '\23EE';
+}
+
+/* line 217, ../../dev/sass/entypo.scss */
+.entypo.to-end:before {
+  content: '\23ED';
+}
+
+/* line 218, ../../dev/sass/entypo.scss */
+.entypo.resize-full:before {
+  content: '\E744';
+}
+
+/* line 219, ../../dev/sass/entypo.scss */
+.entypo.resize-small:before {
+  content: '\E746';
+}
+
+/* line 220, ../../dev/sass/entypo.scss */
+.entypo.volume:before {
+  content: '\23F7';
+}
+
+/* line 221, ../../dev/sass/entypo.scss */
+.entypo.sound:before {
+  content: '\1F50A';
+}
+
+/* line 222, ../../dev/sass/entypo.scss */
+.entypo.mute:before {
+  content: '\1F507';
+}
+
+/* line 223, ../../dev/sass/entypo.scss */
+.entypo.flow-cascade:before {
+  content: '\1F568';
+}
+
+/* line 224, ../../dev/sass/entypo.scss */
+.entypo.flow-branch:before {
+  content: '\1F569';
+}
+
+/* line 225, ../../dev/sass/entypo.scss */
+.entypo.flow-tree:before {
+  content: '\1F56A';
+}
+
+/* line 226, ../../dev/sass/entypo.scss */
+.entypo.flow-line:before {
+  content: '\1F56B';
+}
+
+/* line 227, ../../dev/sass/entypo.scss */
+.entypo.flow-parallel:before {
+  content: '\1F56C';
+}
+
+/* line 228, ../../dev/sass/entypo.scss */
+.entypo.left-bold:before {
+  content: '\E4AD';
+}
+
+/* line 229, ../../dev/sass/entypo.scss */
+.entypo.down-bold:before {
+  content: '\E4B0';
+}
+
+/* line 230, ../../dev/sass/entypo.scss */
+.entypo.up-bold:before {
+  content: '\E4AF';
+}
+
+/* line 231, ../../dev/sass/entypo.scss */
+.entypo.right-bold:before {
+  content: '\E4AE';
+}
+
+/* line 232, ../../dev/sass/entypo.scss */
+.entypo.left:before {
+  content: '\2B05';
+}
+
+/* line 233, ../../dev/sass/entypo.scss */
+.entypo.down:before {
+  content: '\2B07';
+}
+
+/* line 234, ../../dev/sass/entypo.scss */
+.entypo.up:before {
+  content: '\2B06';
+}
+
+/* line 235, ../../dev/sass/entypo.scss */
+.entypo.right:before {
+  content: '\27A1';
+}
+
+/* line 236, ../../dev/sass/entypo.scss */
+.entypo.circled-left:before {
+  content: '\E759';
+}
+
+/* line 237, ../../dev/sass/entypo.scss */
+.entypo.circled-down:before {
+  content: '\E758';
+}
+
+/* line 238, ../../dev/sass/entypo.scss */
+.entypo.circled-up:before {
+  content: '\E75B';
+}
+
+/* line 239, ../../dev/sass/entypo.scss */
+.entypo.circled-right:before {
+  content: '\E75A';
+}
+
+/* line 240, ../../dev/sass/entypo.scss */
+.entypo.triangle-left:before {
+  content: '\25C2';
+}
+
+/* line 241, ../../dev/sass/entypo.scss */
+.entypo.triangle-down:before {
+  content: '\25BE';
+}
+
+/* line 242, ../../dev/sass/entypo.scss */
+.entypo.triangle-up:before {
+  content: '\25B4';
+}
+
+/* line 243, ../../dev/sass/entypo.scss */
+.entypo.triangle-right:before {
+  content: '\25B8';
+}
+
+/* line 244, ../../dev/sass/entypo.scss */
+.entypo.chevron-left:before {
+  content: '\E75D';
+}
+
+/* line 245, ../../dev/sass/entypo.scss */
+.entypo.chevron-down:before {
+  content: '\E75C';
+}
+
+/* line 246, ../../dev/sass/entypo.scss */
+.entypo.chevron-up:before {
+  content: '\E75F';
+}
+
+/* line 247, ../../dev/sass/entypo.scss */
+.entypo.chevron-right:before {
+  content: '\E75E';
+}
+
+/* line 248, ../../dev/sass/entypo.scss */
+.entypo.chevron-small-left:before {
+  content: '\E761';
+}
+
+/* line 249, ../../dev/sass/entypo.scss */
+.entypo.chevron-small-down:before {
+  content: '\E760';
+}
+
+/* line 250, ../../dev/sass/entypo.scss */
+.entypo.chevron-small-up:before {
+  content: '\E763';
+}
+
+/* line 251, ../../dev/sass/entypo.scss */
+.entypo.chevron-small-right:before {
+  content: '\E762';
+}
+
+/* line 252, ../../dev/sass/entypo.scss */
+.entypo.chevron-thin-left:before {
+  content: '\E765';
+}
+
+/* line 253, ../../dev/sass/entypo.scss */
+.entypo.chevron-thin-down:before {
+  content: '\E764';
+}
+
+/* line 254, ../../dev/sass/entypo.scss */
+.entypo.chevron-thin-up:before {
+  content: '\E767';
+}
+
+/* line 255, ../../dev/sass/entypo.scss */
+.entypo.chevron-thin-right:before {
+  content: '\E766';
+}
+
+/* line 256, ../../dev/sass/entypo.scss */
+.entypo.left-thin:before {
+  content: '\2190';
+}
+
+/* line 257, ../../dev/sass/entypo.scss */
+.entypo.down-thin:before {
+  content: '\2193';
+}
+
+/* line 258, ../../dev/sass/entypo.scss */
+.entypo.up-thin:before {
+  content: '\2191';
+}
+
+/* line 259, ../../dev/sass/entypo.scss */
+.entypo.right-thin:before {
+  content: '\2192';
+}
+
+/* line 260, ../../dev/sass/entypo.scss */
+.entypo.arrow-combo:before {
+  content: '\E74F';
+}
+
+/* line 261, ../../dev/sass/entypo.scss */
+.entypo.three-dots:before {
+  content: '\23F6';
+}
+
+/* line 262, ../../dev/sass/entypo.scss */
+.entypo.two-dots:before {
+  content: '\23F5';
+}
+
+/* line 263, ../../dev/sass/entypo.scss */
+.entypo.dot:before {
+  content: '\23F4';
+}
+
+/* line 264, ../../dev/sass/entypo.scss */
+.entypo.cc:before {
+  content: '\1F545';
+}
+
+/* line 265, ../../dev/sass/entypo.scss */
+.entypo.cc-by:before {
+  content: '\1F546';
+}
+
+/* line 266, ../../dev/sass/entypo.scss */
+.entypo.cc-nc:before {
+  content: '\1F547';
+}
+
+/* line 267, ../../dev/sass/entypo.scss */
+.entypo.cc-nc-eu:before {
+  content: '\1F548';
+}
+
+/* line 268, ../../dev/sass/entypo.scss */
+.entypo.cc-nc-jp:before {
+  content: '\1F549';
+}
+
+/* line 269, ../../dev/sass/entypo.scss */
+.entypo.cc-sa:before {
+  content: '\1F54A';
+}
+
+/* line 270, ../../dev/sass/entypo.scss */
+.entypo.cc-nd:before {
+  content: '\1F54B';
+}
+
+/* line 271, ../../dev/sass/entypo.scss */
+.entypo.cc-pd:before {
+  content: '\1F54C';
+}
+
+/* line 272, ../../dev/sass/entypo.scss */
+.entypo.cc-zero:before {
+  content: '\1F54D';
+}
+
+/* line 273, ../../dev/sass/entypo.scss */
+.entypo.cc-share:before {
+  content: '\1F54E';
+}
+
+/* line 274, ../../dev/sass/entypo.scss */
+.entypo.cc-remix:before {
+  content: '\1F54F';
+}
+
+/* line 275, ../../dev/sass/entypo.scss */
+.entypo.db-logo:before {
+  content: '\1F5F9';
+}
+
+/* line 276, ../../dev/sass/entypo.scss */
+.entypo.db-shape:before {
+  content: '\1F5FA';
+}
+
+/* line 278, ../../dev/sass/entypo.scss */
+.entypo-social.github:before {
+  content: '\F300';
+}
+
+/* line 279, ../../dev/sass/entypo.scss */
+.entypo-social.c-github:before {
+  content: '\F301';
+}
+
+/* line 280, ../../dev/sass/entypo.scss */
+.entypo-social.flickr:before {
+  content: '\F303';
+}
+
+/* line 281, ../../dev/sass/entypo.scss */
+.entypo-social.c-flickr:before {
+  content: '\F304';
+}
+
+/* line 282, ../../dev/sass/entypo.scss */
+.entypo-social.vimeo:before {
+  content: '\F306';
+}
+
+/* line 283, ../../dev/sass/entypo.scss */
+.entypo-social.c-vimeo:before {
+  content: '\F307';
+}
+
+/* line 284, ../../dev/sass/entypo.scss */
+.entypo-social.twitter:before {
+  content: '\F309';
+}
+
+/* line 285, ../../dev/sass/entypo.scss */
+.entypo-social.c-twitter:before {
+  content: '\F30A';
+}
+
+/* line 286, ../../dev/sass/entypo.scss */
+.entypo-social.facebook:before {
+  content: '\F30C';
+}
+
+/* line 287, ../../dev/sass/entypo.scss */
+.entypo-social.c-facebook:before {
+  content: '\F30D';
+}
+
+/* line 288, ../../dev/sass/entypo.scss */
+.entypo-social.s-facebook:before {
+  content: '\F30E';
+}
+
+/* line 289, ../../dev/sass/entypo.scss */
+.entypo-social.google + :before {
+  content: '\F30F';
+}
+
+/* line 290, ../../dev/sass/entypo.scss */
+.entypo-social.c-google + :before {
+  content: '\F310';
+}
+
+/* line 291, ../../dev/sass/entypo.scss */
+.entypo-social.pinterest:before {
+  content: '\F312';
+}
+
+/* line 292, ../../dev/sass/entypo.scss */
+.entypo-social.c-pinterest:before {
+  content: '\F313';
+}
+
+/* line 293, ../../dev/sass/entypo.scss */
+.entypo-social.tumblr:before {
+  content: '\F315';
+}
+
+/* line 294, ../../dev/sass/entypo.scss */
+.entypo-social.c-tumblr:before {
+  content: '\F316';
+}
+
+/* line 295, ../../dev/sass/entypo.scss */
+.entypo-social.linkedin:before {
+  content: '\F318';
+}
+
+/* line 296, ../../dev/sass/entypo.scss */
+.entypo-social.c-linkedin:before {
+  content: '\F319';
+}
+
+/* line 297, ../../dev/sass/entypo.scss */
+.entypo-social.dribbble:before {
+  content: '\F31B';
+}
+
+/* line 298, ../../dev/sass/entypo.scss */
+.entypo-social.c-dribbble:before {
+  content: '\F31C';
+}
+
+/* line 299, ../../dev/sass/entypo.scss */
+.entypo-social.stumbleupon:before {
+  content: '\F31E';
+}
+
+/* line 300, ../../dev/sass/entypo.scss */
+.entypo-social.c-stumbleupon:before {
+  content: '\F31F';
+}
+
+/* line 301, ../../dev/sass/entypo.scss */
+.entypo-social.lastfm:before {
+  content: '\F321';
+}
+
+/* line 302, ../../dev/sass/entypo.scss */
+.entypo-social.c-lastfm:before {
+  content: '\F322';
+}
+
+/* line 303, ../../dev/sass/entypo.scss */
+.entypo-social.rdio:before {
+  content: '\F324';
+}
+
+/* line 304, ../../dev/sass/entypo.scss */
+.entypo-social.c-rdio:before {
+  content: '\F325';
+}
+
+/* line 305, ../../dev/sass/entypo.scss */
+.entypo-social.spotify:before {
+  content: '\F327';
+}
+
+/* line 306, ../../dev/sass/entypo.scss */
+.entypo-social.c-spotify:before {
+  content: '\F328';
+}
+
+/* line 307, ../../dev/sass/entypo.scss */
+.entypo-social.qq:before {
+  content: '\F32A';
+}
+
+/* line 308, ../../dev/sass/entypo.scss */
+.entypo-social.instagram:before {
+  content: '\F32D';
+}
+
+/* line 309, ../../dev/sass/entypo.scss */
+.entypo-social.dropbox:before {
+  content: '\F330';
+}
+
+/* line 310, ../../dev/sass/entypo.scss */
+.entypo-social.evernote:before {
+  content: '\F333';
+}
+
+/* line 311, ../../dev/sass/entypo.scss */
+.entypo-social.flattr:before {
+  content: '\F336';
+}
+
+/* line 312, ../../dev/sass/entypo.scss */
+.entypo-social.skype:before {
+  content: '\F339';
+}
+
+/* line 313, ../../dev/sass/entypo.scss */
+.entypo-social.c-skype:before {
+  content: '\F33A';
+}
+
+/* line 314, ../../dev/sass/entypo.scss */
+.entypo-social.renren:before {
+  content: '\F33C';
+}
+
+/* line 315, ../../dev/sass/entypo.scss */
+.entypo-social.sina-weibo:before {
+  content: '\F33F';
+}
+
+/* line 316, ../../dev/sass/entypo.scss */
+.entypo-social.paypal:before {
+  content: '\F342';
+}
+
+/* line 317, ../../dev/sass/entypo.scss */
+.entypo-social.picasa:before {
+  content: '\F345';
+}
+
+/* line 318, ../../dev/sass/entypo.scss */
+.entypo-social.soundcloud:before {
+  content: '\F348';
+}
+
+/* line 319, ../../dev/sass/entypo.scss */
+.entypo-social.mixi:before {
+  content: '\F34B';
+}
+
+/* line 320, ../../dev/sass/entypo.scss */
+.entypo-social.behance:before {
+  content: '\F34E';
+}
+
+/* line 321, ../../dev/sass/entypo.scss */
+.entypo-social.google-circles:before {
+  content: '\F351';
+}
+
+/* line 322, ../../dev/sass/entypo.scss */
+.entypo-social.vk:before {
+  content: '\F354';
+}
+
+/* line 323, ../../dev/sass/entypo.scss */
+.entypo-social.smashing:before {
+  content: '\F357';
+}

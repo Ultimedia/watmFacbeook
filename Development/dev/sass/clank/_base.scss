@@ -1,0 +1,36 @@
+/* ==========================================================================
+  Base
+   ========================================================================== */
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+.cl-device-body {
+  *, *:before, *:after {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+   }
+}
+
+
+.cl-device-body {
+  padding: 0;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  & > .cl-bar-title,
+  & > .cl-content,
+  & > .cl-bar-footer {
+    margin: 0 auto;
+  }
+}
