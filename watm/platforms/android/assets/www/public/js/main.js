@@ -572,7 +572,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
     }, 
 
     shareButtonHandler: function(){
-        //appData.services.phpService.updateChallenge(3, 40);
+
     },
 
     addMap: function(){
@@ -622,9 +622,9 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       appData.services.facebookService.facebookWallpost(appData.views.ActivityDetailView.model);
     },
 
-
     wallPostCompleteHandler: function(){
       Backbone.off('FacebookWallPostCompleteEvent');
+      $('#popover', appData.settings.currentPageHTML).addClass('hide');
     },
 
     updateButtonClickHandler: function(){
