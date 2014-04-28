@@ -836,8 +836,7 @@ appData.views.ActivityMediaViewer = Backbone.View.extend({
     },
 
     render: function() { 
-
-    	this.$el.html(this.template(this.model.toJSON()));
+	  this.$el.html(this.template(this.model.toJSON()));
       return this; 
     }
 });
@@ -873,13 +872,15 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       this.$el.html(this.template(this.model.attributes));
       appData.settings.currentModuleHTML = this.$el;
 
+      setTimeout(function(){
+        appData.services.phpService.getMessages(this.model); 
+      }, 5000);
+
       return this; 
     },
 
     postMessageSuccesHandler: function(){
       $('#messageInput', appData.settings.currentModuleHTML).val('');
-      $("#messagesContent").scrollTop($("#messagesContent")[0].scrollHeight);
-
 
       // update messages
       appData.services.phpService.getMessages(appData.views.ActivityDetailView.model);  
@@ -887,9 +888,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
     },
 
     chatMessagesLoadSuccesHandler: function(messages){
-
       appData.views.ActivityDetailView.model.attributes.messages = messages;
-
       if(appData.views.ActivityDetailView.model.attributes.messages.length > 0){
 
           appData.views.ActivityDetailView.messagesListView = [];
@@ -903,12 +902,12 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
         _(appData.views.ActivityDetailView.messagesListView).each(function(dv) {
             $('#messagesContent ul', appData.settings.currentModuleHTML).append(dv.render().$el);
         });
+
       }else{
 
       }
     }
 });
-
 
 appData.views.ActivityUserView = Backbone.View.extend({
 
