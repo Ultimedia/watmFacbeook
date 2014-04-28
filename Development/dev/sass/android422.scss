@@ -1,0 +1,142 @@
+#activityDetail{
+  #activityDetailTabs{
+    .cl-btn{
+      width: 33%;
+    }
+  }
+
+  #praktischContent{
+    #goingList{
+      width: 100%;
+      padding-bottom: 20px;
+
+      label{
+        width: 50%;
+        float: left;
+      }
+    }
+
+    h4:first-child{
+    }
+  }
+}
+
+#mainNav{
+  position: fixed;
+  width: 100%;
+}
+
+
+
+#home, #createUser, #createActivity, #settings{
+  .cl-content{
+    input[type=email]{
+      background:url('assets/mail-icon@x2.png') no-repeat 10px 15px;
+      background-size: 15px 12px;
+    }
+
+    input[type=password]{
+      background:url('assets/lock-icon@x2.png') no-repeat 10px 12px;
+      background-size: 12px 16px;
+    }
+
+    #nameInput{
+      background:url('assets/speech-icon@x2.png') no-repeat 10px 12px;
+      background-size: 15px 15px;
+    }
+  }
+}
+
+
+#createUser, #createActivity, #settings{
+  .cl-form{
+      position: relative;
+
+    #genderSelect{
+      background:url('assets/name-icon@x2.png') no-repeat 10px 12px;
+      background-size: 15px 15px;
+      display: block;
+      height: 30px;
+      width: 100%;
+      label{
+        width: 50%;
+        display: block;
+        float: left;
+      }
+    }
+  }
+  .button-container{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+  }
+}
+
+#profile{ 
+  #profileTabs{
+    .cl-btn {
+      float: left;
+      display: block;
+      width: 33%;
+    }
+  }
+
+  .cl-content{
+    clear: both;
+  }
+}
+
+#dashboard{
+  position: relative;
+
+    .cl-bar-title{
+      .add-icon{
+        background: url("assets/add-icon@x2.png") no-repeat center right/20px 20px;
+        background-size: 20px 20px;
+      }
+
+    .search-icon{
+        background: url("assets/search-icon@x2.png") no-repeat center left;
+        background-size: 18px 18px;
+      }
+    }
+
+
+  #fullScreenButton{
+      background: #378488 url('assets/fullscreen-icon@x2.png') no-repeat center center;
+      background-size: 15px 15px;
+  }
+
+  .mapOpen{
+    #map_canvas{
+      height: 100% !important;
+    }
+
+    #fullScreenButton{
+        background: #378488 url('assets/normalscreen-icon@x2.png') no-repeat center center;
+        background-size: 15px 15px;
+      }
+  }
+
+
+  #activityTable{
+    .cl-table-cell{
+
+
+    .dashboard-footer{
+      ul{
+        .table-location{
+          background:url('assets/cursor-icon@x2.png') no-repeat 0 10px;
+          background-size: 11px 15px;
+        }
+
+        .table-friends{
+          background:url('assets/friend-icon@x2.png') no-repeat 0 12px;
+          background-size: 13px 13px;
+        }
+      }
+    }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 appData.views.ProfileAvatarView = Backbone.View.extend({
     className: 'avatar-page',
     initialize: function () {
-    	Backbone.on('updateAvatarCompleteHandler', this.updateAvatarCompleteHandler)
+
     },
     
     render: function() { 
@@ -13,18 +13,18 @@ appData.views.ProfileAvatarView = Backbone.View.extend({
         var avatarView = new appData.views.AvatarDisplayView({model: avatarModel});
 
         $('#avatar', appData.settings.currentModuleHTML).append(avatarView.render().$el);
-        return this; 
-    },
 
-    events:{
-    	"click #updateAvatar": "updateAvatarHandler"
-    },
+        console.log(appData.models.userModel.attributes.stamina_score);
 
-    updateAvatarHandler: function(){
-    	appData.services.phpService.updateAvatar();
-    },
 
-    updateAvatarCompleteHandler: function(){
+        $( "#strength_progress", appData.settings.currentModuleHTML).progressbar({
+            value: parseInt(appData.models.userModel.attributes.strength_score)
+        });
         
+        $( "#stamina_progress", appData.settings.currentModuleHTML).progressbar({
+            value: parseInt(appData.models.userModel.attributes.stamina_score)
+        });
+
+        return this; 
     }
 });

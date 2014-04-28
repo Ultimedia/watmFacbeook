@@ -568,11 +568,29 @@ appData.views.ActivityDetailView = Backbone.View.extend({
          this.addMap();
       }
 
+      this.setValidators();
+
       return this; 
     }, 
 
     shareButtonHandler: function(){
 
+    },
+
+    setValidators: function(){
+      $("#messageForm",appData.settings.currentPageHTML).validate({
+          submitHandler: function(form) {
+
+            var message = $('#messageInput', appData.settings.currentPageHTML).val();
+            $('#messageInput', appData.settings.currentPageHTML).val('');
+            
+            appData.services.phpService.addMessage(message, appData.views.ActivityDetailView.model.attributes.activity_id);   
+          }
+      });
+    },
+
+    messageSubmitHandler: function(){
+      $("#messageForm",appData.settings.currentPageHTML).submit();
     },
 
     addMap: function(){
@@ -612,7 +630,8 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       "click #shareButton": "sharePopopverClickHandler",
       "click #popover-close": "sharePopopverClickHandler",
       "click #updateButton": "updateButtonClickHandler",
-      "click #facebookShareButton": "facebookShareButtonClickHandler"
+      "click #facebookShareButton": "facebookShareButtonClickHandler",
+      "click #messageSubmit": "messageSubmitHandler"
     },
 
     facebookShareButtonClickHandler: function(){
@@ -651,6 +670,8 @@ appData.views.ActivityDetailView = Backbone.View.extend({
         var selectedPage = $(evt.target, appData.settings.currentPageHTML).attr('data');
         var view;
 
+        $('#messageBox', appData.settings.currentPageHTML).removeClass('open');
+
         switch(selectedPage){
           case "#praktischContent":
             view = new appData.views.ActivityInfoView({model : appData.views.ActivityDetailView.model});
@@ -662,6 +683,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
           case "#messagesContent":
             view = new appData.views.ActivityMessagesView({model : appData.views.ActivityDetailView.model});
+            $('#messageBox', appData.settings.currentPageHTML).addClass('open');
           break;
         }
 
@@ -850,18 +872,12 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
     	// model to template
       this.$el.html(this.template(this.model.attributes));
       appData.settings.currentModuleHTML = this.$el;
-      this.setValidators();
-
-      $('#messageBox', appData.settings.currentPageHTML).removeClass('hide');
 
       return this; 
     },
 
-    events: {
-      "click #messageSubmit": "messageSubmitHandler"
-    },
-
     postMessageSuccesHandler: function(){
+      $('#messageInput', appData.settings.currentModuleHTML).val('');
 
       // update messages
       appData.services.phpService.getMessages(appData.views.ActivityDetailView.model);  
@@ -888,24 +904,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       }else{
 
       }
-    },
-
-    setValidators: function(){
-      $("#messageForm",appData.settings.currentModuleHTML).validate({
-          submitHandler: function(form) {
-            var message = $('#messageInput', appData.settings.currentModuleHTML).val();
-            $('#messageInput', appData.settings.currentModuleHTML).empty();
-            
-            appData.services.phpService.addMessage(message, appData.views.ActivityDetailView.model.attributes.activity_id);   
-          }
-      });
-    },
-
-    messageSubmitHandler: function(){
-      $("#messageForm",appData.settings.currentModuleHTML).submit();
     }
-
-
 });
 
 
@@ -985,9 +984,7 @@ appData.views.ActivityMediaView = Backbone.View.extend({
         });
       }
 
-      $('#messageBox', appData.settings.currentPageHTML).removeClass('hide').css('opacity', 0);
-
-        return this; 
+      return this; 
     },
 
     mediaFormSubmitHandler: function(event){
@@ -2087,6 +2084,7 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.models.userModel.attributes.current_location = myLocation;
             appData.views.DashboardView.locations = myLocation;
 
+
             if(appData.settings.native && appData.services.utilService.getNetworkConnection()){
                 appData.views.DashboardView.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 13);
                 appData.views.DashboardView.setMarkers();
@@ -3083,7 +3081,7 @@ appData.views.PlannerView = Backbone.View.extend({
 appData.views.ProfileAvatarView = Backbone.View.extend({
     className: 'avatar-page',
     initialize: function () {
-    	Backbone.on('updateAvatarCompleteHandler', this.updateAvatarCompleteHandler)
+
     },
     
     render: function() { 
@@ -3095,19 +3093,19 @@ appData.views.ProfileAvatarView = Backbone.View.extend({
         var avatarView = new appData.views.AvatarDisplayView({model: avatarModel});
 
         $('#avatar', appData.settings.currentModuleHTML).append(avatarView.render().$el);
-        return this; 
-    },
 
-    events:{
-    	"click #updateAvatar": "updateAvatarHandler"
-    },
+        console.log(appData.models.userModel.attributes.stamina_score);
 
-    updateAvatarHandler: function(){
-    	appData.services.phpService.updateAvatar();
-    },
 
-    updateAvatarCompleteHandler: function(){
+        $( "#strength_progress", appData.settings.currentModuleHTML).progressbar({
+            value: parseInt(appData.models.userModel.attributes.strength_score)
+        });
         
+        $( "#stamina_progress", appData.settings.currentModuleHTML).progressbar({
+            value: parseInt(appData.models.userModel.attributes.stamina_score)
+        });
+
+        return this; 
     }
 });
 

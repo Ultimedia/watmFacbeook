@@ -345,11 +345,13 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/templates \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/android422.css \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/application.css \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/bootstrap \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/clank.css \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/entypo.css \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/jquery-ui-1.10.4.custom.min.css \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/add-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/add-sport-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/cursor-icon@x2.png \
@@ -391,6 +393,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/ffacebook-js-sdk.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/gmap3.min.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/handlebars.js \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery-ui-1.10.4.custom.min.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.validate.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/pageslider.js \

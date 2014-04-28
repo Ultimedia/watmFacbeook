@@ -57,9 +57,7 @@ appData.views.ActivityMediaView = Backbone.View.extend({
         });
       }
 
-      $('#messageBox', appData.settings.currentPageHTML).removeClass('hide').css('opacity', 0);
-
-        return this; 
+      return this; 
     },
 
     mediaFormSubmitHandler: function(event){

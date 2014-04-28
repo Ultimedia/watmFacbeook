@@ -18,6 +18,27 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+
+        // add device specific stylesheets if need (older android eg)
+        switch(device.platform){
+
+            case "Android":
+
+                // webkit issues in android 4.2.2 so we need a custom css here
+                switch(device.version){
+                    case "4.2.2":
+                        // testing only
+                        window.localStorage.clear()
+
+
+                        $('html head').append('<link rel="stylesheet" type="text/css" href="public/css/android422.css" />');
+                    break;
+                }
+
+            break;
+
+        }
+
         appData.start(true);
     }
 };

@@ -10,18 +10,14 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
     	// model to template
       this.$el.html(this.template(this.model.attributes));
       appData.settings.currentModuleHTML = this.$el;
-      this.setValidators();
-
-      $('#messageBox', appData.settings.currentPageHTML).removeClass('hide');
 
       return this; 
     },
 
-    events: {
-      "click #messageSubmit": "messageSubmitHandler"
-    },
-
     postMessageSuccesHandler: function(){
+      $('#messageInput', appData.settings.currentModuleHTML).val('');
+      $("#messagesContent").scrollTop($("#messagesContent")[0].scrollHeight);
+
 
       // update messages
       appData.services.phpService.getMessages(appData.views.ActivityDetailView.model);  
@@ -48,22 +44,5 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       }else{
 
       }
-    },
-
-    setValidators: function(){
-      $("#messageForm",appData.settings.currentModuleHTML).validate({
-          submitHandler: function(form) {
-            var message = $('#messageInput', appData.settings.currentModuleHTML).val();
-            $('#messageInput', appData.settings.currentModuleHTML).empty();
-            
-            appData.services.phpService.addMessage(message, appData.views.ActivityDetailView.model.attributes.activity_id);   
-          }
-      });
-    },
-
-    messageSubmitHandler: function(){
-      $("#messageForm",appData.settings.currentModuleHTML).submit();
     }
-
-
 });
