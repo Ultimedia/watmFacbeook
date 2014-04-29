@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+
+    
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="#challenges">Overzicht</a></li>
+      <li><a href="#new-challenge">Nieuwe uitdaging</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+
+    <h2 class="sub-header">Uitdagingen<a href="#new-challenge" class="btn btn-primary pull-right">Nieuwe uitdaging</a></h2>
+    <div class="table-responsive">
+      <table class="table table-striped" id="challenges-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Titel</th>
+            <th>Deadline</th>
+            <th>Omschrijving</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="remove-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Verwijder Uitdaging: <span></span></h4>
+      </div>
+      <div class="modal-body">
+        <p>Let op: Deze actie kan niet ongedaan gemaakt worden.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="remove">Verwijder uitdaging</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

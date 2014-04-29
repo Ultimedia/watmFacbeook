@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li><a href="#">Overzicht</a></li>
+      <li><a href="#new-activity">Nieuwe activiteit</a></li>
+
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2 class="sub-header">Wijzig activiteit</h2>
+    <form class="form-horizontal" role="form" id="editForm">
+      <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Titel</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" value="<%= activity.title %>" id="title" placeholder="Titel" name="email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sport" class="col-sm-2 control-label">Sport</label>
+        <div class="col-sm-10">
+          <input type="text" value="<%= activity.sport_title %>" class="form-control" id="sport" name="title" placeholder="Sport" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="wanneerInput" class="col-sm-2 control-label">Datum</label>
+        <div class="col-sm-10">
+          <input type="date" value="<%= activity.date %>" class="form-control" id="wanneerInput"  name="date" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vanInput" class="col-sm-2 control-label">Van</label>
+        <div class="col-sm-10">
+          <input type="time" value="<%= activity.van %>" class="form-control" id="vanInput" name="time" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="totInput" class="col-sm-2 control-label">Tot</label>
+        <div class="col-sm-10">
+          <input type="time" value="<%= activity.until %>" class="form-control" id="totInput" name="tot" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="locationInput" class="col-sm-2 control-label">Locatie</label>
+        <div class="col-sm-10">
+          <input type="text" value="<%= activity.location %>" class="form-control" id="locationInput" name="location" required>
+          <div id="map">
+
+          </div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="participantsSlider" class="col-sm-2 control-label">Max deelnemers</label>
+        <div class="col-sm-10">
+          <input type="range" min="2" max="60" name="participants" value="<%= activity.participants %>"  id="participantsSlider" required/>
+          <span id="participantsTotal">
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="part" class="col-sm-2 control-label">Deelnemers</label>
+        <div class="col-sm-10">
+          <p class="bg-info">Klik op een gebruiker om hem van de deelnamelijst te verwijderen.</p>
+
+          <% _.each(activity.users, function(friend) { %>
+            <div class="friendBox" friendid="<%= friend.user_id %>">
+              <span class="avatar-circle" style="background: url('<%= imagePath %><%= friend.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+              <span class="friend-name"><%= friend.name %></span>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="omschrijvingInput" class="col-sm-2 control-label">Omschrijving</label>
+        <div class="col-sm-10">
+          <textarea rows="4" name="omschrijving" placeholder="Omschrijving" class="col-sm-12" id="omschrijvingInput"><%= activity.description %></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary pull-right">Wijzig activiteit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

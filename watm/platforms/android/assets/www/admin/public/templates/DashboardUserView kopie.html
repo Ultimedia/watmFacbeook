@@ -1,0 +1,9 @@
+<td class="avatar"><div class="avatar-circle" style="background: url('<%= imagePath %><%= user.avatar %>'); background-size: cover; -webkit-background-size: cover;"></div></td>
+<td><%= user.name %></td>
+<td><%= user.age %></td>
+<td><%= user.location %></td>
+<td></td>
+<td>
+	<a href="javascript:;" class="btn" data-id="<%= user.user_id %>">Verwijder</a>
+	<a href="#user_edit/<%= user.user %>" class="btn" data-id="<%= user.user_id %>">Wijzig</a>
+</td>

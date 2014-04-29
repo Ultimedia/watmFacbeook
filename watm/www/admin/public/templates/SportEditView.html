@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li><a href="#sports">Overzicht</a></li>
+      <li><a href="#new-sport">Nieuwe sport</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <h2 class="sub-header">Wijzig sport</h2>
+      <form role="form" id="mediaForm" class="form-horizontal">
+        <div class="form-group">
+        <label for="badge" class="col-sm-2 control-label">Badge</label>
+        <div class="col-sm-10">
+
+         <div id="sportAvatar" class="avatar-media-box pull-left" style="background: url('<%= imagePath %><%= sport.icon %>') center center; background-size: cover; -webkit-background-size: cover;"></div>
+
+          
+          <span class="btn btn-link btn-file pull-left" id="changeAvatar">
+              Kies een afbeelding <input type="file" id="nonNativeFileField">
+          </span>
+
+        </div>
+      </div>
+      </form>
+      <form role="form" id="sportForm" class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="sportInput">Sport</label>
+            <div class="col-sm-10">
+              <input type="text" name="sport" placeholder="Sport" id="sportInput" class="form-control" value="<%= sport.sport_title %>" required/>
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary pull-right">Wijzig sport</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

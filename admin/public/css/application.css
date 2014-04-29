@@ -1,0 +1,109 @@
+/*
+ * Base structure
+ */
+/* Move down content because we have a fixed navbar that is 50px tall */
+/* line 6, ../../dev/sass/application.scss */
+body {
+  padding-top: 50px;
+}
+
+/*
+ * Global add-ons
+ */
+/* line 15, ../../dev/sass/application.scss */
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+/* Hide for mobile, show later */
+/* line 26, ../../dev/sass/application.scss */
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  /* line 30, ../../dev/sass/application.scss */
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+/* Sidebar navigation */
+/* line 46, ../../dev/sass/application.scss */
+.nav-sidebar {
+  margin-right: -21px;
+  /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+/* line 51, ../../dev/sass/application.scss */
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+/* line 55, ../../dev/sass/application.scss */
+.nav-sidebar > .active > a {
+  color: #fff;
+  background-color: #428bca;
+}
+
+/*
+ * Main content
+ */
+/* line 66, ../../dev/sass/application.scss */
+.main {
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  /* line 70, ../../dev/sass/application.scss */
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+/* line 75, ../../dev/sass/application.scss */
+.main .page-header {
+  margin-top: 0;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+/* line 84, ../../dev/sass/application.scss */
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* line 88, ../../dev/sass/application.scss */
+.placeholders h4 {
+  margin-bottom: 0;
+}
+
+/* line 91, ../../dev/sass/application.scss */
+.placeholder {
+  margin-bottom: 20px;
+}
+
+/* line 94, ../../dev/sass/application.scss */
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}

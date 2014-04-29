@@ -1,0 +1,15 @@
+<td><%= activity.activity_id %></td>
+<td><%= activity.title %></td>
+<td><%= activity.date %> <%= activity.time %></td>
+<td><%= activity.location %></td>
+<td><%= friends.length %> / <%= activity.participants %></td>
+<td>
+  <% _.each(friends, function(friend) { %>
+    <span class="avatar-circle-small" style="background: url('<%= imagePath %><%= friend.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+  <% }); %>
+</td>
+<td><%= activity.sport_title %></td>
+<td>
+	<a href="javascript:;" class="btn" data-id="<%= activity.activity_id %>" archive="true"  data-toggle="modal" data-target="#remove-modal">Verwijder</a>
+	<a href="#activity-archive-edit/<%= activity.activity_id %>" class="btn" data-id="<%= activity.activity_id %>">Wijzig</a>
+</td>

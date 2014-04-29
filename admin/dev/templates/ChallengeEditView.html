@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+
+    
+    <ul class="nav nav-sidebar">
+      <li><a href="#challenges">Overzicht</a></li>
+      <li><a href="#new-challenge">Nieuwe uitdaging</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+
+    <h2 class="sub-header">Wijzig uitdaging</h2>
+     
+      <h4>1. Algemene info</h4>
+      <hr/>
+
+      <form role="form" id="mediaForm" class="form-horizontal">
+        <div class="form-group">
+          <label for="badge" class="col-sm-2 control-label">Badge</label>
+          <div class="col-sm-10">
+          <div id="badge" class="avatar-media-box pull-left hide" style="background-size: cover; -webkit-background-size: cover;"></div>
+          <span class="btn btn-link btn-file pull-left" id="changebadge">
+                Kies een afbeelding <input type="file" id="nonNativeFileField">
+            </span>
+          </div>
+        </div>
+      </form>
+
+      <form class="form-horizontal" role="form" id="challengeForm">
+      <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Titel</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" value="<%= challenge.title %>" id="titleInput" placeholder="Titel" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="omschrijvingInput" class="col-sm-2 control-label">Omschrijving</label>
+        <div class="col-sm-10">
+          <textarea rows="4" name="omschrijving" placeholder="Omschrijving" class="col-sm-12" id="omschrijvingInput" required><%= challenge.description %></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="deadline" class="col-sm-2 control-label">Deadline</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" name="deadline" value="<%= challenge.deadline %>" id="deadline" placeholder="Loopt af" required>
+        </div>
+      </div>
+
+      <h4>2. Vereisten</h4>
+      <hr/>
+      <div class="form-group">
+        <label for="deadline" class="col-sm-2 control-label">Vereisten</label>
+        <div class="col-sm-10">
+          <p class="bg-info">Aan welke vereisten moet de gebruiker voldoen om deze uitdaging te voltooien?</p>
+          <div class="checkbox">
+              <label for="checkboxes-0">
+                <input type="checkbox" name="challenge[]" id="checkboxes-0" value="1" group-target="#sportPartGroup" validate="required:true" >
+                Deelnemen aan een bepaalde <b>sport</b>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="checkboxes-1">
+                <input type="checkbox" name="challenge[]" id="checkboxes-1" value="2" group-target="#activityTotalGroup">
+                Een aantal <b>activiteiten aanmaken</b>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="checkboxes-2">
+                <input type="checkbox" name="challenge[]" id="checkboxes-2" value="" group-target="#fotoTotalGroup">
+                Een aantal <b>foto's/video aanmaken</b>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label for="checkboxes-3" id="cb3">
+                <input type="checkbox" name="challenge[]" id="checkboxes-3" value="" group-target="#participateGroup">
+                Naar een bepaald aantal activiteiten gaan
+              </label>
+          </div>
+
+        </div>
+      </div>
+     
+      <div id="sportPartGroup" class="hide challengeGroup">
+
+        <h4>Deelnemen aan een bepaalde sport</h4>
+        <hr/>
+        <div class="form-group" id="sportPartGroup">
+          <label for="deadline" class="col-sm-2 control-label">Sport</label>
+          <div class="col-sm-10">
+            <select id="selectSport" name="selectSport" class="form-control">
+             <% _.each(sports, function(sport){ %>
+                  <option sport-id="<%= sport.sport_id %>"><%= sport.sport_title %></option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" id="sportPartGroup">
+          <label for="sportde" class="col-sm-2 control-label">Aantal deelnames</label>
+          <div class="col-sm-10">
+            <input type="range" id="sportde" min="1" max="30" value="5"/>
+            <span id="sportDeelnamesSlider"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hide challengeGroup" id="activityTotalGroup">
+        <h4>Een aantal activiteiten aanmaken</h4>
+        <hr/>
+        <div class="form-group " id="activityTotalGroup">
+          <label for="deelnames" class="col-sm-2 control-label">Aantal activiteiten</label>
+          <div class="col-sm-10">
+            <input type="range" id="deelnames" min="1" max="30" value="5"/>
+            <span id="activityTotal"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hide challengeGroup" id="fotoTotalGroup">
+        <h4>Een aantal foto's/video aanmaken</h4>
+        <hr/>
+        <div class="form-group" >
+          <label for="fotovideoRange" class="col-sm-2 control-label">Aantal foto's / video's</label>
+          <div class="col-sm-10">
+            <input type="range" id="fotovideoRange" min="1" max="30" value="5"/>
+            <span id="fotovideoTotal"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hide challengeGroup" id="participateGroup">
+        <h4>Naar een bepaald aantal activiteiten gaan</h4>
+        <hr/>
+        <div class="form-group">
+          <label for="participateTotal" class="col-sm-2 control-label">Aantal deelnames aan activiteiten</label>
+          <div class="col-sm-10">
+            <input type="range" id="participateRange" min="1" max="30" value="5"/>
+            <span id="participateTotal"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary pull-right">Uitdaging bijwerken</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="#">Overzicht</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <h2 class="sub-header">Wijzig activiteit</h2>
+      <form role="form" id="edit-form" class="form-horizontal">
+        <div class="form-group">
+          <label for="titelInput">Titel</label>
+          <input type="text" name="titlel" placeholder="Titel" id="titelInput" value="<%= activity.title %>" required/>
+        </div>
+        <div class="form-group">
+          <label for="sportInput">Sport</label>
+          <input type="text" name="sport" placeholder="Sport" id="sportInput" value="<%= activity.sport_title %>" required/>
+        </div>
+        <div class="form-group">
+          <label for="wanneerInput">Datuù</label>
+          <input type="date" name="datum" placeholder="Datum" id="wanneerInput" value="<%= activity.date %>" required/>
+        </div>
+        <div class="form-group">
+          <label for="vanInput">Van</label>
+          <input type="time" name="vanuur" placeholder="Uur" id="vanInput" value="<%= activity.time %>" required/>
+        </div>
+        <div class="form-group">
+          <label for="totInput">Tot</label>
+          <input type="time" name="totuur" placeholder="Uur" id="totInput" required/>
+        </div>
+        <div class="form-group">
+          <label for="participantsSlider">Aantal deelnemers</label>
+          <input type="range" min="2" max="60" value="20" name="participants" value="<%= activity.participants %>"  id="participantsSlider" required/>
+        </div>
+        <div class="form-group">
+          <label for="omschrijvingInput">Omschrijving</label>
+          <textarea rows="4" name="omschrijving" placeholder="Omschrijving"  id="omschrijvingInput"><%= activity.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li><a href="#sports">Overzicht</a></li>
+      <li><a href="#new-sport">Nieuwe sport</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    <h2 class="sub-header">Wijzig sport</h2>
+      <form role="form" id="edit-form" class="form-horizontal">
+        <div class="form-group">
+          <img src="<%= imagePath %><%= sport.icon %>" alt="" class="avatar-media-box"/>
+        </div>
+        <div class="form-group">
+          <label for="sportInput">Sport</label>
+          <input type="text" name="sport" placeholder="Sport" id="sportInput" value="<%= sport.sport_title %>" required/>
+        </div>
+        <button type="submit" class="btn btn-default">Opslaan</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+

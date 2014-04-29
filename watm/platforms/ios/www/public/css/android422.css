@@ -2,9 +2,111 @@
 #activityDetail #activityDetailTabs .cl-btn {
   width: 33%;
 }
-
 /* line 9, ../../../../Development/dev/sass/android422.scss */
+#activityDetail #praktischContent #goingList {
+  width: 100%;
+  padding-bottom: 20px;
+}
+/* line 13, ../../../../Development/dev/sass/android422.scss */
+#activityDetail #praktischContent #goingList label {
+  width: 50%;
+  float: left;
+}
+
+/* line 24, ../../../../Development/dev/sass/android422.scss */
 #mainNav {
   position: fixed;
   width: 100%;
+}
+
+/* line 33, ../../../../Development/dev/sass/android422.scss */
+#home .cl-content input[type=email], #createUser .cl-content input[type=email], #createActivity .cl-content input[type=email], #settings .cl-content input[type=email] {
+  background: url("assets/mail-icon@x2.png") no-repeat 10px 15px;
+  background-size: 15px 12px;
+}
+/* line 38, ../../../../Development/dev/sass/android422.scss */
+#home .cl-content input[type=password], #createUser .cl-content input[type=password], #createActivity .cl-content input[type=password], #settings .cl-content input[type=password] {
+  background: url("assets/lock-icon@x2.png") no-repeat 10px 12px;
+  background-size: 12px 16px;
+}
+/* line 43, ../../../../Development/dev/sass/android422.scss */
+#home .cl-content #nameInput, #createUser .cl-content #nameInput, #createActivity .cl-content #nameInput, #settings .cl-content #nameInput {
+  background: url("assets/speech-icon@x2.png") no-repeat 10px 12px;
+  background-size: 15px 15px;
+}
+
+/* line 52, ../../../../Development/dev/sass/android422.scss */
+#createUser .cl-form, #createActivity .cl-form, #settings .cl-form {
+  position: relative;
+}
+/* line 55, ../../../../Development/dev/sass/android422.scss */
+#createUser .cl-form #genderSelect, #createActivity .cl-form #genderSelect, #settings .cl-form #genderSelect {
+  background: url("assets/name-icon@x2.png") no-repeat 10px 12px;
+  background-size: 15px 15px;
+  display: block;
+  height: 30px;
+  width: 100%;
+}
+/* line 61, ../../../../Development/dev/sass/android422.scss */
+#createUser .cl-form #genderSelect label, #createActivity .cl-form #genderSelect label, #settings .cl-form #genderSelect label {
+  width: 50%;
+  display: block;
+  float: left;
+}
+/* line 68, ../../../../Development/dev/sass/android422.scss */
+#createUser .button-container, #createActivity .button-container, #settings .button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* line 78, ../../../../Development/dev/sass/android422.scss */
+#profile #profileTabs .cl-btn {
+  float: left;
+  display: block;
+  width: 33%;
+}
+/* line 85, ../../../../Development/dev/sass/android422.scss */
+#profile .cl-content {
+  clear: both;
+}
+
+/* line 90, ../../../../Development/dev/sass/android422.scss */
+#dashboard {
+  position: relative;
+}
+/* line 94, ../../../../Development/dev/sass/android422.scss */
+#dashboard .cl-bar-title .add-icon {
+  background: url("assets/add-icon@x2.png") no-repeat center right/20px 20px;
+  background-size: 20px 20px;
+}
+/* line 99, ../../../../Development/dev/sass/android422.scss */
+#dashboard .cl-bar-title .search-icon {
+  background: url("assets/search-icon@x2.png") no-repeat center left;
+  background-size: 18px 18px;
+}
+/* line 106, ../../../../Development/dev/sass/android422.scss */
+#dashboard #fullScreenButton {
+  background: #378488 url("assets/fullscreen-icon@x2.png") no-repeat center center;
+  background-size: 15px 15px;
+}
+/* line 112, ../../../../Development/dev/sass/android422.scss */
+#dashboard .mapOpen #map_canvas {
+  height: 100% !important;
+}
+/* line 116, ../../../../Development/dev/sass/android422.scss */
+#dashboard .mapOpen #fullScreenButton {
+  background: #378488 url("assets/normalscreen-icon@x2.png") no-repeat center center;
+  background-size: 15px 15px;
+}
+/* line 129, ../../../../Development/dev/sass/android422.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul .table-location {
+  background: url("assets/cursor-icon@x2.png") no-repeat 0 10px;
+  background-size: 11px 15px;
+}
+/* line 134, ../../../../Development/dev/sass/android422.scss */
+#dashboard #activityTable .cl-table-cell .dashboard-footer ul .table-friends {
+  background: url("assets/friend-icon@x2.png") no-repeat 0 12px;
+  background-size: 13px 13px;
 }

@@ -1,0 +1,9 @@
+<td class="avatar"><div class="avatar-circle" style="background: url('<%= imagePath %><%= challenge.badge_url %>'); background-size: cover; -webkit-background-size: cover;"></div></td>
+<td><%= challenge.title %></td>
+<td><%= challenge.deadline %></td>
+<td><%= challenge.description %></td>
+<td>
+	<a href="javascript:;" class="btn" data-id="<%= challenge.challenge_id %>">Verwijder</a>
+	<a href="#challenge_edit/<%= challenge.challenge_id %>" class="btn" data-id="<%= challenge.challenge_id %>">Wijzig</a>
+</td>
+

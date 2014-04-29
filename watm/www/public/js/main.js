@@ -325,6 +325,12 @@ Challenge = Backbone.Model.extend({
 
 
 Location = Backbone.Model.extend({
+	defaults: {
+		"description": "",
+		"location": "",
+		"coordinates": ""
+	},
+
 	initialize: function(){
 		
 	},
@@ -333,8 +339,6 @@ Location = Backbone.Model.extend({
         return this.get("location");
     }
 });
-
-
 
 Media = Backbone.Model.extend({
 	initialize: function(){
@@ -2081,17 +2085,19 @@ appData.views.DashboardView = Backbone.View.extend({
         Backbone.off('getMyLocationHandler');
         if(position){
 
-            var myLocation = location.coords.latitude + "," + location.coords.longitude;
+            console.log(position);
+
+            var myLocation = position.coords.latitude + "," + position.coords.longitude;
             appData.models.userModel.attributes.current_location = myLocation;
-            appData.views.DashboardView.locations = myLocation;
+            appData.views.DashboardView.locations = myLocation.split(',');
 
 
             if(appData.settings.native && appData.services.utilService.getNetworkConnection()){
                 appData.views.DashboardView.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 13);
-                appData.views.DashboardView.setMarkers();
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }else if(!appData.settings.native){
                 appData.views.DashboardView.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 13);
-                appData.views.DashboardView.setMarkers();                
+                appData.views.DashboardView.setMarkers(appData.views.locationList);                
             }
         }
     },

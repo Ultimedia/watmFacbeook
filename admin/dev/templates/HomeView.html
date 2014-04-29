@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+
+    
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="#">Overzicht</a></li>
+      <li class=""><a href="#new-activity">Nieuwe activiteit</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+
+    <h2 class="sub-header">Activiteiten <a href="#new-activity" class="btn btn-primary pull-right">Nieuwe activiteit</a></h2>
+    <div class="table-responsive">
+      <table class="table table-striped" id="activity-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="activity-title">Titel</th>
+            <th>Datum / Tijd</th>
+            <th>Locatie</th>
+            <th>Deelnemers</th>
+            <th>Aanwezig</th>
+            <th>Sport</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <p id="activityMessage" class="bg-info hide">
+        Er werden geen activiteiten gevonden.
+      </p>
+    </div>
+
+    <h3 class="sub-header">Archief <small> (deze activiteiten zijn verlopen)</small></h3>
+    <div class="table-responsive">
+      <table class="table table-striped" id="activity-archive-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="activity-title">Titel</th>
+            <th>Datum / Tijd</th>
+            <th>Locatie</th>
+            <th>Deelnemers</th>
+            <th>Aanwezig</th>
+            <th>Sport</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="remove-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Verwijder Activiteit: <span></span></h4>
+      </div>
+      <div class="modal-body">
+        <p>Let op: Deze actie kan niet ongedaan gemaakt worden.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="remove">Verwijder activiteit</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

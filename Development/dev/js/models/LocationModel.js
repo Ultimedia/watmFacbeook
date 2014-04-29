@@ -1,4 +1,10 @@
 Location = Backbone.Model.extend({
+	defaults: {
+		"description": "",
+		"location": "",
+		"coordinates": ""
+	},
+
 	initialize: function(){
 		
 	},
@@ -7,4 +13,3 @@ Location = Backbone.Model.extend({
         return this.get("location");
     }
 });
-

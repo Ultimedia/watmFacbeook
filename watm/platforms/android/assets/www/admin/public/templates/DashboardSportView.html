@@ -1,0 +1,6 @@
+<td class="avatar"><div class="avatar-circle" style="background: url('<%= imagePath %><%= sport.icon %>'); background-size: cover; -webkit-background-size: cover;"></div></td>
+<td><%= sport.sport_title %></td>
+<td>
+	<a href="javascript:;" class="btn" data-id="<%= sport.sport_id %>" data-toggle="modal" data-target="#remove-modal">Verwijder</a>
+	<a href="#sport-edit/<%= sport.sport_id %>" class="btn"  data-id="<%= sport.sport_id %>">Wijzig</a>
+</td>

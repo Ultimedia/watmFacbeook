@@ -1,0 +1,7 @@
+<td><%= media.media_id %></td>
+<td class="avatar"><div class="avatar-media-box" style="background: url('<%= imagePath %><%= media.url %>'); background-size: cover; -webkit-background-size: cover;"></div></td>
+<td><%= media.created %></td>
+<td>
+	<a href="javascript:;" class="btn" data-id="<%= media.media_id %>">Verwijder</a>
+	<a href="#user_edit/<%= media.media_id %>" class="btn btn-primary" data-id="<%= media.media_id %>">Deel op Facebook</a>
+</td>

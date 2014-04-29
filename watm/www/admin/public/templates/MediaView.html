@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-sm-3 col-md-2 sidebar">
+
+    
+    <ul class="nav nav-sidebar">
+      <li class="active"><a href="#">Overzicht</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+
+    <h2 class="sub-header">Media</h2>
+    <div class="table-responsive">
+      <table class="table table-striped" id="media-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Media</th>
+            <th>Datum / Tijd</th>
+            <th>Gemaakt door</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+<div class="modal fade" id="media-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Plaats media op Facebook</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Text input-->
+        <div class="control-group">
+          <div class="avatar-media-box" style="background: url('../common/uploads/533e7813af912s10.png'); background-size: cover; -webkit-background-size: cover;"></div>
+          <form role="form" id="" class="form-horizontal" novalidate="novalidate">
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="sportInput">Omschrijving</label>
+                <div class="col-sm-10">
+                  <input type="text" name="sport" placeholder="Een omschrijving die past bij deze foto" id="omschrijving" class="form-control valid" value="" required="">
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        <button type="button" class="btn btn-primary" id="shareFacebook" data-dismiss="modal">Deel op Facebook</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="remove-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Verwijder media</h4>
+      </div>
+      <div class="modal-body">
+        <p>Let op: Deze actie kan niet ongedaan gemaakt worden.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+        <button type="button" class="btn btn-danger" id="remove" data-dismiss="modal">Verwijder media</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
