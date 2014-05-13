@@ -657,7 +657,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = watm;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -696,7 +697,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = watm;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -740,6 +742,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "B2365557-6F84-4DB2-9042-65575616DFF1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -785,6 +788,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "B2365557-6F84-4DB2-9042-65575616DFF1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";

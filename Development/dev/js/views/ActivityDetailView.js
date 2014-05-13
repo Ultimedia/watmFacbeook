@@ -147,8 +147,11 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
         var selectedPage = $(evt.target, appData.settings.currentPageHTML).attr('data');
         var view;
+        clearInterval(appData.settings.timer);
+
 
         $('#messageBox', appData.settings.currentPageHTML).removeClass('open');
+
 
         switch(selectedPage){
           case "#praktischContent":

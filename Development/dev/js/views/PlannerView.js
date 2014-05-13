@@ -26,7 +26,15 @@ appData.views.PlannerView = Backbone.View.extend({
 
     Backbone.on('networkFoundEvent', this.networkFoundHandler);
     Backbone.on('networkLostEvent', this.networkLostHandler);
+
+    // image timer
+    appData.settings.timer = setInterval(this.timerAction, 4000);
+
   }, 
+
+  timerAction: function(){
+
+  },
 
   // phonegap device offline
   networkFoundHandler: function(){
@@ -96,7 +104,6 @@ appData.views.PlannerView = Backbone.View.extend({
     $('#myPlanner', appData.settings.currentPageHTML).addClass('hide');
 
     // get my activities
-    
     if (appData.collections.myActivities instanceof Backbone.Collection) {
       appData.collections.myActivities.each(function(activity) {
         appData.views.PlannerView.myActivitiesView.push(new appData.views.PlannerMyActivitiesView({model : activity}));
@@ -142,6 +149,13 @@ appData.views.PlannerView = Backbone.View.extend({
       _(appData.views.PlannerView.myInvitedActivitiesView).each(function(dv) {
         $('#myInvitationsTable', appData.settings.currentPageHTML).append(dv.render().$el);
       });
+    }
+
+    // show a message when no-once responds
+    if(appData.views.PlannerView.myActivitiesView.length === 0 && appData.views.PlannerView.myInvitedActivitiesView.length === 0 && appData.views.PlannerView.myJoinedActivitiesView.length === 0){
+      $('#profileMessage', appData.settings.currentPageHTML).removeClass('hide');
+    }else{
+      $('#profileMessage', appData.settings.currentPageHTML).addClass('hide');
     }
 
     // update localstorage

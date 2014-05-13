@@ -18,7 +18,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
 
-
     initialize: function () {
         appData.slider = new PageSlider($('#container'));
 
@@ -84,6 +83,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     
     dashboard: function () {
         appData.settings.created = false;
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){    
@@ -97,6 +98,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     planner: function () {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.PlannerView().render().$el);
         }else{

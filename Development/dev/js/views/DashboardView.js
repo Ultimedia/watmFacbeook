@@ -16,6 +16,7 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.clearMarkers = this.clearMarkers;
         appData.views.DashboardView.setMarkers = this.setMarkers;
         appData.views.DashboardView.initMap = this.initMap;
+        appData.views.DashboardView.generateAcitvitiesCollection = this.generateAcitvitiesCollection;
 
         // update the activities if we have a network connection
         if(appData.settings.native){
@@ -26,9 +27,24 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.services.phpService.getActivities(false, null);
         }
 
+        // image timer
+        appData.settings.timer = setInterval(this.timerAction, 4000);
+
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
+
+    timerAction: function(){
+        Backbone.on('dashboardUpdatedHandler', appData.views.DashboardView.generateAcitvitiesCollection);
+
+        if(appData.settings.native){
+            if(appData.services.utilService.getNetworkConnection()){
+                appData.services.phpService.getActivities(false, null);
+            }
+        }else{
+            appData.services.phpService.getActivities(false, null);
+        }
+    },
 
     // phonegap device online
     networkFoundHandler: function(){
@@ -62,6 +78,8 @@ appData.views.DashboardView = Backbone.View.extend({
 
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
+
+        console.log("activities");
 
         // show message that no activities have been found
         if(appData.collections.activities.length === 0){
@@ -104,9 +122,9 @@ appData.views.DashboardView = Backbone.View.extend({
             });
 
             if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
-                this.setMarkers(appData.views.locationList);
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }else if(!appData.settings.native){
-                this.setMarkers(appData.views.locationList);
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }
         }
     },

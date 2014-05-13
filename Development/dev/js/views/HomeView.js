@@ -17,10 +17,39 @@ appData.views.HomeView = Backbone.View.extend({
 
         appData.views.HomeView.facebookLoginHandler = this.facebookLoginHandler;
         appData.views.HomeView.facebookProfileDataHandler = this.facebookProfileDataHandler;
-
-
         appData.views.HomeView.locationErrorHandler = this.locationErrorHandler;
+        appData.views.HomeView.nextSlide = this.nextSlide;
+        appData.views.HomeView.prevSlide = this.prevSlide;
+        appData.views.HomeView.gotoSlide = this.gotoSlide;
+        appData.views.HomeView.currentSlide = 0;
+        appData.views.HomeView.slides = 2;
     }, 
+
+    gotoSlide: function(index){
+        if(index > appData.views.HomeView.slides){
+            index = 0;
+        }
+        if(index < 0){
+            index =  appData.views.HomeView.slides;
+        }
+
+        $('#carouselNav li a', appData.settings.currentPageHTML).removeClass('active');
+        $('#carouselNav li a:eq(' + index + ')').addClass('active');
+        $('#car' + appData.views.HomeView.currentSlide).fadeOut(200, function(){
+
+            $('#car' + index).fadeIn(200, function(){
+                appData.views.HomeView.currentSlide = index;
+            }).addClass('active');
+        });
+    },
+
+    prevSlide: function(){
+
+    }, 
+
+    nextSlide: function(){
+
+    },
 
     // phonegap device offline
     networkFoundHandler: function(){
@@ -36,12 +65,46 @@ appData.views.HomeView = Backbone.View.extend({
     	this.$el.html(this.template());
     	appData.settings.currentPageHTML = this.$el;
     	this.setValidator();
+        this.$el.hammer();
+
+
         return this; 
     },
 
     events: {
         "click #FBloginButton": "facebookClickHandler",
-        "submit #loginForm": "loginFormSubmitHandler"
+        "click #loginFormSubmit": "loginFormSubmitHandler",
+        "click #carouselNav a": "carouselClickHandler",
+        "swipe #carouselContent": 'onSwipe'
+    },
+
+    loginFormSubmitHandler: function(){
+        $("#loginForm",appData.settings.currentPageHTML).submit();
+    },
+
+    onSwipe: function(e){
+        if(e.gesture.direction !== "up" || e.gesture.direction !== "down"){
+            var target = 0;
+            switch(e.gesture.direction){
+                case "right":
+                    target = -1;
+                break;
+
+                case "left":
+                    target = 1;
+                break;
+            }
+            var myTarget = appData.views.HomeView.currentSlide + target;
+            appData.views.HomeView.gotoSlide(myTarget);
+        }
+    },
+
+    carouselClickHandler: function(evt){
+        var myIndex = $(evt.target).parent().index();
+        appData.views.HomeView.gotoSlide(myIndex);
+
+        $('#carouselNav li a', appData.settings.currentPageHTML).removeClass('active');
+        $(evt.target).addClass('active');
     },
 
 	setValidator: function(){

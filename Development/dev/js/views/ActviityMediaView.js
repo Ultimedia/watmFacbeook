@@ -1,13 +1,25 @@
 appData.views.ActivityMediaView = Backbone.View.extend({
 
     initialize: function () {
-      appData.events.getMediaSuccesEvent.bind("mediaLoadSuccesHandler", this.getMediaLoadSuccesHandler);
       appData.services.phpService.getMedia(this.model); 
       appData.views.ActivityMediaView.model = this.model;
       appData.views.ActivityMediaView.fileUploadedHandler = this.fileUploadedHandler;
       appData.views.ActivityMediaView.addPhotoToDatabaseHandler = this.addPhotoToDatabaseHandler;
 
       appData.views.ActivityMediaView.win = this.win;
+      appData.views.ActivityMediaView.mediaLoaded = this.getMediaLoadSuccesHandler;
+      appData.views.ActivityMediaView.model = this.model;
+
+      // fetch media
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
+
+      // image timer
+      appData.settings.timer = setInterval(this.timerAction, 4000);
+    },
+
+    timerAction: function(){
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
+      appData.services.phpService.getMedia(appData.views.ActivityMediaView.model); 
     },
 
     events: {
@@ -17,6 +29,9 @@ appData.views.ActivityMediaView = Backbone.View.extend({
     },
 
     getMediaLoadSuccesHandler: function(media){
+      console.log('media loaded');
+
+      Backbone.off('mediaLoadSuccesHandler');
 
       appData.views.ActivityDetailView.mediaListView = [];
       appData.views.ActivityDetailView.model.attributes.media = media;
@@ -131,11 +146,14 @@ appData.views.ActivityMediaView = Backbone.View.extend({
 
     addPhotoToDatabaseHandler: function(){
 
+      // Disable event
+      Backbone.off('addPhotoToDatabaseHandler');
+
       // update
       appData.services.challengeService.checkChallenges(appData.models.userModel, false, false, true, false);
 
       // get images from database
-      Backbone.off('addPhotoToDatabaseHandler');
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
       appData.services.phpService.getMedia(appData.views.ActivityMediaView.model); 
       appData.services.utilService.updateLocalStorage();
     }

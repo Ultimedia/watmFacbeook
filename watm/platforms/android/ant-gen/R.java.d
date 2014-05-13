@@ -133,6 +133,8 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-hdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-ldpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-mdpi/icon.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-port-hdpi/splash.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-port-mdpi/splash.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/drawable-xhdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/values/facebookconnect.xml \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/res/values/strings.xml \
@@ -141,5 +143,6 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-hdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-ldpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-mdpi/icon.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-port-hdpi/splash.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/AndroidManifest.xml \

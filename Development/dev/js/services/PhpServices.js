@@ -137,7 +137,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 			data: "activity_id="+activityModel.attributes.activity_id,
 			success:function(data){
 				var messages = new MessagesCollection(data);
-				appData.events.getMessagesSuccesEvent.trigger("chatMessagesLoadSuccesHandler", messages);
+      			Backbone.trigger('getMessages', messages);
 			}
 		});
   	},
@@ -192,7 +192,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 			success:function(data){
 
 				var media = new MediaCollection(data);
-				appData.events.getMediaSuccesEvent.trigger("mediaLoadSuccesHandler", media);
+				Backbone.trigger("mediaLoadSuccesHandler", media);
 			}
 		});
   	},

@@ -1,19 +1,28 @@
 appData.views.ActivityMessagesView = Backbone.View.extend({
 
     initialize: function () {
-    	appData.events.getMessagesSuccesEvent.bind("chatMessagesLoadSuccesHandler", this.chatMessagesLoadSuccesHandler);
     	appData.events.postMessageSuccesEvent.bind("postMessageSuccesHandler", this.postMessageSuccesHandler);
+
+      Backbone.on('getMessages', this.chatMessagesLoadSuccesHandler);
     	appData.services.phpService.getMessages(this.model); 
+
+      appData.views.ActivityMessagesView.messagesLoaded = this.chatMessagesLoadSuccesHandler;
+      appData.views.ActivityMessagesView.model = this.model;
+
+      // chat timer
+      appData.settings.timer = setInterval(this.timerAction, 2000);
+       
     }, 
+
+    timerAction: function(){
+      Backbone.on('getMessages', appData.views.ActivityMessagesView.messagesLoaded);
+      appData.services.phpService.getMessages(appData.views.ActivityMessagesView.model); 
+    },
 
     render: function() { 
     	// model to template
       this.$el.html(this.template(this.model.attributes));
       appData.settings.currentModuleHTML = this.$el;
-
-      setTimeout(function(){
-        appData.services.phpService.getMessages(this.model); 
-      }, 5000);
 
       return this; 
     },
@@ -27,6 +36,8 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
     },
 
     chatMessagesLoadSuccesHandler: function(messages){
+      Backbone.off('getMessages');
+
       appData.views.ActivityDetailView.model.attributes.messages = messages;
       if(appData.views.ActivityDetailView.model.attributes.messages.length > 0){
 

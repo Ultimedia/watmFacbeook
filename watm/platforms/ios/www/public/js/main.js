@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://ultimedia.biz/watm/";
+appData.settings.rootPath = "http://localhost/";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
 appData.settings.badgesPath = appData.settings.rootPath + "common/badges/";
@@ -673,8 +673,11 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
         var selectedPage = $(evt.target, appData.settings.currentPageHTML).attr('data');
         var view;
+        clearInterval(appData.settings.timer);
+
 
         $('#messageBox', appData.settings.currentPageHTML).removeClass('open');
+
 
         switch(selectedPage){
           case "#praktischContent":
@@ -866,19 +869,28 @@ appData.views.ActivityMessageView = Backbone.View.extend({
 appData.views.ActivityMessagesView = Backbone.View.extend({
 
     initialize: function () {
-    	appData.events.getMessagesSuccesEvent.bind("chatMessagesLoadSuccesHandler", this.chatMessagesLoadSuccesHandler);
     	appData.events.postMessageSuccesEvent.bind("postMessageSuccesHandler", this.postMessageSuccesHandler);
+
+      Backbone.on('getMessages', this.chatMessagesLoadSuccesHandler);
     	appData.services.phpService.getMessages(this.model); 
+
+      appData.views.ActivityMessagesView.messagesLoaded = this.chatMessagesLoadSuccesHandler;
+      appData.views.ActivityMessagesView.model = this.model;
+
+      // chat timer
+      appData.settings.timer = setInterval(this.timerAction, 2000);
+       
     }, 
+
+    timerAction: function(){
+      Backbone.on('getMessages', appData.views.ActivityMessagesView.messagesLoaded);
+      appData.services.phpService.getMessages(appData.views.ActivityMessagesView.model); 
+    },
 
     render: function() { 
     	// model to template
       this.$el.html(this.template(this.model.attributes));
       appData.settings.currentModuleHTML = this.$el;
-
-      setTimeout(function(){
-        appData.services.phpService.getMessages(this.model); 
-      }, 5000);
 
       return this; 
     },
@@ -892,6 +904,8 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
     },
 
     chatMessagesLoadSuccesHandler: function(messages){
+      Backbone.off('getMessages');
+
       appData.views.ActivityDetailView.model.attributes.messages = messages;
       if(appData.views.ActivityDetailView.model.attributes.messages.length > 0){
 
@@ -933,13 +947,25 @@ appData.views.ActivityUserView = Backbone.View.extend({
 appData.views.ActivityMediaView = Backbone.View.extend({
 
     initialize: function () {
-      appData.events.getMediaSuccesEvent.bind("mediaLoadSuccesHandler", this.getMediaLoadSuccesHandler);
       appData.services.phpService.getMedia(this.model); 
       appData.views.ActivityMediaView.model = this.model;
       appData.views.ActivityMediaView.fileUploadedHandler = this.fileUploadedHandler;
       appData.views.ActivityMediaView.addPhotoToDatabaseHandler = this.addPhotoToDatabaseHandler;
 
       appData.views.ActivityMediaView.win = this.win;
+      appData.views.ActivityMediaView.mediaLoaded = this.getMediaLoadSuccesHandler;
+      appData.views.ActivityMediaView.model = this.model;
+
+      // fetch media
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
+
+      // image timer
+      appData.settings.timer = setInterval(this.timerAction, 4000);
+    },
+
+    timerAction: function(){
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
+      appData.services.phpService.getMedia(appData.views.ActivityMediaView.model); 
     },
 
     events: {
@@ -949,6 +975,9 @@ appData.views.ActivityMediaView = Backbone.View.extend({
     },
 
     getMediaLoadSuccesHandler: function(media){
+      console.log('media loaded');
+
+      Backbone.off('mediaLoadSuccesHandler');
 
       appData.views.ActivityDetailView.mediaListView = [];
       appData.views.ActivityDetailView.model.attributes.media = media;
@@ -1063,11 +1092,14 @@ appData.views.ActivityMediaView = Backbone.View.extend({
 
     addPhotoToDatabaseHandler: function(){
 
+      // Disable event
+      Backbone.off('addPhotoToDatabaseHandler');
+
       // update
       appData.services.challengeService.checkChallenges(appData.models.userModel, false, false, true, false);
 
       // get images from database
-      Backbone.off('addPhotoToDatabaseHandler');
+      Backbone.on('mediaLoadSuccesHandler', appData.views.ActivityMediaView.mediaLoaded);
       appData.services.phpService.getMedia(appData.views.ActivityMediaView.model); 
       appData.services.utilService.updateLocalStorage();
     }
@@ -1827,6 +1859,7 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.clearMarkers = this.clearMarkers;
         appData.views.DashboardView.setMarkers = this.setMarkers;
         appData.views.DashboardView.initMap = this.initMap;
+        appData.views.DashboardView.generateAcitvitiesCollection = this.generateAcitvitiesCollection;
 
         // update the activities if we have a network connection
         if(appData.settings.native){
@@ -1837,9 +1870,24 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.services.phpService.getActivities(false, null);
         }
 
+        // image timer
+        appData.settings.timer = setInterval(this.timerAction, 4000);
+
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
+
+    timerAction: function(){
+        Backbone.on('dashboardUpdatedHandler', appData.views.DashboardView.generateAcitvitiesCollection);
+
+        if(appData.settings.native){
+            if(appData.services.utilService.getNetworkConnection()){
+                appData.services.phpService.getActivities(false, null);
+            }
+        }else{
+            appData.services.phpService.getActivities(false, null);
+        }
+    },
 
     // phonegap device online
     networkFoundHandler: function(){
@@ -1873,6 +1921,8 @@ appData.views.DashboardView = Backbone.View.extend({
 
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
+
+        console.log("activities");
 
         // show message that no activities have been found
         if(appData.collections.activities.length === 0){
@@ -1915,9 +1965,9 @@ appData.views.DashboardView = Backbone.View.extend({
             });
 
             if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
-                this.setMarkers(appData.views.locationList);
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }else if(!appData.settings.native){
-                this.setMarkers(appData.views.locationList);
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }
         }
     },
@@ -2384,10 +2434,39 @@ appData.views.HomeView = Backbone.View.extend({
 
         appData.views.HomeView.facebookLoginHandler = this.facebookLoginHandler;
         appData.views.HomeView.facebookProfileDataHandler = this.facebookProfileDataHandler;
-
-
         appData.views.HomeView.locationErrorHandler = this.locationErrorHandler;
+        appData.views.HomeView.nextSlide = this.nextSlide;
+        appData.views.HomeView.prevSlide = this.prevSlide;
+        appData.views.HomeView.gotoSlide = this.gotoSlide;
+        appData.views.HomeView.currentSlide = 0;
+        appData.views.HomeView.slides = 2;
     }, 
+
+    gotoSlide: function(index){
+        if(index > appData.views.HomeView.slides){
+            index = 0;
+        }
+        if(index < 0){
+            index =  appData.views.HomeView.slides;
+        }
+
+        $('#carouselNav li a', appData.settings.currentPageHTML).removeClass('active');
+        $('#carouselNav li a:eq(' + index + ')').addClass('active');
+        $('#car' + appData.views.HomeView.currentSlide).fadeOut(200, function(){
+
+            $('#car' + index).fadeIn(200, function(){
+                appData.views.HomeView.currentSlide = index;
+            }).addClass('active');
+        });
+    },
+
+    prevSlide: function(){
+
+    }, 
+
+    nextSlide: function(){
+
+    },
 
     // phonegap device offline
     networkFoundHandler: function(){
@@ -2403,12 +2482,46 @@ appData.views.HomeView = Backbone.View.extend({
     	this.$el.html(this.template());
     	appData.settings.currentPageHTML = this.$el;
     	this.setValidator();
+        this.$el.hammer();
+
+
         return this; 
     },
 
     events: {
         "click #FBloginButton": "facebookClickHandler",
-        "submit #loginForm": "loginFormSubmitHandler"
+        "click #loginFormSubmit": "loginFormSubmitHandler",
+        "click #carouselNav a": "carouselClickHandler",
+        "swipe #carouselContent": 'onSwipe'
+    },
+
+    loginFormSubmitHandler: function(){
+        $("#loginForm",appData.settings.currentPageHTML).submit();
+    },
+
+    onSwipe: function(e){
+        if(e.gesture.direction !== "up" || e.gesture.direction !== "down"){
+            var target = 0;
+            switch(e.gesture.direction){
+                case "right":
+                    target = -1;
+                break;
+
+                case "left":
+                    target = 1;
+                break;
+            }
+            var myTarget = appData.views.HomeView.currentSlide + target;
+            appData.views.HomeView.gotoSlide(myTarget);
+        }
+    },
+
+    carouselClickHandler: function(evt){
+        var myIndex = $(evt.target).parent().index();
+        appData.views.HomeView.gotoSlide(myIndex);
+
+        $('#carouselNav li a', appData.settings.currentPageHTML).removeClass('active');
+        $(evt.target).addClass('active');
     },
 
 	setValidator: function(){
@@ -2559,7 +2672,6 @@ appData.views.LoadingView = Backbone.View.extend({
         Backbone.on('getMyChallengesHandler', this.getMyChallengesHandler);
         Backbone.on('getMyBadgesHandler', this.getMyBadgesHandler);
         Backbone.on('getFriendsHandler', this.loadingCompleteHandler);
-
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
@@ -2576,10 +2688,16 @@ appData.views.LoadingView = Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template(this.model.attributes));
+
     	appData.settings.currentPageHTML = this.$el;
 
-        // load the data
-        appData.services.phpService.getActivities(true);
+        if(appData.settings.userLoggedIn){
+
+            // load the data
+            appData.services.phpService.getActivities(true);
+        }else{
+            window.location.hash = "";
+        }
         return this;
     },
     activitiesLoadedHandler: function(){
@@ -2954,7 +3072,15 @@ appData.views.PlannerView = Backbone.View.extend({
 
     Backbone.on('networkFoundEvent', this.networkFoundHandler);
     Backbone.on('networkLostEvent', this.networkLostHandler);
+
+    // image timer
+    appData.settings.timer = setInterval(this.timerAction, 4000);
+
   }, 
+
+  timerAction: function(){
+
+  },
 
   // phonegap device offline
   networkFoundHandler: function(){
@@ -3024,7 +3150,6 @@ appData.views.PlannerView = Backbone.View.extend({
     $('#myPlanner', appData.settings.currentPageHTML).addClass('hide');
 
     // get my activities
-    
     if (appData.collections.myActivities instanceof Backbone.Collection) {
       appData.collections.myActivities.each(function(activity) {
         appData.views.PlannerView.myActivitiesView.push(new appData.views.PlannerMyActivitiesView({model : activity}));
@@ -3070,6 +3195,13 @@ appData.views.PlannerView = Backbone.View.extend({
       _(appData.views.PlannerView.myInvitedActivitiesView).each(function(dv) {
         $('#myInvitationsTable', appData.settings.currentPageHTML).append(dv.render().$el);
       });
+    }
+
+    // show a message when no-once responds
+    if(appData.views.PlannerView.myActivitiesView.length === 0 && appData.views.PlannerView.myInvitedActivitiesView.length === 0 && appData.views.PlannerView.myJoinedActivitiesView.length === 0){
+      $('#profileMessage', appData.settings.currentPageHTML).removeClass('hide');
+    }else{
+      $('#profileMessage', appData.settings.currentPageHTML).addClass('hide');
     }
 
     // update localstorage
@@ -3644,7 +3776,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
 
-
     initialize: function () {
         appData.slider = new PageSlider($('#container'));
 
@@ -3710,6 +3841,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     
     dashboard: function () {
         appData.settings.created = false;
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){    
@@ -3723,6 +3856,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     planner: function () {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.PlannerView().render().$el);
         }else{
@@ -4497,7 +4632,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 			data: "activity_id="+activityModel.attributes.activity_id,
 			success:function(data){
 				var messages = new MessagesCollection(data);
-				appData.events.getMessagesSuccesEvent.trigger("chatMessagesLoadSuccesHandler", messages);
+      			Backbone.trigger('getMessages', messages);
 			}
 		});
   	},
@@ -4552,7 +4687,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 			success:function(data){
 
 				var media = new MediaCollection(data);
-				appData.events.getMediaSuccesEvent.trigger("mediaLoadSuccesHandler", media);
+				Backbone.trigger("mediaLoadSuccesHandler", media);
 			}
 		});
   	},

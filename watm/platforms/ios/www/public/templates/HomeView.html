@@ -1,44 +1,78 @@
 <div class="cl-page" id="home">
 	<div class="hide" id="facebookLoad" data-element-to-be-toggled="popover-context" data-element-to-be-closed="popover-context">
-  <div class="cl-popover align-right pop-from-header">
-    <div class="cl-article padded">
-    	<div class="cl-loading-wrapper">
-	      <div class="cl-loading">
-	        <div class="cl-loading-1"></div>
-	        <div class="cl-loading-2"></div>
-	        <div class="cl-loading-3"></div>
-	        <div class="cl-loading-4"></div>
-	        <div class="cl-loading-5"></div>
-	        <div class="cl-loading-6"></div>
-	        <div class="cl-loading-7"></div>
-	        <div class="cl-loading-8"></div>
-	      </div>
-	    </div>
-      <h4 id="loadingText">Huidige locatie ophalen...</h4>
-    </div>
-  </div>
-  <div class="cl-modal-backdrop"></div>
+	<div class="cl-popover align-right pop-from-header">
+		<div class="cl-article padded">
+			<div class="cl-loading-wrapper">
+		      <div class="cl-loading">
+		        <div class="cl-loading-1"></div>
+		        <div class="cl-loading-2"></div>
+		        <div class="cl-loading-3"></div>
+		        <div class="cl-loading-4"></div>
+		        <div class="cl-loading-5"></div>
+		        <div class="cl-loading-6"></div>
+		        <div class="cl-loading-7"></div>
+		        <div class="cl-loading-8"></div>
+		      </div>
+		    </div>
+		  <h4 id="loadingText">Huidige locatie ophalen...</h4>
+		</div>
+	</div>
+	<div class="cl-modal-backdrop"></div>
 </div>
 
 	<div class="cl-content cl-slide-enter">
-	<img id="home_logo" src="common/img/home_logo.png" alt="" width="221" height="124"/>
-	
-	<div id="loginBox" class="fadein">
-		<form class="cl-form padded" id="loginForm" action="javascript:;">
+		<div id="carousel">
+			<ul id="carouselContent">
+				<li id="car0" class="active">
+					<h1>Gewoon Gaan!</h1>
+					<h3>Ga aan het sporten waar en wanneer jij dat wil!</h3>
+					<div class="imageHolder">
+						<img src="common/img/car1.png" alt="" width="280" height="99"/>
+					</div>
+				</li>
+				<li id="car1">
+					<h1>Nooit Alleen!</h1>
+					<h3>Wij helpen jou met de zoektocht naar het ideale team!</h3>
 
-		<a id="FBloginButton" href="javascript:;" class="cl-btn cl-depth-btn blue">Aanmelden via Facebook</a>
-		<div id="data"></div>
-		<h4 class="align-center">Of</h4>
+					<div class="imageHolder">
+						<img src="common/img/car2.png" alt="" width="280" height="79"/>
+					</div>
+				</li>
+				<li id="car2">
+					<h1>Een Uitdaging!</h1>
+					<h3>Ga telkens een nieuwe uitdaging aan en wordt beloond!</h3>
+				
+					<div class="imageHolder">
+						<img src="common/img/car3.png" alt="" width="281" height="100"/>
+					</div>
+				</li>
+			</ul>
+		</div>
 
-			<div class="error-box hide">
+		<div id="loginBox" class="fadein">
+			<ul id="carouselNav">
+				<li><a class="active" href="javascript:;">&nbps;</a></li>
+				<li><a class="" href="javascript:;">&nbps;</a></li>
+				<li><a class="" href="javascript:;">&nbps;</a></li>
+			</ul>	
 
-			</div>
+			<form class="cl-form padded" id="loginForm" action="javascript:;">
 
-			<input type="email" placeholder="Email adres" id="emailInput" value="" required/>
-			<hr/>
-			<input type="password" placeholder="Paswoord" id="passwordInput" value="" required/>
-			<input type="submit" class="cl-btn cl-line-btn" id="loginFormSubmit" value="Aanmelden via Email" value="Aanmelden via email"/>
-		</form>
-	</div>
-  </div>
+			<a id="FBloginButton" href="javascript:;" class="cl-btn cl-depth-btn blue">Aanmelden via Facebook</a>
+			<div id="data"></div>
+			<h4 class="align-center">Of</h4>
+				<div class="error-box hide">
+
+				</div>
+
+				<input type="email" placeholder="Email adres" id="emailInput" value="maartenbressinck@gmail.com" required/>
+				<hr/>
+
+				<input type="password" placeholder="Paswoord" id="passwordInput" value="miniketen" required/>
+
+				
+				<a id="loginFormSubmit" href="javascript:;" class="cl-btn cl-depth-btn red">Aanmelden via email</a>
+			</form>
+		</div>
+  	</div>
 </div>

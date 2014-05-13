@@ -16,7 +16,6 @@ appData.views.LoadingView = Backbone.View.extend({
         Backbone.on('getMyChallengesHandler', this.getMyChallengesHandler);
         Backbone.on('getMyBadgesHandler', this.getMyBadgesHandler);
         Backbone.on('getFriendsHandler', this.loadingCompleteHandler);
-
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
@@ -33,10 +32,16 @@ appData.views.LoadingView = Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template(this.model.attributes));
+
     	appData.settings.currentPageHTML = this.$el;
 
-        // load the data
-        appData.services.phpService.getActivities(true);
+        if(appData.settings.userLoggedIn){
+
+            // load the data
+            appData.services.phpService.getActivities(true);
+        }else{
+            window.location.hash = "";
+        }
         return this;
     },
     activitiesLoadedHandler: function(){
