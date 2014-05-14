@@ -21,10 +21,8 @@ appData.views.SportSelectorView = Backbone.View.extend({
     },
 
     render: function() {
-    	this.$el.html(this.template());
+    	this.$el.html(this.template({user: appData.models.userModel.toJSON()}));
         appData.settings.currentPageHTML = this.$el;
-
-
         appData.views.SportSelectorView.favouriteSportsViewList = [];
 
         appData.collections.sports.each(function(sport){
@@ -34,7 +32,6 @@ appData.views.SportSelectorView = Backbone.View.extend({
         });
 
         var generateGri = this.generateGrid();
-
         appData.views.CreateActivityLocationView.locationAutComplete = new AutoCompleteView({input: $("#sportInput", appData.settings.currentPageHTML), model: appData.collections.sports, wait: 100, updateModel: this.model, updateID: "sport_id", onSelect: function(sport){
             sport.attributes.object_class = "selected";
             appData.views.SportSelectorView.favouriteSportsViewList.push(new appData.views.FavouriteSportListView({
@@ -49,7 +46,6 @@ appData.views.SportSelectorView = Backbone.View.extend({
         }}).render();
 
         return this;
-
     },
 
     generateGrid: function(){
@@ -73,7 +69,9 @@ appData.views.SportSelectorView = Backbone.View.extend({
     confirmSportsHandler: function(){
         var selectedSports = [];
 
-        $('#favouriteSportList .selected', appData.settings.currentPageHTML).each(function(index, element){
+        $('#favouriteSportList .selected .layer', appData.settings.currentPageHTML).each(function(index, element){
+            console.log($(element));
+
             var sportID = $(element).attr('data-id');
             var model = appData.collections.sports.where({'sport_id': sportID.toString()})
         

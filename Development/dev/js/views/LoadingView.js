@@ -34,7 +34,7 @@ appData.views.LoadingView = Backbone.View.extend({
         this.$el.html(this.template(this.model.attributes));
 
     	appData.settings.currentPageHTML = this.$el;
-
+        
         if(appData.settings.userLoggedIn){
 
             // load the data

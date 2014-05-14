@@ -144,5 +144,6 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-ldpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-mdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-port-hdpi/splash.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-port-mdpi/splash.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/AndroidManifest.xml \

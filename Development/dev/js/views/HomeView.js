@@ -35,17 +35,16 @@ appData.views.HomeView = Backbone.View.extend({
 
         $('#carouselNav li a', appData.settings.currentPageHTML).removeClass('active');
         $('#carouselNav li a:eq(' + index + ')').addClass('active');
-        $('#car' + appData.views.HomeView.currentSlide).fadeOut(200, function(){
-
+        $('#car' + appData.views.HomeView.currentSlide).fadeOut(200,function(){
             $('#car' + index).fadeIn(200, function(){
                 appData.views.HomeView.currentSlide = index;
-            }).addClass('active');
+            }).css( 'display', 'table').addClass('active');
         });
     },
 
     prevSlide: function(){
 
-    }, 
+    },
 
     nextSlide: function(){
 
@@ -54,6 +53,14 @@ appData.views.HomeView = Backbone.View.extend({
     // phonegap device offline
     networkFoundHandler: function(){
 
+    },
+
+    updateCSS: function() {
+        var containerHeight =  $('.cl-content ', appData.settings.currentPageHTML).height() - $('#loginForm', appData.settings.currentPageHTML).height() - 60;
+
+        $('#carouselContent li', appData.settings.currentPageHTML).css({
+            'height':containerHeight + 'px'
+        });
     },
 
     // phonegap device back online
@@ -67,15 +74,34 @@ appData.views.HomeView = Backbone.View.extend({
     	this.setValidator();
         this.$el.hammer();
 
+        $('#carousel', appData.settings.currentPageHTML).delay(100).fadeOut(function(){
+            var containerHeight =  $('.cl-content ', appData.settings.currentPageHTML).height() - $('#loginForm', appData.settings.currentPageHTML).height() - 60;
 
-        return this; 
+            $('#carouselContent li', appData.settings.currentPageHTML).css({
+                'height':containerHeight + 'px'
+            });
+
+            $('#carousel', appData.settings.currentPageHTML).fadeIn(200);
+        });
+
+        $(window).on("resize", this.updateCSS);
+
+        return this;         
     },
 
     events: {
         "click #FBloginButton": "facebookClickHandler",
         "click #loginFormSubmit": "loginFormSubmitHandler",
         "click #carouselNav a": "carouselClickHandler",
-        "swipe #carouselContent": 'onSwipe'
+        "swipe #carouselContent": 'onSwipe',
+        "click #carouselContent": 'onClick'
+    },
+
+    /*
+*/
+
+    onClick: function(){
+        appData.views.HomeView.gotoSlide(appData.views.HomeView.currentSlide + 1);
     },
 
     loginFormSubmitHandler: function(){

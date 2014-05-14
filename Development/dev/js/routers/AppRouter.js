@@ -17,7 +17,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
         "update/:id":       "update"
     },
 
-
     initialize: function () {
         appData.slider = new PageSlider($('#container'));
 
@@ -74,6 +73,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     loading: function () {
+        console.log(appData.models.userModel);
+
         if(!appData.settings.dataLoaded){
             appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
         }else{
