@@ -48,7 +48,12 @@ appData.views.PlannerView = Backbone.View.extend({
   },
 
   events:{
-      "click .inviteButtons a":"handleInviteHandler"
+      "click .inviteButtons a":"handleInviteHandler",
+      "click #menuButton": "menuOpenHandler"
+  },
+
+  menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
   },
 
   handleInviteHandler: function(evt){

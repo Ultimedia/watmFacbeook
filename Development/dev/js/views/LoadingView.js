@@ -112,7 +112,13 @@ appData.views.LoadingView = Backbone.View.extend({
 
 
         if(appData.models.userModel.attributes.myFavouriteSports.length > 0){
-            appData.router.navigate('dashboard', true);
+            if(appData.settings.forwardAfterLogin === true){
+                appData.settings.forwardAfterLogin = false;
+                window.location.hash = "#activity/" + appData.settings.forwardAfterLoginID;
+                
+            }else{
+                appData.router.navigate('dashboard', true);
+            }
         }else{
             appData.router.navigate('sportselector', true);
         }

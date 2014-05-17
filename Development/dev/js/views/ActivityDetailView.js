@@ -84,13 +84,15 @@ appData.views.ActivityDetailView = Backbone.View.extend({
         
         var coordinates;
         if(this.model.attributes.coordinates){
-            coordinates =  this.model.attributes.coordinates.split(',');
+           coordinates =  this.model.attributes.coordinates.split(',');
 
+          var activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(coordinates[0], coordinates[1]),
             map:  map,
             title: 'Huidige locatie',
-            icon: appData.settings.iconPath + "map-icon@x2.png"
+            icon: activityImage,
+            optimized: false
           });
 
           // resize and relocate map

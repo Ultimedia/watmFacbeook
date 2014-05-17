@@ -149,6 +149,10 @@
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -215,6 +219,9 @@
         },
         "org.apache.cordova.splashscreen": {
             "PACKAGE_NAME": "be.devine.ko"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "be.devine.watm"
         }
     },
     "dependent_plugins": {}

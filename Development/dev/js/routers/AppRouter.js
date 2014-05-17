@@ -14,7 +14,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
         "noconnection":     "noconnection",
         "loading":          "loading",
         "friend/:id":       "friend",
-        "update/:id":       "update"
+        "update/:id":       "update",
+        "forward/:id":      "forward"
     },
 
     initialize: function () {
@@ -35,6 +36,16 @@ appData.routers.AppRouter = Backbone.Router.extend({
           //the navigation doesn't create an extra history entry
           this.navigate('/', {trigger:true, replace:true});
         }
+    },
+
+    forward: function(id){
+        console.log("forward enabled");
+
+        // save the activity ID nog go to the login
+        appData.settings.forwardAfterLoginID = id;
+        appData.settings.forwardAfterLogin = true;
+
+        window.location.hash = "#";
     },
 
     noconnection: function(){

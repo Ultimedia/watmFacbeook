@@ -1,0 +1,59 @@
+/*
+	jQuery.mmenu labels addon CSS
+*/
+/* line 11, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-menu.mm-fixedlabels .mm-list {
+  background: inherit;
+}
+/* line 15, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-menu.mm-fixedlabels .mm-list > li.mm-label {
+  background: inherit !important;
+  opacity: 0.97;
+  height: 25px;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+/* line 24, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-menu.mm-fixedlabels .mm-list > li.mm-label > div {
+  background: inherit;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+/* line 31, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-menu.mm-fixedlabels .mm-list > li.mm-label > div > div {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* line 37, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-menu.mm-fixedlabels .mm-list > li.mm-label.mm-spacer > div > div {
+  padding-top: 25px;
+}
+
+/* line 49, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-list > li.mm-label > span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0;
+}
+/* line 55, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-list > li.mm-label.mm-opened a.mm-subopen:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  right: 17px;
+}
+/* line 61, ../../../../../Development/dev/sass/addons/jquery.mmenu.labels.scss */
+.mm-list > li.mm-collapsed {
+  display: none;
+}
+
+/* line 78, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list li.mm-label > div > div {
+  background: rgba(255, 255, 255, 0.05);
+}

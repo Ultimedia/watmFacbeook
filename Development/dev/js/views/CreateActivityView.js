@@ -25,6 +25,10 @@ appData.views.CreateActivityView = Backbone.View.extend({
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
 
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
+    },
+
     // phonegap device offline
     networkFoundHandler: function(){
 
@@ -58,7 +62,8 @@ appData.views.CreateActivityView = Backbone.View.extend({
     }, 
 
     events: {
-      "click #submitButton": "subHandler"
+      "click #submitButton": "subHandler",
+      "click #menuButton": "menuOpenHandler"
     },
 
     subHandler: function(){

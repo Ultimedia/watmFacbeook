@@ -649,11 +649,18 @@ input.error{
       background: none;
       border: none;
       color: #1d1d1b;
-      padding: 20px 0 20px 10px;
+      padding: 20px 0 20px 10x;
       font-size: 1.1em;
       font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       margin: 0;
     }
+
+    @-moz-document url-prefix() {
+      input[type=email], input[type=password], input[type=text], input[type=date], input[type=time], textarea{
+            padding: 0 0 0 10x;
+
+          }
+      }
 
     input[type=email]{
       padding-left: 34px;
@@ -833,16 +840,26 @@ input.error{
   display: block;
 }
 
+.menu-icon{
+  background: url('assets/menu-icon@x2.png') no-repeat center center / 23px 16px;
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.add-icon{
+  background: url('assets/add-icon@x2.png') no-repeat center center / 23px 16px;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 
 /**
 * Loading
 */
 #loading{
-  background: #303d4d url('../../common/img/loading_background.png') center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: #303d4d url('../../common/img/loading_background.png') repeat top left / 320px 568px;
   height: 100%;
   display: table;
 
@@ -875,7 +892,7 @@ input.error{
 */
 #favouriteSportsSelector{
   .cl-bar-title{
-    background: #dacab4 url('../../common/img/sportpattern.png') center center / 591px 287px;
+    background: #dacab4;
 
 
     .cl-title{
@@ -973,6 +990,10 @@ input.error{
         }
 
         a.selected {
+          .rm{
+            font-weight: bold;
+          }
+
           .overlay{
             background: #a3917d url('assets/tick-icon@x2.png') no-repeat center center / 22px 16px;
             position: absolute;
@@ -996,12 +1017,29 @@ input.error{
 */
 #dashboard{
   position: relative;
+    
+    .cl-bar-title{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1000;
+      background: rgba(104, 218, 212, 0.90);
+      .cl-title{
+        font-family: pacificoregular;
+        color: #3a547c;
+        text-transform: capitalize;
+        font-size: 2.4em;
+      }
+    }
+
     .add-icon{
       display: block;
       padding: 14px;
       background: url("assets/add-icon@x2.png") no-repeat center right/20px 20px;
-      height: 20px;
-      width: 20px;
+      height: 40px;
+      width: 40px;
     }
 
     .search-icon{
@@ -1013,18 +1051,23 @@ input.error{
     }
 
     #fullScreenButton{
-      width: 36px;
-      height: 44px;
-      z-index: 100;
+      width: 40px;
+      height: 40px;
+      z-index: 1001;
       position: absolute;
       right: 0;
       top: 0;
-      background: #378488 url('assets/fullscreen-icon@x2.png') no-repeat center center / 15px 15px !important;
+      background: #b3aea6 url('assets/fullscreen-icon@x2.png') no-repeat center center / 15px 15px !important;
+      border-radius: 30px;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      top: 86px;
+      right: 10px;
     }
 
     .cl-content{
       height: 100%;
-      background: #1f3146;
+      background: #b6b7ba url('../../common/img/pattern4.png') 0 0 / 320px 300px;
 
       .cl-message{
         padding: 20px 10px;
@@ -1034,33 +1077,75 @@ input.error{
     }
 
     #sortBar{
-      background-color: #d95555; /* layer fill content */
+      background-color: #282828;
       z-index: 1000;
       margin-top: -22px;
+      text-align:center;
 
-      select{
+      #sortSelector{
+        width: auto;
+        display: block;
+        margin-top: 7px;
+
+        a{
+          color: #fff;
+          text-transform: uppercase;
+          display: inline-block;
+          padding: 10px;
+          border-radius: 20px;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          font-size: 11px;
+        }
+
+        .active{
+          background: #dd6562;
+        }
+      }
+
+      #radius{
+        float: right;
         background: none;
         border: 0;
         -webkit-appearance:none;
         margin: 0;
         line-height: 44px;
-        position: absolute;
-        left: 105px;
-        width: 100%;
-        text-transform: uppercase;
+        width: 90px;
       }
     }
 
     #map_canvas{
-      height: 40%;
+      height: 50%;
     }
 
     #activityTable{
 
-      .cl-table-cell{
-        background: #4fbab6;
-        margin-bottom: 2px;
+      .activityAuthor{
+        background: #dacab4;
+        padding: 10px;
+        border-radius: 5px;
+        display: block !important;
+        margin: 10px 10px;
+        -webkit-box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
+        -moz-box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
+        box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
+      }
 
+      .activityContainer{
+        background: #fff;
+        display: block !important;
+        margin: 10px 10px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box; /* prevents bg color from leaking outside the border */
+        position: relative;
+
+        -webkit-box-shadow: inset -4px -4px 0px -2px rgba(153,153,156,1);
+        -moz-box-shadow: inset -4px -4px 0px -2px rrgba(153,153,156,1);
+        box-shadow: inset -4px -4px 0px -2px rgba(153,153,156,1);
         .full{
           position: absolute;
           right: 0;
@@ -1084,10 +1169,11 @@ input.error{
 
         h3{
           margin: 5px 0;
-          font-size: 1.4em;
-          text-transform: uppercase;
+          font-size: 2em;
+          text-transform: capitalize;
           font-weight: bold;
-          color: #fff;
+          color: #505050;
+          padding: 0 10px;
 
           small{
             font-size: 14px;
@@ -1097,8 +1183,6 @@ input.error{
 
 
       .dashboard-footer{
-        display: block;
-        background: #378488;
 
         ul{
           margin: 0 10px;
@@ -2126,4 +2210,10 @@ input.error{
 /**
 * Running on a device but in the webbrowser
 */
-
+#createButton{
+  background: #dd6562 !important;
+  display: inline-block;
+  margin-left: 15px;
+  text-align: center;
+  padding: 10px;
+}

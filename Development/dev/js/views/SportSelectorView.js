@@ -62,16 +62,13 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-
-
+        console.log($(evt.target).parent().find('.rm'));
     },
 
     confirmSportsHandler: function(){
         var selectedSports = [];
 
         $('#favouriteSportList .selected .layer', appData.settings.currentPageHTML).each(function(index, element){
-            console.log($(element));
-
             var sportID = $(element).attr('data-id');
             var model = appData.collections.sports.where({'sport_id': sportID.toString()})
         
@@ -84,11 +81,16 @@ appData.views.SportSelectorView = Backbone.View.extend({
     addFavouriteSportsHandler: function(){
         appData.services.utilService.updateLocalStorage();
 
-       if(!appData.settings.sportselector){
-         appData.router.navigate('dashboard', true);
-       }else{
-         appData.settings.sportselector = false;
-         appData.router.navigate('settings', true);
-       }
+        if(appData.settings.forwardAfterLogin){
+            appData.settings.forwardAfterLogin = false;
+            window.location.hash = "#activity/" + appData.settings.forwardAfterLoginID;    
+        }else{
+           if(!appData.settings.sportselector){
+             appData.router.navigate('dashboard', true);
+           }else{
+             appData.settings.sportselector = false;
+             appData.router.navigate('settings', true);
+           }
+        }
     }
 });

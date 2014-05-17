@@ -26,7 +26,12 @@ appData.views.ProfileView = Backbone.View.extend({
     },
 
     events: {
-        "click #profileTabs .cl-btn": "profileTabHandler"
+        "click #profileTabs .cl-btn": "profileTabHandler",
+        "click #menuButton": "menuOpenHandler"
+    },
+
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
     },
 
     profileTabHandler: function(evt){ 

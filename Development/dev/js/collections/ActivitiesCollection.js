@@ -7,6 +7,7 @@ ActivitiesCollection = Backbone.Collection.extend({
 	},
 
     comparator: function(a, b) {
+
         // Assuming that the sort_key values can be compared with '>' and '<',
         // modifying this to account for extra processing on the sort_key model
         // attributes is fairly straight forward.

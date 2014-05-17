@@ -21,6 +21,7 @@ var appData = {
 
 // settings
 appData.settings.rootPath = "http://localhost/";
+appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
 appData.settings.badgesPath = appData.settings.rootPath + "common/badges/";
@@ -149,6 +150,11 @@ appData.start = function(nativeApp){
       appData.forms.sortOptions = [{"title": "Datum"},{"title": "Afstand"}, {"title": "Mijn Favoriete Sporten"}];
       appData.collections.sortOptions = new SortOptionsCollection(appData.forms.sortOptions);
 
+      // menu
+      $("#mainMenu").mmenu({
+        // options object
+      });
+
       // New services class
       appData.services.phpService = new appData.services.PhpServices();
       appData.events.getMessagesSuccesEvent = _.extend({}, Backbone.Events);
@@ -192,7 +198,138 @@ appData.start = function(nativeApp){
       if(appData.settings.native){
           appData.settings.pictureSource = navigator.camera.PictureSourceType;
           appData.settings.destinationType = navigator.camera.DestinationType;
-          
+        /*
+          var pushNotification;
+            function onDeviceReady() {
+                $("#app-status-ul").append('<li>deviceready event received</li>');
+                
+        document.addEventListener("backbutton", function(e)
+        {
+                  $("#app-status-ul").append('<li>backbutton event received</li>');
+            
+              if( $("#home").length > 0)
+          {
+            // call this to get a new token each time. don't call it to reuse existing token.
+            //pushNotification.unregister(successHandler, errorHandler);
+            e.preventDefault();
+            navigator.app.exitApp();
+          }
+          else
+          {
+            navigator.app.backHistory();
+          }
+        }, false);
+      
+        try 
+        { 
+                  pushNotification = window.plugins.pushNotification;
+          $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
+                  if (device.platform == 'android' || device.platform == 'Android' ||
+                            device.platform == 'amazon-fireos' ) {
+      pushNotification.register(successHandler, errorHandler, {"senderID":"661780372179","ecb":"onNotification"});    // required!
+          } else {
+                      pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});  // required!
+                  }
+                }
+        catch(err) 
+        { 
+          txt="There was an error on this page.\n\n"; 
+          txt+="Error description: " + err.message + "\n\n"; 
+          alert(txt); 
+        } 
+            }
+            
+            // handle APNS notifications for iOS
+            function onNotificationAPN(e) {
+                if (e.alert) {
+                     $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
+                     navigator.notification.alert(e.alert);
+                }
+                    
+                if (e.sound) {
+                    var snd = new Media(e.sound);
+                    snd.play();
+                }
+                
+                if (e.badge) {
+                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
+                }
+            }
+            
+            // handle GCM notifications for Android
+            function onNotification(e) {
+                $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+                
+                switch( e.event )
+                {
+                    case 'registered':
+          if ( e.regid.length > 0 )
+          {
+            $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+            // Your GCM push server needs to know the regID before it can push to this device
+            // here is where you might want to send it the regID for later use.
+            console.log("regID = " + e.regid);
+          }
+                    break;
+                    
+                    case 'message':
+                      // if this flag is set, this notification happened while we were in the foreground.
+                      // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+                      if (e.foreground)
+                      {
+              $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+                  
+                    // on Android soundname is outside the payload. 
+                          // On Amazon FireOS all custom attributes are contained within payload
+                          var soundfile = e.soundname || e.payload.sound;
+                          // if the notification contains a soundname, play it.
+                          var my_media = new Media("/android_asset/www/"+ soundfile);
+
+              my_media.play();
+            }
+            else
+            { // otherwise we were launched because the user touched a notification in the notification tray.
+              if (e.coldstart)
+                $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+              else
+              $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+            }
+              
+            $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+                        //android only
+            $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+                        //amazon-fireos only
+                        $("#app-status-ul").append('<li>MESSAGE -> TIMESTAMP: ' + e.payload.timeStamp + '</li>');
+                    break;
+                    
+                    case 'error':
+            $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
+                    break;
+                    
+                    default:
+            $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+                    break;
+                }
+            }
+            
+            function tokenHandler (result) {
+                $("#app-status-ul").append('<li>token: '+ result +'</li>');
+                // Your iOS push server needs to know the token before it can push to this device
+                // here is where you might want to send it the token for later use.
+            }
+      
+            function successHandler (result) {
+                $("#app-status-ul").append('<li>success:'+ result +'</li>');
+            }
+            
+            function errorHandler (error) {
+                $("#app-status-ul").append('<li>error:'+ error +'</li>');
+            }
+            
+
+            */
+
+
           document.addEventListener("resume", onResumeHandler, false);
           document.addEventListener("offline", deviceOfflineHandler, false);
           document.addEventListener("online", deviceOnlineHandler, false);
@@ -413,6 +550,7 @@ ActivitiesCollection = Backbone.Collection.extend({
 	},
 
     comparator: function(a, b) {
+
         // Assuming that the sort_key values can be compared with '>' and '<',
         // modifying this to account for extra processing on the sort_key model
         // attributes is fairly straight forward.
@@ -610,13 +748,15 @@ appData.views.ActivityDetailView = Backbone.View.extend({
         
         var coordinates;
         if(this.model.attributes.coordinates){
-            coordinates =  this.model.attributes.coordinates.split(',');
+           coordinates =  this.model.attributes.coordinates.split(',');
 
+          var activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(coordinates[0], coordinates[1]),
             map:  map,
             title: 'Huidige locatie',
-            icon: appData.settings.iconPath + "map-icon@x2.png"
+            icon: activityImage,
+            optimized: false
           });
 
           // resize and relocate map
@@ -1525,6 +1665,10 @@ appData.views.CreateActivityView = Backbone.View.extend({
         Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
 
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
+    },
+
     // phonegap device offline
     networkFoundHandler: function(){
 
@@ -1558,7 +1702,8 @@ appData.views.CreateActivityView = Backbone.View.extend({
     }, 
 
     events: {
-      "click #submitButton": "subHandler"
+      "click #submitButton": "subHandler",
+      "click #menuButton": "menuOpenHandler"
     },
 
     subHandler: function(){
@@ -1826,7 +1971,7 @@ appData.views.DashboardActivityView = Backbone.View.extend({
     }, 
 
     render: function() { 
-        this.model.setGoing();
+		this.model.setGoing();
 
     	// model to template
     	this.$el.html(this.template({activity: this.model.toJSON(), imagePath: appData.settings.imagePath, friends: this.model.attributes.users}));
@@ -1844,7 +1989,6 @@ appData.views.DashboardActivityView = Backbone.View.extend({
 appData.views.DashboardView = Backbone.View.extend({
 
     initialize: function () {
-        console.log(appData.models.userModel);
 
         var that = this;
         this.searching = false;
@@ -1904,10 +2048,12 @@ appData.views.DashboardView = Backbone.View.extend({
     },
     
     events: {
-        "change #sortActivities": "sortActivitiesChangeHandler",
+        "click #sortSelector a": "sortActivitiesChangeHandler",
         "click #searchButton": "toggleSearchHandler",
+        "click #favs": "favsHandler",
         "keyup #searchInput": "searchHandler",
-        "click #fullScreenButton": "fullscreenToggleHandler"
+        "click #fullScreenButton": "fullscreenToggleHandler",
+        "click #menuButton": "menuOpenHandler"
     },
 
     fullscreenToggleHandler: function(){
@@ -2003,11 +2149,16 @@ appData.views.DashboardView = Backbone.View.extend({
     },
 
     // sort the activities table
-    sortActivitiesChangeHandler: function(){
-        
+    sortActivitiesChangeHandler: function(evt){
+
+        $('#sortSelector a', appData.settings.currentPageHTML).removeClass('active');
+        $(evt.target).addClass('active');
+
+        var index = $('#sortSelector .active', appData.settings.currentPageHTML).index();
+
         this.favouriteSportsFilter = false;
 
-        switch($("#sortActivities")[0].selectedIndex){
+        switch(index){
             case 0:
                 appData.collections.activities.sort_by_attribute('sql_index');
             break;
@@ -2041,38 +2192,48 @@ appData.views.DashboardView = Backbone.View.extend({
                     var d = R * c;
                     var resultaat = d.toFixed(2);
 
-                        activity.attributes.distance = parseInt(resultaat);
+                    activity.attributes.distance = parseInt(resultaat);
                 });
 
                 // now order the collection by the distance
                 appData.collections.activities.sort_by_attribute('distance');
             break;
 
-            case 2:
-                
-                var filterCollection = new ActivitiesCollection();
-
-
-                appData.models.userModel.attributes.myFavouriteSports.each(function(model){
-                    filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id})
-                });
-
-                appData.collections.filteredActivitiesCollection = filterCollection;
-                this.favouriteSportsFilter = true;
-
-            break;
         }
 
         this.generateAcitvitiesCollection();
     },
 
-    render: function () {
+    favsHandler: function(){
+        var filters = [];
+        appData.models.userModel.attributes.myFavouriteSports.each(function(model){
+            var filterCollection = new ActivitiesCollection();
+                filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id});
+                filters.push(filterCollection);
+        });
 
+        var allActivities = new ActivitiesCollection();
+        var extractedModels = new ActivitiesCollection();
+        _.each(filters,function(collection, index){
+            $(collection).each(function(ind, collectionEl){
+        
+                extractedModels.push(collectionEl);
+            });
+        });
+
+        console.log(extractedModels);
+
+        appData.collections.filteredActivitiesCollection = extractedModels;
+        this.favouriteSportsFilter = true;
+        this.generateAcitvitiesCollection();
+
+    },
+
+    render: function () {
         var view = this;
 
         this.$el.html(this.template({sortForm: appData.collections.sortOptions.toJSON()}));
         appData.settings.currentPageHTML = this.$el;
-
 
         if(appData.settings.native){
             if(!appData.services.utilService.getNetworkConnection()){
@@ -2085,8 +2246,11 @@ appData.views.DashboardView = Backbone.View.extend({
         }
         this.generateAcitvitiesCollection();
 
-
         return this;
+    },
+
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
     },
 
     initMap: function() { 
@@ -2103,10 +2267,12 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.locations = myLocation;
 
         var mapOptions = {
+            backgroundColor: '#dacab4',
             zoom: 15,
             center: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            keyboardShortcuts: false
         }
         appData.views.DashboardView.map = new google.maps.Map($('#map_canvas',appData.settings.currentPageHTML)[0], mapOptions);
 
@@ -2116,14 +2282,27 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.views.DashboardView.map.setCenter(new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]), 13);
         });
 
-        var userMarker = new google.maps.Marker({
-              position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
-              map:  appData.views.DashboardView.map,
-              title: "",
-              icon: appData.settings.iconPath + "my-map-icon@x2.png"
-            });
+        var image = new google.maps.MarkerImage(appData.settings.iconPath + "my-map-icon@x2.png", null, null, null, new google.maps.Size(23,23)); // Create a variable for our marker image.             
+        var userMarker = new google.maps.Marker({ // Set the marker
+            position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
+            icon: image, //use our image as the marker
+            map:  appData.views.DashboardView.map,
+            title: '',
+            animation: google.maps.Animation.DROP,
+            optimized: false
+        });
         appData.views.DashboardView.markers.push(userMarker);
 
+        var set = google.maps.InfoWindow.prototype.set;
+        google.maps.InfoWindow.prototype.set = function (key, val) {
+            if (key === 'map') {
+                if (!this.get('noSupress')) {
+                    console.log('This InfoWindow is supressed. To enable it, set "noSupress" option to true');
+                    return;
+                }
+            }
+            set.apply(this, arguments);
+        }
         if(navigator.geolocation && appData.settings.native){
 
             Backbone.on('getMyLocationHandler', this.getMyLocationHandler);
@@ -2134,13 +2313,9 @@ appData.views.DashboardView = Backbone.View.extend({
     getMyLocationHandler: function(position){
         Backbone.off('getMyLocationHandler');
         if(position){
-
-            console.log(position);
-
             var myLocation = position.coords.latitude + "," + position.coords.longitude;
             appData.models.userModel.attributes.current_location = myLocation;
             appData.views.DashboardView.locations = myLocation.split(',');
-
 
             if(appData.settings.native && appData.services.utilService.getNetworkConnection()){
                 appData.views.DashboardView.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 13);
@@ -2155,13 +2330,32 @@ appData.views.DashboardView = Backbone.View.extend({
     setMarkers: function(models){
         appData.views.DashboardView.clearMarkers();
 
+        var going = false;
         $(models).each(function(index, model){
+            if(model.attributes.users.length > 0){
+               $(model.attributes.users).each(function(index, element){
+                    console.log(appData.models.userModel.attributes.user_id);
+                    console.log(element.user_id)
+
+                    if(parseInt(element.user_id) === parseInt(appData.models.userModel.attributes.user_id)){
+                        going = true;
+                    }
+                });
+            }
+            var activityImage;
+            if(going){
+                activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "goingMarker@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.             
+            }else{
+                activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.             
+            }
+
             var coordinates = model.attributes.coordinates.split(",");
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(coordinates[0], coordinates[1]),
               map:  appData.views.DashboardView.map,
               title: "",
-              icon: appData.settings.iconPath + "map-icon@x2.png"
+              icon: activityImage,
+              optimized: false
             });
 
             marker.activityModel = model;
@@ -2173,11 +2367,14 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.views.DashboardView.markers.push(marker);
         });
 
-        var userMarker = new google.maps.Marker({
-          position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
-          map:  appData.views.DashboardView.map,
-          title: "",
-          icon: appData.settings.iconPath + "my-map-icon@x2.png"
+
+        var image = new google.maps.MarkerImage(appData.settings.iconPath + "my-map-icon@x2.png", null, null, null, new google.maps.Size(23,23)); // Create a variable for our marker image.             
+        var userMarker = new google.maps.Marker({ // Set the marker
+            position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
+            icon: image, //use our image as the marker
+            map:  appData.views.DashboardView.map,
+            title: '',
+            optimized: false
         });
         appData.views.DashboardView.markers.push(userMarker);
     },
@@ -2794,7 +2991,13 @@ appData.views.LoadingView = Backbone.View.extend({
 
 
         if(appData.models.userModel.attributes.myFavouriteSports.length > 0){
-            appData.router.navigate('dashboard', true);
+            if(appData.settings.forwardAfterLogin === true){
+                appData.settings.forwardAfterLogin = false;
+                window.location.hash = "#activity/" + appData.settings.forwardAfterLoginID;
+                
+            }else{
+                appData.router.navigate('dashboard', true);
+            }
         }else{
             appData.router.navigate('sportselector', true);
         }
@@ -3120,7 +3323,12 @@ appData.views.PlannerView = Backbone.View.extend({
   },
 
   events:{
-      "click .inviteButtons a":"handleInviteHandler"
+      "click .inviteButtons a":"handleInviteHandler",
+      "click #menuButton": "menuOpenHandler"
+  },
+
+  menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
   },
 
   handleInviteHandler: function(evt){
@@ -3482,7 +3690,12 @@ appData.views.ProfileView = Backbone.View.extend({
     },
 
     events: {
-        "click #profileTabs .cl-btn": "profileTabHandler"
+        "click #profileTabs .cl-btn": "profileTabHandler",
+        "click #menuButton": "menuOpenHandler"
+    },
+
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
     },
 
     profileTabHandler: function(evt){ 
@@ -3750,16 +3963,13 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-
-
+        console.log($(evt.target).parent().find('.rm'));
     },
 
     confirmSportsHandler: function(){
         var selectedSports = [];
 
         $('#favouriteSportList .selected .layer', appData.settings.currentPageHTML).each(function(index, element){
-            console.log($(element));
-
             var sportID = $(element).attr('data-id');
             var model = appData.collections.sports.where({'sport_id': sportID.toString()})
         
@@ -3772,12 +3982,17 @@ appData.views.SportSelectorView = Backbone.View.extend({
     addFavouriteSportsHandler: function(){
         appData.services.utilService.updateLocalStorage();
 
-       if(!appData.settings.sportselector){
-         appData.router.navigate('dashboard', true);
-       }else{
-         appData.settings.sportselector = false;
-         appData.router.navigate('settings', true);
-       }
+        if(appData.settings.forwardAfterLogin){
+            appData.settings.forwardAfterLogin = false;
+            window.location.hash = "#activity/" + appData.settings.forwardAfterLoginID;    
+        }else{
+           if(!appData.settings.sportselector){
+             appData.router.navigate('dashboard', true);
+           }else{
+             appData.settings.sportselector = false;
+             appData.router.navigate('settings', true);
+           }
+        }
     }
 });
 
@@ -3798,7 +4013,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
         "noconnection":     "noconnection",
         "loading":          "loading",
         "friend/:id":       "friend",
-        "update/:id":       "update"
+        "update/:id":       "update",
+        "forward/:id":      "forward"
     },
 
     initialize: function () {
@@ -3819,6 +4035,16 @@ appData.routers.AppRouter = Backbone.Router.extend({
           //the navigation doesn't create an extra history entry
           this.navigate('/', {trigger:true, replace:true});
         }
+    },
+
+    forward: function(id){
+        console.log("forward enabled");
+
+        // save the activity ID nog go to the login
+        appData.settings.forwardAfterLoginID = id;
+        appData.settings.forwardAfterLogin = true;
+
+        window.location.hash = "#";
     },
 
     noconnection: function(){
@@ -4430,7 +4656,7 @@ appData.services.FacebookServices = Backbone.Model.extend({
 		var params = {
 			method: 'feed',
 			name: activityModel.attributes.title,
-			link: appData.settings.rootPath + '#activity/' + activityModel.attributes.activity_id,
+			link: appData.settings.forwardPath + '#forward/' + activityModel.attributes.activity_id,
 			caption: 'We App To Move',
 			description: activityModel.attributes.description
 		};

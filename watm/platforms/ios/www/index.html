@@ -3,7 +3,10 @@
     <head>
         <title>tittle</title>
         <script>
-            window.location='./main.html';
+
+            var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+            window.location='./main.html#' + hash;
         </script>
     <body>      
     </body>

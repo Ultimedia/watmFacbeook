@@ -24,6 +24,11 @@
     <title>We App To Move</title>
     <link rel="stylesheet" type="text/css" href="public/css/clank.css" />
     <link rel="stylesheet" type="text/css" href="public/css/jquery-ui-1.10.4.custom.min.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="public/css/jquery.mmenu.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="public/css/jquery.mmenu.all.css" />
+
+
+
     <link rel="stylesheet" type="text/css" href="public/css/application.css" />
 
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
@@ -43,8 +48,11 @@
     <script src="public/js/vendor/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
     <script src="public/js/vendor/hammer.min.js" type="text/javascript"></script>
     <script src="public/js/vendor/jquery.hammer.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="public/js/vendor/PushNotification.js"></script>
+    <script src="public/js/vendor/jquery.mmenu.min.all.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.8"></script>
+    <script src="public/js/vendor/multi-sort.collection.js" type="text/javascript"></script>
     <script>
         if (navigator.userAgent.toLowerCase().match(/iphone/) || navigator.userAgent.toLowerCase().match(/android/)) {
             document.write('<script charset="utf-8" src="facebook-js-sdk.js"><\/script>');
@@ -55,6 +63,16 @@
     </script>
   </head>
   <body>
+    <nav id="mainMenu" class="hide">
+       <ul>
+          <li><a id="createButton" href="main.html#createActivity">Nieuwe activiteit</a></li>
+
+          <li class="Spacer"><a href="main.html#dashboard">Activiteiten</a></li>
+          <li><a href="main.html#planner">Planner</a></li>
+          <li><a href="main.html#profile">Profiel</a></li>
+       </ul>
+    </nav>
+
     <div id="container">
 
     </div>

@@ -1,0 +1,148 @@
+/*
+	jQuery.mmenu IE8 fallback extension CSS
+*/
+/* line 9, ../../../../../Development/dev/sass/inc/_colors.scss */
+html.mm-opened .mm-page {
+  box-shadow: none;
+}
+
+/* line 13, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-ismenu {
+  background: #333333;
+  color: #adadad;
+}
+
+/* line 22, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li:after {
+  border-color: #2b2b2b;
+}
+/* line 30, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li > a.mm-subclose {
+  background: #2d2d2d;
+  color: #707070;
+}
+/* line 36, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li > a.mm-subopen:after, .mm-menu .mm-list > li > a.mm-subclose:before {
+  border-color: #707070;
+}
+/* line 40, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li > a.mm-subopen:before {
+  border-color: #2b2b2b;
+}
+/* line 49, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li.mm-selected > a:not(.mm-subopen),
+.mm-menu .mm-list > li.mm-selected > span {
+  background: #2d2d2d;
+}
+/* line 54, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list > li.mm-label {
+  background: #3d3d3d;
+}
+/* line 65, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-vertical .mm-list li.mm-opened > a.mm-subopen,
+.mm-menu.mm-vertical .mm-list li.mm-opened > ul {
+  background: #3d3d3d;
+}
+
+/* line 90, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-search input {
+  background: #474747;
+  color: #adadad;
+}
+/* line 95, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu li.mm-noresults {
+  color: #707070;
+}
+
+/* line 104, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu em.mm-counter {
+  color: #707070;
+}
+
+/* line 78, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-list li.mm-label > div > div {
+  background: #3d3d3d;
+}
+
+/* line 115, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-header {
+  border-color: #2b2b2b;
+  color: #707070;
+}
+/* line 120, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu .mm-header a:before {
+  border-color: #707070;
+}
+
+/* line 9, ../../../../../Development/dev/sass/inc/_colors.scss */
+html.mm-opened.mm-light .mm-page {
+  box-shadow: none;
+}
+
+/* line 13, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-ismenu.mm-light {
+  background: #f3f3f3;
+  color: #616161;
+}
+
+/* line 22, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li:after {
+  border-color: #dadada;
+}
+/* line 30, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li > a.mm-subclose {
+  background: #fafafa;
+  color: #aaaaaa;
+}
+/* line 36, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li > a.mm-subopen:after, .mm-menu.mm-light .mm-list > li > a.mm-subclose:before {
+  border-color: #aaaaaa;
+}
+/* line 40, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li > a.mm-subopen:before {
+  border-color: #dadada;
+}
+/* line 49, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li.mm-selected > a:not(.mm-subopen),
+.mm-menu.mm-light .mm-list > li.mm-selected > span {
+  background: #fafafa;
+}
+/* line 54, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list > li.mm-label {
+  background: #ebebeb;
+}
+/* line 65, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light.mm-vertical .mm-list li.mm-opened > a.mm-subopen,
+.mm-menu.mm-light.mm-vertical .mm-list li.mm-opened > ul {
+  background: #ebebeb;
+}
+
+/* line 90, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-search input {
+  background: #dadada;
+  color: #616161;
+}
+/* line 95, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light li.mm-noresults {
+  color: #aaaaaa;
+}
+
+/* line 104, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light em.mm-counter {
+  color: #aaaaaa;
+}
+
+/* line 78, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-list li.mm-label > div > div {
+  background: #ebebeb;
+}
+
+/* line 115, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-header {
+  border-color: #dadada;
+  color: #aaaaaa;
+}
+/* line 120, ../../../../../Development/dev/sass/inc/_colors.scss */
+.mm-menu.mm-light .mm-header a:before {
+  border-color: #aaaaaa;
+}

@@ -332,6 +332,13 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -348,7 +355,8 @@ module.exports.metadata =
     "org.apache.cordova.media": "0.2.10",
     "org.apache.cordova.media-capture": "0.3.0",
     "org.apache.cordova.network-information": "0.2.8",
-    "org.apache.cordova.splashscreen": "0.3.0"
+    "org.apache.cordova.splashscreen": "0.3.0",
+    "com.phonegap.plugins.PushPlugin": "2.2.0"
 }
 // BOTTOM OF METADATA
 });

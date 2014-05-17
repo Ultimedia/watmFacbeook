@@ -44,6 +44,8 @@
   }
 }
 
+
+
 /* Bar layout */
 
 .cl-bar-title,
@@ -72,6 +74,7 @@
 
 .cl-bar-title {
   .cl-title {
+  
     text-align: center;
     // default
     line-height: $ios-bar-size;
@@ -220,9 +223,10 @@
 
 .cl-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-title, .cl-modal .cl-modal-bar-title .cl-modal-title{
   line-height: 60px;
-  font-family: "source_sans_proregular";
-  text-transform: uppercase;
-  font-size: 16px;
+  font-family: pacificoregular;
+  color: #3a547c;
+  text-transform: capitalize;
+  font-size: 2.4em;
   padding-top: 14px;
 }
 

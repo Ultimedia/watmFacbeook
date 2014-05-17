@@ -13,6 +13,8 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/ko/R.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/ko/watm.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/BuildConfig.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/Manifest$permission.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/Manifest.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/R$attr.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/R$color.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/be/devine/watm/R$dimen.class \
@@ -35,6 +37,10 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/facebook/android/R$style.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/facebook/android/R$styleable.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/facebook/android/R.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/CordovaGCMBroadcastReceiver.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/GCMIntentService.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/PushHandlerActivity.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/PushPlugin.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
@@ -119,4 +125,5 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/splashscreen/SplashScreen.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/dexedLibs/classes-a6835a96daf4077bfaefdea07ea0853b.jar \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/dexedLibs/classes-51af7d60a8eadd93d6d1ef93f32487a0.jar \
-/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/dexedLibs/android-support-v4-7025926b056e7051df79cb8b821dd400.jar \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/dexedLibs/gcm-01b69f23a015ba6e394c36e0a6879ed1.jar \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/dexedLibs/android-support-v13-e811fe59a2855c3e16a9bd41df611105.jar \

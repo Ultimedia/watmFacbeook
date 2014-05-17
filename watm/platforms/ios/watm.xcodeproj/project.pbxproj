@@ -39,6 +39,8 @@
 		65C2495624BE4FCEBF86C51B /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 172D484A79604D73B5F3292C /* CDVLogger.m */; };
 		67EB7E2DC99E4D17814F81B9 /* CDVCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = F56ABE3A71A04817BED09A3F /* CDVCapture.m */; };
 		694BBF75BB17485B81A18A4C /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D3163A216DA2409D9FE14783 /* CDVSound.m */; };
+		6C53523D19238510003C6849 /* AppDelegate+notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53523A19238510003C6849 /* AppDelegate+notification.m */; };
+		6C53523E19238510003C6849 /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53523C19238510003C6849 /* PushPlugin.m */; };
 		6CFE30A21909215E00F5F983 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */; };
 		6CFE30A31909215E00F5F983 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CFE30A11909215E00F5F983 /* FacebookSDK.framework */; };
 		6CFE30D019094E4C00F5F983 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CFE30CF19094E4C00F5F983 /* Images.xcassets */; };
@@ -129,6 +131,10 @@
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		636AD9FFF5664B94AC9A13DB /* CDVSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = org.apache.cordova.splashscreen/CDVSplashScreen.h; sourceTree = "<group>"; };
 		69DB18DB1B9A43AB9F660F08 /* CDVReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "org.apache.cordova.network-information/CDVReachability.h"; sourceTree = "<group>"; };
+		6C53523919238510003C6849 /* AppDelegate+notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+notification.h"; sourceTree = "<group>"; };
+		6C53523A19238510003C6849 /* AppDelegate+notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+notification.m"; sourceTree = "<group>"; };
+		6C53523B19238510003C6849 /* PushPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushPlugin.h; sourceTree = "<group>"; };
+		6C53523C19238510003C6849 /* PushPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushPlugin.m; sourceTree = "<group>"; };
 		6CFE309E1909215E00F5F983 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookConnectPlugin.h; sourceTree = "<group>"; };
 		6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookConnectPlugin.m; sourceTree = "<group>"; };
 		6CFE30A11909215E00F5F983 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -312,6 +318,7 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				6C53523819238510003C6849 /* PushPlugin */,
 				6CFE309E1909215E00F5F983 /* FacebookConnectPlugin.h */,
 				6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */,
 				6CFE30A01909215E00F5F983 /* frameworks */,
@@ -400,6 +407,18 @@
 				30A0434614DC770100060A13 /* Localizable.strings */,
 			);
 			path = se.lproj;
+			sourceTree = "<group>";
+		};
+		6C53523819238510003C6849 /* PushPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				6C53523919238510003C6849 /* AppDelegate+notification.h */,
+				6C53523A19238510003C6849 /* AppDelegate+notification.m */,
+				6C53523B19238510003C6849 /* PushPlugin.h */,
+				6C53523C19238510003C6849 /* PushPlugin.m */,
+			);
+			name = PushPlugin;
+			path = com/phonegap/plugins/PushPlugin;
 			sourceTree = "<group>";
 		};
 		6CFE30A01909215E00F5F983 /* frameworks */ = {
@@ -557,8 +576,10 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				03E93006541A4D74B333E5C3 /* CDVCamera.m in Sources */,
+				6C53523E19238510003C6849 /* PushPlugin.m in Sources */,
 				7BED4077AAE34FA0A6F6654E /* CDVJpegHeaderWriter.m in Sources */,
 				65C2495624BE4FCEBF86C51B /* CDVLogger.m in Sources */,
+				6C53523D19238510003C6849 /* AppDelegate+notification.m in Sources */,
 				57B3B3D67FEA4A73AFE990B6 /* CDVDevice.m in Sources */,
 				F0CB8E3527AD46BBA66C8F75 /* CDVCompass.m in Sources */,
 				981923C80D714E6E91A996ED /* CDVFile.m in Sources */,

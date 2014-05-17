@@ -1,7 +1,6 @@
 appData.views.DashboardView = Backbone.View.extend({
 
     initialize: function () {
-        console.log(appData.models.userModel);
 
         var that = this;
         this.searching = false;
@@ -61,10 +60,12 @@ appData.views.DashboardView = Backbone.View.extend({
     },
     
     events: {
-        "change #sortActivities": "sortActivitiesChangeHandler",
+        "click #sortSelector a": "sortActivitiesChangeHandler",
         "click #searchButton": "toggleSearchHandler",
+        "click #favs": "favsHandler",
         "keyup #searchInput": "searchHandler",
-        "click #fullScreenButton": "fullscreenToggleHandler"
+        "click #fullScreenButton": "fullscreenToggleHandler",
+        "click #menuButton": "menuOpenHandler"
     },
 
     fullscreenToggleHandler: function(){
@@ -160,11 +161,16 @@ appData.views.DashboardView = Backbone.View.extend({
     },
 
     // sort the activities table
-    sortActivitiesChangeHandler: function(){
-        
+    sortActivitiesChangeHandler: function(evt){
+
+        $('#sortSelector a', appData.settings.currentPageHTML).removeClass('active');
+        $(evt.target).addClass('active');
+
+        var index = $('#sortSelector .active', appData.settings.currentPageHTML).index();
+
         this.favouriteSportsFilter = false;
 
-        switch($("#sortActivities")[0].selectedIndex){
+        switch(index){
             case 0:
                 appData.collections.activities.sort_by_attribute('sql_index');
             break;
@@ -198,38 +204,48 @@ appData.views.DashboardView = Backbone.View.extend({
                     var d = R * c;
                     var resultaat = d.toFixed(2);
 
-                        activity.attributes.distance = parseInt(resultaat);
+                    activity.attributes.distance = parseInt(resultaat);
                 });
 
                 // now order the collection by the distance
                 appData.collections.activities.sort_by_attribute('distance');
             break;
 
-            case 2:
-                
-                var filterCollection = new ActivitiesCollection();
-
-
-                appData.models.userModel.attributes.myFavouriteSports.each(function(model){
-                    filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id})
-                });
-
-                appData.collections.filteredActivitiesCollection = filterCollection;
-                this.favouriteSportsFilter = true;
-
-            break;
         }
 
         this.generateAcitvitiesCollection();
     },
 
-    render: function () {
+    favsHandler: function(){
+        var filters = [];
+        appData.models.userModel.attributes.myFavouriteSports.each(function(model){
+            var filterCollection = new ActivitiesCollection();
+                filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id});
+                filters.push(filterCollection);
+        });
 
+        var allActivities = new ActivitiesCollection();
+        var extractedModels = new ActivitiesCollection();
+        _.each(filters,function(collection, index){
+            $(collection).each(function(ind, collectionEl){
+        
+                extractedModels.push(collectionEl);
+            });
+        });
+
+        console.log(extractedModels);
+
+        appData.collections.filteredActivitiesCollection = extractedModels;
+        this.favouriteSportsFilter = true;
+        this.generateAcitvitiesCollection();
+
+    },
+
+    render: function () {
         var view = this;
 
         this.$el.html(this.template({sortForm: appData.collections.sortOptions.toJSON()}));
         appData.settings.currentPageHTML = this.$el;
-
 
         if(appData.settings.native){
             if(!appData.services.utilService.getNetworkConnection()){
@@ -242,8 +258,11 @@ appData.views.DashboardView = Backbone.View.extend({
         }
         this.generateAcitvitiesCollection();
 
-
         return this;
+    },
+
+    menuOpenHandler: function(){
+        $("#mainMenu").trigger("open");
     },
 
     initMap: function() { 
@@ -260,10 +279,12 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.locations = myLocation;
 
         var mapOptions = {
+            backgroundColor: '#dacab4',
             zoom: 15,
             center: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            keyboardShortcuts: false
         }
         appData.views.DashboardView.map = new google.maps.Map($('#map_canvas',appData.settings.currentPageHTML)[0], mapOptions);
 
@@ -273,14 +294,27 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.views.DashboardView.map.setCenter(new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]), 13);
         });
 
-        var userMarker = new google.maps.Marker({
-              position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
-              map:  appData.views.DashboardView.map,
-              title: "",
-              icon: appData.settings.iconPath + "my-map-icon@x2.png"
-            });
+        var image = new google.maps.MarkerImage(appData.settings.iconPath + "my-map-icon@x2.png", null, null, null, new google.maps.Size(23,23)); // Create a variable for our marker image.             
+        var userMarker = new google.maps.Marker({ // Set the marker
+            position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
+            icon: image, //use our image as the marker
+            map:  appData.views.DashboardView.map,
+            title: '',
+            animation: google.maps.Animation.DROP,
+            optimized: false
+        });
         appData.views.DashboardView.markers.push(userMarker);
 
+        var set = google.maps.InfoWindow.prototype.set;
+        google.maps.InfoWindow.prototype.set = function (key, val) {
+            if (key === 'map') {
+                if (!this.get('noSupress')) {
+                    console.log('This InfoWindow is supressed. To enable it, set "noSupress" option to true');
+                    return;
+                }
+            }
+            set.apply(this, arguments);
+        }
         if(navigator.geolocation && appData.settings.native){
 
             Backbone.on('getMyLocationHandler', this.getMyLocationHandler);
@@ -291,13 +325,9 @@ appData.views.DashboardView = Backbone.View.extend({
     getMyLocationHandler: function(position){
         Backbone.off('getMyLocationHandler');
         if(position){
-
-            console.log(position);
-
             var myLocation = position.coords.latitude + "," + position.coords.longitude;
             appData.models.userModel.attributes.current_location = myLocation;
             appData.views.DashboardView.locations = myLocation.split(',');
-
 
             if(appData.settings.native && appData.services.utilService.getNetworkConnection()){
                 appData.views.DashboardView.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 13);
@@ -312,13 +342,32 @@ appData.views.DashboardView = Backbone.View.extend({
     setMarkers: function(models){
         appData.views.DashboardView.clearMarkers();
 
+        var going = false;
         $(models).each(function(index, model){
+            if(model.attributes.users.length > 0){
+               $(model.attributes.users).each(function(index, element){
+                    console.log(appData.models.userModel.attributes.user_id);
+                    console.log(element.user_id)
+
+                    if(parseInt(element.user_id) === parseInt(appData.models.userModel.attributes.user_id)){
+                        going = true;
+                    }
+                });
+            }
+            var activityImage;
+            if(going){
+                activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "goingMarker@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.             
+            }else{
+                activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.             
+            }
+
             var coordinates = model.attributes.coordinates.split(",");
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(coordinates[0], coordinates[1]),
               map:  appData.views.DashboardView.map,
               title: "",
-              icon: appData.settings.iconPath + "map-icon@x2.png"
+              icon: activityImage,
+              optimized: false
             });
 
             marker.activityModel = model;
@@ -330,11 +379,14 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.views.DashboardView.markers.push(marker);
         });
 
-        var userMarker = new google.maps.Marker({
-          position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
-          map:  appData.views.DashboardView.map,
-          title: "",
-          icon: appData.settings.iconPath + "my-map-icon@x2.png"
+
+        var image = new google.maps.MarkerImage(appData.settings.iconPath + "my-map-icon@x2.png", null, null, null, new google.maps.Size(23,23)); // Create a variable for our marker image.             
+        var userMarker = new google.maps.Marker({ // Set the marker
+            position: new google.maps.LatLng(appData.views.DashboardView.locations[0], appData.views.DashboardView.locations[1]),
+            icon: image, //use our image as the marker
+            map:  appData.views.DashboardView.map,
+            title: '',
+            optimized: false
         });
         appData.views.DashboardView.markers.push(userMarker);
     },

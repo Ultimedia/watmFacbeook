@@ -127,7 +127,7 @@ appData.services.FacebookServices = Backbone.Model.extend({
 		var params = {
 			method: 'feed',
 			name: activityModel.attributes.title,
-			link: appData.settings.rootPath + '#activity/' + activityModel.attributes.activity_id,
+			link: appData.settings.forwardPath + '#forward/' + activityModel.attributes.activity_id,
 			caption: 'We App To Move',
 			description: activityModel.attributes.description
 		};
