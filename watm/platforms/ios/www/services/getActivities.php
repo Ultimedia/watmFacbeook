@@ -32,7 +32,7 @@
 		$usersCollection = array();
 		
 		while($userrow = $usersResult->fetch_assoc()){
-			$pr = array("user_id" => $userrow["user_id"], "avatar" => $userrow["avatar"], "name" => $userrow["name"]);
+			$pr = array("user_id" => $userrow["user_id"], "avatar" => $userrow["avatar"], "name" => $userrow["name"], "going" => $userrow["going"]);
 			$usersCollection[] = $pr;
 		}
 

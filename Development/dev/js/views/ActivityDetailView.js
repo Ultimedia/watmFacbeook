@@ -6,7 +6,6 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       appData.views.ActivityDetailView.wallPostCompleteHandler = this.wallPostCompleteHandler;
       appData.views.ActivityDetailView.addMap = this.addMap;
 
-
       Backbone.on('networkFoundEvent', this.networkFoundHandler);
       Backbone.on('networkLostEvent', this.networkLostHandler);
     }, 
@@ -47,7 +46,14 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       }
 
       this.setValidators();
+      $('#ee', appData.settings.currentPageHTML).delay(800).queue(function() {
+          $(this).css('display', 'block').textfill({max: 22});
+      });
 
+      $(window).resize(_.debounce(function(){
+          $('#ee', appData.settings.currentPageHTML).textfill();
+      }, 500));
+            
       return this; 
     }, 
 
@@ -111,7 +117,12 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       "click #popover-close": "sharePopopverClickHandler",
       "click #updateButton": "updateButtonClickHandler",
       "click #facebookShareButton": "facebookShareButtonClickHandler",
-      "click #messageSubmit": "messageSubmitHandler"
+      "click #messageSubmit": "messageSubmitHandler",
+      "click .cl-modal-backdrop": "modalDrop"
+    },
+
+    modalDrop: function(){
+      $('#popover', appData.settings.currentPageHTML).addClass('hide');
     },
 
     facebookShareButtonClickHandler: function(){

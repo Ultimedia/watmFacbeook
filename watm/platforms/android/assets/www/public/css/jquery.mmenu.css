@@ -200,17 +200,7 @@ html.mm-blocking #mm-blocker {
   display: block;
   padding: 10px 10px 10px 20px;
   margin: 0;
-}
-/* line 42, ../../../../Development/dev/sass/inc/_variables.scss */
-.mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults):after {
-  content: '';
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  display: block;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  font-family: "source_sans_prosemibold";
 }
 /* line 222, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults):after {
@@ -283,7 +273,7 @@ html.mm-blocking #mm-blocker {
 }
 /* line 299, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-list > li.mm-spacer {
-  padding-top: 40px;
+  margin-top: 30px;
 }
 /* line 303, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-list > li.mm-spacer.mm-label {
@@ -325,19 +315,15 @@ html.mm-blocking #mm-blocker {
   display: none;
   padding: 10px 0 10px 10px;
 }
-/* line 336, ../../../../Development/dev/sass/jquery.mmenu.scss */
-.mm-menu.mm-vertical .mm-list .mm-panel li:last-child:after {
-  border-color: transparent;
-}
-/* line 341, ../../../../Development/dev/sass/jquery.mmenu.scss */
+/* line 340, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-menu.mm-vertical .mm-list li.mm-opened > .mm-panel {
   display: block;
 }
-/* line 345, ../../../../Development/dev/sass/jquery.mmenu.scss */
+/* line 344, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-menu.mm-vertical .mm-list > li.mm-opened > a.mm-subopen {
   height: 40px;
 }
-/* line 348, ../../../../Development/dev/sass/jquery.mmenu.scss */
+/* line 347, ../../../../Development/dev/sass/jquery.mmenu.scss */
 .mm-menu.mm-vertical .mm-list > li.mm-opened > a.mm-subopen:after {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);

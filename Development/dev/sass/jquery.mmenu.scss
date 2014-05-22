@@ -212,12 +212,12 @@ html.mm-blocking
 			display: block;
 			padding: $mm_padding $mm_padding $mm_padding ( $mm_padding * 2 );
 			margin: 0;
+    		font-family: "source_sans_prosemibold";
 		}
 	}
 	
 	> li:not(.mm-subtitle):not(.mm-label):not(.mm-noresults)
 	{
-		@include border-bottom;
 		&:after
 		{
 			width: auto;
@@ -297,7 +297,7 @@ html.mm-blocking
 	// Spacers
 	> li.mm-spacer
 	{
-		padding-top: $mm_btnSize;
+		margin-top: 30px;
 		
 		&.mm-label
 		{
@@ -334,7 +334,6 @@ html.mm-blocking
 		
 		li:last-child:after
 		{
-			border-color: transparent;
 		}
 	}
 	li.mm-opened > .mm-panel

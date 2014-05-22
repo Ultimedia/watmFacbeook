@@ -113,7 +113,6 @@ appData.views.SettingsView = Backbone.View.extend({
       appData.settings.storageFound = false;
       appData.settings.dataLoaded = false;
 
-
       // back to the landing page
       location.reload(); 
     },   
@@ -126,6 +125,14 @@ appData.views.SettingsView = Backbone.View.extend({
       if(appData.settings.native){
         appData.services.utilService.updateLocalStorage();
       }
+
+      $('#mainMenu #userAvatar').css({
+          "background": "url("+  appData.settings.imagePath + appData.models.userModel.attributes.avatar + ") no-repeat",
+          "-webkit-background-size": "cover",
+          "-moz-background-size": "cover",
+          "-o-background-size": "cover",
+          "background-size": "cover"
+      });
     },
 
     changeAvatarHandler: function(){

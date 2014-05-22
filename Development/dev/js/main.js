@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://localhost/";
+appData.settings.rootPath = "http://ultimedia.biz/watm/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -153,6 +153,7 @@ appData.start = function(nativeApp){
       // menu
       $("#mainMenu").mmenu({
         // options object
+        dragOpen: false
       });
 
       // New services class

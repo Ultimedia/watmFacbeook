@@ -2,23 +2,26 @@
     <a href="#activity/<%= activity.activity_id %>">
     <span class="label"><h3><%= activity.title %><small> <%= activity.date %> <%= activity.time %></small></h3></span>
 
-    <% if (activity.full == true) { %>
-
-        <span class="full">Volzet</span>
-
-    <% } %>
-    
     <div class="dashboard-footer">
         <ul>
             <li class="table-location">
                 <%= activity.location %>
             </li>
+
             <li class="table-friends">
-                <% _.each(friends, function(friend) { %> 
-                    <% if(friend.going == 1) { %> 
-                    <span class="avatar" style="background: #f1f1f1 url('<%= imagePath %><%= friend.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
-                    <% } %>
-                <% }); %>
+                <% if(users.length === 0) { %> 
+                    <span>Geen deelnemers</span>
+                <% }else{ %>
+
+                    <% _.each(users, function(friend) { %> 
+
+                        <% var selected = ""; if(friend.going == 1) { %> 
+                            <% if(friend.user_id == userModel.user_id) { selected = "selected" } %>
+
+                            <span class="avatar <%= selected %> " style="background: #f1f1f1 url('<%= imagePath %><%= friend.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+                        <% } %>
+                    <% }); %>
+                <% } %>
             </li>
         </ul>
     </div>
@@ -26,7 +29,18 @@
 </div>
 
 
-<div class="activityAuthor">
 
-hell
+<% var full = ""; %> 
+<% if (activity.full == true) { full="full" } %>
+
+<div class="activityAuthor <%= full %>">
+    <% if(full != "") { %> 
+        Deze activiteit is volzet
+    <% }else{ %>
+        <% if(username != "") { %> 
+            Aangemaakt door <a href="#friend/<%= userid %>"><%= username %></a>
+        <% }else{ %>
+            Er zijn <%= users.length %> deelnemers
+        <% } %>
+    <% } %>
 </div>

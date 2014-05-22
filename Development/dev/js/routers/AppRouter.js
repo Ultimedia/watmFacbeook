@@ -84,7 +84,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     loading: function () {
-        console.log(appData.models.userModel);
 
         if(!appData.settings.dataLoaded){
             appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
@@ -96,6 +95,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     dashboard: function () {
         appData.settings.created = false;
         clearInterval(appData.settings.timer);
+
+        $('#activiteitenButton').addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
 
@@ -112,6 +113,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     planner: function () {
         clearInterval(appData.settings.timer);
 
+        $('#plannerButton').addClass('mm-selected');
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.PlannerView().render().$el);
         }else{
@@ -120,6 +123,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     profile: function () {
+        $('#profileButton').addClass('mm-selected');
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.ProfileView().render().$el);
         }else{

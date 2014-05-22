@@ -1,11 +1,11 @@
 <div class="cl-page" id="activityDetail">
   <div class="cl-bar-title">
     <a href="javascript:;" class="cl-btn" data-transition="slide-out" id="backButton">
-      <i class="entypo-icon">&#59237;</i>
+      <i class="prev-icon"></i>
     </a>
-    <div class="cl-title"><%= title %></div>
+    <div id="ee" class="cl-title"><span><%= title %> </span></div>
     <a href="javascript:;" class="cl-btn"  id="shareButton">
-      <i class="entypo-icon ">&#59157;</i>
+      <i class="share-icon"></i>
     </a>
   </div>
 
@@ -22,9 +22,9 @@
       </div>
 
       <div id="activityInfo">
-
-        <span>
-          <%= location %> 
+          <div>
+          <i class="location-icon"></i><span><%= location %>
+          </span></div>
         </span>
         
         <a id="navigateButton" href="javascript:;">Toon de weg</a>
@@ -50,9 +50,11 @@
       <div class="cl-popover align-center pop-from-bottom">
       <div class="cl-article padded">
         <ul>
-          <li><a href="javascript:;" id="facebookShareButton" class="cl-btn flat-green">Delen op Facebook</a></li>
+          <li>
+            <a id="facebookShareButton" href="javascript:;" class="cl-btn cl-depth-btn blue">Delen op Facebook</a>
+          </li>
         </ul>
-      <a href="javascript:;" id="popover-close" class="cl-btn" data-close-element="popover-context">Sluit</a>
+      <a href="javascript:;" id="popover-close" class="cl-btn cl-depth-btn red" data-close-element="popover-context">Sluit</a>
       </div>
       </div>
       <div class="cl-modal-backdrop"></div>

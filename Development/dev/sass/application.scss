@@ -1,6 +1,12 @@
 @import "compass/reset";
 @import "compass";
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+
+
 /* apply a natural box layout model to all elements */
 *, *:before, *:after {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
@@ -20,7 +26,6 @@
 .clear {
     clear: both;
 }
-
 
 .bubblingG {
   text-align: center;
@@ -240,8 +245,10 @@ form .cl-btn{
 
 #navigateButton{
 	display: inline-block;
-	background: #fff;
-	float: right;
+  background: #fff;
+  color: #fff;
+  font-size: 12px;
+  float: right;
 }
 
 #createActivity .cl-btn-toolbar .cl-btn,
@@ -255,6 +262,7 @@ form .cl-btn{
 	margin: 0;
   background: #d55353;
 }
+
 
 #activityDetail .cl-btn-toolbar .cl-btn.active, #navigationTabs .cl-btn-toolbar .cl-btn.active{
 	background: #fff !important;
@@ -456,7 +464,12 @@ ul.autocomplete li a {
   }
 
   #directions{
-  height: 50%;
+    height: 50%;
+    padding: 10px;
+  }
+
+  .adp-substep{
+    padding: 10px;
   }
 }
 
@@ -834,7 +847,7 @@ input.error{
 
 
 .prev-icon{
-  background: url('assets/prev-icon@x2.png') no-repeat center center / 13px 22px;
+  background: url('assets/prev-icon@x2.png') no-repeat left center / 11px 22px;
   width: 40px;
   height: 40px;
   display: block;
@@ -854,6 +867,21 @@ input.error{
   display: block;
 }
 
+.share-icon{
+  background: url('assets/share-icon@x2.png') no-repeat center center / 22px 19px;
+  width: 22px;
+  height: 19px;
+  display: block;
+}
+
+.location-icon{
+    background: url('assets/map-icon@x2.png
+') no-repeat center center / 15px 14px;
+  width: 22px;
+  height: 19px;
+  display: inline-block;
+
+}
 
 /**
 * Loading
@@ -1018,6 +1046,16 @@ input.error{
 #dashboard{
   position: relative;
     
+    #mapBtn{
+      display: none;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background: #fff;
+      padding: 10px;
+    }
+
     .cl-bar-title{
       position: absolute;
       top: 0;
@@ -1037,7 +1075,7 @@ input.error{
     .add-icon{
       display: block;
       padding: 14px;
-      background: url("assets/add-icon@x2.png") no-repeat center right/20px 20px;
+      background: url("assets/add-icon@x2.png") no-repeat 16px 10px/20px 20px;
       height: 40px;
       width: 40px;
     }
@@ -1066,13 +1104,16 @@ input.error{
     }
 
     .cl-content{
-      height: 100%;
+      height: calc(100% - 50%) !important;
       background: #b6b7ba url('../../common/img/pattern4.png') 0 0 / 320px 300px;
 
       .cl-message{
+        font-family: "aleolight";
+        text-align: center;
         padding: 20px 10px;
         background-color: #fef5e4;
         line-height: 1.6em;
+        margin-bottom: 20px;
       }
     }
 
@@ -1086,7 +1127,9 @@ input.error{
         width: auto;
         display: block;
         margin-top: 7px;
-
+        font-family: "ropa_sansregular";
+        font-size: 13px;
+        line-height: 11px;
         a{
           color: #fff;
           text-transform: uppercase;
@@ -1095,7 +1138,7 @@ input.error{
           border-radius: 20px;
           -webkit-border-radius: 20px;
           -moz-border-radius: 20px;
-          font-size: 11px;
+          font-size: 12px;
         }
 
         .active{
@@ -1119,70 +1162,58 @@ input.error{
     }
 
     #activityTable{
-
       .activityAuthor{
         background: #dacab4;
         padding: 10px;
-        border-radius: 5px;
         display: block !important;
-        margin: 10px 10px;
-        -webkit-box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
-        -moz-box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
-        box-shadow: inset -4px -4px 0px -2px rgba(151,139,123,1);
+        margin: 0 10px 10px 10px;
+        font-family: "aleolight";
+        a{
+          font-weight: bold;
+          color: #505050;
+        }
+      } 
+      .full{
+        background-color: #dd6562;
+        color: #fff;
       }
 
       .activityContainer{
         background: #fff;
         display: block !important;
-        margin: 10px 10px;
-        border-radius: 4px;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
+        margin: 15px 10px 0 10px;
         -moz-background-clip: padding;
         -webkit-background-clip: padding-box;
         background-clip: padding-box; /* prevents bg color from leaking outside the border */
         position: relative;
-
-        -webkit-box-shadow: inset -4px -4px 0px -2px rgba(153,153,156,1);
-        -moz-box-shadow: inset -4px -4px 0px -2px rrgba(153,153,156,1);
-        box-shadow: inset -4px -4px 0px -2px rgba(153,153,156,1);
-        .full{
-          position: absolute;
-          right: 0;
-          top: 15px;
-          background-color: #d95555;
-          padding: 5px;
-          color: #fff;
-          border-radius: 3px;
-          -webkit-border-radius: 3px;
-          text-transform: uppercase;
-          font-family: "source_sans_prosemibold";
-        }
-
-        span{
-          margin: 5px 10px;
-        }
 
         a{
           padding: 0;
         }
 
         h3{
-          margin: 5px 0;
-          font-size: 2em;
+          margin: 0;
+          font-size: 1.8em;
+          letter-spacing: -1px;
           text-transform: capitalize;
           font-weight: bold;
           color: #505050;
           padding: 0 10px;
-
+          margin: 14px 0 4px;
+          display: inline-block;
+          font-family: "ropa_sansregular";
           small{
+           letter-spacing: 0px;
+            color: #505050;
             font-size: 14px;
             font-weight: normal;
+            text-transform: uppercase;
           }
         }
 
 
       .dashboard-footer{
+        padding-bottom: 4px;
 
         ul{
           margin: 0 10px;
@@ -1190,22 +1221,25 @@ input.error{
           li{
             font-size: 12px;
             display: inline-block;
-            color: #fff;
             padding-left: 20px;
             min-height: 36px;
+            color: #505050;
           }
 
           .table-location{
-            padding-left: 20px;
-            background:url('assets/cursor-icon@x2.png') no-repeat 0 10px / 11px 15px;
+            padding-left: 22px;
+            background:url('assets/cursor-icon@x2.png') no-repeat 0 10px / 16px 15px;
             margin-right: 30px;
             float: left;
             line-height: 36px;
           }
 
           .table-friends{
-            background:url('assets/friend-icon@x2.png') no-repeat 0 12px / 13px 13px;
-
+            background:url('assets/friend-icon@x2.png') no-repeat 0 10px / 22px 16px;
+            span{
+              line-height: 36px;
+              margin-left: 5px;
+            }
             .avatar{
               display: block;
               width: 25px;
@@ -1213,8 +1247,12 @@ input.error{
               border-radius: 25px;
               -webkit-border-radius: 25px;
               -moz-border-rafisu: 25px;
-              margin: 6px 0 0 5px;
+              margin: 4px 0 0 5px;
               float: left;
+            }
+
+            .avatar.selected{
+              border: 3px solid #4dd6d1;
             }
           }
         }
@@ -1297,6 +1335,12 @@ input.error{
 }
 
 #dashboard.mapOpen{
+  height: 100%;
+
+  #mapBtn{
+    display: block;
+  }
+
   #sortBar{
     display: none;
   }
@@ -1304,16 +1348,81 @@ input.error{
     display: none;
   }
 
+  #mapButton{
+    display: block;
+  }
+
+
   #map_canvas{
     height: 100%;
   }
 
   #fullScreenButton{
-      height: 44px;
-      background: #378488 url('assets/normalscreen-icon@x2.png') no-repeat center center / 15px 15px;
-    }
+    heigth: 40px;
+    background: #a19a8f url('assets/normalscreen-icon@x2.png') no-repeat center center / 15px 15px !important;
+  }
 }
 
+
+/** 
+* Menu
+*/
+#mainMenu{
+  background: #333333;
+  
+  .mm-list{
+    margin-top: 184px;
+    padding: 0;
+    .mm-selected{
+      background: #595959;
+    }
+
+    li{
+      color: #fff;
+      font-size: 15px;
+    }
+  }
+
+  #userName{
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+    color: #fff;
+    font-size: 1.3em;
+    font-family: "aleolight";
+    font-weight: 100;
+  }
+
+  #menuAvatarSection{
+    padding: 20px 0 10px 0;
+
+    #userAvatar{
+      width: 90px;
+      height: 90px;
+      display: block;
+      border-radius: 80px;
+      margin: 0 auto;
+      border: 1px solid #f4f4f4;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/**
+* Running on a device but in the webbrowser
+*/
+#createButton{
+  background: #dd6562 !important;
+  margin-left: 15px;
+  text-align: center;
+  padding: 10px;
+  font-family: "source_sans_prosemibold";
+  display: block;
+  width: 88%;
+  text-transform: uppercase;
+  font-size: 15px;
+}
 
 
 /** 
@@ -1437,19 +1546,23 @@ input.error{
       #messageSubmit{
         width: 100px !important; 
         float: right;
+        text-align: center;
+        line-height: 32px;
+        font-family: "source_sans_prosemibold";
+        font-size: 14px;
       }
 
       #messageInput{
         border: 0;
         -webkit-appereance: none;
-        border-radius: 3px;
-        -wekit-border-radius: 3px;
-        -moz-border-radius: 3px;
+        border-radius: 0;
+        -wekit-border-radius: 0;
+        -moz-border-radius: 0;
         width: 100%;
-        height: 37px;
-        padding-left: 12px;
+        padding-left: 6px;
         padding-right: 12px;
-        margin: 3px 0 0 7px;
+        margin: 3px 0 0 0;
+        line-height: 30px;
       }
     }
 #messageBox.open{
@@ -1461,13 +1574,46 @@ input.error{
 * Activity Detail
 */
 #activityDetail{
-  background: #31424f;
+  #facebookShareButton{
+    color: #fff;
+    font-family: "source_sans_prosemibold";
+    font-size: 14px;
+    margin: 0;
+    padding: 5px;
+  }
+
+  #ee{
+    display: none;
+    width: 75%;
+    span{
+      width: 75%;
+    }
+  }
+
+  #goingFullMessage{
+    margin-bottom: 20px;
+  }
+
+  #shareButton{
+    margin-top: 12px;
+  }
+
+  .cl-bar-title{
+    background: rgba(104, 218, 212, 0.90);
+    min-height: 75px;
+  }
 
   .cl-message{
-    padding: 10px;
+    font-family: "aleolight";
+    text-align: center;
+    padding: 20px 10px;
     background-color: #fef5e4;
     line-height: 1.6em;
-    margin-bottom: 10px;
+  }
+
+  #description{
+    line-height: 17px;
+    font-size: 13px;
   }
 
   #popover{
@@ -1478,13 +1624,22 @@ input.error{
       left: 0;
       border-radius: 0;
 
+      #popover-close{
+        padding: 2px;
+      }
+
       ul{
-        margin: 20px 0;
+        margin: 0;
         padding: 0;
+
+        #facebookShareButton{
+          margin-bottom: 10px;
+        }
 
         li{
           list-style-type: none;
           margin: 0;
+
           a{
             padding: 10px 0;
           }
@@ -1508,11 +1663,22 @@ input.error{
     margin-top: 5px;
   }
 
+  #mediaForm{
+    height: 100%;
+  }
 
   #mediaContent{
     #addMediaButton{
       width: 100%;
+      line-height: 20px;
+      display: block;
+      padding: 10px 10px 10px 20px;
       margin-bottom: 20px;
+      line-height: 22px;
+      background: #dd6562 !important;
+      color: #fff;
+      font-family: "source_sans_prosemibold";
+      font-size: 14px;
     }
 
     #mediaContenList{
@@ -1532,15 +1698,27 @@ input.error{
   #activityInfo{
     height: 40px;
     width: 100%;
-    background: rgba(55,55,55,0.5);
+    background: #282828;
     position: absolute;
     bottom: 0;
     color: #fff;
     padding: 0 10px;
-  
+    z-index: 100;
     span{
       float: left;
       line-height: 40px;
+      margin-left: 5px;
+    }
+
+    div{
+      line-height: 40px;
+      width: 100px;
+      float: left;
+    
+      .location-icon{
+        margin-top: 10px;
+        float: left;
+      }
     }
 
     #navigateButton{
@@ -1554,24 +1732,30 @@ input.error{
   #activityDetailTabs{
       margin-bottom: 0;
       margin-top: 20px;
-      margin-left: 5px; 
-      margin-right: 5px;
+      margin-left: 10px;
+      margin-right: 10px;
       text-transform: uppercase;
-
       .cl-btn{
         display: inline-block;
         float: left;
         font-size: 11px;
         width: auto;
+        font-family: "source_sans_prosemibold";
+        font-size: 13px;
+        background-color: #282828;
+        .active{
+          background: #fff;
+        }
       }
   }
 
   .cl-content{
-    padding: 0 5px 0 5px;
+    margin: 0;
+    padding: 0;
     background: #31424f;
     overflow-y: auto;
-    height: calc(100% - 54px);
-
+    height: calc(100% - 55px);
+    background: #868686 url("../../common/img/pattern4.png") 0 0/320px 300px;
     #navigateButton{
 
     }
@@ -1581,14 +1765,14 @@ input.error{
       position: relative;
       overflow: auto;
       height: 100%;
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 10px;
+      margin-right: 10px;
       clear: both;
     }
 
     #praktischContent, #mediaContent, #messagesContent ul{
-      padding: 10px 10px 0 10px;
-
+      padding: 20px 10px 0 10px;
+      height: 100%;
       padding-bottom: 20px;
 
       span{
@@ -1606,8 +1790,8 @@ input.error{
 
     h4{
       display: inline-block;
-      font-family: "source_sans_prosemibold";
-      text-transform: uppercase;
+      font-family: "bitteritalic";
+      text-transform: capitalize;
       font-size: 12px;
     }
 
@@ -1619,6 +1803,10 @@ input.error{
       margin: 12px 0 24px 0;
       clear: both;
       display: block;
+      color: #adadac;
+      border: none;
+      border-top: 1px solid #adadac;
+      height: 1px;
     }
     #messagesContent{
       ul{
@@ -1696,11 +1884,15 @@ input.error{
 
     #goingList{
       margin-bottom: 30px;
-
+      display: none;
       label{
-        border: 1px solid #378488;
-        color: #252d34;
+        cursor: pointer;
+        border: 1px solid #dd6562;
+        color: #dd6562;
         text-align: center;
+        line-height: 22px;
+        font-family: "source_sans_prosemibold";
+        font-size: 14px;
       }
 
       label:first-child{
@@ -1708,8 +1900,9 @@ input.error{
       }
 
       .checked{
-        background: #4cd6d1;
-        color: #252d34;
+        background: #dd6562;
+        color: #fff;
+        border: 0;
       }
     }
   }
@@ -1813,7 +2006,7 @@ input.error{
 */
 #planner{
   .cl-content{
-    height: calc(100% - 108px);
+    height: calc(100% - 20px);
     background: #e4e4e4;
   
     .cl-message{
@@ -2207,13 +2400,3 @@ input.error{
   }
 }
 
-/**
-* Running on a device but in the webbrowser
-*/
-#createButton{
-  background: #dd6562 !important;
-  display: inline-block;
-  margin-left: 15px;
-  text-align: center;
-  padding: 10px;
-}

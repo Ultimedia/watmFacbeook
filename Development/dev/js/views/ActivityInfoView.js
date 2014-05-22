@@ -36,8 +36,17 @@ appData.views.ActivityInfoView = Backbone.View.extend({
     },
     
     render: function() { 
+        if(this.model.attributes.user_id){
+            var user = appData.collections.users.where({"user_id": this.model.attributes.user_id})[0];
+            if(user){
+     
+                this.model.attributes.creator = user.attributes.name;
+            }
+        }
+
     	this.$el.html(this.template(this.model.attributes));
     	appData.settings.currentModuleHTML = this.$el;
+
 
         $('#praktischContent .radio-list input[type="radio"]', this.$el).change(function() {
                     // Remove all checked

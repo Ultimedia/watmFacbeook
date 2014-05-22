@@ -536,6 +536,11 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/pacifico-webfont.svg \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/pacifico-webfont.ttf \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/pacifico-webfont.woff \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/ropasans-regular-demo.html \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/ropasans-regular-webfont.eot \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/ropasans-regular-webfont.svg \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/ropasans-regular-webfont.ttf \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/ropasans-regular-webfont.woff \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/sourcesanspro-black-demo.html \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/sourcesanspro-black-webfont.eot \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/fonts/sourcesanspro-black-webfont.svg \
@@ -624,6 +629,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/pattern1.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/pattern2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/pattern3.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/pattern4.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/registerpattern.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/sliderButton.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/img/sportpattern.png \
@@ -745,6 +751,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/open-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/prev-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/search-icon@x2.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/share-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/slider-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/speech-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/tick-icon@x2.png \
@@ -792,6 +799,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.hammer.min.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.mmenu.min.all.js \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.quickfit.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/jquery.validate.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/multi-sort.collection.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/pageslider.js \

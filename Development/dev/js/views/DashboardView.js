@@ -65,7 +65,8 @@ appData.views.DashboardView = Backbone.View.extend({
         "click #favs": "favsHandler",
         "keyup #searchInput": "searchHandler",
         "click #fullScreenButton": "fullscreenToggleHandler",
-        "click #menuButton": "menuOpenHandler"
+        "click #menuButton": "menuOpenHandler",
+        "click #mapBtn": "fullscreenToggleHandler"
     },
 
     fullscreenToggleHandler: function(){
@@ -74,17 +75,18 @@ appData.views.DashboardView = Backbone.View.extend({
     },
 
     activitiesUpdateHandler: function(){
+        appData.collections.activities.each(function(activity) {
+            activity.setGoing();
+        });
+
         this.generateAcitvitiesCollection();
     },
 
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
 
-        console.log("activities");
-
         // show message that no activities have been found
         if(appData.collections.activities.length === 0){
-
 
         }else{
             appData.views.activityListView = [];
@@ -101,7 +103,8 @@ appData.views.DashboardView = Backbone.View.extend({
 
             }else if(this.favouriteSportsFilter){
 
-                $(appData.collections.filteredActivitiesCollection).each(function(index, activity) {
+                $(appData.collections.filteredActivitiesCollection.models).each(function(index, activity) {
+
                   appData.views.locationList.push(activity);
                   appData.views.activityListView.push(new appData.views.DashboardActivityView({
                     model : activity
@@ -211,34 +214,38 @@ appData.views.DashboardView = Backbone.View.extend({
                 appData.collections.activities.sort_by_attribute('distance');
             break;
 
+            case 2:
+                var filters = [];
+                appData.models.userModel.attributes.myFavouriteSports.each(function(model){
+                    var filterCollection = new ActivitiesCollection();
+                        filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id})[0];
+                        filters.push(filterCollection);
+                });
+
+                var allActivities = new ActivitiesCollection();
+                var extractedModels = new ActivitiesCollection();
+                _.each(filters,function(collection, index){
+                    $(collection).each(function(ind, collectionEl){
+                        console.log("el");
+                        console.log(collectionEl);
+                        extractedModels.push(collectionEl);
+                    });
+                });
+                        console.log("em");
+
+                console.log(extractedModels);
+
+                appData.collections.filteredActivitiesCollection = extractedModels;
+                this.favouriteSportsFilter = true;
+            break;
+
         }
 
         this.generateAcitvitiesCollection();
     },
 
     favsHandler: function(){
-        var filters = [];
-        appData.models.userModel.attributes.myFavouriteSports.each(function(model){
-            var filterCollection = new ActivitiesCollection();
-                filterCollection = appData.collections.activities.where({"sport_id": model.attributes.sport_id});
-                filters.push(filterCollection);
-        });
-
-        var allActivities = new ActivitiesCollection();
-        var extractedModels = new ActivitiesCollection();
-        _.each(filters,function(collection, index){
-            $(collection).each(function(ind, collectionEl){
-        
-                extractedModels.push(collectionEl);
-            });
-        });
-
-        console.log(extractedModels);
-
-        appData.collections.filteredActivitiesCollection = extractedModels;
-        this.favouriteSportsFilter = true;
-        this.generateAcitvitiesCollection();
-
+     
     },
 
     render: function () {

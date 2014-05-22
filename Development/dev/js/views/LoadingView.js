@@ -33,7 +33,7 @@ appData.views.LoadingView = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template(this.model.attributes));
 
-    	appData.settings.currentPageHTML = this.$el;
+        appData.settings.currentPageHTML = this.$el;
         
         if(appData.settings.userLoggedIn){
 
@@ -109,6 +109,15 @@ appData.views.LoadingView = Backbone.View.extend({
         window.localStorage.setItem("userModel", JSON.stringify(appData.models.userModel));
 
         appData.settings.dataLoaded = true;
+         $('#mainMenu #userAvatar').removeAttr('style');
+        $('#mainMenu #userAvatar').css({
+            "background": "url("+  appData.settings.imagePath + appData.models.userModel.attributes.avatar + ") repeat center center",
+            "background-size": "cover"
+        });
+        $('#mainMenu #userName').text(appData.models.userModel.attributes.name);
+        $('#mainMenu #userAvatar').css({
+            'background-repeat': 'no-repeat'
+        });
 
 
         if(appData.models.userModel.attributes.myFavouriteSports.length > 0){
