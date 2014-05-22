@@ -297,6 +297,13 @@ module.exports = [
         "clobbers": [
             "PushNotification"
         ]
+    },
+    {
+        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
+        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
+        "clobbers": [
+            "plugin.notification.local"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -314,7 +321,8 @@ module.exports.metadata =
     "org.apache.cordova.media-capture": "0.3.0",
     "org.apache.cordova.network-information": "0.2.8",
     "org.apache.cordova.splashscreen": "0.3.0",
-    "com.phonegap.plugins.PushPlugin": "2.2.0"
+    "com.phonegap.plugins.PushPlugin": "2.2.0",
+    "de.appplant.cordova.plugin.local-notification": "0.8.0dev"
 }
 // BOTTOM OF METADATA
 });

@@ -13,7 +13,6 @@
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		2C155282ABCC4396AB559E3A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C9ECDA696544B88C9CB86A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
 		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
 		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
 		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
@@ -41,6 +40,7 @@
 		694BBF75BB17485B81A18A4C /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = D3163A216DA2409D9FE14783 /* CDVSound.m */; };
 		6C53523D19238510003C6849 /* AppDelegate+notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53523A19238510003C6849 /* AppDelegate+notification.m */; };
 		6C53523E19238510003C6849 /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53523C19238510003C6849 /* PushPlugin.m */; };
+		6CB728FE192DE50200C56B13 /* APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB728FD192DE50200C56B13 /* APPLocalNotification.m */; };
 		6CFE30A21909215E00F5F983 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */; };
 		6CFE30A31909215E00F5F983 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CFE30A11909215E00F5F983 /* FacebookSDK.framework */; };
 		6CFE30D019094E4C00F5F983 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CFE30CF19094E4C00F5F983 /* Images.xcassets */; };
@@ -68,23 +68,6 @@
 		ED4C24C260974532BA609869 /* CDVCapture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B62EDA1A29AA4ECA9DC2133D /* CDVCapture.bundle */; };
 		F0CB8E3527AD46BBA66C8F75 /* CDVCompass.m in Sources */ = {isa = PBXBuildFile; fileRef = 865E702463934533A11EC441 /* CDVCompass.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = CordovaLib;
-		};
-		301BF550109A68C00062928A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D;
-			remoteInfo = CordovaLib;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		006971C9BCA748DF84A51CBC /* CDVFileTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVFileTransfer.m; path = "org.apache.cordova.file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; };
@@ -135,6 +118,8 @@
 		6C53523A19238510003C6849 /* AppDelegate+notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+notification.m"; sourceTree = "<group>"; };
 		6C53523B19238510003C6849 /* PushPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushPlugin.h; sourceTree = "<group>"; };
 		6C53523C19238510003C6849 /* PushPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushPlugin.m; sourceTree = "<group>"; };
+		6CB728FC192DE50200C56B13 /* APPLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPLocalNotification.h; sourceTree = "<group>"; };
+		6CB728FD192DE50200C56B13 /* APPLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPLocalNotification.m; sourceTree = "<group>"; };
 		6CFE309E1909215E00F5F983 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookConnectPlugin.h; sourceTree = "<group>"; };
 		6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookConnectPlugin.m; sourceTree = "<group>"; };
 		6CFE30A11909215E00F5F983 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -187,7 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
-				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
@@ -310,7 +294,6 @@
 		301BF52E109A57CC0062928A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				301BF535109A57CC0062928A /* libCordova.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -318,6 +301,7 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				6CB728F7192DE50200C56B13 /* de */,
 				6C53523819238510003C6849 /* PushPlugin */,
 				6CFE309E1909215E00F5F983 /* FacebookConnectPlugin.h */,
 				6CFE309F1909215E00F5F983 /* FacebookConnectPlugin.m */,
@@ -421,6 +405,47 @@
 			path = com/phonegap/plugins/PushPlugin;
 			sourceTree = "<group>";
 		};
+		6CB728F7192DE50200C56B13 /* de */ = {
+			isa = PBXGroup;
+			children = (
+				6CB728F8192DE50200C56B13 /* appplant */,
+			);
+			path = de;
+			sourceTree = "<group>";
+		};
+		6CB728F8192DE50200C56B13 /* appplant */ = {
+			isa = PBXGroup;
+			children = (
+				6CB728F9192DE50200C56B13 /* cordova */,
+			);
+			path = appplant;
+			sourceTree = "<group>";
+		};
+		6CB728F9192DE50200C56B13 /* cordova */ = {
+			isa = PBXGroup;
+			children = (
+				6CB728FA192DE50200C56B13 /* plugin */,
+			);
+			path = cordova;
+			sourceTree = "<group>";
+		};
+		6CB728FA192DE50200C56B13 /* plugin */ = {
+			isa = PBXGroup;
+			children = (
+				6CB728FB192DE50200C56B13 /* local-notification */,
+			);
+			path = plugin;
+			sourceTree = "<group>";
+		};
+		6CB728FB192DE50200C56B13 /* local-notification */ = {
+			isa = PBXGroup;
+			children = (
+				6CB728FC192DE50200C56B13 /* APPLocalNotification.h */,
+				6CB728FD192DE50200C56B13 /* APPLocalNotification.m */,
+			);
+			path = "local-notification";
+			sourceTree = "<group>";
+		};
 		6CFE30A01909215E00F5F983 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,7 +478,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				301BF551109A68C00062928A /* PBXTargetDependency */,
 			);
 			name = watm;
 			productName = watm;
@@ -501,16 +525,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		301BF535109A57CC0062928A /* libCordova.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCordova.a;
-			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -581,6 +595,7 @@
 				65C2495624BE4FCEBF86C51B /* CDVLogger.m in Sources */,
 				6C53523D19238510003C6849 /* AppDelegate+notification.m in Sources */,
 				57B3B3D67FEA4A73AFE990B6 /* CDVDevice.m in Sources */,
+				6CB728FE192DE50200C56B13 /* APPLocalNotification.m in Sources */,
 				F0CB8E3527AD46BBA66C8F75 /* CDVCompass.m in Sources */,
 				981923C80D714E6E91A996ED /* CDVFile.m in Sources */,
 				17753591C1E942F7B2AC5D22 /* CDVLocalFilesystem.m in Sources */,
@@ -596,14 +611,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		301BF551109A68C00062928A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CordovaLib;
-			targetProxy = 301BF550109A68C00062928A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1F766FDC13BBADB100FB74C0 /* Localizable.strings */ = {

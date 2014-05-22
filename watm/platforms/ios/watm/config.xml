@@ -64,6 +64,10 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="LocalNotification">
+        <param name="ios-package" onload="true" value="APPLocalNotification" />
+        <param name="onload" value="true" />
+    </feature>
     <preference name="phonegap-version" value="3.0.0" />
     <name>watm</name>
     <description>

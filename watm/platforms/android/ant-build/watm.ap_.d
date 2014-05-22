@@ -644,6 +644,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/img/screen-xhdpi-portrait.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/com.phonegap.plugins.facebookconnect \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.device-orientation \
@@ -660,6 +661,8 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/com.phonegap.plugins.facebookconnect/www/phonegap/plugin/facebookConnectPlugin/facebookConnectPlugin.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin/www \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \

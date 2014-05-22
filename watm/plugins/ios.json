@@ -153,6 +153,10 @@
                         {
                             "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"LocalNotification\"><param name=\"ios-package\" onload=\"true\" value=\"APPLocalNotification\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -221,6 +225,9 @@
             "PACKAGE_NAME": "be.devine.ko"
         },
         "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "be.devine.watm"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "be.devine.watm"
         }
     },

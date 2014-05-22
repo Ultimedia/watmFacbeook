@@ -41,6 +41,15 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/GCMIntentService.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/PushHandlerActivity.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/com/plugin/gcm/PushPlugin.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$1.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$2.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$3.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$4.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Options.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Receiver.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ReceiverActivity.class \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Restore.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
