@@ -684,7 +684,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = watm;
+				PRODUCT_NAME = "watm";
 				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -724,7 +724,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = watm;
+				PRODUCT_NAME = "watm";
 				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://ultimedia.biz/watm/";
+appData.settings.rootPath = "http://localhost/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -199,6 +199,8 @@ appData.start = function(nativeApp){
       if(appData.settings.native){
           appData.settings.pictureSource = navigator.camera.PictureSourceType;
           appData.settings.destinationType = navigator.camera.DestinationType;
+        
+
         /*
           var pushNotification;
             function onDeviceReady() {
@@ -704,7 +706,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
       var elementPosition = $('#activityDetailTabs', appData.settings.currentPageHTML).offset();
 
-       appData.settings.mapAdded = false;
+      appData.settings.mapAdded = false;
       if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
          this.addMap();
       }else if(!appData.settings.native){
@@ -905,20 +907,43 @@ appData.views.ActivityInfoView = Backbone.View.extend({
     	this.$el.html(this.template(this.model.attributes));
     	appData.settings.currentModuleHTML = this.$el;
 
+        var model = this.model;
 
         $('#praktischContent .radio-list input[type="radio"]', this.$el).change(function() {
                     // Remove all checked
             $(this).parents('.radio-list').find('label').removeClass('checked');
             $(this).parent().addClass('checked');
 
+
             var selectedData = $(this).attr('id');
                 selectedData = selectedData.split('-');
                 selectedData = selectedData[1];
                 
                 appData.services.phpService.setGoingToActivity(appData.models.activityModel.attributes.activity_id, selectedData);
-                
+   
                 if(selectedData == 1){
+                    // set a local reminder
                     appData.services.challengeService.checkChallenges(appData.models.userModel, true, false, false, true, appData.models.activityModel);
+
+                    var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
+                    
+                    if(appData.settings.native){
+
+                        window.plugin.notification.local.add({
+                          id:      model.attributes.activity_id,
+                          title:   model.attributes.title + " gaat beginnen",
+                          message: 'Haast je snel naar ' + model.attributes.location,
+                          repeat:  'yearly',
+                          date:    date,
+                          autoCancel: true
+                        });
+                    }
+                }else{
+                    if(appData.settings.native){
+                        window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
+                            alert("canceled");
+                        });
+                    }
                 }
         });
 
@@ -970,8 +995,6 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         });
         $('#participantStat').text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
       });
-
-
 
      // disable options if the activity is full
      var goingCheck = false;
@@ -2100,7 +2123,7 @@ appData.views.DashboardView = Backbone.View.extend({
         "click #mapBtn": "fullscreenToggleHandler"
     },
 
-    fullscreenToggleHandler: function(){
+    fullscreenToggleHandler: function(){        
         $('#dashboard',appData.settings.currentPageHTML).toggleClass('mapOpen');
         google.maps.event.trigger(appData.views.DashboardView.map, 'resize');
     },
@@ -4838,6 +4861,22 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        success:function(data){
 	        	if(data.value === true){
 	        		Backbone.trigger('activityCreated', data.activity_id);
+	        	/*
+	        		// set a reminder
+	        		                // Test
+      var now                  = new Date().getTime(),
+          _60_seconds_from_now = new Date(now + 60*1000);
+
+      window.plugin.notification.local.add({
+          id:      1,
+          title:   "Jouw activiteit" + activityModel.attributes.title + " gaat beginnen",
+          message: 'De activiteit die je hebt aangemaakt gaat beginnen',
+          repeat:  'weekly',
+          date:    _60_seconds_from_now
+      });
+
+      alert(window.plugin.notification);*/
+
 	        		appData.services.avatarService.addScore("create");
         			appData.services.challengeService.checkChallenges(appData.models.userModel, false, true, false, false);
 	        	}else{
@@ -5637,6 +5676,24 @@ appData.services.UtilServices = Backbone.Model.extend({
         states[Connection.NONE]     = false;
 
         appData.settings.network = states[networkState];
+  },
+
+  convertDate: function(date, time, notification){
+ 	var myTimeDate = date + " " + time;
+  	var bits = myTimeDate.split(/\D/);
+
+  	// now fix the month
+  	var month = bits[1] - 1;
+  	var date = new Date(bits[0], month, bits[2], bits[3], bits[4]); 	
+  
+  	// if this is a notification make it 30 minutes before the activity
+  	if(notification){
+		var now                  = new Date().getTime(),
+    		date = new Date(now + 60*1000);
+  		//date = new Date(date.getTime() - 30*60000);
+  	}
+
+  	return date;
   }
 
 });

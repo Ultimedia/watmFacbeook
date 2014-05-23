@@ -753,6 +753,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/normalscreen-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/open-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/prev-icon@x2.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/scrollDown@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/search-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/share-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/slider-icon@x2.png \

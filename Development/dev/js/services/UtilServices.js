@@ -147,6 +147,22 @@ appData.services.UtilServices = Backbone.Model.extend({
         states[Connection.NONE]     = false;
 
         appData.settings.network = states[networkState];
+  },
+
+  convertDate: function(date, time, notification){
+ 	var myTimeDate = date + " " + time;
+  	var bits = myTimeDate.split(/\D/);
+
+  	// now fix the month
+  	var month = bits[1] - 1;
+  	var date = new Date(bits[0], month, bits[2], bits[3], bits[4]); 	
+  
+  	// if this is a notification make it 30 minutes before the activity
+  	if(notification){
+  		date = new Date(date.getTime() - 30*60000);
+  	}
+
+  	return date;
   }
 
 });

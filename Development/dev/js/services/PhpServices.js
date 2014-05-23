@@ -19,6 +19,22 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        success:function(data){
 	        	if(data.value === true){
 	        		Backbone.trigger('activityCreated', data.activity_id);
+	        	/*
+	        		// set a reminder
+	        		                // Test
+      var now                  = new Date().getTime(),
+          _60_seconds_from_now = new Date(now + 60*1000);
+
+      window.plugin.notification.local.add({
+          id:      1,
+          title:   "Jouw activiteit" + activityModel.attributes.title + " gaat beginnen",
+          message: 'De activiteit die je hebt aangemaakt gaat beginnen',
+          repeat:  'weekly',
+          date:    _60_seconds_from_now
+      });
+
+      alert(window.plugin.notification);*/
+
 	        		appData.services.avatarService.addScore("create");
         			appData.services.challengeService.checkChallenges(appData.models.userModel, false, true, false, false);
 	        	}else{

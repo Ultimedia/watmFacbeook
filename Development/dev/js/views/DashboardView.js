@@ -69,7 +69,7 @@ appData.views.DashboardView = Backbone.View.extend({
         "click #mapBtn": "fullscreenToggleHandler"
     },
 
-    fullscreenToggleHandler: function(){
+    fullscreenToggleHandler: function(){        
         $('#dashboard',appData.settings.currentPageHTML).toggleClass('mapOpen');
         google.maps.event.trigger(appData.views.DashboardView.map, 'resize');
     },

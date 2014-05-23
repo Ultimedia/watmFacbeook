@@ -47,20 +47,41 @@ appData.views.ActivityInfoView = Backbone.View.extend({
     	this.$el.html(this.template(this.model.attributes));
     	appData.settings.currentModuleHTML = this.$el;
 
+        var model = this.model;
 
         $('#praktischContent .radio-list input[type="radio"]', this.$el).change(function() {
                     // Remove all checked
             $(this).parents('.radio-list').find('label').removeClass('checked');
             $(this).parent().addClass('checked');
 
+
             var selectedData = $(this).attr('id');
                 selectedData = selectedData.split('-');
                 selectedData = selectedData[1];
                 
                 appData.services.phpService.setGoingToActivity(appData.models.activityModel.attributes.activity_id, selectedData);
-                
+   
                 if(selectedData == 1){
+                    // set a local reminder
                     appData.services.challengeService.checkChallenges(appData.models.userModel, true, false, false, true, appData.models.activityModel);
+
+                    var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
+                    if(appData.settings.native){
+                        window.plugin.notification.local.add({
+                          id:      model.attributes.activity_id,
+                          title:   model.attributes.title + " gaat beginnen",
+                          message: 'Haast je snel naar ' + model.attributes.location,
+                          repeat:  'yearly',
+                          date:    date,
+                          autoCancel: true
+                        });
+                    }
+                }else{
+                    if(appData.settings.native){
+                        window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
+                        
+                        });
+                    }
                 }
         });
 
@@ -112,8 +133,6 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         });
         $('#participantStat').text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
       });
-
-
 
      // disable options if the activity is full
      var goingCheck = false;

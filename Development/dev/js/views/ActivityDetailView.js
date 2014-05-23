@@ -38,7 +38,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
       var elementPosition = $('#activityDetailTabs', appData.settings.currentPageHTML).offset();
 
-       appData.settings.mapAdded = false;
+      appData.settings.mapAdded = false;
       if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
          this.addMap();
       }else if(!appData.settings.native){

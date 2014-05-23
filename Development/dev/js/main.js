@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://ultimedia.biz/watm/";
+appData.settings.rootPath = "http://localhost/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -199,6 +199,8 @@ appData.start = function(nativeApp){
       if(appData.settings.native){
           appData.settings.pictureSource = navigator.camera.PictureSourceType;
           appData.settings.destinationType = navigator.camera.DestinationType;
+        
+
         /*
           var pushNotification;
             function onDeviceReady() {
