@@ -12,6 +12,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       // chat timer
       appData.settings.timer = setInterval(this.timerAction, 2000);
        
+
     }, 
 
     timerAction: function(){

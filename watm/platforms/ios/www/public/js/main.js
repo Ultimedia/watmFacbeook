@@ -926,9 +926,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                     appData.services.challengeService.checkChallenges(appData.models.userModel, true, false, false, true, appData.models.activityModel);
 
                     var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
-                    
                     if(appData.settings.native){
-
                         window.plugin.notification.local.add({
                           id:      model.attributes.activity_id,
                           title:   model.attributes.title + " gaat beginnen",
@@ -941,7 +939,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                 }else{
                     if(appData.settings.native){
                         window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
-                            alert("canceled");
+                        
                         });
                     }
                 }
@@ -1065,6 +1063,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       // chat timer
       appData.settings.timer = setInterval(this.timerAction, 2000);
        
+
     }, 
 
     timerAction: function(){
@@ -2081,7 +2080,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        // appData.settings.timer = setInterval(this.timerAction, 4000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -2120,7 +2119,12 @@ appData.views.DashboardView = Backbone.View.extend({
         "keyup #searchInput": "searchHandler",
         "click #fullScreenButton": "fullscreenToggleHandler",
         "click #menuButton": "menuOpenHandler",
-        "click #mapBtn": "fullscreenToggleHandler"
+        "click #mapBtn": "fullscreenToggleHandler",
+        "click #downButton": "downButtonHandler"
+    },
+
+    downButtonHandler: function(){
+        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     },
 
     fullscreenToggleHandler: function(){        
@@ -3995,6 +3999,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
         Backbone.on('addFavouriteSportsHandler', this.addFavouriteSportsHandler)
     
         appData.views.SportSelectorView.model = this.model;
+        appData.views.SportSelectorView.align = this.align;
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -4011,6 +4016,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
     },
 
     render: function() {
+
     	this.$el.html(this.template({user: appData.models.userModel.toJSON()}));
         appData.settings.currentPageHTML = this.$el;
         appData.views.SportSelectorView.favouriteSportsViewList = [];
@@ -4035,13 +4041,53 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
         }}).render();
 
+        $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+        $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+            appData.views.SportSelectorView.align();
+        });
+
+        $(window).resize(_.debounce(function(){
+           appData.views.SportSelectorView.align();
+        }, 500));
+
         return this;
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     generateGrid: function(){
         $('#favouriteSportList', appData.settings.currentPageHTML).empty();
-        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView) {
+        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView, index) {
             $('#favouriteSportList', appData.settings.currentPageHTML).append(listView.render().$el);
+
+            if(index == (appData.views.SportSelectorView.favouriteSportsViewList.length -1)){
+            }
+        });    
+
+        // set selected items
+        $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
+            $('#sp' + element.attributes.sport_id, appData.settings.currentPageHTML).addClass('selected');
         });
     },
 
@@ -4052,7 +4098,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-        console.log($(evt.target).parent().find('.rm'));
+        appData.views.SportSelectorView.align();
     },
 
     confirmSportsHandler: function(){
@@ -5688,9 +5734,7 @@ appData.services.UtilServices = Backbone.Model.extend({
   
   	// if this is a notification make it 30 minutes before the activity
   	if(notification){
-		var now                  = new Date().getTime(),
-    		date = new Date(now + 60*1000);
-  		//date = new Date(date.getTime() - 30*60000);
+  		date = new Date(date.getTime() - 30*60000);
   	}
 
   	return date;

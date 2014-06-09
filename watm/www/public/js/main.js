@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://localhost/";
+appData.settings.rootPath = "http://ultimedia.biz/watm/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -140,7 +140,7 @@ appData.start = function(nativeApp){
   $( document ).ready(function() {
 
   appData.router = new appData.routers.AppRouter();
-  appData.utils.templates.load(["HomeView", "DashboardView", "PlannerView", "ProfileView", "ActivityDetailView", "CreateActivityView", "CreateUserView", "NavigationView", "SettingsView", "SportSelectorView", "DashboardActivityView", "LoadingView", "HelperView", "ChallengeListView", "ActivityMessageView", "ActivityMessageView", "ActivityInfoView", "ActivityMediaView", "ActivityMessagesView", "ActivityMediaViewer", "ActivityInfoView", "CreateActivityLocationView", "CreateActivityInfoView", "CreateActivityWieView", "ProfileAvatarView", "ProfileChallengeView", "ProfileFriendsView", "FriendsListView", "FriendView", "ActivityUserView", "PlannerMyActivitiesView", "GoogleMapView", "FavouriteSportListView", "ActiveChallengeListView", "BadgeListView", "FriendInvitieView", "PlannerInvitedActivitiesView", "NoConnectionView", "AvatarDisplayView"],
+  appData.utils.templates.load(["HomeView", "DashboardView", "PlannerView", "ProfileView", "ActivityDetailView", "CreateActivityView", "CreateUserView", "NavigationView", "SettingsView", "SportSelectorView", "DashboardActivityView", "LoadingView", "HelperView", "ChallengeListView", "ActivityMessageView", "ActivityMessageView", "ActivityInfoView", "ActivityMediaView", "ActivityMessagesView", "ActivityMediaViewer", "ActivityInfoView", "CreateActivityLocationView", "CreateActivityInfoView", "CreateActivityWieView", "ProfileAvatarView", "ProfileChallengeView", "ProfileFriendsView", "FriendsListView", "FriendView", "ActivityUserView", "PlannerMyActivitiesView", "GoogleMapView", "FavouriteSportListView", "ActiveChallengeListView", "BadgeListView", "FriendInvitieView", "PlannerInvitedActivitiesView", "NoConnectionView", "AvatarDisplayView", "PlannerTimelineWrap", "FavouriteSportListSettingView"],
 
   // backbone loaded
   function () {
@@ -1063,6 +1063,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       // chat timer
       appData.settings.timer = setInterval(this.timerAction, 2000);
        
+
     }, 
 
     timerAction: function(){
@@ -1365,6 +1366,28 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
       appData.views.CreateActivityInfoView.sportAutComplete = new AutoCompleteView({input: $("#sportInput", appData.settings.currentModuleHTML), model: appData.collections.sports, wait: 100, updateModel: appData.views.ActivityDetailView.model, updateID: "sport_id"}).render();
       this.setValidator();
 
+      // Set hours
+      var now = new Date();
+      var mins = now.getMinutes();
+      var quarterHours = Math.round(mins/15);
+      if (quarterHours == 4)
+      {
+          now.setHours(now.getHours()+1);
+      }
+      var rounded = (quarterHours*15)%60;
+      now.setMinutes(rounded);
+
+      var minutes = ('0' + now.getMinutes()).slice(-2);
+      var hour = ('0' + now.getHours()).slice(-2);
+
+      $('#vanInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+      var totInput = now.getHours() + 1;
+          totInput = ('0' + totInput).slice(-2);
+
+      $('#totInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+
       // if we are updating, enter the date from the activity in the input form
       if(appData.views.CreateActivityView.isUpdating){
             var selectedSport = appData.collections.sports.where({"sport_id": appData.views.ActivityDetailView.model.attributes.sport_id})
@@ -1401,7 +1424,7 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
     },
 
     participantsSliderHandler: function(){
-        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val() + " deelnemers");
+        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val());
     },
 
     subHandler: function(){
@@ -1486,7 +1509,6 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         "keyup #locationInput": "locationChangeHandler"
     },
 
-
     getLatLonSuccesHandler: function(data){
 
         if(data){
@@ -1532,11 +1554,14 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
     setMarkers: function(lat, long, content){
         appData.views.CreateActivityLocationView.clearMarkers();
         appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(lat, long), 13);
-        
+  
+        var activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat, long),
           map:  appData.views.CreateActivityLocationView.map,
-          title: content
+          title: content,
+          icon: activityImage,
+          optimized: false
         });
 
         if(content){
@@ -1575,8 +1600,8 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
       appData.views.CreateActivityLocationView.locationAutComplete = new AutoCompleteView({input: $("#locationInput", appData.settings.currentModuleHTML), model: appData.collections.locations, wait: 100, updateModel: appData.views.ActivityDetailView.model, updateID: "location_id", onSelect: function(){
 
         var locationModel = appData.collections.locations.where({ "location_id": appData.views.ActivityDetailView.model.attributes.location_id})[0];
-            var coordinates = locationModel.attributes.coordinates.split(',');
-            var location = locationModel.attributes.location;
+        var coordinates = locationModel.attributes.coordinates.split(',');
+        var location = locationModel.attributes.location;
 
             appData.views.CreateActivityLocationView.currentLocation = coordinates;
             appData.views.CreateActivityLocationView.setMarkers(coordinates[0], coordinates[1], location);
@@ -1590,6 +1615,7 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         $('#locationInput', appData.settings.currentModuleHTML).val(appData.views.ActivityDetailView.model.attributes.location);
         this.locationChangeHandler();
       }
+
 
       return this; 
     },
@@ -1607,15 +1633,33 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         appData.views.CreateActivityLocationView.map = new google.maps.Map($('#map_canvas',page)[0], mapOptions);
         appData.views.CreateActivityLocationView.infowindow = new google.maps.InfoWindow();
 
-        appData.views.CreateActivityLocationView.currentLocation = [];
-        appData.views.CreateActivityLocationView.currentLocation.push(51.20935);
-        appData.views.CreateActivityLocationView.currentLocation.push(3.22470);
+        if(appData.models.userModel.attributes.current_location){
+            var cd = appData.models.userModel.attributes.current_location.split(',');
+
+            appData.views.CreateActivityLocationView.currentLocation = [];
+            appData.views.CreateActivityLocationView.currentLocation.push(cd[0]);
+            appData.views.CreateActivityLocationView.currentLocation.push(cd[1]);
+        }else{
+            appData.views.CreateActivityLocationView.currentLocation = [];
+            appData.views.CreateActivityLocationView.currentLocation.push(51.20935);
+            appData.views.CreateActivityLocationView.currentLocation.push(3.22470);
+        }
 
         // resize and relocate map
         google.maps.event.addListenerOnce(appData.views.CreateActivityLocationView.map, 'idle', function() {
             google.maps.event.trigger(appData.views.CreateActivityLocationView.map, 'resize');
             appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(appData.views.CreateActivityLocationView.currentLocation[0], appData.views.CreateActivityLocationView.currentLocation[1]), 13);
         });
+
+        google.maps.event.addListener(appData.views.CreateActivityLocationView.map, 'click', function(event) {
+    //           placeMarker(event.latLng);
+
+            console.log(event);
+//                       appData.views.CreateActivityLocationView.setMarkers(location.d, location.e, "");
+
+
+        });
+
 
         if(appData.settings.native){
             appData.services.utilService.getLocationService("createActivity");
@@ -1645,20 +1689,19 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
                 }else{
 
                     // if we don't have friends just create the activity, else go to the friends invite page
-                    if(appData.models.userModel.attributes.myFriends.models.length !== 0){
+                    /*if(appData.models.userModel.attributes.myFriends.models.length !== 0){
                         appData.events.createActivityTabsEvent.trigger('formStageCompleteEvent', appData.views.CreateActivityLocationView.tabTarget);
-                    }else{
+                    }else{*/
 
                         if(appData.views.CreateActivityView.updating){
                             Backbone.on('activityUpdated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.updateActivity(appData.views.ActivityDetailView.model);
 
-                            console.log(appData.views.ActivityDetailView.model);
                         }else{
                             Backbone.on('activityCreated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.createActivity(appData.views.ActivityDetailView.model);
                         }
-                    }
+                    //}
                 }
             }
         });
@@ -1710,6 +1753,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     menuOpenHandler: function(){
         $("#mainMenu").trigger("open");
+
     },
 
     // phonegap device offline
@@ -1746,8 +1790,12 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     events: {
       "click #submitButton": "subHandler",
-      "click #menuButton": "menuOpenHandler"
+      "click #menuButton": "menuOpenHandler",
+      "click #watTab": "previousTabHandler"
     },
+
+    previousTabHandler: function(){
+        },
 
     subHandler: function(){
         if($('form').is('#wieForm')){
@@ -1769,7 +1817,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
         var location = data.location;
         var tab = data.tab;
 
-        $('#createActivityTabs .cl-btn').removeClass('active');
+        $('#createActivityTabs a').removeClass('active');
         $(tab, appData.settings.currentPageHTML).addClass('active');
 
         // tab on activity detail
@@ -2068,6 +2116,7 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.setMarkers = this.setMarkers;
         appData.views.DashboardView.initMap = this.initMap;
         appData.views.DashboardView.generateAcitvitiesCollection = this.generateAcitvitiesCollection;
+        appData.views.DashboardView.firstRet = true;
 
         // update the activities if we have a network connection
         if(appData.settings.native){
@@ -2079,7 +2128,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        // appData.settings.timer = setInterval(this.timerAction, 4000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -2118,7 +2167,12 @@ appData.views.DashboardView = Backbone.View.extend({
         "keyup #searchInput": "searchHandler",
         "click #fullScreenButton": "fullscreenToggleHandler",
         "click #menuButton": "menuOpenHandler",
-        "click #mapBtn": "fullscreenToggleHandler"
+        "click #mapBtn": "fullscreenToggleHandler",
+        "click #downButton": "downButtonHandler"
+    },
+
+    downButtonHandler: function(){
+        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     },
 
     fullscreenToggleHandler: function(){        
@@ -2175,6 +2229,8 @@ appData.views.DashboardView = Backbone.View.extend({
             $('#activityTable', appData.settings.currentPageHTML).empty();
             _(appData.views.activityListView).each(function(dv) {
                 $('#activityTable', appData.settings.currentPageHTML).append(dv.render().$el);
+
+
             });
 
             if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
@@ -2457,6 +2513,25 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.markers = [];
     },
 });
+
+
+
+appData.views.FavouriteSportListSettingView = Backbone.View.extend({
+
+    initialize: function () {
+
+    }, 
+
+    render: function() { 
+    	this.model.attributes.path = appData.settings.sportsPath;
+
+    	// model to template
+    	this.$el.html(this.template({ data: this.model.toJSON(), icon: this.model.attributes.icon, path: appData.settings.sportsPath }));
+        return this; 
+    }
+
+});
+
 
 
 
@@ -3341,16 +3416,42 @@ appData.views.PlannerInvitedActivitiesView = Backbone.View.extend({
 });
 
 appData.views.PlannerMyActivitiesView = Backbone.View.extend({
-
+	tagName: 'li',
+	className: 'plan',
     initialize: function () {
 
     },
 
+    clickHandler: function(){
+
+    },
+
     render: function () {
-        this.$el.html(this.template(this.model.attributes));
+		var sportModel = appData.collections.sports.where({'sport_id': this.model.attributes.sport_id})[0];
+        var model = this.model;
+
+        this.$el.html(this.template({data: this.model.attributes, imagePath: appData.settings.sportsPath, sport: sportModel.attributes.icon}));
+
+        if(model.attributes.author_badge){
+          $('.edit-badge', this.$el).removeAttr('style');
+        }
 
         return this; 
     }
+});
+
+appData.views.PlannerTimelineWrap = Backbone.View.extend({
+
+  initialize: function () {
+
+  }, 
+
+  render: function () {
+
+    this.$el.html(this.template());
+
+    return this;
+  }
 });
 
 appData.views.PlannerView = Backbone.View.extend({
@@ -3361,34 +3462,133 @@ appData.views.PlannerView = Backbone.View.extend({
     appData.views.PlannerView.updatePlannerComplete = this.updatePlannerComplete;
     appData.views.PlannerView.getInvitationsHandler = this.getInvitationsHandler;
     appData.views.PlannerView.acceptedInvite = this.acceptInviteHandler;
+    appData.views.PlannerView.firstRet = true;
     Backbone.on('acceptInviteHandler', this.acceptInviteHandler);
 
     // Update when a user accepts / declines an invitation
     appData.views.PlannerView.acceptedInvite = this.acceptedInvite;
   
     // update the activities if we have a network connection
+    Backbone.on('dashboardUpdatedHandler', this.generateTimeLine);
     if(appData.settings.native){
         if(appData.services.utilService.getNetworkConnection()){
-          Backbone.on('myPlannedActivitiesLoadedHandler', this.updatePlanner);
-          appData.services.phpService.getMyPlannedActivities();
-        }else{
-          this.getInvitationsHandler();
+            appData.services.phpService.getActivities(false, null);
         }
     }else{
-        Backbone.on('myPlannedActivitiesLoadedHandler', this.updatePlanner);
-        appData.services.phpService.getMyPlannedActivities();
+        appData.services.phpService.getActivities(false, null);
     }
 
     Backbone.on('networkFoundEvent', this.networkFoundHandler);
     Backbone.on('networkLostEvent', this.networkLostHandler);
 
     // image timer
-    appData.settings.timer = setInterval(this.timerAction, 4000);
-
+    //appData.settings.timer = setInterval(this.timerAction, 4000);
   }, 
 
-  timerAction: function(){
+  generateTimeLine: function(){
 
+      appData.views.activityListView = [];
+      appData.collections.activities.each(function(activity) {
+
+        var add = false;
+
+        // am I going to this activity? 
+        if(activity.attributes.user_id == appData.models.userModel.attributes.user_id){
+
+          // I am a creator
+          add = true;
+          activity.attributes.author_badge = true;
+        }else{
+
+          // I set the going to true
+          $(activity.attributes.users).each(function(index, element){
+              if(element.user_id == appData.models.userModel.attributes.user_id){
+                activity.attributes.author_badge = false;
+                add = true;
+              }
+          });
+        }
+
+        if(add){
+          appData.views.activityListView.push(new appData.views.PlannerMyActivitiesView({
+            model : activity
+          }));
+        }
+      });
+
+      $('#plannerMap', appData.settings.currentPageHTML).empty();
+      
+      var first = true;
+      var lastDate;
+      var savedDate;
+
+      _(appData.views.activityListView).each(function(element, index) {
+
+          // same date
+          if(lastDate == element.model.attributes.savedDate){
+              $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el);
+          
+          // andere datum (nieuwe tijdlijn)
+          }else{
+            var savedDate = "";
+            var dateCheck = element.model.attributes.date.split(" ");
+
+            switch(dateCheck[0]){
+              case "Vandaag":
+                savedDate = dateCheck[0];
+              break;
+
+              case "Morgen":
+                savedDate = dateCheck[0];
+              break;
+            }
+
+            // convert to readable date
+            if(savedDate === ""){
+              savedDate = element.model.attributes.date;
+            }
+
+            fr = new appData.views.PlannerTimelineWrap();
+            $('#plannerMap',appData.settings.currentPageHTML).append(fr.render().$el);
+            $('#plannerMap h3', appData.settings.currentPageHTML).last().text(savedDate);
+            $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el).hide();
+
+            if(appData.views.PlannerView.firstRet){
+              appData.views.PlannerView.firstRet = false;
+              $('.plan-list', appData.settings.currentPageHTML).show(600);
+            }else{
+              $('.plan-list', appData.settings.currentPageHTML).show();
+            }
+          }
+
+          lastDate = element.model.attributes.savedDate;
+        });
+
+        // bind click handler
+        $('.plan-list li', appData.settings.currentPageHTML).click(function(evt){
+          
+            var id = $('h2',evt.currentTarget).attr('data-id');
+            if(id){
+              if(!$(evt.target).hasClass('edit-badge')){
+                window.location.href = "#activity/" + id; 
+              }else{
+                window.location.href = "#update/" + id;
+              }
+            }
+        });
+
+        appData.services.utilService.updateLocalStorage();
+  },
+
+  timerAction: function(){
+    Backbone.on('dashboardUpdatedHandler', this.generateTimeLine);
+    if(appData.settings.native){
+        if(appData.services.utilService.getNetworkConnection()){
+            appData.services.phpService.getActivities(false, null);
+        }
+    }else{
+        appData.services.phpService.getActivities(false, null);
+    }
   },
 
   // phonegap device offline
@@ -3458,7 +3658,7 @@ appData.views.PlannerView = Backbone.View.extend({
     appData.views.PlannerView.myActivitiesView = [];
     appData.views.PlannerView.myJoinedActivitiesView = [];
     appData.views.PlannerView.myInvitedActivitiesView = [];
-
+/*
     $("#myInvitationsPlanner", appData.settings.currentPageHTML).addClass('hide');
     $("#myActivitiesPlanner", appData.settings.currentPageHTML).addClass('hide');
     $('#myPlanner', appData.settings.currentPageHTML).addClass('hide');
@@ -3477,12 +3677,6 @@ appData.views.PlannerView = Backbone.View.extend({
       });
     }
 
-    // get the activtities I'm inviited to
-    if (appData.collections.myPlannedActivities instanceof Backbone.Collection) {
-      appData.collections.myInvitations.each(function(invitedActivity) {
-        appData.views.PlannerView.myInvitedActivitiesView.push(new appData.views.PlannerInvitedActivitiesView({model : invitedActivity}));
-      });
-    }
  
     if(appData.views.PlannerView.myActivitiesView.length > 0){
       $('#myActivitiesPlanner', appData.settings.currentPageHTML).removeClass('hide');
@@ -3501,22 +3695,14 @@ appData.views.PlannerView = Backbone.View.extend({
         $('#myPlanningTable', appData.settings.currentPageHTML).append(dv.render().$el);
       });
     }
-
-    if(appData.views.PlannerView.myInvitedActivitiesView.length > 0){
-      $('#myInvitationsPlanner', appData.settings.currentPageHTML).removeClass('hide');
-      $('#myInvitationsTable', appData.settings.currentPageHTML).empty();
-
-      _(appData.views.PlannerView.myInvitedActivitiesView).each(function(dv) {
-        $('#myInvitationsTable', appData.settings.currentPageHTML).append(dv.render().$el);
-      });
-    }
-
     // show a message when no-once responds
     if(appData.views.PlannerView.myActivitiesView.length === 0 && appData.views.PlannerView.myInvitedActivitiesView.length === 0 && appData.views.PlannerView.myJoinedActivitiesView.length === 0){
       $('#profileMessage', appData.settings.currentPageHTML).removeClass('hide');
     }else{
       $('#profileMessage', appData.settings.currentPageHTML).addClass('hide');
     }
+
+*/
 
     // update localstorage
     appData.services.utilService.updateLocalStorage();
@@ -3864,7 +4050,7 @@ appData.views.SettingsView = Backbone.View.extend({
       $('#favouriteSportList .rm', appData.settings.currentPageHTML).remove();
 
       _(appData.models.userModel.attributes.myFavouriteSports.models).each(function(sport){
-        var sportView = new appData.views.FavouriteSportListView({model:sport});
+        var sportView = new appData.views.FavouriteSportListSettingView({model:sport});
         $('#favouriteSportList', appData.settings.currentPageHTML).prepend(sportView.render().$el);
       });
     },
@@ -3993,6 +4179,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
         Backbone.on('addFavouriteSportsHandler', this.addFavouriteSportsHandler)
     
         appData.views.SportSelectorView.model = this.model;
+        appData.views.SportSelectorView.align = this.align;
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -4033,13 +4220,53 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
         }}).render();
 
+        $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+        $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+            appData.views.SportSelectorView.align();
+        });
+
+        $(window).resize(_.debounce(function(){
+           appData.views.SportSelectorView.align();
+        }, 500));
+
         return this;
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     generateGrid: function(){
         $('#favouriteSportList', appData.settings.currentPageHTML).empty();
-        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView) {
+        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView, index) {
             $('#favouriteSportList', appData.settings.currentPageHTML).append(listView.render().$el);
+
+            if(index == (appData.views.SportSelectorView.favouriteSportsViewList.length -1)){
+            }
+        });    
+
+        // set selected items
+        $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
+            $('#sp' + element.attributes.sport_id, appData.settings.currentPageHTML).addClass('selected');
         });
     },
 
@@ -4050,7 +4277,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-        console.log($(evt.target).parent().find('.rm'));
+        appData.views.SportSelectorView.align();
     },
 
     confirmSportsHandler: function(){
@@ -4125,7 +4352,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     forward: function(id){
-        console.log("forward enabled");
 
         // save the activity ID nog go to the login
         appData.settings.forwardAfterLoginID = id;
@@ -4182,7 +4408,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
         appData.settings.created = false;
         clearInterval(appData.settings.timer);
 
-        $('#activiteitenButton').addClass('mm-selected');
+        $('#mainMenu ul li').removeClass('mm-selected');
+        $('#mainMenu ul li').first().addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
 
@@ -5571,6 +5798,20 @@ appData.services.UtilServices = Backbone.Model.extend({
 			},error: function(){
 
 			}
+		});
+	},
+
+	reverseGeo: function(lat, long){
+		var latlng = new google.maps.LatLng(lat, long);
+		
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+		    if (results[1]) {
+		      alert(results[1].formatted_address);
+		    }
+		  } else {
+		    alert("Geocoder failed due to: " + status);
+		  }
 		});
 	},
 

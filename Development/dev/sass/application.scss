@@ -5,12 +5,29 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+.left{
+  float: left;
+}
 
 
 /* apply a natural box layout model to all elements */
 *, *:before, *:after {
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+#downButton{
+  position: absolute;
+  bottom: 0;
+  background: url('assets/scrollDown@x2.png') no-repeat top left / 44px 22px;
+  height: 22px;
+  width: 44px;
+  z-index: 1000;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  display: none !important;
 }
 
 .outer-center {
@@ -662,7 +679,7 @@ input.error{
       background: none;
       border: none;
       color: #1d1d1b;
-      padding: 20px 0 20px 10x;
+      padding: 20px 0 20px 10px;
       font-size: 1.1em;
       font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       margin: 0;
@@ -693,6 +710,24 @@ input.error{
     #passwordInput, #passwordValidateInput{
       height: auto;
       padding: 12px 0 12px 34px;
+    }
+  }
+
+}
+
+#createActivity{
+  .cl-content{
+    #watContent, #waarForm{
+      padding: 10px 16px;
+
+      input[type=email], input[type=password], input[type=text], input[type=date], input[type=time], textarea{
+          background: #ededed;
+          margin-bottom: 10px;
+      }
+
+      #vanInput, #totInput{
+        width: 40%;
+      }
     }
   }
 }
@@ -832,6 +867,14 @@ input.error{
 
 #createUser, #watContent{
 
+  #genderSelect label{
+    padding: 0 0 0 40px;
+    height: 30px;
+    span{
+      float: left;
+      padding-top: 4px;
+    }
+  }
 
   #range, #participants{
     width: auto;
@@ -847,7 +890,7 @@ input.error{
 
 
 .prev-icon{
-  background: url('assets/prev-icon@x2.png') no-repeat left center / 11px 22px;
+  background: url('assets/prev-icon@x2.png') no-repeat center center / 11px 22px;
   width: 40px;
   height: 40px;
   display: block;
@@ -881,6 +924,46 @@ input.error{
   height: 19px;
   display: inline-block;
 
+}
+
+.profile-icon{
+  background: url('assets/profile-icon@x2.png') no-repeat center center / 20px 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+
+.calendar-icon{
+  background: url('assets/calendar-icon@x2.png') no-repeat center center / 20px 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+
+
+.list-icon{
+  background: url('assets/list-icon@x2.png') no-repeat center center / 20px 12px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+
+
+.close-icon{
+  background: url('assets/close-icon@x2.png') no-repeat center center / 20px 19px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  float: left;
+  width: 40px;
+height: 40px;
+display: block;
 }
 
 /**
@@ -919,6 +1002,10 @@ input.error{
 * Select sports
 */
 #favouriteSportsSelector{
+  height: 100%;
+
+
+
   .cl-bar-title{
     background: #dacab4;
 
@@ -953,15 +1040,20 @@ input.error{
     width: 100%;
     bottom: 0;
     left: 0;
+
+    #confirm:active{
+      background: #c14946 !important;
+    }
   }
 
   .cl-content{
     background: #ede1d1;
     height: calc(100% - 182px);
+    padding: 10px 0;
 
     #favouriteSportList{
       display: block;
-      margin: 10px;
+      margin: 0;
       padding-bottom: 50px;
 
       div{
@@ -1045,7 +1137,7 @@ input.error{
 */
 #dashboard{
   position: relative;
-    
+
     #mapBtn{
       display: none;
       position: absolute;
@@ -1054,6 +1146,7 @@ input.error{
       left: 0;
       background: #fff;
       padding: 10px;
+      z-index: 10000;
     }
 
     .cl-bar-title{
@@ -1162,11 +1255,13 @@ input.error{
     }
 
     #activityTable{
+      padding-bottom: 20px;
+
       .activityAuthor{
         background: #dacab4;
         padding: 10px;
         display: block !important;
-        margin: 0 10px 10px 10px;
+        margin: 0;
         font-family: "aleolight";
         a{
           font-weight: bold;
@@ -1186,6 +1281,13 @@ input.error{
         -webkit-background-clip: padding-box;
         background-clip: padding-box; /* prevents bg color from leaking outside the border */
         position: relative;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px; /* border radius */
+        -moz-box-shadow: 2px 2px 0 rgba(87,87,87,.35); /* drop shadow */
+        -webkit-box-shadow: 2px 2px 0 rgba(87,87,87,.35); /* drop shadow */
+        box-shadow: 2px 2px 0 rgba(87,87,87,.35); /* drop shadow */
+
 
         a{
           padding: 0;
@@ -1260,6 +1362,15 @@ input.error{
     }
   }
 }
+
+.activityContainer:last-child{
+  margin-bottom: 20px;
+}
+
+#activityTable > div:first-of-type { 
+  /* css */ 
+}
+
 
 #container.landscape{
   #dashboard{
@@ -1352,6 +1463,9 @@ input.error{
     display: block;
   }
 
+  #downButton{
+    display: none;
+  }
 
   #map_canvas{
     height: 100%;
@@ -1369,7 +1483,8 @@ input.error{
 */
 #mainMenu{
   background: #333333;
-  
+
+
   .mm-list{
     margin-top: 184px;
     padding: 0;
@@ -1380,6 +1495,13 @@ input.error{
     li{
       color: #fff;
       font-size: 15px;
+      a{
+        padding: 15px 14px;
+      }
+
+      #createButton{
+        padding: 12px 14px;
+      }
     }
   }
 
@@ -1737,6 +1859,9 @@ input.error{
       color: #252d34;
       position: absolute;
       right: 10px;
+      color: #dd6562;
+      font-family: "source_sans_prosemibold";
+      font-size: 14px;
     }
   }
 
@@ -1947,15 +2072,93 @@ input.error{
 * Create Activity
 */
 #createActivity{
+  
+
   .cl-content{
     height: calc(100% - 192px);
+
+    ul.autocomplete{
+      margin-top: -9px;
+      background: #292929;
+      li{
+        a{
+          color: #fff;
+        }
+      }
+      li:hover{
+          background: #dd6562;
+      }
+      li.active{
+          background: #dd6562 !important;
+      }
+    }
+  }
+
+
+
+
+  label.error {
+    margin-top: -5px;
   }
 
   #createActivityTabs{
-    .active{
-      background: #2e3e4b;
-      color: #fff;
+    background: #292929;
+    overflow: auto;
+    text-align: center;
+    padding: 10px 0;
+
+    .center{
+      margin-left: auto;
+      margin-right: auto;
+      display: inline-block;
     }
+
+    a{
+      font-family: "bitteritalic";
+      color: #fff;
+      line-height: 33px;
+      float: left;
+      background: none;
+      margin-right: 30px;
+      .indicator{
+        border-radius: 20px;
+        display: block;
+        width: 34px;
+        height: 34px;
+        display: block;
+        float: left;
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px;
+        margin-right: 5px; 
+        border: 3px solid #dd6562;
+        background: none; 
+      }
+    }
+
+    .active{
+      .indicator{
+        background: #dd6562;
+        border: 3px solid #dd6562;
+      }
+    }
+  }
+
+  #locationInput{
+  padding-left: 34px;
+  background: #ededed url("assets/map2-icon@x2.png") no-repeat 10px 15px/14px 14px !important;
+  }
+
+  #omschrijvingInput{
+    padding: 10px !important;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      background: #303d4d url('../../common/img/sliderButton.png') 0 0 / 20px 20px;
+      height:20px;
+      width:20px;
+      border: 0;
   }
 
   #wieContent{
@@ -1982,6 +2185,10 @@ input.error{
         float: left;
       }
     }
+  }
+
+  .button-container{
+    background: #fff;
   }
 }
 
@@ -2016,10 +2223,189 @@ input.error{
 *  Planner
 */
 #planner{
-  .cl-content{
-    height: calc(100% - 20px);
-    background: #e4e4e4;
+  .cl-bar-title{
+    background: #4dd6d1;
+  }
+
+  .cloud-back{
+    width: 100%;
+    height: 67px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: url('assets/cloud-bg.png') repeat-x top left / 334px 67px;
+    z-index: 100000;
+  }
   
+  .cloud-front{
+    width: 100%;
+    height: 56px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: url('assets/cloud-bg.png') repeat-x top left / 603px 56px;
+    z-index: 100000;
+    display: none;
+  }
+
+  .cl-content{
+    height: calc(100% - 54px);
+    background: #4dd6d1;
+  
+
+    #plannerMap{
+      margin: 10px 16px;
+      width: 100%;
+      position: relative;
+
+      .plan-list{
+        position: relative;
+        z-index: 20;
+      }
+
+      .timeline{
+        height: 100%;
+        width: 3px;
+        display: block;
+        position: absolute;
+        background: #abece9;
+        left: 26px;
+        top: 0;
+        bottom: 0;
+        z-index: 5;
+      }
+
+      .timeline-footer{
+        width: 10px;
+        height: 10px;
+        background: #292929;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        position: absolute;
+        bottom: 0;
+        left: 22px;
+        z-index: 8;
+      }
+
+      h3{
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px; /* border radius */
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box; /* prevents bg color from leaking outside the border */
+        background-color: #292929; /* layer fill content */
+        font-family: "bitteritalic";
+        font-size: 14px;
+        display: inline-block;
+        color: #fff;
+        padding: 8px;
+        position: relative;
+        z-index: 9;
+      }
+
+      .planner-section{
+        clear: both;
+        overflow: auto;
+        padding-top: 15px;
+        position: relative;
+        margin-bottom: 20px;
+        li{
+          clear: both;
+          margin-bottom: 20px;
+          overflow: auto;
+          cursor: pointer;
+        }
+
+        .sports-badge{
+          border-radius: 40px;
+          -moz-border-radius:40px;
+          -webkit-border-radius: 40px;
+          width: 52px;
+          height: 52px;
+          border: 3px solid #fff;
+          background: #ede0d6;
+          display: block;
+          float: left;
+          z-index: 6;
+          position:relative;
+        }
+
+        .edit-badge{
+          display: block;
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          right: 0;
+          background: #dd6562 url('assets/pen-icon@x2.png') no-repeat center center / 15px 15px;
+          border-radius: 15px;
+          -webkit-border-radius: 15px;
+          -moz-border-radius: 15px;
+          border: 4px solid #fff; /* stroke */
+
+        }
+
+        .sports-bubble{
+          border-radius: 10px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          background: #fff;
+          display:block;
+          width: calc(100% - 104px) !important;
+          float: left;
+          margin-left: 15px;
+          position: relative;
+          padding: 10px;
+
+          h2{
+            color: #505050; /* text color */
+            font-family: "ropa_sansregular";
+            font-size: 1.6em;
+            margin-bottom: 5px;
+          }
+
+          .planner-footer{
+            font-size: 11px;
+            margin-bottom: 0;
+
+            .table-time{
+              margin-right: 10px;
+            }
+
+            .table-time, .table-location{
+                padding-left: 16px;
+                line-height: 13px;
+                background: url("assets/time-icon-small@x2.png") no-repeat top left/12px 12px;
+                display: inline-block;
+                margin-bottom: 0;
+            }
+
+            .table-location{
+                background: url("assets/map-icon-small@x2.png") no-repeat top left/12px 11px;
+            }
+          }
+        }
+
+        .sports-bubble:after {
+          right: 100%;
+          top: 50%;
+          border: solid transparent;
+          content: " ";
+          height: 0;
+          width: 0;
+          position: absolute;
+          pointer-events: none;
+          border-color: rgba(136, 183, 213, 0);
+          border-right-color: #fff;
+          border-width: 7px;
+          margin-top: -7px;
+        }
+      }
+    }
+
     .cl-message{
       padding: 20px 10px;
       background-color: #fef5e4;
@@ -2391,13 +2777,18 @@ input.error{
   height: 100%;
 }
 
+.required-ast{
+  color: #e71409;
+  font-size: 15px;
+  padding: 0 5px;
+}
+
 
 /** 
 * Offline
 */
 
 #container.offline{
-  
   #createActivityButton, #goingList, #addMediaButton, #messageBox, #sportSelectorButton, #changeAvatar, #mediaButton, #friendsButton, #favouriteSportSection, #navigateButton, #challengesButton, #shareButton
   { display: none; }
 

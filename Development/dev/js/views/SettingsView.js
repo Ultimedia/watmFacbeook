@@ -53,7 +53,7 @@ appData.views.SettingsView = Backbone.View.extend({
       $('#favouriteSportList .rm', appData.settings.currentPageHTML).remove();
 
       _(appData.models.userModel.attributes.myFavouriteSports.models).each(function(sport){
-        var sportView = new appData.views.FavouriteSportListView({model:sport});
+        var sportView = new appData.views.FavouriteSportListSettingView({model:sport});
         $('#favouriteSportList', appData.settings.currentPageHTML).prepend(sportView.render().$el);
       });
     },

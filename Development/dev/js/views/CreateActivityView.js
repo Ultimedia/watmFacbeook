@@ -27,6 +27,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     menuOpenHandler: function(){
         $("#mainMenu").trigger("open");
+
     },
 
     // phonegap device offline
@@ -63,8 +64,12 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     events: {
       "click #submitButton": "subHandler",
-      "click #menuButton": "menuOpenHandler"
+      "click #menuButton": "menuOpenHandler",
+      "click #watTab": "previousTabHandler"
     },
+
+    previousTabHandler: function(){
+        },
 
     subHandler: function(){
         if($('form').is('#wieForm')){
@@ -86,7 +91,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
         var location = data.location;
         var tab = data.tab;
 
-        $('#createActivityTabs .cl-btn').removeClass('active');
+        $('#createActivityTabs a').removeClass('active');
         $(tab, appData.settings.currentPageHTML).addClass('active');
 
         // tab on activity detail

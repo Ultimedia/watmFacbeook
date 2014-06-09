@@ -47,6 +47,20 @@ appData.services.UtilServices = Backbone.Model.extend({
 		});
 	},
 
+	reverseGeo: function(lat, long){
+		var latlng = new google.maps.LatLng(lat, long);
+		
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+		    if (results[1]) {
+		      alert(results[1].formatted_address);
+		    }
+		  } else {
+		    alert("Geocoder failed due to: " + status);
+		  }
+		});
+	},
+
 	getLocationService: function(target){
 		// geolocate
 		if(navigator.geolocation){

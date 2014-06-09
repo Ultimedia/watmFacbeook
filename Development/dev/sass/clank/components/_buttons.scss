@@ -241,16 +241,21 @@
     text-transform: uppercase;
     font-family: "source_sans_prosemibold";
     background-color: #dd6562 !important; /* layer fill content */
-    
 }
 
 .cl-depth-btn.blue{
     background-color: #3a547c !important; 
 }
+.cl-depth-btn.blue:active{
+  background: #2e415f !important;
+}
+
 .cl-depth-btn.red{
     background-color: #dd6562 !important; 
 }
-
+.cl-depth-btn.red:active, #createUserButton:active{
+  background: #c14946 !important;
+}
 
 .cl-line-btn{
     border-radius: 0;

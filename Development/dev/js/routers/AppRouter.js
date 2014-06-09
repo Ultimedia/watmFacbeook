@@ -39,7 +39,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     forward: function(id){
-        console.log("forward enabled");
 
         // save the activity ID nog go to the login
         appData.settings.forwardAfterLoginID = id;
@@ -96,7 +95,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
         appData.settings.created = false;
         clearInterval(appData.settings.timer);
 
-        $('#activiteitenButton').addClass('mm-selected');
+        $('#mainMenu ul li').removeClass('mm-selected');
+        $('#mainMenu ul li').first().addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
 

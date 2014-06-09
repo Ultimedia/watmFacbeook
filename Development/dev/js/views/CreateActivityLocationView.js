@@ -24,7 +24,6 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         "keyup #locationInput": "locationChangeHandler"
     },
 
-
     getLatLonSuccesHandler: function(data){
 
         if(data){
@@ -70,11 +69,14 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
     setMarkers: function(lat, long, content){
         appData.views.CreateActivityLocationView.clearMarkers();
         appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(lat, long), 13);
-        
+  
+        var activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat, long),
           map:  appData.views.CreateActivityLocationView.map,
-          title: content
+          title: content,
+          icon: activityImage,
+          optimized: false
         });
 
         if(content){
@@ -113,8 +115,8 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
       appData.views.CreateActivityLocationView.locationAutComplete = new AutoCompleteView({input: $("#locationInput", appData.settings.currentModuleHTML), model: appData.collections.locations, wait: 100, updateModel: appData.views.ActivityDetailView.model, updateID: "location_id", onSelect: function(){
 
         var locationModel = appData.collections.locations.where({ "location_id": appData.views.ActivityDetailView.model.attributes.location_id})[0];
-            var coordinates = locationModel.attributes.coordinates.split(',');
-            var location = locationModel.attributes.location;
+        var coordinates = locationModel.attributes.coordinates.split(',');
+        var location = locationModel.attributes.location;
 
             appData.views.CreateActivityLocationView.currentLocation = coordinates;
             appData.views.CreateActivityLocationView.setMarkers(coordinates[0], coordinates[1], location);
@@ -128,6 +130,7 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         $('#locationInput', appData.settings.currentModuleHTML).val(appData.views.ActivityDetailView.model.attributes.location);
         this.locationChangeHandler();
       }
+
 
       return this; 
     },
@@ -145,15 +148,33 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         appData.views.CreateActivityLocationView.map = new google.maps.Map($('#map_canvas',page)[0], mapOptions);
         appData.views.CreateActivityLocationView.infowindow = new google.maps.InfoWindow();
 
-        appData.views.CreateActivityLocationView.currentLocation = [];
-        appData.views.CreateActivityLocationView.currentLocation.push(51.20935);
-        appData.views.CreateActivityLocationView.currentLocation.push(3.22470);
+        if(appData.models.userModel.attributes.current_location){
+            var cd = appData.models.userModel.attributes.current_location.split(',');
+
+            appData.views.CreateActivityLocationView.currentLocation = [];
+            appData.views.CreateActivityLocationView.currentLocation.push(cd[0]);
+            appData.views.CreateActivityLocationView.currentLocation.push(cd[1]);
+        }else{
+            appData.views.CreateActivityLocationView.currentLocation = [];
+            appData.views.CreateActivityLocationView.currentLocation.push(51.20935);
+            appData.views.CreateActivityLocationView.currentLocation.push(3.22470);
+        }
 
         // resize and relocate map
         google.maps.event.addListenerOnce(appData.views.CreateActivityLocationView.map, 'idle', function() {
             google.maps.event.trigger(appData.views.CreateActivityLocationView.map, 'resize');
             appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(appData.views.CreateActivityLocationView.currentLocation[0], appData.views.CreateActivityLocationView.currentLocation[1]), 13);
         });
+
+        google.maps.event.addListener(appData.views.CreateActivityLocationView.map, 'click', function(event) {
+    //           placeMarker(event.latLng);
+
+            console.log(event);
+//                       appData.views.CreateActivityLocationView.setMarkers(location.d, location.e, "");
+
+
+        });
+
 
         if(appData.settings.native){
             appData.services.utilService.getLocationService("createActivity");
@@ -183,20 +204,19 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
                 }else{
 
                     // if we don't have friends just create the activity, else go to the friends invite page
-                    if(appData.models.userModel.attributes.myFriends.models.length !== 0){
+                    /*if(appData.models.userModel.attributes.myFriends.models.length !== 0){
                         appData.events.createActivityTabsEvent.trigger('formStageCompleteEvent', appData.views.CreateActivityLocationView.tabTarget);
-                    }else{
+                    }else{*/
 
                         if(appData.views.CreateActivityView.updating){
                             Backbone.on('activityUpdated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.updateActivity(appData.views.ActivityDetailView.model);
 
-                            console.log(appData.views.ActivityDetailView.model);
                         }else{
                             Backbone.on('activityCreated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.createActivity(appData.views.ActivityDetailView.model);
                         }
-                    }
+                    //}
                 }
             }
         });

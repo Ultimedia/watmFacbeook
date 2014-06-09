@@ -12,6 +12,28 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
       appData.views.CreateActivityInfoView.sportAutComplete = new AutoCompleteView({input: $("#sportInput", appData.settings.currentModuleHTML), model: appData.collections.sports, wait: 100, updateModel: appData.views.ActivityDetailView.model, updateID: "sport_id"}).render();
       this.setValidator();
 
+      // Set hours
+      var now = new Date();
+      var mins = now.getMinutes();
+      var quarterHours = Math.round(mins/15);
+      if (quarterHours == 4)
+      {
+          now.setHours(now.getHours()+1);
+      }
+      var rounded = (quarterHours*15)%60;
+      now.setMinutes(rounded);
+
+      var minutes = ('0' + now.getMinutes()).slice(-2);
+      var hour = ('0' + now.getHours()).slice(-2);
+
+      $('#vanInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+      var totInput = now.getHours() + 1;
+          totInput = ('0' + totInput).slice(-2);
+
+      $('#totInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+
       // if we are updating, enter the date from the activity in the input form
       if(appData.views.CreateActivityView.isUpdating){
             var selectedSport = appData.collections.sports.where({"sport_id": appData.views.ActivityDetailView.model.attributes.sport_id})
@@ -48,7 +70,7 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
     },
 
     participantsSliderHandler: function(){
-        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val() + " deelnemers");
+        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val());
     },
 
     subHandler: function(){

@@ -16,6 +16,7 @@ appData.views.DashboardView = Backbone.View.extend({
         appData.views.DashboardView.setMarkers = this.setMarkers;
         appData.views.DashboardView.initMap = this.initMap;
         appData.views.DashboardView.generateAcitvitiesCollection = this.generateAcitvitiesCollection;
+        appData.views.DashboardView.firstRet = true;
 
         // update the activities if we have a network connection
         if(appData.settings.native){
@@ -27,7 +28,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        // appData.settings.timer = setInterval(this.timerAction, 4000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -66,7 +67,12 @@ appData.views.DashboardView = Backbone.View.extend({
         "keyup #searchInput": "searchHandler",
         "click #fullScreenButton": "fullscreenToggleHandler",
         "click #menuButton": "menuOpenHandler",
-        "click #mapBtn": "fullscreenToggleHandler"
+        "click #mapBtn": "fullscreenToggleHandler",
+        "click #downButton": "downButtonHandler"
+    },
+
+    downButtonHandler: function(){
+        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     },
 
     fullscreenToggleHandler: function(){        
@@ -123,6 +129,8 @@ appData.views.DashboardView = Backbone.View.extend({
             $('#activityTable', appData.settings.currentPageHTML).empty();
             _(appData.views.activityListView).each(function(dv) {
                 $('#activityTable', appData.settings.currentPageHTML).append(dv.render().$el);
+
+
             });
 
             if(appData.services.utilService.getNetworkConnection() && appData.settings.native){

@@ -926,9 +926,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                     appData.services.challengeService.checkChallenges(appData.models.userModel, true, false, false, true, appData.models.activityModel);
 
                     var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
-                    
                     if(appData.settings.native){
-
                         window.plugin.notification.local.add({
                           id:      model.attributes.activity_id,
                           title:   model.attributes.title + " gaat beginnen",
@@ -941,7 +939,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                 }else{
                     if(appData.settings.native){
                         window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
-                            alert("canceled");
+                        
                         });
                     }
                 }
@@ -1065,6 +1063,7 @@ appData.views.ActivityMessagesView = Backbone.View.extend({
       // chat timer
       appData.settings.timer = setInterval(this.timerAction, 2000);
        
+
     }, 
 
     timerAction: function(){
@@ -1367,6 +1366,28 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
       appData.views.CreateActivityInfoView.sportAutComplete = new AutoCompleteView({input: $("#sportInput", appData.settings.currentModuleHTML), model: appData.collections.sports, wait: 100, updateModel: appData.views.ActivityDetailView.model, updateID: "sport_id"}).render();
       this.setValidator();
 
+      // Set hours
+      var now = new Date();
+      var mins = now.getMinutes();
+      var quarterHours = Math.round(mins/15);
+      if (quarterHours == 4)
+      {
+          now.setHours(now.getHours()+1);
+      }
+      var rounded = (quarterHours*15)%60;
+      now.setMinutes(rounded);
+
+      var minutes = ('0' + now.getMinutes()).slice(-2);
+      var hour = ('0' + now.getHours()).slice(-2);
+
+      $('#vanInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+      var totInput = now.getHours() + 1;
+          totInput = ('0' + totInput).slice(-2);
+
+      $('#totInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
+
+
       // if we are updating, enter the date from the activity in the input form
       if(appData.views.CreateActivityView.isUpdating){
             var selectedSport = appData.collections.sports.where({"sport_id": appData.views.ActivityDetailView.model.attributes.sport_id})
@@ -1403,7 +1424,7 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
     },
 
     participantsSliderHandler: function(){
-        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val() + " deelnemers");
+        $('#participants', appData.settings.currentModuleHTML).removeClass('hide').text($('#participantsSlider', appData.settings.currentModuleHTML).val());
     },
 
     subHandler: function(){
@@ -1488,7 +1509,6 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         "keyup #locationInput": "locationChangeHandler"
     },
 
-
     getLatLonSuccesHandler: function(data){
 
         if(data){
@@ -1534,11 +1554,14 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
     setMarkers: function(lat, long, content){
         appData.views.CreateActivityLocationView.clearMarkers();
         appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(lat, long), 13);
-        
+  
+        var activityImage = new google.maps.MarkerImage(appData.settings.iconPath + "open-icon@x2.png", null, null, null, new google.maps.Size(26,30)); // Create a variable for our marker image.
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(lat, long),
           map:  appData.views.CreateActivityLocationView.map,
-          title: content
+          title: content,
+          icon: activityImage,
+          optimized: false
         });
 
         if(content){
@@ -1592,6 +1615,7 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         $('#locationInput', appData.settings.currentModuleHTML).val(appData.views.ActivityDetailView.model.attributes.location);
         this.locationChangeHandler();
       }
+
 
       return this; 
     },
@@ -1647,20 +1671,19 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
                 }else{
 
                     // if we don't have friends just create the activity, else go to the friends invite page
-                    if(appData.models.userModel.attributes.myFriends.models.length !== 0){
+                    /*if(appData.models.userModel.attributes.myFriends.models.length !== 0){
                         appData.events.createActivityTabsEvent.trigger('formStageCompleteEvent', appData.views.CreateActivityLocationView.tabTarget);
-                    }else{
+                    }else{*/
 
                         if(appData.views.CreateActivityView.updating){
                             Backbone.on('activityUpdated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.updateActivity(appData.views.ActivityDetailView.model);
 
-                            console.log(appData.views.ActivityDetailView.model);
                         }else{
                             Backbone.on('activityCreated', appData.views.CreateActivityLocationView.activityCreatedHandler);
                             appData.services.phpService.createActivity(appData.views.ActivityDetailView.model);
                         }
-                    }
+                    //}
                 }
             }
         });
@@ -1712,6 +1735,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     menuOpenHandler: function(){
         $("#mainMenu").trigger("open");
+
     },
 
     // phonegap device offline
@@ -1748,8 +1772,12 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
     events: {
       "click #submitButton": "subHandler",
-      "click #menuButton": "menuOpenHandler"
+      "click #menuButton": "menuOpenHandler",
+      "click #watTab": "previousTabHandler"
     },
+
+    previousTabHandler: function(){
+        },
 
     subHandler: function(){
         if($('form').is('#wieForm')){
@@ -1771,7 +1799,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
         var location = data.location;
         var tab = data.tab;
 
-        $('#createActivityTabs .cl-btn').removeClass('active');
+        $('#createActivityTabs a').removeClass('active');
         $(tab, appData.settings.currentPageHTML).addClass('active');
 
         // tab on activity detail
@@ -2081,7 +2109,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        // appData.settings.timer = setInterval(this.timerAction, 4000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -2120,7 +2148,12 @@ appData.views.DashboardView = Backbone.View.extend({
         "keyup #searchInput": "searchHandler",
         "click #fullScreenButton": "fullscreenToggleHandler",
         "click #menuButton": "menuOpenHandler",
-        "click #mapBtn": "fullscreenToggleHandler"
+        "click #mapBtn": "fullscreenToggleHandler",
+        "click #downButton": "downButtonHandler"
+    },
+
+    downButtonHandler: function(){
+        $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     },
 
     fullscreenToggleHandler: function(){        
@@ -3995,6 +4028,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
         Backbone.on('addFavouriteSportsHandler', this.addFavouriteSportsHandler)
     
         appData.views.SportSelectorView.model = this.model;
+        appData.views.SportSelectorView.align = this.align;
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -4035,13 +4069,53 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
         }}).render();
 
+        $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+        $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+            appData.views.SportSelectorView.align();
+        });
+
+        $(window).resize(_.debounce(function(){
+           appData.views.SportSelectorView.align();
+        }, 500));
+
         return this;
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     generateGrid: function(){
         $('#favouriteSportList', appData.settings.currentPageHTML).empty();
-        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView) {
+        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView, index) {
             $('#favouriteSportList', appData.settings.currentPageHTML).append(listView.render().$el);
+
+            if(index == (appData.views.SportSelectorView.favouriteSportsViewList.length -1)){
+            }
+        });    
+
+        // set selected items
+        $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
+            $('#sp' + element.attributes.sport_id, appData.settings.currentPageHTML).addClass('selected');
         });
     },
 
@@ -4052,7 +4126,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-        console.log($(evt.target).parent().find('.rm'));
+        appData.views.SportSelectorView.align();
     },
 
     confirmSportsHandler: function(){
@@ -5688,9 +5762,7 @@ appData.services.UtilServices = Backbone.Model.extend({
   
   	// if this is a notification make it 30 minutes before the activity
   	if(notification){
-		var now                  = new Date().getTime(),
-    		date = new Date(now + 60*1000);
-  		//date = new Date(date.getTime() - 30*60000);
+  		date = new Date(date.getTime() - 30*60000);
   	}
 
   	return date;

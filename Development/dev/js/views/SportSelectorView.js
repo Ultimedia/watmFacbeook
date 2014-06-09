@@ -5,6 +5,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
         Backbone.on('addFavouriteSportsHandler', this.addFavouriteSportsHandler)
     
         appData.views.SportSelectorView.model = this.model;
+        appData.views.SportSelectorView.align = this.align;
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -45,13 +46,53 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
         }}).render();
 
+        $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+        $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+            appData.views.SportSelectorView.align();
+        });
+
+        $(window).resize(_.debounce(function(){
+           appData.views.SportSelectorView.align();
+        }, 500));
+
         return this;
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     generateGrid: function(){
         $('#favouriteSportList', appData.settings.currentPageHTML).empty();
-        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView) {
+        _(appData.views.SportSelectorView.favouriteSportsViewList).each(function(listView, index) {
             $('#favouriteSportList', appData.settings.currentPageHTML).append(listView.render().$el);
+
+            if(index == (appData.views.SportSelectorView.favouriteSportsViewList.length -1)){
+            }
+        });    
+
+        // set selected items
+        $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
+            $('#sp' + element.attributes.sport_id, appData.settings.currentPageHTML).addClass('selected');
         });
     },
 
@@ -62,7 +103,7 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-        console.log($(evt.target).parent().find('.rm'));
+        appData.views.SportSelectorView.align();
     },
 
     confirmSportsHandler: function(){
