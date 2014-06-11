@@ -2,15 +2,15 @@
 	<!-- General form -->
 	<form action="javascript:;" id="watForm">
 		<div class="cl-form padded">
+			<h4 class="left">Aantal toegelaten deelnemers</h4>
+		    <span id="participants" class="hide">20</span>
+		    <input type="range" min="2" max="60" value="20" name="participants"  id="participantsSlider" required/>
+
 			<h4>Sport<span class="required-ast">*</span></h4>
 			<input type="text" name="sport" placeholder="Sport" id="sportInput" required/>
 
 			<h4>Titel van de activiteit<span class="required-ast">*</span></h4>
 			<input type="text" name="titlel" placeholder="Titel" id="titelInput" required/>
-
-			<h4 class="left">Aantal toegelaten deelnemers</h4>
-		    <span id="participants" class="hide">20</span>
-		    <input type="range" min="2" max="60" value="20" name="participants"  id="participantsSlider" required/>
 
 			<h4>Datum<span class="required-ast">*</span></h4>
 			<input type="date" name="datum" placeholder="Datum" id="wanneerInput" required/>
@@ -18,7 +18,7 @@
 		    <h4>Uur<span class="required-ast">*</span></h4>
 			<input type="time" name="vanuur" value="" placeholder="Uur" id="vanInput" required/>
 			
-			<span>Tot</span>
+			<span style="margin-left: 10px; margin-right: 10px;">Tot</span>
 			<input type="time" name="totuur" value="" placeholder="Uur" id="totInput" required/>
 			
 			<h4>Omschrijving</h4>

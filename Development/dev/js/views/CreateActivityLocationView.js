@@ -103,7 +103,15 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
 
     addedLocationSuccesEvent: function(location_id){
         appData.views.ActivityDetailView.model.attributes.location_id = location_id;
-        appData.events.createActivityTabsEvent.trigger('formStageCompleteEvent', appData.views.CreateActivityLocationView.tabTarget);
+
+        // friend appData.events.createActivityTabsEvent.trigger('formStageCompleteEvent', appData.views.CreateActivityLocationView.tabTarget);
+        if(appData.views.CreateActivityView.updating){
+            Backbone.on('activityUpdated', appData.views.CreateActivityLocationView.activityCreatedHandler);
+            appData.services.phpService.updateActivity(appData.views.ActivityDetailView.model); 
+        }else{
+            Backbone.on('activityCreated', appData.views.CreateActivityLocationView.activityCreatedHandler);
+            appData.services.phpService.createActivity(appData.views.ActivityDetailView.model);
+        }
     },
 
     render: function() { 
@@ -169,7 +177,6 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
         google.maps.event.addListener(appData.views.CreateActivityLocationView.map, 'click', function(event) {
     //           placeMarker(event.latLng);
 
-            console.log(event);
 //                       appData.views.CreateActivityLocationView.setMarkers(location.d, location.e, "");
 
 

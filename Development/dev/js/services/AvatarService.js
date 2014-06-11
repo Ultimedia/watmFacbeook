@@ -13,15 +13,15 @@ appData.services.AvatarService = Backbone.Model.extend({
 
 		switch(paramter){
 			case "create":
-				multiplier = 2.5;
+				multiplier = 1.1;
 			break;
 
 			case "join":
-				multiplier = 1.4;
+				multiplier = 0.5;
 			break;
 
 			case "media":
-				multiplier = 1.3
+				multiplier = 1.1
 			break;
 
 			case "chat":
@@ -33,7 +33,7 @@ appData.services.AvatarService = Backbone.Model.extend({
 			break;
 
 			case "friend":
-				multiplier = 1.3;
+				multiplier = 1.1;
 			break;
 		}
 
@@ -68,6 +68,7 @@ appData.services.AvatarService = Backbone.Model.extend({
 		var avatarModel = new Avatar();
 			avatarModel.attributes.strengthDisplay = "";
 			avatarModel.attributes.equipmentDisplay = "";
+
 
 		// which gender?
 		switch(parseInt(userModel.attributes.gender)){

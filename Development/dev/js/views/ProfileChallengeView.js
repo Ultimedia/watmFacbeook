@@ -36,7 +36,12 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
     render: function() { 
     	this.$el.html(this.template());
         appData.settings.currentModuleHTML = this.$el;
-        this.updateChallenges();
+
+        $(window).resize(_.debounce(function(){
+            appData.views.ProfileChallengeView.updateChallenges();
+        }, 500));
+
+         $('#badgesOverview', appData.settings.currentModuleHTML).hide();
 
         return this; 
     },
@@ -64,6 +69,20 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
     },
 
     updateChallenges: function(){
+        // badges grid
+        var bwidth = $('#badgesOverview ul', appData.settings.currentModuleHTML).width();
+        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 12 + 2;
+            bdwidth = parseInt(bdwidth);
+
+        var howMany = appData.models.userModel.attributes.challengesCount;
+        if(!isNaN(howMany)){
+            $('#badgesOverview ul', appData.settings.currentModuleHTML).empty();
+            for (var i=0; i<howMany; i++){
+                $('#badgesOverview ul', appData.settings.currentModuleHTML).append('<li></li>');
+            }          
+        }
+        $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
+
         appData.views.challengeListView = [];
         appData.collections.challenges.each(function(challenge) {
         appData.views.challengeListView.push(new appData.views.ChallengeListView({
@@ -94,6 +113,21 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             });
         }
 
+        // set equal grid height
+        var t=0; // the height of the highest element (after the function runs)
+        var t_elem;  // the highest element (after the function runs)
+        $("#challengesOverview .challenge-item",appData.settings.currentModuleHTML).each(function () {
+            $this = $(this);
+            if ( $this.outerHeight() > t ) {
+                t_elem=this;
+                t=$this.outerHeight();
+            }
+        });
+        $("#challengesOverview .challenge-item",appData.settings.currentModuleHTML).css({
+            'min-height': t + 'px'
+        });
+
+
         $('#myChallengesOverview', appData.settings.currentModuleHTML).addClass('hide');
         $('#myChallengesOverviewTable', appData.settings.currentModuleHTML).empty();
         if(appData.views.myChallengesListView.length > 0){
@@ -103,12 +137,34 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             });
         }
 
-        $('#badgesOverview', appData.settings.currentModuleHTML).addClass('hide').empty();
+        t=0; // the height of the highest element (after the function runs)
+        t_elem;  // the highest element (after the function runs)
+        $("#myChallengesOverview .challenge-item",appData.settings.currentModuleHTML).each(function () {
+            $this = $(this);
+            if ( $this.outerHeight() > t ) {
+                t_elem=this;
+                t=$this.outerHeight();
+            }
+        });
+        $("#myChallengesOverview .challenge-item",appData.settings.currentModuleHTML).css({
+            'min-height': t + 'px'
+        });
+
+        // bekijken
         if(appData.views.myBadgesListView.length > 0){
-            $('#badgesOverview', appData.settings.currentModuleHTML).removeClass('hide');
+            var ind = 0;
+
             _(appData.views.myBadgesListView).each(function(listView) {
-                $('#badgesOverview', appData.settings.currentModuleHTML).append(listView.render().$el);
+                $('#badgesOverview ul li:eq(' + ind + ')', appData.settings.currentModuleHTML).append(listView.render().$el).addClass('badger');
+                ind++;
             });
+        }
+
+        // show a message when there are nog challenges availible
+        if(appData.views.myChallengesListView.length === 0 && appData.views.challengeListView.length === 0){
+            $('.no-found', appData.settings.currentModuleHTML).removeAttr('style');
+        }else{
+            $('.no-found', appData.settings.currentModuleHTML).css('display', 'none');
         }
 
         appData.services.utilService.updateLocalStorage();

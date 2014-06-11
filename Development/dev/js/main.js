@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://ultimedia.biz/watm/";
+appData.settings.rootPath = "http://localhost/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -73,6 +73,8 @@ appData.settings.updateUserAvatarService = "updateUserAvatar.php";
 appData.settings.uploadMediaNonNativeService = "uploadMediaNonNative.php";
 appData.settings.updateActivityService = "updateActivity.php";
 appData.settings.getUserMediaService = "getUserMedia.php";
+appData.settings.getChallengesCount = "getChallengesCount.php";
+
 
 appData.settings.defaultLocation = [51.20935, 3.22470];
 appData.settings.dataLoaded = false;
@@ -154,6 +156,10 @@ appData.start = function(nativeApp){
       $("#mainMenu").mmenu({
         // options object
         dragOpen: false
+      });
+
+      $('#menuAvatarSection').click(function(){
+        window.location.hash = "#profile";
       });
 
       // New services class

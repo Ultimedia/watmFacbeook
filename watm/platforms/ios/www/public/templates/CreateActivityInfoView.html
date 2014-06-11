@@ -2,22 +2,26 @@
 	<!-- General form -->
 	<form action="javascript:;" id="watForm">
 		<div class="cl-form padded">
-			<input type="text" name="sport" placeholder="Sport" id="sportInput" required/>
-			<hr/>
-			<h4>Aantal deelnemers</h4>
-		    <span id="participants" class="show">20 deelnemers</span>
+			<h4 class="left">Aantal toegelaten deelnemers</h4>
+		    <span id="participants" class="hide">20</span>
 		    <input type="range" min="2" max="60" value="20" name="participants"  id="participantsSlider" required/>
-			<hr/>
-			<input type="date" name="datum" placeholder="Datum" id="wanneerInput" required/>
-			<hr/>
-		    <h4>Van</h4>
-			<input type="time" name="vanuur" placeholder="Uur" id="vanInput" required/>
-			<hr/>
-		    <h4>Tot</h4>
-			<input type="time" name="totuur" placeholder="Uur" id="totInput" required/>
-			<hr/>
+
+			<h4>Sport<span class="required-ast">*</span></h4>
+			<input type="text" name="sport" placeholder="Sport" id="sportInput" required/>
+
+			<h4>Titel van de activiteit<span class="required-ast">*</span></h4>
 			<input type="text" name="titlel" placeholder="Titel" id="titelInput" required/>
-			<hr/>
+
+			<h4>Datum<span class="required-ast">*</span></h4>
+			<input type="date" name="datum" placeholder="Datum" id="wanneerInput" required/>
+		    
+		    <h4>Uur<span class="required-ast">*</span></h4>
+			<input type="time" name="vanuur" value="" placeholder="Uur" id="vanInput" required/>
+			
+			<span style="margin-left: 10px; margin-right: 10px;">Tot</span>
+			<input type="time" name="totuur" value="" placeholder="Uur" id="totInput" required/>
+			
+			<h4>Omschrijving</h4>
 			<textarea rows="4" name="omschrijving" placeholder="Omschrijving" id="omschrijvingInput"></textarea>
 		</div>
 	</form>

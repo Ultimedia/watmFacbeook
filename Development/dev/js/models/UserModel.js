@@ -3,7 +3,7 @@ User = Backbone.Model.extend({
 	    user_id: '',
 	    name: '',
 	    email: '',
-	    gender: '',
+	    gender: '1',
 	    facebook_data: {},
 	    facebookUser: false,
 	    current_location: "50.827404, 3.254647",

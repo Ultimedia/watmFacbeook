@@ -14,10 +14,6 @@ appData.views.DashboardActivityView = Backbone.View.extend({
     },
 
     render: function() { 
-		//this.model.setGoing();
-		console.log('----')
-		console.log(this.model);
-
 		var hasUser = this.model.attributes.user_id;
 		var userName = "";
 		var userID = "";

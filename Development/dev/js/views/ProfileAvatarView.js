@@ -14,9 +14,6 @@ appData.views.ProfileAvatarView = Backbone.View.extend({
 
         $('#avatar', appData.settings.currentModuleHTML).append(avatarView.render().$el);
 
-        console.log(appData.models.userModel.attributes.stamina_score);
-
-
         $( "#strength_progress", appData.settings.currentModuleHTML).progressbar({
             value: parseInt(appData.models.userModel.attributes.strength_score)
         });

@@ -2,6 +2,7 @@
 	require_once("core_functions.php");
 
 	$user_id = $_POST["user_id"];
+	$user_id = 1;
 
 	$dbc = getDBConnection();		
 	$sql = "SELECT * FROM watm_user_challenges INNER JOIN watm_challenges ON watm_user_challenges.challenge_id = watm_challenges.challenge_id WHERE watm_user_challenges.user_id =". $user_id;
@@ -13,7 +14,7 @@
 		$challenge = array("challenge_id" => $row["challenge_id"],
 			"status" => $row["status"], 
 			$challenge = array(
-				"challenge_id" => $row["avatar_id"],
+				"challenge_id" => $row["challenge_id"],
 				"title"=>$row["title"],
 				"deadline"=>$row["deadline"],
 				"description"=>$row["description"],

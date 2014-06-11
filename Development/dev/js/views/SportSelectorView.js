@@ -103,7 +103,6 @@ appData.views.SportSelectorView = Backbone.View.extend({
 
     favouriteSportClickHandler: function(evt){
         $(evt.target).toggleClass('selected');
-        appData.views.SportSelectorView.align();
     },
 
     confirmSportsHandler: function(){

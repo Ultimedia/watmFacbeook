@@ -10,6 +10,7 @@ appData.views.CreateActivityView = Backbone.View.extend({
                 appData.views.ActivityDetailView.model = this.model;
 
                 appData.views.CreateActivityView.isUpdating = true;
+
             }else{
                 appData.views.ActivityDetailView.model = new Activity();
                 appData.views.CreateActivityView.isUpdating = false;
@@ -57,7 +58,12 @@ appData.views.CreateActivityView = Backbone.View.extend({
 
         if(appData.views.CreateActivityView.isUpdating){
             $('.cl-title', appData.settings.currentPageHTML).text('Wijzig activitiet');
+            
+            // menu buttons
+            $('#backButton', appData.settings.currentPageHTML).removeAttr('style');
+            $('#menuButton', appData.settings.currentPageHTML).hide();
         }
+
 
         return this; 
     }, 
@@ -65,11 +71,17 @@ appData.views.CreateActivityView = Backbone.View.extend({
     events: {
       "click #submitButton": "subHandler",
       "click #menuButton": "menuOpenHandler",
-      "click #watTab": "previousTabHandler"
+      "click #watTab": "previousTabHandler",
+      "click #backButton": "backHandler"
+    },
+
+    backHandler: function(){
+        window.history.back();
     },
 
     previousTabHandler: function(){
-        },
+    
+    },
 
     subHandler: function(){
         if($('form').is('#wieForm')){

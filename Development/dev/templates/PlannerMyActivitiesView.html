@@ -4,7 +4,11 @@
 <h2 data-id="<%= data.activity_id %>"><%= data.title %></h2>
 <ul class="planner-footer">
     <li class="table-time">
-    <%= data.date %> <%= data.time %>
+	<% 
+		var startt = data.startTime.substring(0, data.startTime.length - 3)
+		var stopt = data.stopTime.substring(0, data.stopTime.length - 3)
+	%>
+	<%= startt %> tot <%= stopt %>
     </li>
 
     <li class="table-location">

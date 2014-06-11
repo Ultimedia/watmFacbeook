@@ -18,7 +18,10 @@ appData.services.CHallengeService = Backbone.Model.extend({
             var ps = false;
             var isChallenge = false;
 
+
+
             if(challenge.attributes.challengeData.sportsFilter && sportsFilter){
+
                 total = challenge.attributes.challengeData.sportsFilter.total;
                 var sport = challenge.attributes.challengeData.sportsFilter.sport_id;
                 isChallenge = true;
@@ -91,6 +94,7 @@ appData.services.CHallengeService = Backbone.Model.extend({
             }
 
             if(challenge.attributes.challengeData.participateFilter && participateFilter){
+
                 total = challenge.attributes.challengeData.participateFilter.total;
                 isChallenge = true;
 
@@ -119,6 +123,9 @@ appData.services.CHallengeService = Backbone.Model.extend({
                 complete = 1;
                 console.log("challenge complete");
             }
+
+            console.log('check hieronder');
+            console.log(challenge);
 
             // update challenge on the database
             Backbone.on('updateChallengeScore', this.updateChallengeScore);

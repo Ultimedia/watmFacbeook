@@ -18,6 +18,7 @@ appData.views.LoadingView = Backbone.View.extend({
         Backbone.on('getFriendsHandler', this.loadingCompleteHandler);
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
+        Backbone.on('getChallengesCount', this.getChallengesCount)
     }, 
 
     // phonegap device offline
@@ -38,12 +39,17 @@ appData.views.LoadingView = Backbone.View.extend({
         if(appData.settings.userLoggedIn){
 
             // load the data
-            appData.services.phpService.getActivities(true);
+            appData.services.phpService.getChallengesCount();
         }else{
             window.location.hash = "";
         }
         return this;
     },
+
+    getChallengesCount: function(){
+        appData.services.phpService.getActivities(true);
+    },
+
     activitiesLoadedHandler: function(){
         appData.services.phpService.getSports();
     },

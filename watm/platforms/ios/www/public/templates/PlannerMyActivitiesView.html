@@ -1,5 +1,18 @@
-<div class="cl-table-cell">
-<a href="#activity/<%= activity_id %>">
-	<span class="label"><h3><%= title %> <small><%= date %> <%= time %></small></h3></span>
-</a>
-</div>
+<span class="sports-badge" style="background: #ede0d6 url('<%= imagePath %><%= sport %>') no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;"></span>
+<span class="sports-bubble">
+<span class="edit-badge" style="display: none;"></span>
+<h2 data-id="<%= data.activity_id %>"><%= data.title %></h2>
+<ul class="planner-footer">
+    <li class="table-time">
+	<% 
+		var startt = data.startTime.substring(0, data.startTime.length - 3)
+		var stopt = data.stopTime.substring(0, data.stopTime.length - 3)
+	%>
+	<%= startt %> tot <%= stopt %>
+    </li>
+
+    <li class="table-location">
+	<%= data.location %>
+    </li>
+</ul>
+</span>

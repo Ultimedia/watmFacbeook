@@ -26,7 +26,7 @@ appData.views.PlannerView = Backbone.View.extend({
     Backbone.on('networkLostEvent', this.networkLostHandler);
 
     // image timer
-    //appData.settings.timer = setInterval(this.timerAction, 4000);
+    appData.settings.timer = setInterval(this.timerAction, 4000000);
   }, 
 
   generateTimeLine: function(){
@@ -67,6 +67,7 @@ appData.views.PlannerView = Backbone.View.extend({
       var savedDate;
 
       _(appData.views.activityListView).each(function(element, index) {
+
 
           // same date
           if(lastDate == element.model.attributes.savedDate){

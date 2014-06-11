@@ -1,7 +1,7 @@
 <?php
 	require_once("core_functions.php");
 
-	$user_id = 2;
+	$user_id = $_POST['user_id'];
 
 	$dbc = getDBConnection();		
 	$sql = "SELECT * FROM watm_user_sports WHERE user_id=" . $user_id;
@@ -12,9 +12,13 @@
 	while($row = $result->fetch_assoc()){
 		$project = $row["sport_data"];
 	}
-
-	$project = stripslashes($project);
-
+	if($project !== null || $prject !== ""){
+		$project = stripslashes($project);
+	}else{
+		$project = array();
+	}
+	$project = json_decode($project);
+	
 	$dbc->close();
-	echo $project;
+	print json_encode($project);
 ?>

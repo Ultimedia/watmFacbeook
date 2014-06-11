@@ -159,8 +159,6 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
   	getMyPlannedActivities: function(){
-  		console.log(appData.models.userModel.attributes.user_id);
-
   		$.ajax({
 			url:appData.settings.servicePath + appData.settings.getMyPlannedActivities,
 			type:'POST',
@@ -278,8 +276,6 @@ appData.services.PhpServices = Backbone.Model.extend({
 			dataType:'json',
 			success:function(data){
 				appData.collections.users = new UsersCollection(data);
-				console.log(appData.collections.users);
-
          		appData.events.getUsersSuccesEvent.trigger("usersLoadedHandler");
 			}
 		});
@@ -360,6 +356,10 @@ appData.services.PhpServices = Backbone.Model.extend({
 			data: "user_id="+appData.models.userModel.attributes.user_id,
 			success:function(data){
 				appData.models.userModel.attributes.myFavouriteSports = new SportsCollection(data);
+        		Backbone.trigger('getMyFavouriteSportsHandler');
+			},
+			error: function(){
+				appData.models.userModel.attributes.myFavouriteSports = new SportsCollection();
         		Backbone.trigger('getMyFavouriteSportsHandler');
 			}
 		}); 
@@ -463,8 +463,33 @@ appData.services.PhpServices = Backbone.Model.extend({
 			dataType:'json',
 			data: "user_id="+appData.models.userModel.attributes.user_id,
 			success:function(data){
+
+				$(data).each(function(index, element){
+					element.challengeData = element.challengeData.replace(new RegExp("\\\\", "g"), "");
+					element.challengeData = element.challengeData.substring(1, element.challengeData.length-1);
+					element.challengeData  = JSON.parse(element.challengeData);
+
+					element.status = element.status.replace(new RegExp("\\\\", "g"), "");
+					element.status = element.status.substring(1, element.status.length-1);
+					element.status  = JSON.parse(element.status);
+				});
+
+				console.log(data);
+
 				appData.models.userModel.attributes.myChallenges = new ChallengesCollection(data);
 				Backbone.trigger('getMyChallengesHandler');
+			}
+		}); 	
+  	},
+
+  	getChallengesCount: function(){
+  	  	$.ajax({
+			url:appData.settings.servicePath + appData.settings.getChallengesCount,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				appData.models.userModel.attributes.challengesCount = data;
+				Backbone.trigger('getChallengesCount');
 			}
 		}); 	
   	},
@@ -510,6 +535,7 @@ appData.services.PhpServices = Backbone.Model.extend({
   	},
 
   	updateChallenge: function(challenge_id, status, completed){
+
   		$.ajax({
 			url:appData.settings.servicePath + appData.settings.updateChallengeService,
 			type:'POST',

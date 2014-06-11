@@ -12,7 +12,11 @@
 	while($row = $result->fetch_assoc()){
 		$project = $row["sport_data"];
 	}
-
+	if($project !== null || $prject !== ""){
+		$project = stripslashes($project);
+	}else{
+		$project = array();
+	}
 	$project = json_decode($project);
 	
 	$dbc->close();

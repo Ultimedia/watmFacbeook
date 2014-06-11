@@ -17,7 +17,9 @@
     <hr/>
 
     <h4>Wanneer</h4>
-    <span><%= date %></span>
+    <% var stopTime = stopTime.substring(0, stopTime.length - 3) %>
+
+    <span><%= date %> tot <%= stopTime %></span>
     <hr/>
 
     <h4>Organisator</h4>

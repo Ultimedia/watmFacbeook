@@ -123,7 +123,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     profile: function () {
-        $('#profileButton').addClass('mm-selected');
+        $('#mainMenu ul li').removeClass('mm-selected');
+        $('#mainMenu #profielButton').addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.ProfileView().render().$el);

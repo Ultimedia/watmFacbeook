@@ -33,6 +33,10 @@ appData.views.CreateActivityInfoView = Backbone.View.extend({
 
       $('#totInput', appData.settings.currentModuleHTML).val(hour+":"+minutes);
 
+      var van = hour+":"+minutes;
+      var res = van.split(":");
+      $('#totInput', appData.settings.currentModuleHTML).val((parseInt(res[0]) + 1) + ":" + res[1]);
+
 
       // if we are updating, enter the date from the activity in the input form
       if(appData.views.CreateActivityView.isUpdating){

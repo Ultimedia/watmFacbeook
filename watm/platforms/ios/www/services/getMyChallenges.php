@@ -10,14 +10,20 @@
 	$user_challenges = array();
 
 	while($row = $result->fetch_assoc()){
+	
+		$sdata = $row["challengeData"];
+		if($sdata !== null || $sdata !== ""){
+			//$sdata = json_decode($sdata)
+		}
+
 		$challenge = array("challenge_id" => $row["challenge_id"],
-			"status" => json_decode($row["status"]), 
+			"status" => json_encode($row["status"]), 
 			"challenge_id" => $row["challenge_id"],
 			"title"=>$row["title"],
 			"deadline"=>$row["deadline"],
 			"description"=>$row["description"],
 			"badge_url"=>$row["badge_url"],
-			"challengeData" => json_decode($row["challengeData"]));
+			"challengeData" => json_encode($row["challengeData"]));
 			
 		$user_challenges[] = $challenge;
 	}

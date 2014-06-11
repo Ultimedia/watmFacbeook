@@ -1,4 +1,5 @@
 appData.views.ProfileFriendsView = Backbone.View.extend({
+    className: 'friendbox',
     initialize: function () {
     	appData.views.friendsListView = [];
         appData.views.ProfileFriendsView.friendRemovedHandler = this.friendRemovedHandler;
@@ -38,9 +39,9 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
 
         appData.views.friendsListView = [];
         $(appData.models.userModel.attributes.myFriends.models).each(function(index, userModel) {
-        appData.views.friendsListView.push(new appData.views.FriendsListView({
-            model:userModel
-          }));
+            appData.views.friendsListView.push(new appData.views.FriendsListView({
+                model:userModel
+            }));
         });
 
 
@@ -48,6 +49,9 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
         _(appData.views.friendsListView).each(function(listView) {
             $('#profileFriendsListView', appData.settings.currentModuleHTML).append(listView.render().$el);
         });
+
+        var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
+        $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
 
     },
 
@@ -57,6 +61,11 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
 
         this.generateFriendsList();
 
+        $(window).resize(_.debounce(function(){
+            var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
+            $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
+        }, 500));
+            
         return this; 
     },
 });
