@@ -9,14 +9,14 @@
 
       <div id="avatarSection">
         <% if(user.avatar !== "default.png"){ %>
-            <span id="userAvatar" style="background: url('<%= imagePath %><%= user.avatar %>') no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; " class="avid"></span>
+            <span id="userAvatar" style="background: #a3917d url('<%= imagePath %><%= user.avatar %>') no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; " class="avid"></span>
         <% }else{ %>
             <span id="userAvatar" class="avid"></span>
         <% } %>        
 
         <h2><%= user.name %></h2>
         <div class="center">
-          <a href="javascript:;" class="cl-btn flat-green btn-small" id="changeAvatar">Kies een nieuwe foto</a>
+          <a href="javascript:;" class="cl-btn flat-green btn-small" id="changeAvatar"><i class="cam-icon"></i>Maak een profielfoto</a>
           <a href="javascript:;" id="signOutButton" class="cl-btn flat-green btn-small">Afmelden</a>
         </div>
       </div>
@@ -28,12 +28,13 @@
       <div id="favouriteSportSection">
         <h4>Jouw favoriete sporten</h4>
         <div id="favouriteSportList">
-        <div>
-          <a class="sportselector-btn" href="javascript:;" id="sportselector"></a><span>Wijzig</span>
-        </div>
+
         </div>
       </div>
 
   </div>
+    <div class="button-container">
+      <a  href="javascript:;" id="confirm" class="cl-btn cl-depth-btn ">Mijn favoriete sporten</a>
+    </div>
 </div>
 

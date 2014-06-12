@@ -751,6 +751,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/add-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/add-sport-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/calendar-icon@x2.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/cam-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/close-icon@x2.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/cloud-bg.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/css/assets/cloud-bg2.png \
@@ -813,6 +814,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/cordova.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/cordova_plugins.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/dfacebook-js-sdk-old.js \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/facebook kopie.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/facebook-js-old-sdk.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/facebook-js-sdk-old.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/facebook-js-sdk-oldddd.js \
@@ -837,6 +839,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/plugins \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/prototype.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/PushNotification.js \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/textfill.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/underscore.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/plugins/jquery.easing.1.3.js \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/public/js/vendor/plugins/jquery.fitvids.js \

@@ -45,7 +45,6 @@ appData.services.FacebookServices = Backbone.Model.extend({
 	},
 
 	getUserFromFacebookID: function(){
-
 	  	$.ajax({
 			url:appData.settings.servicePath + appData.settings.getUserFromFacebookID,
 			type:'GET',

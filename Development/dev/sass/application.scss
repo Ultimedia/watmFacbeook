@@ -246,6 +246,10 @@ form .cl-btn{
   width: 100%;
 }
 
+#activityMap{
+  z-index: 1;
+}
+
 #sortBar p, #searchBar p{
   float: left;
 }
@@ -970,8 +974,20 @@ input.error{
   display: inline-block;
   float: left;
   width: 40px;
-height: 40px;
-display: block;
+  height: 40px;
+  display: block;
+}
+
+.cam-icon{
+  background: url('assets/cam-icon@x2.png') no-repeat center center / 15px 13px;
+  width: 15px;
+  height: 12px;
+  display: block;
+  float: left;
+  display: block;
+  padding: 2px;
+  margin-top: 10px;
+  margin-right: 7px;
 }
 
 /**
@@ -1012,6 +1028,9 @@ display: block;
 #favouriteSportsSelector{
   height: 100%;
 
+  #backButton.hide{
+    display: none !important;
+  }
 
 
   .cl-bar-title{
@@ -1473,7 +1492,10 @@ display: block;
   }
 
   #sortBar{
-    display: none;
+    position: absolute;
+    left: 0;
+    top: 96px;
+    z-index: 1000;
   }
   .cl-content{
     display: none;
@@ -1494,6 +1516,7 @@ display: block;
   #fullScreenButton{
     heigth: 40px;
     background: #a19a8f url('assets/normalscreen-icon@x2.png') no-repeat center center / 15px 15px !important;
+    top: 130px;
   }
 }
 
@@ -1572,14 +1595,25 @@ display: block;
 */
 #settings{
 
+.cl-bar-title{
+  background: #dacab4;
+
+  .cl-title{
+    font-family: pacificoregular;
+    color: #505050;
+    text-transform: capitalize;
+    font-size: 2.4em;
+  }
+}
 
 .cl-content{
   padding: 0;
-  height: calc(100% - 74px);
-  background: #2f404b;
+  height: calc(100% - 134px);
+  background: #ede1d1;
 
   h4{
     text-align: center;
+    padding-top: 20px;
   }
 
   h2{
@@ -1591,15 +1625,32 @@ display: block;
     padding: 15px 10px;
   }
 
+  #changeAvatar, #signOutButton{
+    display: inline-block;
+    width: auto;
+    margin-top: 10px;
+    color: #fff;
+    padding: 0px 8px;
+    background: #dd6562 !important;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    font-size: 13px;
+  }
+
+  #signOutButton{
+    background: #bb504e;
+  }
+
     #favouriteSportSection{
       width: 100%;
       overflow: auto;
       padding-bottom: 10px;
-      background: #72848f;
 
       div{
         float: left;
         display: inline-block;
+        margin-bottom: 15px;
 
         span{
           display: block;
@@ -1608,41 +1659,59 @@ display: block;
         }
 
         a{
-          width: 86px;
-          height: 86px;
-          background: #d2d2d2;
-          margin: 10px;
-          padding: 5px;
+          width: 60px;
+          height: 60px;
+          background: #a3917d;
+          margin: 7px;
+          padding: 2px;
           float: left;
           text-align: center;
           font-size: 12px;
-          border-radius: 40px;
-          -webkit-border-radius: 42px;
-          -moz-border-radius: 42px;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          border-radius: 5px; /* border radius */
+          -moz-background-clip: padding;
+          -webkit-background-clip: padding-box;
+          background-clip: padding-box; /* prevents bg color from leaking outside the border */
           position: relative;
-          color: #fff;
-        }
+          -webkit-box-shadow: inset -5px -5px 0px -2px rgba(131,115,97,1);
+          -moz-box-shadow: inset -5px -5px 0px -2px rgba(131,115,97,1);
+          box-shadow: inset -5px -5px 0px -2px rgba(131,115,97,1);
 
-        a.sportselector-btn{
-          background: #4cd6d1 url("assets/add-sport-icon@x2.png") no-repeat center center/18px 18px;
+          .rm{
+            margin-top: 0;
+            padding: 0;
+          }
+
+          .layer{
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 48px;
+            height: 48px;
+            pointer-events: none;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+          }
+          .overlay{
+            display: none;
+          }
         }
       }
     }
 
     #avatarSection{
       padding-top: 20px;
-      margin-bottom: 10px;
+      padding-bottom: 10px;
       overflow: auto;
       clear: both;
-
+      background: #dacab4;
       .center{
         text-align:center;
         display: block;
-        padding: 10px 0;
+        padding: 0 0 10px 0;
       }
 
       #userAvatar{
@@ -1651,7 +1720,7 @@ display: block;
         display: block;
         border-radius: 80px;
         margin: 0 auto;
-        border: 1px solid #f4f4f4;
+        border: 3px solid #837361;
         margin-left: auto;
         margin-right: auto;
       }
@@ -1660,6 +1729,11 @@ display: block;
         display: block;
         text-align: center;
         padding: 5px 0;
+        text-transform: capitalize;
+        margin-bottom: 3px;
+        color: #505050;
+        font-family: "ropa_sansregular";
+        font-size: 1.6em;
       }
 
       #avatarFunctionality{
@@ -1671,42 +1745,52 @@ display: block;
   }
 }
 
-
+.button-container{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background: #fff;
+}
 
 #messageBox{
-      background: #e6e6e6;
-      border-top: 1px solid #cacaca;
-      z-index: 20000;
-      overflow: auto;
-      padding: 5px 10px;
-      position: fixed;
-      bottom: 0;
-      left: 10px;
-      right: 10px;
-      display: none;
+  background: #e6e6e6;
+  border-top: 1px solid #cacaca;
+  z-index: 20000;
+  overflow: auto;
+  padding: 5px 10px;
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  display: none;
 
-      #messageSubmit{
-        width: 100px !important; 
-        float: right;
-        text-align: center;
-        line-height: 32px;
-        font-family: "source_sans_prosemibold";
-        font-size: 14px;
-      }
+  .field .span{
+    padding-right:6px;
+  }
 
-      #messageInput{
-        border: 0;
-        -webkit-appereance: none;
-        border-radius: 0;
-        -wekit-border-radius: 0;
-        -moz-border-radius: 0;
-        width: 100%;
-        padding-left: 6px;
-        padding-right: 12px;
-        margin: 3px 0 0 0;
-        line-height: 30px;
-      }
-    }
+  #messageSubmit{
+    width: 100px !important; 
+    float: right;
+    text-align: center;
+    font-family: "source_sans_prosemibold";
+    font-size: 14px;
+    height: 36px;
+  }
+
+  #messageInput{
+    border: 0;
+    -webkit-appereance: none;
+    border-radius: 0;
+    -wekit-border-radius: 0;
+    -moz-border-radius: 0;
+    width: 100%;
+    padding-left: 6px;
+    padding-right: 12px;
+    height: 36px;
+    font-size:13px;
+  }
+}
 #messageBox.open{
   display: block;
 }
@@ -1833,7 +1917,6 @@ display: block;
     }
 
     #mediaContenList{
-      padding-bottom: 150px;
 
       img{
         width: 100%;
@@ -1844,6 +1927,9 @@ display: block;
         background: #dadada;
         padding: 10px 5px;
         margin: 0 0 35px 0;
+        color: #505050;
+        font-family: "ropa_sansregular";
+        font-size: 1.2em;
       }
     }
   }
@@ -1856,7 +1942,7 @@ display: block;
     bottom: 0;
     color: #fff;
     padding: 0 10px;
-    z-index: 1000;
+    z-index: 200;
     span{
       float: left;
       line-height: 40px;
@@ -1921,11 +2007,15 @@ display: block;
     #activityContent{
       background: #fff;
       position: relative;
-      overflow: auto;
+      overflow: visible;
       height: 100%;
       margin-left: 10px;
       margin-right: 10px;
       clear: both;
+
+      .mediaContainer{
+        background: #fff;
+      }
     }
 
     #praktischContent, #mediaContent, #messagesContent ul{
@@ -2653,7 +2743,23 @@ display: block;
     }
 
 
+    .no-found, .no-found2{
+      padding: 20px 10px 20px 10px;
+      margin: 0;
+      color: #57585a;
+      font-size: 1.2em;
+      letter-spacing: -1px;
+      display: block;
+      text-align: center;
+      font-family: "ropa_sansregular";
+      background: #edecec;
+      margin-bottom: 16px;
+    }
 
+    #myChallengesOverview .hide, #challengesOverview .hide{
+      display: none !important;
+    }
+    
     .cl-btn{
       display: inline-block;
       width: auto;
@@ -2800,9 +2906,21 @@ display: block;
   position: relative;
   height: calc(100%-61px);
   
+
+
   #friendAddContainer{
     padding: 10px;
     clear: both;
+  
+    #addFriendButton{
+      padding: 10px 10px 10px 20px;
+      margin-bottom: 20px;
+      line-height: 22px;
+      background: #dd6562 !important;
+      color: #fff;
+      font-family: "source_sans_prosemibold";
+      font-size: 14px;
+    }
   }
 
   #avatarView{
@@ -2860,6 +2978,10 @@ display: block;
           background: #dadada;
           padding: 10px 5px;
           margin: 0 0 35px 0;
+          margin: 0 0 35px 0;
+          color: #505050;
+          font-family: "ropa_sansregular";
+          font-size: 1.2em;
         }
     }
 
@@ -2895,6 +3017,12 @@ display: block;
       text-align:right;
       padding: 10px;
       display: block;
+      font-family: "bitteritalic";
+      text-transform: capitalize;
+      font-size: 14px;
+      margin: 20px 0 12px 0;
+      margin-bottom: 10px;
+      color: #292929;
     }
 
     #mediaContainer{
@@ -2922,7 +3050,9 @@ display: block;
 * Navigation
 */
 #navigationView{
-    
+    overflow-x:hidden;
+    width:100%;
+
     .cl-content{
         height: calc(100% - 54px);
 

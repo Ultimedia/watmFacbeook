@@ -32,9 +32,10 @@ appData.views.ActivityDetailView = Backbone.View.extend({
       $('#activityContent', appData.settings.currentPageHTML).empty().append(defaultView.render().$el);
 
       // user is admin? (show edit options)
+      /*
       if(appData.models.userModel.get("user_id") == this.model.get("user_id")){
         $('#editPanel', appData.settings.currentPageHTML).removeClass('hide');
-      }
+      }*/
 
       var elementPosition = $('#activityDetailTabs', appData.settings.currentPageHTML).offset();
 
@@ -47,7 +48,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
       this.setValidators();
       $('#ee', appData.settings.currentPageHTML).delay(800).queue(function() {
-          $(this).css('display', 'block').textfill({max: 22});
+          $(this).hide().css('display', 'block').textfill({max: 22}).show();
       });
 
       $(window).resize(_.debounce(function(){
@@ -142,7 +143,17 @@ appData.views.ActivityDetailView = Backbone.View.extend({
     },
 
     sharePopopverClickHandler: function(e){
-      $('#popover', appData.settings.currentPageHTML).toggleClass('hide');
+      if($('#popover', appData.settings.currentPageHTML).hasClass('hide')){
+        $('#popover', appData.settings.currentPageHTML).removeClass('hide');
+        $('#bd', appData.settings.currentPageHTML).hide().show(300);
+      }else{
+        $('#bd', appData.settings.currentPageHTML).hide(300, function(){
+          $('#popover', appData.settings.currentPageHTML).addClass('hide');
+        });
+
+      }
+
+      toggleClass('hide').slideUp();
     },
 
     backHandler: function(){

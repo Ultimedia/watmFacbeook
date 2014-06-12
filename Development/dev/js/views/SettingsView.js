@@ -5,6 +5,7 @@ appData.views.SettingsView = Backbone.View.extend({
     	appData.views.SettingsView.avatarUpdatedHandler = this.avatarUpdatedHandler;
       appData.views.SettingsView.fileUploadedHandler = this.fileUploadedHandler;
       appData.views.SettingsView.generateFavouriteSportList = this.generateFavouriteSportList;
+      appData.views.SettingsView.align = this.align;
 
       Backbone.on('networkFoundEvent', this.networkFoundHandler);
       Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -49,6 +50,7 @@ appData.views.SettingsView = Backbone.View.extend({
 
     generateFavouriteSportList: function(){
 
+
       var sports = [];
       $('#favouriteSportList .rm', appData.settings.currentPageHTML).remove();
 
@@ -56,6 +58,16 @@ appData.views.SettingsView = Backbone.View.extend({
         var sportView = new appData.views.FavouriteSportListSettingView({model:sport});
         $('#favouriteSportList', appData.settings.currentPageHTML).prepend(sportView.render().$el);
       });
+
+      $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+      $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+          appData.views.SettingsView.align();
+      });
+
+      $(window).resize(_.debounce(function(){
+         appData.views.SettingsView.align();
+      }, 500));
+
     },
 
     mediaFormSubmitHandler: function(event){
@@ -96,12 +108,37 @@ appData.views.SettingsView = Backbone.View.extend({
       "click #signOutButton": "signOutHandler",
       "change #nonNativeFileField":"nonNativeFileSelectedHandler",
       "submit #mediaForm": "mediaFormSubmitHandler",
-      "click #sportselector": "sportselectorClickHandler"
+      "click #sportselector": "sportselectorClickHandler",
+      "click .rm": "sportselectorClickHandler",
+      "click #confirm": "sportselectorClickHandler"
     },
 
     sportselectorClickHandler: function(){
       appData.settings.sportselector = true;
       window.location.hash = "sportselector";
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     signOutHandler: function(){
@@ -138,7 +175,7 @@ appData.views.SettingsView = Backbone.View.extend({
     changeAvatarHandler: function(){
   		navigator.camera.getPicture(this.uploadAvatar,
   			function(message) { 
-  			},{ quality: 50, targetWidth: 640, targetHeight: 480, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+  			},{ quality: 50, targetWidth: 640, targetHeight: 480, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.CAMERA }
   		);
     },
 

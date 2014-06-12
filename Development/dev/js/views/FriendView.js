@@ -26,9 +26,7 @@ appData.views.FriendView = Backbone.View.extend({
     },
 
     render: function() { 
-      console.log(this.model);
-
-      this.$el.html(this.template({imagePath: appData.settings.imagePath, user: this.model.toJSON()}));
+      this.$el.html(this.template({imagePath: appData.settings.imagePath, user_id: appData.models.userModel.attributes.user_id, user: this.model.toJSON()}));
       appData.settings.currentPageHTML = this.$el;
 
       Backbone.on('userMediaHandler', this.userMediaRecievedHandler);

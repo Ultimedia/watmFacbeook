@@ -134,6 +134,7 @@ appData.views.DashboardView = Backbone.View.extend({
                       }));
                     });
 
+
                 }else{
                     appData.collections.activities.each(function(activity) {
                       appData.views.locationList.push(activity);
@@ -150,6 +151,7 @@ appData.views.DashboardView = Backbone.View.extend({
                 if(appData.services.utilService.getNetworkConnection() && appData.settings.native){
                     appData.views.DashboardView.setMarkers(appData.views.locationList);
                 }else if(!appData.settings.native){
+
                     appData.views.DashboardView.setMarkers(appData.views.locationList);
                 }
             }

@@ -23,6 +23,11 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
 
+
+        // image timer
+        appData.settings.timer = setInterval(appData.services.phpService.getActivityUsers(this.model), 10000);
+
+
     }, 
 
     // phonegap device online
@@ -67,15 +72,25 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
                     var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
                     if(appData.settings.native){
+                        
                         window.plugin.notification.local.add({
                           id:      model.attributes.activity_id,
                           title:   model.attributes.title + " gaat beginnen",
                           message: 'Haast je snel naar ' + model.attributes.location,
-                          repeat:  'yearly',
                           date:    date,
                           autoCancel: true
                         });
+                    
+
+                        function addMinutes(date, minutes) {
+                            return new Date(date.getTime() + minutes*60000);
+                        }
+
+                        function removeMinutes(date, minutes) {
+                            return new Date(date.getTime() + minutes*60000);
+                        }
                     }
+
                 }else{
                     if(appData.settings.native){
                         window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
@@ -83,10 +98,11 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                         });
                     }
                 }
+
+
         });
 
-      $('#messageBox', appData.settings.currentPageHTML).addClass('hide');
-
+        $('#messageBox', appData.settings.currentPageHTML).addClass('hide');
         return this; 
     },
 
@@ -131,8 +147,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
         });
-        $('#participantStat').text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
-      });
+       });
 
      // disable options if the activity is full
      var goingCheck = false;
@@ -146,14 +161,16 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
      if(appData.views.ActivityInfoView.userListView.length >= parseInt(appData.views.ActivityDetailView.model.attributes.participants) && !goingCheck){
         $('#goingList', appData.settings.currentModuleHTML).hide();
-        $('#goingFullMessage', appData.settings.currentModuleHTML).show();
+        $('#goingFullMessage', appData.settings.currentModuleHTML).fadeIn(400);
      }else if(goingTo){
-        $('#goingList', appData.settings.currentModuleHTML).show();
+        $('#goingList', appData.settings.currentModuleHTML).fadeIn(400);
         $('#goingFullMessage', appData.settings.currentModuleHTML).hide();
      }else{
         $('#goingFullMessage', appData.settings.currentModuleHTML).hide();
-        $('#goingList', appData.settings.currentModuleHTML).show();
+        $('#goingList', appData.settings.currentModuleHTML).fadeIn(400);
      }
+     $('#participantStat', appData.settings.currentModuleHTML).text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
+  
     }
 });
 

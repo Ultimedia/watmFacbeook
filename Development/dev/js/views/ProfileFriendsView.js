@@ -44,15 +44,16 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
             }));
         });
 
-
         $('#profileFriendsListView', appData.settings.currentModuleHTML).empty();
         _(appData.views.friendsListView).each(function(listView) {
-            $('#profileFriendsListView', appData.settings.currentModuleHTML).append(listView.render().$el);
+            $('#profileFriendsListView', appData.settings.currentModuleHTML).hide().append(listView.render().$el);
         });
+        $('#profileFriendsListView', appData.settings.currentModuleHTML).show(200, function() {
 
-        var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
-        $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
+            var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
+            $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
 
+        });
     },
 
     render: function() { 

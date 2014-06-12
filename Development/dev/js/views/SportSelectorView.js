@@ -90,6 +90,10 @@ appData.views.SportSelectorView = Backbone.View.extend({
             }
         });    
 
+        if(appData.models.userModel.attributes.myFavouriteSports.models.length > 0){
+            $('#backButton', appData.settings.currentPageHTML).removeClass('hide');
+        }
+
         // set selected items
         $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
             $('#sp' + element.attributes.sport_id, appData.settings.currentPageHTML).addClass('selected');
@@ -128,7 +132,6 @@ appData.views.SportSelectorView = Backbone.View.extend({
            if(!appData.settings.sportselector){
              appData.router.navigate('dashboard', true);
            }else{
-             appData.settings.sportselector = false;
              appData.router.navigate('settings', true);
            }
         }

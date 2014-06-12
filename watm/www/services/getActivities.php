@@ -48,17 +48,19 @@
 		$time = $datetimearray[1];
 		$now = date('G:i:s',strtotime($time));
 
+		$cleanDate = $newDate;
+
 		// Analyse dates
 		if($newDate == date("d-m-Y")){
-		   $newDate = "Vandaag om " . date("H:i",strtotime($row["date"]));
+		   $newDate = "Vandaag van " . date("H:i",strtotime($row["date"]));
 		   $feature = true;
 	   	   $today = true;
 		}else if($newDate == date("d-m-Y")+1){
-		   $newDate = "Morgen om " . date("H:i",strtotime($row["date"]));
+		   $newDate = "Morgen van " . date("H:i",strtotime($row["date"]));
 		   $tomorrow = true;
 		}
 
-		$project = array("sql_index"=> $index, "savedDate" => $newDateFormat, "description"=>$row["activity_description"],"activity_id" => $row["activity_id"], "participants"=>$row["participants"], "sport_title" => $row["sport_title"], "date" => $newDate, "title" => $row["title"], "sport_id" =>$row['sport_id'], "location_id"=>$row['location_id'], "location"=>$row['location'], "coordinates"=>$row['coordinates'], "user_id"=>$row['user_id'], "media" => $mediaCollection, "users" => $usersCollection, "buurt"=>$row['buurt'], "buurt_id"=>$row["buurt_id"], "today"=>$today, "tomorrow"=>$tomorrow, "startTime"=> $now, "stopTime" => $row["stopTime"]);
+		$project = array("sql_index"=> $index, "cleanDate"=> $cleanDate, "savedDate" => $newDateFormat, "description"=>$row["activity_description"],"activity_id" => $row["activity_id"], "participants"=>$row["participants"], "sport_title" => $row["sport_title"], "date" => $newDate, "title" => $row["title"], "sport_id" =>$row['sport_id'], "location_id"=>$row['location_id'], "location"=>$row['location'], "coordinates"=>$row['coordinates'], "user_id"=>$row['user_id'], "media" => $mediaCollection, "users" => $usersCollection, "buurt"=>$row['buurt'], "buurt_id"=>$row["buurt_id"], "today"=>$today, "tomorrow"=>$tomorrow, "startTime"=> $now, "stopTime" => $row["stopTime"]);
 		$projects[] = $project;
 	    $index++;
 

@@ -19,7 +19,14 @@
     <h4>Wanneer</h4>
     <% var stopTime = stopTime.substring(0, stopTime.length - 3) %>
 
-    <span><%= date %> tot <%= stopTime %></span>
+    <%
+      var dk = cleanDate + " van " + startTime;
+      if(today === true || tomorrow === true){
+        dk = date;
+      } 
+    %>
+
+    <span><%= dk %> tot <%= stopTime %></span>
     <hr/>
 
     <h4>Organisator</h4>

@@ -104,7 +104,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             }));
         });
 
-        $('#challengesOverview', appData.settings.currentModuleHTML).addClass('hide');
         $('#challengesOverviewTable', appData.settings.currentModuleHTML).empty();
         if(appData.views.challengeListView.length > 0){
             $('#challengesOverview', appData.settings.currentModuleHTML).removeClass('hide');
@@ -128,7 +127,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
         });
 
 
-        $('#myChallengesOverview', appData.settings.currentModuleHTML).addClass('hide');
         $('#myChallengesOverviewTable', appData.settings.currentModuleHTML).empty();
         if(appData.views.myChallengesListView.length > 0){
             $('#myChallengesOverview', appData.settings.currentModuleHTML).removeClass('hide');
@@ -161,10 +159,16 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
         }
 
         // show a message when there are nog challenges availible
-        if(appData.views.myChallengesListView.length === 0 && appData.views.challengeListView.length === 0){
-            $('.no-found', appData.settings.currentModuleHTML).removeAttr('style');
+        if(appData.views.challengeListView.length === 0){
+            $('.no-found', appData.settings.currentModuleHTML).removeClass('hide');
         }else{
-            $('.no-found', appData.settings.currentModuleHTML).css('display', 'none');
+            $('.no-found', appData.settings.currentModuleHTML).addClass('hide');
+        }
+
+        if(appData.views.myChallengesListView.length === 0){
+            $('.no-found2', appData.settings.currentModuleHTML).removeClass('hide');
+        }else{
+            $('.no-found2', appData.settings.currentModuleHTML).addClass('hide');
         }
 
         appData.services.utilService.updateLocalStorage();

@@ -771,7 +771,7 @@ appData.views.ActivityDetailView = Backbone.View.extend({
 
       this.setValidators();
       $('#ee', appData.settings.currentPageHTML).delay(800).queue(function() {
-          $(this).css('display', 'block').textfill({max: 22});
+          $(this).hide().css('display', 'block').textfill({max: 22}).show();
       });
 
       $(window).resize(_.debounce(function(){
@@ -939,6 +939,11 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
 
+
+        // image timer
+        appData.settings.timer = setInterval(appData.services.phpService.getActivityUsers(this.model), 10000);
+
+
     }, 
 
     // phonegap device online
@@ -983,15 +988,25 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
                     var date = appData.services.utilService.convertDate(model.attributes.savedDate, model.attributes.startTime, true);
                     if(appData.settings.native){
+                        
                         window.plugin.notification.local.add({
                           id:      model.attributes.activity_id,
                           title:   model.attributes.title + " gaat beginnen",
                           message: 'Haast je snel naar ' + model.attributes.location,
-                          repeat:  'yearly',
                           date:    date,
                           autoCancel: true
                         });
+                    
+
+                        function addMinutes(date, minutes) {
+                            return new Date(date.getTime() + minutes*60000);
+                        }
+
+                        function removeMinutes(date, minutes) {
+                            return new Date(date.getTime() + minutes*60000);
+                        }
                     }
+
                 }else{
                     if(appData.settings.native){
                         window.plugin.notification.local.cancel(model.attributes.activity_id, function () {
@@ -999,10 +1014,11 @@ appData.views.ActivityInfoView = Backbone.View.extend({
                         });
                     }
                 }
+
+
         });
 
-      $('#messageBox', appData.settings.currentPageHTML).addClass('hide');
-
+        $('#messageBox', appData.settings.currentPageHTML).addClass('hide');
         return this; 
     },
 
@@ -1047,8 +1063,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
         });
-        $('#participantStat').text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
-      });
+       });
 
      // disable options if the activity is full
      var goingCheck = false;
@@ -1062,14 +1077,16 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
      if(appData.views.ActivityInfoView.userListView.length >= parseInt(appData.views.ActivityDetailView.model.attributes.participants) && !goingCheck){
         $('#goingList', appData.settings.currentModuleHTML).hide();
-        $('#goingFullMessage', appData.settings.currentModuleHTML).show();
+        $('#goingFullMessage', appData.settings.currentModuleHTML).fadeIn(400);
      }else if(goingTo){
-        $('#goingList', appData.settings.currentModuleHTML).show();
+        $('#goingList', appData.settings.currentModuleHTML).fadeIn(400);
         $('#goingFullMessage', appData.settings.currentModuleHTML).hide();
      }else{
         $('#goingFullMessage', appData.settings.currentModuleHTML).hide();
-        $('#goingList', appData.settings.currentModuleHTML).show();
+        $('#goingList', appData.settings.currentModuleHTML).fadeIn(400);
      }
+     $('#participantStat', appData.settings.currentModuleHTML).text(appData.views.ActivityInfoView.userListView.length + " / " + appData.views.ActivityDetailView.model.attributes.participants);    
+  
     }
 });
 
@@ -1185,7 +1202,7 @@ appData.views.ActivityUserView = Backbone.View.extend({
 
 
 appData.views.ActivityMediaView = Backbone.View.extend({
-
+    className: 'mediaContainer',
     initialize: function () {
       appData.services.phpService.getMedia(this.model); 
       appData.views.ActivityMediaView.model = this.model;
@@ -1358,6 +1375,7 @@ appData.views.AvatarDisplayView = Backbone.View.extend({
     render: function() {     
     	this.$el.html(this.template({avatarPath: appData.settings.avatarPath, avatar: this.model.toJSON()}));
     	$(this.$el).hide().show(500);
+
     	return this;
     }
 });
@@ -2710,9 +2728,7 @@ appData.views.FriendView = Backbone.View.extend({
     },
 
     render: function() { 
-      console.log(this.model);
-
-      this.$el.html(this.template({imagePath: appData.settings.imagePath, user: this.model.toJSON()}));
+      this.$el.html(this.template({imagePath: appData.settings.imagePath, user_id: appData.models.userModel.attributes.user_id, user: this.model.toJSON()}));
       appData.settings.currentPageHTML = this.$el;
 
       Backbone.on('userMediaHandler', this.userMediaRecievedHandler);
@@ -2805,9 +2821,11 @@ appData.views.FriendsListView = Backbone.View.extend({
 
     render: function () {
     	// model to template
-    	console.log(this.model.attributes);
     	this.$el.html(this.template({user: this.model.toJSON(), imagePath: appData.settings.imagePath}));
+
         return this; 
+
+
     }
 });
 
@@ -3950,7 +3968,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             }));
         });
 
-        $('#challengesOverview', appData.settings.currentModuleHTML).addClass('hide');
         $('#challengesOverviewTable', appData.settings.currentModuleHTML).empty();
         if(appData.views.challengeListView.length > 0){
             $('#challengesOverview', appData.settings.currentModuleHTML).removeClass('hide');
@@ -3974,7 +3991,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
         });
 
 
-        $('#myChallengesOverview', appData.settings.currentModuleHTML).addClass('hide');
         $('#myChallengesOverviewTable', appData.settings.currentModuleHTML).empty();
         if(appData.views.myChallengesListView.length > 0){
             $('#myChallengesOverview', appData.settings.currentModuleHTML).removeClass('hide');
@@ -4007,10 +4023,16 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
         }
 
         // show a message when there are nog challenges availible
-        if(appData.views.myChallengesListView.length === 0 && appData.views.challengeListView.length === 0){
-            $('.no-found', appData.settings.currentModuleHTML).removeAttr('style');
+        if(appData.views.challengeListView.length === 0){
+            $('.no-found', appData.settings.currentModuleHTML).removeClass('hide');
         }else{
-            $('.no-found', appData.settings.currentModuleHTML).css('display', 'none');
+            $('.no-found', appData.settings.currentModuleHTML).addClass('hide');
+        }
+
+        if(appData.views.myChallengesListView.length === 0){
+            $('.no-found2', appData.settings.currentModuleHTML).removeClass('hide');
+        }else{
+            $('.no-found2', appData.settings.currentModuleHTML).addClass('hide');
         }
 
         appData.services.utilService.updateLocalStorage();
@@ -4018,6 +4040,7 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
 });
 
 appData.views.ProfileFriendsView = Backbone.View.extend({
+    className: 'friendbox',
     initialize: function () {
     	appData.views.friendsListView = [];
         appData.views.ProfileFriendsView.friendRemovedHandler = this.friendRemovedHandler;
@@ -4057,17 +4080,21 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
 
         appData.views.friendsListView = [];
         $(appData.models.userModel.attributes.myFriends.models).each(function(index, userModel) {
-        appData.views.friendsListView.push(new appData.views.FriendsListView({
-            model:userModel
-          }));
+            appData.views.friendsListView.push(new appData.views.FriendsListView({
+                model:userModel
+            }));
         });
-
 
         $('#profileFriendsListView', appData.settings.currentModuleHTML).empty();
         _(appData.views.friendsListView).each(function(listView) {
-            $('#profileFriendsListView', appData.settings.currentModuleHTML).append(listView.render().$el);
+            $('#profileFriendsListView', appData.settings.currentModuleHTML).hide().append(listView.render().$el);
         });
+        $('#profileFriendsListView', appData.settings.currentModuleHTML).show(200, function() {
 
+            var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
+            $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
+
+        });
     },
 
     render: function() { 
@@ -4076,6 +4103,11 @@ appData.views.ProfileFriendsView = Backbone.View.extend({
 
         this.generateFriendsList();
 
+        $(window).resize(_.debounce(function(){
+            var cw = $('.friend-box span', appData.settings.currentModuleHTML).first().width();
+            $('.friend-box span', appData.settings.currentModuleHTML).css({'height':cw+'px'});
+        }, 500));
+            
         return this; 
     },
 });
@@ -4158,6 +4190,7 @@ appData.views.SettingsView = Backbone.View.extend({
     	appData.views.SettingsView.avatarUpdatedHandler = this.avatarUpdatedHandler;
       appData.views.SettingsView.fileUploadedHandler = this.fileUploadedHandler;
       appData.views.SettingsView.generateFavouriteSportList = this.generateFavouriteSportList;
+      appData.views.SettingsView.align = this.align;
 
       Backbone.on('networkFoundEvent', this.networkFoundHandler);
       Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -4209,6 +4242,15 @@ appData.views.SettingsView = Backbone.View.extend({
         var sportView = new appData.views.FavouriteSportListSettingView({model:sport});
         $('#favouriteSportList', appData.settings.currentPageHTML).prepend(sportView.render().$el);
       });
+
+      $('#favouriteSportList', appData.settings.currentPageHTML).hide();
+      $('#favouriteSportList', appData.settings.currentPageHTML).delay(1000).queue(function() {
+          appData.views.SettingsView.align();
+      });
+
+      $(window).resize(_.debounce(function(){
+         appData.views.SettingsView.align();
+      }, 500));
     },
 
     mediaFormSubmitHandler: function(event){
@@ -4249,12 +4291,37 @@ appData.views.SettingsView = Backbone.View.extend({
       "click #signOutButton": "signOutHandler",
       "change #nonNativeFileField":"nonNativeFileSelectedHandler",
       "submit #mediaForm": "mediaFormSubmitHandler",
-      "click #sportselector": "sportselectorClickHandler"
+      "click #sportselector": "sportselectorClickHandler",
+      "click .rm": "sportselectorClickHandler",
+      "click #confirm": "sportselectorClickHandler"
     },
 
     sportselectorClickHandler: function(){
       appData.settings.sportselector = true;
       window.location.hash = "sportselector";
+    },
+
+    align: function(){
+        $('#favouriteSportList').hide();
+
+        var totalWidth = $('.cl-content').width();
+        var widthD = 74;
+
+        var space = parseInt(totalWidth) / parseInt(widthD);
+        var rounded = Math.floor(space);
+        
+        var xspace = rounded * widthD;
+        var yspace = totalWidth - xspace;
+        var margin = yspace/2;
+            
+        $('#favouriteSportList').css({
+                    'margin-left':margin + 'px',
+                    'margin-right':margin + 'px',
+                    'width': xspace + 'px',
+                    'display': 'block'
+        });
+
+        $('#favouriteSportList').show(500);
     },
 
     signOutHandler: function(){
@@ -4291,7 +4358,7 @@ appData.views.SettingsView = Backbone.View.extend({
     changeAvatarHandler: function(){
   		navigator.camera.getPicture(this.uploadAvatar,
   			function(message) { 
-  			},{ quality: 50, targetWidth: 640, targetHeight: 480, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+  			},{ quality: 50, targetWidth: 640, targetHeight: 480, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.CAMERA }
   		);
     },
 
@@ -4419,6 +4486,10 @@ appData.views.SportSelectorView = Backbone.View.extend({
             if(index == (appData.views.SportSelectorView.favouriteSportsViewList.length -1)){
             }
         });    
+
+        if(appData.models.userModel.attributes.myFavouriteSports.models.length > 0){
+            $('#backButton', appData.settings.currentPageHTML).removeClass('hide');
+        }
 
         // set selected items
         $.each(appData.models.userModel.attributes.myFavouriteSports.models, function(index, element){
@@ -5057,7 +5128,6 @@ appData.services.FacebookServices = Backbone.Model.extend({
 	},
 
 	getUserFromFacebookID: function(){
-
 	  	$.ajax({
 			url:appData.settings.servicePath + appData.settings.getUserFromFacebookID,
 			type:'GET',
@@ -5273,7 +5343,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        	}
 	        },
 	        error: function(){
-	        	alert('errr');
+	        	window.location.hash = "dashboard";		
 	        }
     	});
 	},
@@ -5288,7 +5358,6 @@ appData.services.PhpServices = Backbone.Model.extend({
         data: "location_id="+activityModel.attributes.location_id+"&activity_id="+activityModel.attributes.activity_id+"&title="+activityModel.attributes.title+"&sport_id="+activityModel.attributes.sport_id+"&description="+activityModel.attributes.description+"&date="+activityModel.attributes.date+"&time="+activityModel.attributes.time+"&stopTime="+activityModel.attributes.stopTime+"&user_id="+appData.models.userModel.attributes.user_id+"&participants="+activityModel.attributes.participants,
         timeout:60000,
 	        success:function(data){
-	        	console.log(data);
 	        	if(data.value === true){
 	        		Backbone.trigger('activityUpdated', data.activity_id);
 	        	}else{
@@ -5296,7 +5365,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        	}
 	        },
 	        error: function(){
-	        	alert('errr');
+	        	window.location.hash = "dashboard";		
 	        }
     	});
 	},

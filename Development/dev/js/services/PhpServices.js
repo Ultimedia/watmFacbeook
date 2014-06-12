@@ -42,7 +42,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        	}
 	        },
 	        error: function(){
-	        	alert('errr');
+	        	window.location.hash = "dashboard";		
 	        }
     	});
 	},
@@ -57,7 +57,6 @@ appData.services.PhpServices = Backbone.Model.extend({
         data: "location_id="+activityModel.attributes.location_id+"&activity_id="+activityModel.attributes.activity_id+"&title="+activityModel.attributes.title+"&sport_id="+activityModel.attributes.sport_id+"&description="+activityModel.attributes.description+"&date="+activityModel.attributes.date+"&time="+activityModel.attributes.time+"&stopTime="+activityModel.attributes.stopTime+"&user_id="+appData.models.userModel.attributes.user_id+"&participants="+activityModel.attributes.participants,
         timeout:60000,
 	        success:function(data){
-	        	console.log(data);
 	        	if(data.value === true){
 	        		Backbone.trigger('activityUpdated', data.activity_id);
 	        	}else{
@@ -65,7 +64,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 	        	}
 	        },
 	        error: function(){
-	        	alert('errr');
+	        	window.location.hash = "dashboard";		
 	        }
     	});
 	},

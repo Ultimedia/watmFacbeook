@@ -1,5 +1,5 @@
 appData.views.ActivityMediaView = Backbone.View.extend({
-
+    className: 'mediaContainer',
     initialize: function () {
       appData.services.phpService.getMedia(this.model); 
       appData.views.ActivityMediaView.model = this.model;
