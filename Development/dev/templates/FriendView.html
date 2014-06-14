@@ -7,19 +7,19 @@
   </div>
 
   <div class="cl-content" >
-    <span class="avatar" style="background: url('<%= imagePath %><%= user.avatar %>') no-repeat;     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+    <span class="avatar" style="background: #837361 url('<%= imagePath %><%= user.avatar %>') no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></span>
+
+    <div id="badgesOverview">
+    <h3>Behaalde medailles</h3>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
 
     <div id="friendAddContainer">
     <% if (user.myFriend == false && user.user_id != user_id) { %>
         <a href="javascript:;" id="addFriendButton" class="cl-btn  cl-btn flat-green">Voeg toe als vriend</a>
     <% } %>
-    </div>
-
-    <div id="badgesView">
-    <h3>Voltooide uitdagingen</h3>
-      <div id="badges">
-
-      </div>
     </div>
 
     <h3>Avatar</h3>

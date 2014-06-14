@@ -145,6 +145,10 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
         $('#aanwezigContent', appData.settings.currentModuleHTML).empty();
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
+            if(dv.model.attributes.user_id == appData.models.userModel.attributes.user_id){
+                alert('ja');
+            }
+
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
         });
        });

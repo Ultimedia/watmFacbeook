@@ -75,7 +75,6 @@ appData.settings.updateActivityService = "updateActivity.php";
 appData.settings.getUserMediaService = "getUserMedia.php";
 appData.settings.getChallengesCount = "getChallengesCount.php";
 
-
 appData.settings.defaultLocation = [51.20935, 3.22470];
 appData.settings.dataLoaded = false;
 appData.settings.userLoggedIn = false;
@@ -124,6 +123,8 @@ appData.start = function(nativeApp){
 
   // phonegap device offline
   function deviceOnlineHandler(){
+
+
     $('#container').addClass('online').removeClass('offline');
 
     appData.settings.network = true;
@@ -133,6 +134,8 @@ appData.start = function(nativeApp){
   // phonegap device back online
   function deviceOfflineHandler(){
     $('#container').removeClass('online').addClass('offline');
+
+
 
     appData.settings.network = false;
     Backbone.trigger('networkLostEvent');
@@ -376,7 +379,7 @@ appData.start = function(nativeApp){
           appData.settings.iconPath = appData.settings.rootPath + "public/css/assets/";
           appData.settings.sportsPath = appData.settings.rootPath + "common/sports/";
           appData.settings.promoPath = appData.settings.rootPath + "common/promo/";
-          appData.settings.avatarPath = appData.settings.rootPath + "/common/avatar/";
+          appData.settings.avatarPath = "common/avatar/";
 
         } else {
           appData.settings.native = false;
@@ -1072,6 +1075,10 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
         $('#aanwezigContent', appData.settings.currentModuleHTML).empty();
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
+            if(dv.model.attributes.user_id == appData.models.userModel.attributes.user_id){
+                alert('ja');
+            }
+
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
         });
        });
@@ -1270,6 +1277,12 @@ appData.views.ActivityMediaView = Backbone.View.extend({
       _(appData.views.ActivityDetailView.mediaListView).each(function(dv) {
           $('#mediaContenList', appData.settings.currentModuleHTML).append(dv.render().$el);
       });
+
+      if(appData.views.ActivityDetailView.mediaListView.length === 0){
+        $('.cl-message', appData.settings.currentModuleHTML).removeClass('hide');
+      }else{
+        $('.cl-message', appData.settings.currentModuleHTML).addClass('hide');
+      }
     },
 
     render: function() { 
@@ -1624,7 +1637,9 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
                     if(selectedLocationModel){
 
                         selectedLocationModel = selectedLocationModel[0];
+                        console.log(selectedLocationModel);
 
+                        if(selectedLocationModel){
                         var coordinates = selectedLocationModel.attributes.coordinates.split(',');
                             appData.views.CreateActivityLocationView.currentLocation = coordinates;
                             appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(coordinates[0], coordinates[1]), 13);
@@ -1636,6 +1651,7 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
 
                             appData.views.ActivityDetailView.model.attributes.location_id = null;
                             appData.services.utilService.getLatLon($('#locationInput').val());
+                        }
                         }
                     }
             }else{
@@ -2239,7 +2255,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        appData.settings.timer = setInterval(this.timerAction, 20000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -2259,6 +2275,7 @@ appData.views.DashboardView = Backbone.View.extend({
 
     // phonegap device online
     networkFoundHandler: function(){
+       
         if(!appData.settings.mapAdded && appData.services.utilService.getNetworkConnection()){
             appData.views.DashboardView.initMap();
         }
@@ -2302,6 +2319,7 @@ appData.views.DashboardView = Backbone.View.extend({
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
 
+
         if(appData.views.DashboardView.filterEnabled){
             // GET OUR FILTER 
             appData.views.DashboardView.sortActivitiesChangeHandler();
@@ -2312,9 +2330,16 @@ appData.views.DashboardView = Backbone.View.extend({
             if(appData.collections.activities.length === 0){
                 $('.no-found', appData.settings.currentPageHTML).removeAttr('style');
 
+                // update the map
+                appData.views.locationList = [];
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
+
             }else if(this.favouriteSportsFilter === true && $(appData.collections.filteredActivitiesCollection.models).length === 0){
                 $('.no-found', appData.settings.currentPageHTML).removeAttr('style');
             
+                // update the map
+                appData.views.locationList = [];
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }else{
 
                 $('.no-found', appData.settings.currentPageHTML).css({
@@ -2757,8 +2782,6 @@ appData.views.FriendView = Backbone.View.extend({
 
       $('#avatar', appData.settings.currentPageHTML).append(avatarView.render().$el);
 
-
-
       return this; 
     }, 
 
@@ -2766,15 +2789,32 @@ appData.views.FriendView = Backbone.View.extend({
       Backbone.off('getBadgesHandler');
       
       // generate badges list
-        appData.views.FriendView.model.attributes.badges = new ChallengesCollection(badges);
+      appData.views.FriendView.model.attributes.badges = new ChallengesCollection(badges);
      
+      // badges grid
+      var bwidth = $('#badgesOverview ul', appData.settings.currentPageHTML).width();
+      var bdwidth = $('#badgesOverview ul li',appData.settings.currentPageHTML).first().width() + 12 + 2;
+          bdwidth = parseInt(bdwidth);
+
+      var howMany = appData.models.userModel.attributes.challengesCount;
+      if(!isNaN(howMany)){
+          $('#badgesOverview ul', appData.settings.currentPageHTML).empty();
+          for (var i=0; i<howMany; i++){
+              $('#badgesOverview ul', appData.settings.currentPageHTML).append('<li></li>');
+          }          
+      }
+      $('#badgesOverview', appData.settings.currentPageHTML).slideDown(200);
+
       if(appData.views.FriendView.model.attributes.badges.length !== 0){
+        var ind = 0;
+
         appData.views.FriendView.model.attributes.badges.each(function(badge){
+        
+          ind++;
+
           var bView = new appData.views.BadgeListView({model: badge});
-          $('#badgesView #badges', appData.settings.currentPageHTML).empty().append(bView.render().$el);
+          $('#badgesOverview ul li:eq(' + ind + ')', appData.settings.currentPageHTML).append(bView.render().$el).addClass('badger');
         });
-      }else{
-        $('#badgesView', appData.settings.currentPageHTML).hide();
       }
     }, 
 
@@ -3550,8 +3590,8 @@ appData.views.PlannerMyActivitiesView = Backbone.View.extend({
     initialize: function () {
 
     },
-
-    clickHandler: function(){
+    
+    editboxClickHandler: function(){
 
     },
 
@@ -3559,10 +3599,12 @@ appData.views.PlannerMyActivitiesView = Backbone.View.extend({
 		var sportModel = appData.collections.sports.where({'sport_id': this.model.attributes.sport_id})[0];
         var model = this.model;
 
+
         this.$el.html(this.template({data: this.model.attributes, imagePath: appData.settings.sportsPath, sport: sportModel.attributes.icon}));
 
         if(model.attributes.author_badge){
           $('.edit-badge', this.$el).removeAttr('style');
+          $('.edit-badge-hitbox',this.$el).removeAttr('style');
         }
 
         return this; 
@@ -3611,7 +3653,7 @@ appData.views.PlannerView = Backbone.View.extend({
     Backbone.on('networkLostEvent', this.networkLostHandler);
 
     // image timer
-    appData.settings.timer = setInterval(this.timerAction, 4000000);
+    appData.settings.timer = setInterval(this.timerAction, 20000);
   }, 
 
   generateTimeLine: function(){
@@ -3699,10 +3741,11 @@ appData.views.PlannerView = Backbone.View.extend({
           
             var id = $('h2',evt.currentTarget).attr('data-id');
             if(id){
-              if(!$(evt.target).hasClass('edit-badge')){
-                window.location.href = "#activity/" + id; 
-              }else{
+              
+              if($(evt.target).hasClass('edit-badge-hitbox')){
                 window.location.href = "#update/" + id;
+              }else{
+                window.location.href = "#activity/" + id;
               }
             }
         });
@@ -4025,7 +4068,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             'min-height': t + 'px'
         });
 
-        // bekijken
         if(appData.views.myBadgesListView.length > 0){
             var ind = 0;
 
@@ -4149,9 +4191,14 @@ appData.views.ProfileView = Backbone.View.extend({
         var view = new appData.views.ProfileAvatarView();
         $('#profileContent', appData.settings.currentPageHTML).empty().append(view.render().$el);
      
-        if(appData.models.userModel.attributes.myFriends.models.length === 0){
-            $('#friendsButton', appData.settings.currentPageHTML).remove();
+        if(appData.settings.native){
+            if(appData.services.utilService.getNetworkConnection() == false){
+                $('#friendsButton', appData.settings.currentPageHTML).remove();
+            }else if(appData.models.userModel.attributes.myFriends.models.length === 0){
+                $('#friendsButton', appData.settings.currentPageHTML).remove();
+            }
         }
+
 
         return this; 
     },
@@ -4655,8 +4702,15 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
             if(appData.settings.dataLoaded){    
                 appData.slider.slidePage(new appData.views.DashboardView().render().$el);
-            }else{
-                window.location.hash = "loading";
+        
+
+                if(appData.settings.native){
+                    /*var c = appData.services.utilService.getNetworkConnection();
+                    if(!c){
+                        alert('false')
+                        $('#container').addClass('offline');
+                    }*/
+                }
             }
         }else{
             window.location.hash = "";
@@ -4676,6 +4730,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     profile: function () {
+       clearInterval(appData.settings.timer);
+
         $('#mainMenu ul li').removeClass('mm-selected');
         $('#mainMenu #profielButton').addClass('mm-selected');
 
@@ -4687,6 +4743,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     friend: function(id){
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             var userModel = appData.collections.users.where({ "user_id": id });
@@ -4700,6 +4758,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     activity: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.ActivityDetailView().render().$el); 
         }else{
@@ -4707,7 +4767,9 @@ appData.routers.AppRouter = Backbone.Router.extend({
         }
     },
 
-    update: function(id){
+    update: function(id){        
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){
@@ -4727,6 +4789,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     createActivity: function () {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.created){
@@ -4750,6 +4814,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
     
     navigater: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.NavigationView().render().$el);
         }else{
@@ -4758,6 +4824,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     activity: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){
@@ -4777,6 +4845,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     settings: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.SettingsView().render().$el);
         }else{
@@ -5158,7 +5228,6 @@ appData.services.FacebookServices = Backbone.Model.extend({
 
 				if(data.avatar !== ""){
 					appData.models.userModel.attributes.avatar = data.avatar;
-					console.log('replaced avatar');
 				}
 				appData.events.getUserFromFacebookIDEvent.trigger("facebookGetIDHandler", data);
 			}
@@ -5424,9 +5493,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 		});
 	},
 
-
-
-  userLogin: function(){
+  	userLogin: function(){
 		$.ajax({
 			url:appData.settings.servicePath + appData.settings.getUserService,
 			type:'POST',
@@ -6047,7 +6114,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 			states[Connection.CELL_2G]  = true;
 			states[Connection.CELL_3G]  = true;
 			states[Connection.CELL_4G]  = true;
-			states[Connection.CELL]     = true;
+			states[Connection.CELL]     = false;
 			states[Connection.NONE]     = false;
 
 			appData.settings.network = states[networkState];

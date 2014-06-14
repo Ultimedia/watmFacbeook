@@ -56,6 +56,12 @@ appData.views.ActivityMediaView = Backbone.View.extend({
       _(appData.views.ActivityDetailView.mediaListView).each(function(dv) {
           $('#mediaContenList', appData.settings.currentModuleHTML).append(dv.render().$el);
       });
+
+      if(appData.views.ActivityDetailView.mediaListView.length === 0){
+        $('.cl-message', appData.settings.currentModuleHTML).removeClass('hide');
+      }else{
+        $('.cl-message', appData.settings.currentModuleHTML).addClass('hide');
+      }
     },
 
     render: function() { 

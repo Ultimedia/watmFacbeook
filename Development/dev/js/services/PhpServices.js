@@ -109,9 +109,7 @@ appData.services.PhpServices = Backbone.Model.extend({
 		});
 	},
 
-
-
-  userLogin: function(){
+  	userLogin: function(){
 		$.ajax({
 			url:appData.settings.servicePath + appData.settings.getUserService,
 			type:'POST',

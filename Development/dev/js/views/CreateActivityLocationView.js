@@ -45,7 +45,9 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
                     if(selectedLocationModel){
 
                         selectedLocationModel = selectedLocationModel[0];
+                        console.log(selectedLocationModel);
 
+                        if(selectedLocationModel){
                         var coordinates = selectedLocationModel.attributes.coordinates.split(',');
                             appData.views.CreateActivityLocationView.currentLocation = coordinates;
                             appData.views.CreateActivityLocationView.map.setCenter(new google.maps.LatLng(coordinates[0], coordinates[1]), 13);
@@ -57,6 +59,7 @@ appData.views.CreateActivityLocationView = Backbone.View.extend({
 
                             appData.views.ActivityDetailView.model.attributes.location_id = null;
                             appData.services.utilService.getLatLon($('#locationInput').val());
+                        }
                         }
                     }
             }else{

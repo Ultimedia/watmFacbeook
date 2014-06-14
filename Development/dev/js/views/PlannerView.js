@@ -26,7 +26,7 @@ appData.views.PlannerView = Backbone.View.extend({
     Backbone.on('networkLostEvent', this.networkLostHandler);
 
     // image timer
-    appData.settings.timer = setInterval(this.timerAction, 4000000);
+    appData.settings.timer = setInterval(this.timerAction, 20000);
   }, 
 
   generateTimeLine: function(){
@@ -114,10 +114,11 @@ appData.views.PlannerView = Backbone.View.extend({
           
             var id = $('h2',evt.currentTarget).attr('data-id');
             if(id){
-              if(!$(evt.target).hasClass('edit-badge')){
-                window.location.href = "#activity/" + id; 
-              }else{
+              
+              if($(evt.target).hasClass('edit-badge-hitbox')){
                 window.location.href = "#update/" + id;
+              }else{
+                window.location.href = "#activity/" + id;
               }
             }
         });

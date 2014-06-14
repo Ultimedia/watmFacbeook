@@ -102,8 +102,15 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
             if(appData.settings.dataLoaded){    
                 appData.slider.slidePage(new appData.views.DashboardView().render().$el);
-            }else{
-                window.location.hash = "loading";
+        
+
+                if(appData.settings.native){
+                    /*var c = appData.services.utilService.getNetworkConnection();
+                    if(!c){
+                        alert('false')
+                        $('#container').addClass('offline');
+                    }*/
+                }
             }
         }else{
             window.location.hash = "";
@@ -123,6 +130,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     profile: function () {
+       clearInterval(appData.settings.timer);
+
         $('#mainMenu ul li').removeClass('mm-selected');
         $('#mainMenu #profielButton').addClass('mm-selected');
 
@@ -134,6 +143,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     friend: function(id){
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             var userModel = appData.collections.users.where({ "user_id": id });
@@ -147,6 +158,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     activity: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.ActivityDetailView().render().$el); 
         }else{
@@ -154,7 +167,9 @@ appData.routers.AppRouter = Backbone.Router.extend({
         }
     },
 
-    update: function(id){
+    update: function(id){        
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){
@@ -174,6 +189,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     createActivity: function () {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.created){
@@ -197,6 +214,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
     
     navigater: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.NavigationView().render().$el);
         }else{
@@ -205,6 +224,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     activity: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
 
             if(appData.settings.dataLoaded){
@@ -224,6 +245,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
 
     settings: function (id) {
+        clearInterval(appData.settings.timer);
+
         if(appData.settings.userLoggedIn){
             appData.slider.slidePage(new appData.views.SettingsView().render().$el);
         }else{

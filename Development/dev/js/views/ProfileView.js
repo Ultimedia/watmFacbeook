@@ -22,9 +22,14 @@ appData.views.ProfileView = Backbone.View.extend({
         var view = new appData.views.ProfileAvatarView();
         $('#profileContent', appData.settings.currentPageHTML).empty().append(view.render().$el);
      
-        if(appData.models.userModel.attributes.myFriends.models.length === 0){
-            $('#friendsButton', appData.settings.currentPageHTML).remove();
+        if(appData.settings.native){
+            if(appData.services.utilService.getNetworkConnection() == false){
+                $('#friendsButton', appData.settings.currentPageHTML).remove();
+            }else if(appData.models.userModel.attributes.myFriends.models.length === 0){
+                $('#friendsButton', appData.settings.currentPageHTML).remove();
+            }
         }
+
 
         return this; 
     },

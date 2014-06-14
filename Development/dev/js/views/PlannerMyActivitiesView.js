@@ -4,8 +4,8 @@ appData.views.PlannerMyActivitiesView = Backbone.View.extend({
     initialize: function () {
 
     },
-
-    clickHandler: function(){
+    
+    editboxClickHandler: function(){
 
     },
 
@@ -13,10 +13,12 @@ appData.views.PlannerMyActivitiesView = Backbone.View.extend({
 		var sportModel = appData.collections.sports.where({'sport_id': this.model.attributes.sport_id})[0];
         var model = this.model;
 
+
         this.$el.html(this.template({data: this.model.attributes, imagePath: appData.settings.sportsPath, sport: sportModel.attributes.icon}));
 
         if(model.attributes.author_badge){
           $('.edit-badge', this.$el).removeAttr('style');
+          $('.edit-badge-hitbox',this.$el).removeAttr('style');
         }
 
         return this; 

@@ -75,7 +75,6 @@ appData.settings.updateActivityService = "updateActivity.php";
 appData.settings.getUserMediaService = "getUserMedia.php";
 appData.settings.getChallengesCount = "getChallengesCount.php";
 
-
 appData.settings.defaultLocation = [51.20935, 3.22470];
 appData.settings.dataLoaded = false;
 appData.settings.userLoggedIn = false;
@@ -124,6 +123,8 @@ appData.start = function(nativeApp){
 
   // phonegap device offline
   function deviceOnlineHandler(){
+
+
     $('#container').addClass('online').removeClass('offline');
 
     appData.settings.network = true;
@@ -133,6 +134,8 @@ appData.start = function(nativeApp){
   // phonegap device back online
   function deviceOfflineHandler(){
     $('#container').removeClass('online').addClass('offline');
+
+
 
     appData.settings.network = false;
     Backbone.trigger('networkLostEvent');
@@ -376,7 +379,7 @@ appData.start = function(nativeApp){
           appData.settings.iconPath = appData.settings.rootPath + "public/css/assets/";
           appData.settings.sportsPath = appData.settings.rootPath + "common/sports/";
           appData.settings.promoPath = appData.settings.rootPath + "common/promo/";
-          appData.settings.avatarPath = appData.settings.rootPath + "/common/avatar/";
+          appData.settings.avatarPath = "common/avatar/";
 
         } else {
           appData.settings.native = false;

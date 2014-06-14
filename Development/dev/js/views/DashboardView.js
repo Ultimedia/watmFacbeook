@@ -30,7 +30,7 @@ appData.views.DashboardView = Backbone.View.extend({
         }
 
         // image timer
-        appData.settings.timer = setInterval(this.timerAction, 4000);
+        appData.settings.timer = setInterval(this.timerAction, 20000);
 
         Backbone.on('networkFoundEvent', this.networkFoundHandler);
         Backbone.on('networkLostEvent', this.networkLostHandler);
@@ -50,6 +50,7 @@ appData.views.DashboardView = Backbone.View.extend({
 
     // phonegap device online
     networkFoundHandler: function(){
+       
         if(!appData.settings.mapAdded && appData.services.utilService.getNetworkConnection()){
             appData.views.DashboardView.initMap();
         }
@@ -93,6 +94,7 @@ appData.views.DashboardView = Backbone.View.extend({
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
 
+
         if(appData.views.DashboardView.filterEnabled){
             // GET OUR FILTER 
             appData.views.DashboardView.sortActivitiesChangeHandler();
@@ -103,9 +105,16 @@ appData.views.DashboardView = Backbone.View.extend({
             if(appData.collections.activities.length === 0){
                 $('.no-found', appData.settings.currentPageHTML).removeAttr('style');
 
+                // update the map
+                appData.views.locationList = [];
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
+
             }else if(this.favouriteSportsFilter === true && $(appData.collections.filteredActivitiesCollection.models).length === 0){
                 $('.no-found', appData.settings.currentPageHTML).removeAttr('style');
             
+                // update the map
+                appData.views.locationList = [];
+                appData.views.DashboardView.setMarkers(appData.views.locationList);
             }else{
 
                 $('.no-found', appData.settings.currentPageHTML).css({

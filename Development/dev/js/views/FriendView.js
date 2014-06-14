@@ -42,8 +42,6 @@ appData.views.FriendView = Backbone.View.extend({
 
       $('#avatar', appData.settings.currentPageHTML).append(avatarView.render().$el);
 
-
-
       return this; 
     }, 
 
@@ -51,15 +49,32 @@ appData.views.FriendView = Backbone.View.extend({
       Backbone.off('getBadgesHandler');
       
       // generate badges list
-        appData.views.FriendView.model.attributes.badges = new ChallengesCollection(badges);
+      appData.views.FriendView.model.attributes.badges = new ChallengesCollection(badges);
      
+      // badges grid
+      var bwidth = $('#badgesOverview ul', appData.settings.currentPageHTML).width();
+      var bdwidth = $('#badgesOverview ul li',appData.settings.currentPageHTML).first().width() + 12 + 2;
+          bdwidth = parseInt(bdwidth);
+
+      var howMany = appData.models.userModel.attributes.challengesCount;
+      if(!isNaN(howMany)){
+          $('#badgesOverview ul', appData.settings.currentPageHTML).empty();
+          for (var i=0; i<howMany; i++){
+              $('#badgesOverview ul', appData.settings.currentPageHTML).append('<li></li>');
+          }          
+      }
+      $('#badgesOverview', appData.settings.currentPageHTML).slideDown(200);
+
       if(appData.views.FriendView.model.attributes.badges.length !== 0){
+        var ind = 0;
+
         appData.views.FriendView.model.attributes.badges.each(function(badge){
+        
+          ind++;
+
           var bView = new appData.views.BadgeListView({model: badge});
-          $('#badgesView #badges', appData.settings.currentPageHTML).empty().append(bView.render().$el);
+          $('#badgesOverview ul li:eq(' + ind + ')', appData.settings.currentPageHTML).append(bView.render().$el).addClass('badger');
         });
-      }else{
-        $('#badgesView', appData.settings.currentPageHTML).hide();
       }
     }, 
 

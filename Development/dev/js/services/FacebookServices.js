@@ -61,7 +61,6 @@ appData.services.FacebookServices = Backbone.Model.extend({
 
 				if(data.avatar !== ""){
 					appData.models.userModel.attributes.avatar = data.avatar;
-					console.log('replaced avatar');
 				}
 				appData.events.getUserFromFacebookIDEvent.trigger("facebookGetIDHandler", data);
 			}

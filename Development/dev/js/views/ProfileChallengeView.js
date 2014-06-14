@@ -148,7 +148,6 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             'min-height': t + 'px'
         });
 
-        // bekijken
         if(appData.views.myBadgesListView.length > 0){
             var ind = 0;
 
