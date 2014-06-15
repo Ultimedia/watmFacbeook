@@ -107,11 +107,12 @@ appData.views.ActivityInfoView = Backbone.View.extend({
     },
 
     setGoingToActivityCompleteHandler: function(){
+        Backbone.on('activityUsersSuccesEvent', this.getActivityUsersSuccesHandler);
         appData.services.phpService.getActivityUsers(appData.views.ActivityInfoView.model); 
     },
 
     getActivityUsersSuccesHandler: function(data){
-
+        Backbone.off('activityUsersSuccesEvent');
         appData.models.activityModel.userData = new UsersCollection(data);
 
         // 1 set toggle switch for going
@@ -145,11 +146,16 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
         $('#aanwezigContent', appData.settings.currentModuleHTML).empty();
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
-            if(dv.model.attributes.user_id == appData.models.userModel.attributes.user_id){
-                alert('ja');
+            var cl = false;
+            if(dv.model.user_id == appData.models.userModel.attributes.user_id){
+                cl = true;
             }
 
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
+            if(cl){
+                $('#aanwezigContent a', appData.settings.currentModuleHTML).last().addClass('selected');
+            }
+
         });
        });
 

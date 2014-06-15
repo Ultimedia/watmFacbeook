@@ -28,9 +28,7 @@ var app = {
                 switch(device.version){
                     case "4.2.2":
                         // testing only
-                        window.localStorage.clear()
-
-
+                        $('body').addClass('422');
                         $('html head').append('<link rel="stylesheet" type="text/css" href="public/css/android422.css" />');
                     break;
                 }

@@ -240,6 +240,7 @@ appData.views.HomeView = Backbone.View.extend({
     * Normal Login flow
     */
     userLoggedInHandler: function(){
+
         // get location
         if(navigator.geolocation){
             $('#facebookLoad').removeClass('hide');

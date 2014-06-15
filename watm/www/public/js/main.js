@@ -1037,11 +1037,12 @@ appData.views.ActivityInfoView = Backbone.View.extend({
     },
 
     setGoingToActivityCompleteHandler: function(){
+        Backbone.on('activityUsersSuccesEvent', this.getActivityUsersSuccesHandler);
         appData.services.phpService.getActivityUsers(appData.views.ActivityInfoView.model); 
     },
 
     getActivityUsersSuccesHandler: function(data){
-
+        Backbone.off('activityUsersSuccesEvent');
         appData.models.activityModel.userData = new UsersCollection(data);
 
         // 1 set toggle switch for going
@@ -1075,11 +1076,16 @@ appData.views.ActivityInfoView = Backbone.View.extend({
 
         $('#aanwezigContent', appData.settings.currentModuleHTML).empty();
         _(appData.views.ActivityInfoView.userListView).each(function(dv) {
-            if(dv.model.attributes.user_id == appData.models.userModel.attributes.user_id){
-                alert('ja');
+            var cl = false;
+            if(dv.model.user_id == appData.models.userModel.attributes.user_id){
+                cl = true;
             }
 
           $('#aanwezigContent', appData.settings.currentModuleHTML).append(dv.render().$el);
+            if(cl){
+                $('#aanwezigContent a', appData.settings.currentModuleHTML).last().addClass('selected');
+            }
+
         });
        });
 
@@ -2388,6 +2394,16 @@ appData.views.DashboardView = Backbone.View.extend({
 
                     appData.views.DashboardView.setMarkers(appData.views.locationList);
                 }
+
+
+                // fix for old android
+                if($('body').hasClass('422')){
+                    var myHeight = appData.views.activityListView.length * 250;
+                    $('#activityTable', appData.settings.currentPageHTML).css({
+                        'height':myHeight + 'px !important',
+                        'min-height': myHeight + 'px'
+                    });
+                }
             }
         }
     },
@@ -3163,6 +3179,7 @@ appData.views.HomeView = Backbone.View.extend({
     * Normal Login flow
     */
     userLoggedInHandler: function(){
+
         // get location
         if(navigator.geolocation){
             $('#facebookLoad').removeClass('hide');
@@ -6114,7 +6131,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 			states[Connection.CELL_2G]  = true;
 			states[Connection.CELL_3G]  = true;
 			states[Connection.CELL_4G]  = true;
-			states[Connection.CELL]     = false;
+			states[Connection.CELL]     = true;
 			states[Connection.NONE]     = false;
 
 			appData.settings.network = states[networkState];
@@ -6156,12 +6173,12 @@ appData.services.UtilServices = Backbone.Model.extend({
 	},
 
 	getLocationService: function(target){
+
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
 				var location = [];
-
 
 				function onSuccess(position) {
 
@@ -6183,7 +6200,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
-
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');
@@ -6194,7 +6210,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 					}
 				}
 		}else{
-
 			appData.events.locationEvent.trigger('locationErrorHandler', location);
 		}
 	},

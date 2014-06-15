@@ -20,7 +20,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 			states[Connection.CELL_2G]  = true;
 			states[Connection.CELL_3G]  = true;
 			states[Connection.CELL_4G]  = true;
-			states[Connection.CELL]     = false;
+			states[Connection.CELL]     = true;
 			states[Connection.NONE]     = false;
 
 			appData.settings.network = states[networkState];
@@ -62,12 +62,12 @@ appData.services.UtilServices = Backbone.Model.extend({
 	},
 
 	getLocationService: function(target){
+
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
 				var location = [];
-
 
 				function onSuccess(position) {
 
@@ -89,7 +89,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
-
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');
@@ -100,7 +99,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 					}
 				}
 		}else{
-
 			appData.events.locationEvent.trigger('locationErrorHandler', location);
 		}
 	},

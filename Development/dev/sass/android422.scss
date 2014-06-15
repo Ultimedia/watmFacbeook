@@ -1,3 +1,11 @@
+body{
+  overflow: scroll;
+}
+
+.cl-content {
+overflow-y: scroll;
+}
+
 #activityDetail{
   #activityDetailTabs{
     .cl-btn{
@@ -53,8 +61,6 @@
       position: relative;
 
     #genderSelect{
-      background:url('assets/name-icon@x2.png') no-repeat 10px 12px;
-      background-size: 15px 15px;
       display: block;
       height: 30px;
       width: 100%;
@@ -70,6 +76,10 @@
     bottom: 0;
     left:0;
     width: 100%;
+  }
+
+  #createUserForm{
+  padding-bottom: 160px;
   }
 }
 
@@ -93,6 +103,10 @@
   .cl-content{
     overflow-y: auto;
     height: 100%;
+
+    #activityTable{
+      overflow: visible;
+    }
   }
 
     .cl-bar-title{
@@ -154,13 +168,44 @@
   overflow-y: auto;
 }
 
+#createActivity #createActivityContent input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background: #303d4d url('../../common/img/sliderButton.png') 0 0;
+  background-size: 20px 20px;
+}
+
+#createActivity #createActivityContent input[type='range'] {
+      background: #ededed;
+}
+
+#createActivity{
+    #locationInput{
+      background: #ededed url("assets/map2-icon@x2.png") no-repeat 10px 15px !important;
+      background-size: 14px 14px;
+  }
+}
+
 #createUser{
 
   #createUserForm{
+    input[type='range']{
+      background: #ededed;
+    }
+
     input[type='range']::-webkit-slider-thumb {
       -webkit-appearance: none !important;
       background: #303d4d url('../../common/img/sliderButton.png') 0 0;
       background-size: 20px 20px;
+    }
+
+    #s1{
+      background: url('assets/male-gender-icon@x2.png') no-repeat top left;
+      background-size: 30px 30px;
+    }
+
+    #s2{
+      background: url('assets/female-gender-icon@x2.png') no-repeat top left;
+      background-size: 30px 30px;
     }
 
     #s1.checked{
@@ -195,6 +240,9 @@
   }
 }
 
+#avatarDisplay{
+  height: 70% !important;
+}
 
 #planner .cl-content #plannerMap .planner-section .sports-bubble .planner-footer .table-time{
   background: url("assets/time-icon-small@x2.png") no-repeat top left;
@@ -223,7 +271,8 @@
 
 .settings-icon{
   background: url('assets/settings-icon@x2.png') no-repeat center center;
-  backgrond-size: 24px 23px;
+  background-size: 24px 23px !important;
+  padding: 0;
 }
 
 .add-icon{
@@ -257,7 +306,17 @@
   background-size: 20px 20px;
 }
 
+.cam-icon{
+  background: url('assets/cam-icon@x2.png') no-repeat center center;
+  background-size: 15px 13px;
+}
+
+
 #loading{
   background: #303d4d url('../../common/img/loading_background.png') repeat top left;
   background-size: 320px 568px;
+}
+
+#challengesContainer{
+  min-height: 2000px;
 }

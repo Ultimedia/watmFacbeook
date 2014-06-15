@@ -2033,10 +2033,15 @@ input.error{
       }
     }
 
+
     #aanwezigContent{
       div{
         float: left;
         margin-right: 5px;
+
+        a.selected{
+          border: 3px solid #4dd6d1;
+        }
       }
     }
 
