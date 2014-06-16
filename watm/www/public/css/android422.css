@@ -141,168 +141,173 @@ body {
 #dashboard .cl-content {
   height: 1000px !important;
   overflow-y: auto;
+  overflow: scroll;
+}
+/* line 171, ../../../../Development/dev/sass/android422.scss */
+#dashboard .cl-content #activityTable {
+  overflow: scroll;
 }
 
-/* line 171, ../../../../Development/dev/sass/android422.scss */
+/* line 176, ../../../../Development/dev/sass/android422.scss */
 #createActivity #createActivityContent input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   background: #303d4d url("../../common/img/sliderButton.png") 0 0;
   background-size: 20px 20px;
 }
 
-/* line 177, ../../../../Development/dev/sass/android422.scss */
+/* line 182, ../../../../Development/dev/sass/android422.scss */
 #createActivity #createActivityContent input[type='range'] {
   background: #ededed;
 }
 
-/* line 182, ../../../../Development/dev/sass/android422.scss */
+/* line 187, ../../../../Development/dev/sass/android422.scss */
 #createActivity #locationInput {
   background: #ededed url("assets/map2-icon@x2.png") no-repeat 10px 15px !important;
   background-size: 14px 14px;
 }
 
-/* line 191, ../../../../Development/dev/sass/android422.scss */
+/* line 196, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm input[type='range'] {
   background: #ededed;
 }
-/* line 195, ../../../../Development/dev/sass/android422.scss */
+/* line 200, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none !important;
   background: #303d4d url("../../common/img/sliderButton.png") 0 0;
   background-size: 20px 20px;
 }
-/* line 201, ../../../../Development/dev/sass/android422.scss */
+/* line 206, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm #s1 {
   background: url("assets/male-gender-icon@x2.png") no-repeat top left;
   background-size: 30px 30px;
 }
-/* line 206, ../../../../Development/dev/sass/android422.scss */
+/* line 211, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm #s2 {
   background: url("assets/female-gender-icon@x2.png") no-repeat top left;
   background-size: 30px 30px;
 }
-/* line 211, ../../../../Development/dev/sass/android422.scss */
+/* line 216, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm #s1.checked {
   background: url("assets/male-gender-icon-selected@x2.png") no-repeat top left;
   background-size: 30px 30px;
 }
-/* line 216, ../../../../Development/dev/sass/android422.scss */
+/* line 221, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm #s2.checked {
   background: url("assets/female-gender-icon-selected@x2.png") no-repeat top left;
   background-size: 30px 30px;
 }
-/* line 221, ../../../../Development/dev/sass/android422.scss */
+/* line 226, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm input[type=text], #createUser #createUserForm input[type=password], #createUser #createUserForm input[type=email] {
   border-radius: 0;
   margin-bottom: 15px;
 }
-/* line 226, ../../../../Development/dev/sass/android422.scss */
+/* line 231, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm input[type=email] {
   background: #ededed url("assets/mail-icon@x2.png") no-repeat 10px 15px;
   background-size: 15px 12px;
 }
-/* line 231, ../../../../Development/dev/sass/android422.scss */
+/* line 236, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm input[type=password] {
   background: #ededed url("assets/lock-icon@x2.png") no-repeat 10px 12px;
   background-size: 12px 16px;
 }
-/* line 236, ../../../../Development/dev/sass/android422.scss */
+/* line 241, ../../../../Development/dev/sass/android422.scss */
 #createUser #createUserForm #nameInput {
   background: #ededed url("assets/speech-icon@x2.png") no-repeat 10px 12px;
   background-size: 15px 15px;
 }
 
-/* line 243, ../../../../Development/dev/sass/android422.scss */
+/* line 248, ../../../../Development/dev/sass/android422.scss */
 #avatarDisplay {
   height: 70% !important;
 }
 
-/* line 247, ../../../../Development/dev/sass/android422.scss */
+/* line 252, ../../../../Development/dev/sass/android422.scss */
 #planner .cl-content #plannerMap .planner-section .sports-bubble .planner-footer .table-time {
   background: url("assets/time-icon-small@x2.png") no-repeat top left;
   background-size: 12px 12px;
 }
 
-/* line 252, ../../../../Development/dev/sass/android422.scss */
+/* line 257, ../../../../Development/dev/sass/android422.scss */
 #planner .cl-content #plannerMap .planner-section .sports-bubble .planner-footer .table-location {
   background: url("assets/map-icon-small@x2.png") no-repeat top left;
   background-size: 12px 11px;
 }
 
-/* line 257, ../../../../Development/dev/sass/android422.scss */
+/* line 262, ../../../../Development/dev/sass/android422.scss */
 #planner .cl-content #plannerMap .planner-section .edit-badge {
   background: #dd6562 url("assets/pen-icon@x2.png") no-repeat center center;
   background-size: 15px 15px;
 }
 
-/* line 262, ../../../../Development/dev/sass/android422.scss */
+/* line 267, ../../../../Development/dev/sass/android422.scss */
 .prev-icon {
   background: url("assets/prev-icon@x2.png") no-repeat center center;
   background-size: 11px 22px;
 }
 
-/* line 267, ../../../../Development/dev/sass/android422.scss */
+/* line 272, ../../../../Development/dev/sass/android422.scss */
 .menu-icon {
   background: url("assets/menu-icon@x2.png") no-repeat center center;
   background-size: 23px 16px;
 }
 
-/* line 272, ../../../../Development/dev/sass/android422.scss */
+/* line 277, ../../../../Development/dev/sass/android422.scss */
 .settings-icon {
   background: url("assets/settings-icon@x2.png") no-repeat center center;
   background-size: 24px 23px !important;
   padding: 0;
 }
 
-/* line 278, ../../../../Development/dev/sass/android422.scss */
+/* line 283, ../../../../Development/dev/sass/android422.scss */
 .add-icon {
   background: url("assets/add-icon@x2.png") no-repeat center center;
   background-size: 23px 16px;
 }
 
-/* line 283, ../../../../Development/dev/sass/android422.scss */
+/* line 288, ../../../../Development/dev/sass/android422.scss */
 .share-icon {
   background: url("assets/share-icon@x2.png") no-repeat center center;
   background-size: 22px 19px;
 }
 
-/* line 288, ../../../../Development/dev/sass/android422.scss */
+/* line 293, ../../../../Development/dev/sass/android422.scss */
 .location-icon {
   background: url("assets/map-icon@x2.png ") no-repeat center center;
   background-size: 15px 14px;
 }
 
-/* line 294, ../../../../Development/dev/sass/android422.scss */
+/* line 299, ../../../../Development/dev/sass/android422.scss */
 .profile-icon {
   background: url("assets/profile-icon@x2.png") no-repeat center center;
   background-size: 20px 20px;
 }
 
-/* line 299, ../../../../Development/dev/sass/android422.scss */
+/* line 304, ../../../../Development/dev/sass/android422.scss */
 .calendar-icon {
   background: url("assets/calendar-icon@x2.png") no-repeat center center;
   background-size: 20px 20px;
 }
 
-/* line 304, ../../../../Development/dev/sass/android422.scss */
+/* line 309, ../../../../Development/dev/sass/android422.scss */
 .list-icon {
   background: url("assets/list-icon@x2.png") no-repeat center center;
   background-size: 20px 20px;
 }
 
-/* line 309, ../../../../Development/dev/sass/android422.scss */
+/* line 314, ../../../../Development/dev/sass/android422.scss */
 .cam-icon {
   background: url("assets/cam-icon@x2.png") no-repeat center center;
   background-size: 15px 13px;
 }
 
-/* line 315, ../../../../Development/dev/sass/android422.scss */
+/* line 320, ../../../../Development/dev/sass/android422.scss */
 #loading {
   background: #303d4d url("../../common/img/loading_background.png") repeat top left;
   background-size: 320px 568px;
 }
 
-/* line 320, ../../../../Development/dev/sass/android422.scss */
+/* line 325, ../../../../Development/dev/sass/android422.scss */
 #challengesContainer {
   min-height: 2000px;
 }

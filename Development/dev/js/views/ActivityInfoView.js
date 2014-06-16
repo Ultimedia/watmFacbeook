@@ -44,7 +44,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         if(this.model.attributes.user_id){
             var user = appData.collections.users.where({"user_id": this.model.attributes.user_id})[0];
             if(user){
-     
+    
                 this.model.attributes.creator = user.attributes.name;
             }
         }
@@ -155,7 +155,6 @@ appData.views.ActivityInfoView = Backbone.View.extend({
             if(cl){
                 $('#aanwezigContent a', appData.settings.currentModuleHTML).last().addClass('selected');
             }
-
         });
        });
 

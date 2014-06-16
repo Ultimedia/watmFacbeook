@@ -166,6 +166,11 @@ overflow-y: scroll;
 #dashboard .cl-content{
   height: 1000px !important;
   overflow-y: auto;
+  overflow: scroll;
+
+  #activityTable{
+    overflow: scroll;
+  }
 }
 
 #createActivity #createActivityContent input[type='range']::-webkit-slider-thumb {

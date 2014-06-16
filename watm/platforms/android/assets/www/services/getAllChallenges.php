@@ -11,7 +11,7 @@
 		$challenge = array("challenge_id" => $row["challenge_id"],
 			"title" => $row["title"], 
 			"deadline" => $row["deadline"], 
-			"description" => $row["description"],
+			"description" => stripslashes($row["description"]),
 			"badge_url" => $row["badge_url"],
 			"challengeData" => json_decode($row["challengeData"]));
 		$challenges[] = $challenge;

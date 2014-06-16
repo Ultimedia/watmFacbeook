@@ -71,7 +71,7 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
     updateChallenges: function(){
         // badges grid
         var bwidth = $('#badgesOverview ul', appData.settings.currentModuleHTML).width();
-        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 12 + 2;
+        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 13 + 2;
             bdwidth = parseInt(bdwidth);
 
         var howMany = appData.models.userModel.attributes.challengesCount;

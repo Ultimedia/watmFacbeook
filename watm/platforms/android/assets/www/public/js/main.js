@@ -974,7 +974,7 @@ appData.views.ActivityInfoView = Backbone.View.extend({
         if(this.model.attributes.user_id){
             var user = appData.collections.users.where({"user_id": this.model.attributes.user_id})[0];
             if(user){
-     
+    
                 this.model.attributes.creator = user.attributes.name;
             }
         }
@@ -1085,7 +1085,6 @@ appData.views.ActivityInfoView = Backbone.View.extend({
             if(cl){
                 $('#aanwezigContent a', appData.settings.currentModuleHTML).last().addClass('selected');
             }
-
         });
        });
 
@@ -4008,7 +4007,7 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
     updateChallenges: function(){
         // badges grid
         var bwidth = $('#badgesOverview ul', appData.settings.currentModuleHTML).width();
-        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 12 + 2;
+        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 13 + 2;
             bdwidth = parseInt(bdwidth);
 
         var howMany = appData.models.userModel.attributes.challengesCount;
