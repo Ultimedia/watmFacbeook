@@ -496,6 +496,7 @@
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/avatar/avatar_male_80.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/avatar/avatar_male_default.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/avatar/equipment_male_20.png \
+/Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/avatar/equipment_male_40.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/avatar/equipment_male_default.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/badges/5398308517a81ecoBadge.png \
 /Users/maartenbressinck/Dropbox/watmTrial/watm/platforms/android/assets/www/common/badges/53984603e43ddecoBadge.png \

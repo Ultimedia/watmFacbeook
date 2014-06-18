@@ -29,6 +29,8 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.services.phpService.getActivities(false, null);
         }
 
+
+
         // image timer
         appData.settings.timer = setInterval(this.timerAction, 20000);
 
@@ -93,7 +95,6 @@ appData.views.DashboardView = Backbone.View.extend({
 
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
-
 
         if(appData.views.DashboardView.filterEnabled){
             // GET OUR FILTER 

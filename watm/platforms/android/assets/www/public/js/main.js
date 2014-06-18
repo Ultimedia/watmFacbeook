@@ -2108,12 +2108,14 @@ appData.views.CreateUserView = Backbone.View.extend({
     },
 
     createUserHandler: function(){
+
+
         Backbone.off('createUserHandler');
         appData.router.navigate('dashboard', true);
     },
 
     createUserErrorHandler: function(){
-        alert('cannot create user');
+        alert('Fout bij het aanmaken van de gebruiker');
     },
 
 	setValidator: function(){
@@ -2176,7 +2178,7 @@ appData.views.CreateUserView = Backbone.View.extend({
     locationSuccesHandler: function(location){
         var myLocation = location.coords.latitude + "," + location.coords.longitude;
         appData.models.userModel.attributes.current_location = myLocation;
-        
+
         Backbone.on('createUserHandler', appData.views.CreateUserView.createUserHandler);
         appData.services.phpService.createUser();
     },
@@ -2259,6 +2261,8 @@ appData.views.DashboardView = Backbone.View.extend({
             appData.services.phpService.getActivities(false, null);
         }
 
+
+
         // image timer
         appData.settings.timer = setInterval(this.timerAction, 20000);
 
@@ -2323,7 +2327,6 @@ appData.views.DashboardView = Backbone.View.extend({
 
     generateAcitvitiesCollection: function(){
         Backbone.off('dashboardUpdatedHandler');
-
 
         if(appData.views.DashboardView.filterEnabled){
             // GET OUR FILTER 
@@ -4006,10 +4009,11 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
 
     updateChallenges: function(){
         // badges grid
-        var bwidth = $('#badgesOverview ul', appData.settings.currentModuleHTML).width();
-        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 13 + 2;
+        var bwidth = $('#badgesOverview', appData.settings.currentModuleHTML).width();
+        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 12;
             bdwidth = parseInt(bdwidth);
 
+        var oneLine = Math.floor(bwidth / bdwidth);
         var howMany = appData.models.userModel.attributes.challengesCount;
         if(!isNaN(howMany)){
             $('#badgesOverview ul', appData.settings.currentModuleHTML).empty();
@@ -4018,6 +4022,10 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             }          
         }
         $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
+        $('#badgesOverview ul li:eq(' +  oneLine + ')', appData.settings.currentModuleHTML).css({
+            'margin-right':'0'
+        });
+
 
         appData.views.challengeListView = [];
         appData.collections.challenges.each(function(challenge) {
@@ -4700,6 +4708,7 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
     loading: function () {
 
+
         if(!appData.settings.dataLoaded){
             appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
         }else{
@@ -4708,6 +4717,7 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
     
     dashboard: function () {
+
         appData.settings.created = false;
         clearInterval(appData.settings.timer);
 
@@ -4716,7 +4726,10 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
         if(appData.settings.userLoggedIn){
 
+
+
             if(appData.settings.dataLoaded){    
+            
                 appData.slider.slidePage(new appData.views.DashboardView().render().$el);
         
 
@@ -4727,6 +4740,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
                         $('#container').addClass('offline');
                     }*/
                 }
+            }else{
+                window.location.hash = "loading";
             }
         }else{
             window.location.hash = "";
@@ -6176,7 +6191,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:50000});
 				var location = [];
 
 				function onSuccess(position) {
@@ -6199,6 +6214,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
+
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');

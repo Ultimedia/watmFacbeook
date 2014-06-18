@@ -2693,7 +2693,7 @@ input.error {
 #avatarView #avatar {
   text-align: center;
   padding-top: 40px;
-  padding-bottom: 20px;
+  height: 100%;
 }
 /* line 2615, ../../../../Development/dev/sass/application.scss */
 #avatarView #avatar .avatar-container #avatarDisplay, #avatarView #avatar .avatar-container #equipmentDisplay {
@@ -2702,41 +2702,48 @@ input.error {
 }
 /* line 2620, ../../../../Development/dev/sass/application.scss */
 #avatarView #avatar .avatar-container #equipmentDisplay {
-  background: url("common/avatar/equipment_male_20.png") no-repeat;
-  position: fixed;
-  width: 100%;
-  height: 200px;
-  left: 0;
-  bottom: 54px;
+  position: absolute;
+  width: 482px;
+  height: 213px;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 10;
 }
 /* line 2629, ../../../../Development/dev/sass/application.scss */
+#avatarView #avatar .avatar-container #equipmentDisplay img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 482px;
+  height: 213px;
+}
+/* line 2637, ../../../../Development/dev/sass/application.scss */
 #avatarView #avatar .avatar-container #avatarFloor {
   height: 150px;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  bottom: 54px;
+  bottom: 0;
   left: 0;
   background: #ededed;
   z-index: 1;
-  display: none;
 }
 
 /**
 *  Profile
 */
-/* line 2646, ../../../../Development/dev/sass/application.scss */
+/* line 2653, ../../../../Development/dev/sass/application.scss */
 #profile {
   height: 100%;
 }
-/* line 2649, ../../../../Development/dev/sass/application.scss */
+/* line 2656, ../../../../Development/dev/sass/application.scss */
 #profile #profileContent .friendbox {
   height: 100%;
 }
-/* line 2653, ../../../../Development/dev/sass/application.scss */
+/* line 2660, ../../../../Development/dev/sass/application.scss */
 #profile #profileTabs {
   text-transform: uppercase;
 }
-/* line 2655, ../../../../Development/dev/sass/application.scss */
+/* line 2662, ../../../../Development/dev/sass/application.scss */
 #profile #profileTabs .cl-btn {
   display: inline-block;
   float: left;
@@ -2746,47 +2753,47 @@ input.error {
   font-size: 13px;
   background-color: #282828;
 }
-/* line 2665, ../../../../Development/dev/sass/application.scss */
+/* line 2672, ../../../../Development/dev/sass/application.scss */
 #profile #profileTabs .active {
   background: #fff !important;
   color: #d55353 !important;
 }
-/* line 2670, ../../../../Development/dev/sass/application.scss */
+/* line 2677, ../../../../Development/dev/sass/application.scss */
 #profile #profileTabs #challengesButton.active {
   background: #a3917d !important;
   color: #fff !important;
 }
-/* line 2675, ../../../../Development/dev/sass/application.scss */
+/* line 2682, ../../../../Development/dev/sass/application.scss */
 #profile #profileTabs #friendsButton.active {
   background: #ede1d1 !important;
 }
-/* line 2680, ../../../../Development/dev/sass/application.scss */
+/* line 2687, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content {
   height: calc(100% - 122px);
   background: #fff;
 }
-/* line 2684, ../../../../Development/dev/sass/application.scss */
+/* line 2691, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content #friendsView {
   background: #ede1d1;
   height: 100%;
   padding: 0 12px;
   overflow: auto;
 }
-/* line 2691, ../../../../Development/dev/sass/application.scss */
+/* line 2698, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .friend-box {
   margin: 20px 12px 12px 0;
   width: calc(33% - 12px);
   float: left;
   text-align: center;
 }
-/* line 2697, ../../../../Development/dev/sass/application.scss */
+/* line 2704, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .friend-box h3 {
   color: #505050;
   font-family: "ropa_sansregular";
   font-size: 1.2em;
   margin-bottom: 5px;
 }
-/* line 2704, ../../../../Development/dev/sass/application.scss */
+/* line 2711, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .friend-box .friend-avatar {
   border-radius: 300px;
   -webkit-border-radius: 300px;
@@ -2795,7 +2802,7 @@ input.error {
   float: left;
   width: 100%;
 }
-/* line 2713, ../../../../Development/dev/sass/application.scss */
+/* line 2720, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .friend-box .removeFriend {
   clear: both;
   text-align: center;
@@ -2810,25 +2817,25 @@ input.error {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
 }
-/* line 2729, ../../../../Development/dev/sass/application.scss */
+/* line 2736, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .friend-box:nth-child(3n) {
   margin-right: 0;
 }
-/* line 2733, ../../../../Development/dev/sass/application.scss */
+/* line 2740, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .cl-bar {
   background: #fef5e4;
 }
-/* line 2735, ../../../../Development/dev/sass/application.scss */
+/* line 2742, ../../../../Development/dev/sass/application.scss */
 #profile .cl-content .cl-bar .cl-bar-text {
   color: #2f404c;
 }
 
-/* line 2742, ../../../../Development/dev/sass/application.scss */
+/* line 2749, ../../../../Development/dev/sass/application.scss */
 #challengeView {
   background: #fff;
   margin-top: -1px;
 }
-/* line 2746, ../../../../Development/dev/sass/application.scss */
+/* line 2753, ../../../../Development/dev/sass/application.scss */
 #challengeView h4 {
   display: inline-block;
   font-family: "bitteritalic";
@@ -2838,13 +2845,13 @@ input.error {
   margin-bottom: 10px;
   color: #292929;
 }
-/* line 2757, ../../../../Development/dev/sass/application.scss */
+/* line 2764, ../../../../Development/dev/sass/application.scss */
 #challengeView .badge_img {
   float: left;
   display: inline-block;
   margin-right: 5px;
 }
-/* line 2764, ../../../../Development/dev/sass/application.scss */
+/* line 2771, ../../../../Development/dev/sass/application.scss */
 #challengeView .no-found, #challengeView .no-found2 {
   padding: 20px 10px 20px 10px;
   margin: 0;
@@ -2857,11 +2864,11 @@ input.error {
   background: #edecec;
   margin-bottom: 16px;
 }
-/* line 2777, ../../../../Development/dev/sass/application.scss */
+/* line 2784, ../../../../Development/dev/sass/application.scss */
 #challengeView #myChallengesOverview .hide, #challengeView #challengesOverview .hide {
   display: none !important;
 }
-/* line 2781, ../../../../Development/dev/sass/application.scss */
+/* line 2788, ../../../../Development/dev/sass/application.scss */
 #challengeView .cl-btn {
   display: inline-block;
   width: auto;
@@ -2873,41 +2880,42 @@ input.error {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
 }
-/* line 2793, ../../../../Development/dev/sass/application.scss */
+/* line 2800, ../../../../Development/dev/sass/application.scss */
 #challengeView h3 {
   display: inline-block;
   font-size: 1.3em;
   margin-bottom: 5px;
 }
-/* line 2799, ../../../../Development/dev/sass/application.scss */
+/* line 2806, ../../../../Development/dev/sass/application.scss */
 #challengeView #progressContainer {
   width: 100%;
   display: block;
   padding: 10px 0;
 }
-/* line 2804, ../../../../Development/dev/sass/application.scss */
+/* line 2811, ../../../../Development/dev/sass/application.scss */
 #challengeView #progressContainer progress {
   width: 100%;
 }
-/* line 2809, ../../../../Development/dev/sass/application.scss */
+/* line 2816, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview {
   background: #a3917d;
   border-bottom: 3px solid #837361;
   overflow: auto;
+  width: 100%;
 }
-/* line 2814, ../../../../Development/dev/sass/application.scss */
+/* line 2822, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview h4 {
   color: #ffffff;
   margin-bottom: 0;
   margin: 20px 12px 0 12px;
 }
-/* line 2820, ../../../../Development/dev/sass/application.scss */
+/* line 2828, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview ul {
   margin-left: 12px;
   margin-right: 12px;
   overflow: auto;
 }
-/* line 2824, ../../../../Development/dev/sass/application.scss */
+/* line 2832, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview ul li {
   width: 50px;
   height: 50px;
@@ -2919,29 +2927,29 @@ input.error {
   border: 2px dashed #ddd0c1;
   margin: 0;
   padding: 0;
-  margin: 12px 12px 12px 0;
+  margin: 12px 9px 12px 0;
 }
-/* line 2837, ../../../../Development/dev/sass/application.scss */
+/* line 2845, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview ul li .badge_img {
   margin: 0;
 }
-/* line 2841, ../../../../Development/dev/sass/application.scss */
+/* line 2849, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview ul li:last-child {
   margin-right: 0;
 }
-/* line 2845, ../../../../Development/dev/sass/application.scss */
+/* line 2853, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview ul li.badger {
   border: none;
 }
-/* line 2851, ../../../../Development/dev/sass/application.scss */
+/* line 2859, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesContainer {
   margin: -1px 12px;
 }
-/* line 2855, ../../../../Development/dev/sass/application.scss */
+/* line 2863, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable, #challengeView #myChallengesOverviewTable {
   width: 100%;
 }
-/* line 2858, ../../../../Development/dev/sass/application.scss */
+/* line 2866, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable .challenge-item, #challengeView #myChallengesOverviewTable .challenge-item {
   width: calc(50% - 6px);
   margin-right: 12px;
@@ -2958,12 +2966,12 @@ input.error {
   box-shadow: 2px 2px 0 rgba(87, 87, 87, 0.35);
   /* drop shadow */
 }
-/* line 2871, ../../../../Development/dev/sass/application.scss */
+/* line 2879, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable .challenge-item .badge_img, #challengeView #myChallengesOverviewTable .challenge-item .badge_img {
   float: none;
   margin: 0;
 }
-/* line 2876, ../../../../Development/dev/sass/application.scss */
+/* line 2884, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable .challenge-item h3, #challengeView #myChallengesOverviewTable .challenge-item h3 {
   font-size: 1.3em;
   letter-spacing: -1px;
@@ -2975,17 +2983,21 @@ input.error {
   text-align: center;
   font-family: "ropa_sansregular";
 }
-/* line 2888, ../../../../Development/dev/sass/application.scss */
+/* line 2896, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable .challenge-item p, #challengeView #myChallengesOverviewTable .challenge-item p {
-  font-size: 11px;
+  font-size: 13px;
   text-align: center;
   line-height: 14px;
 }
-/* line 2895, ../../../../Development/dev/sass/application.scss */
+/* line 2902, ../../../../Development/dev/sass/application.scss */
+#challengeView #challengesOverviewTable .challenge-item .joinChallenge, #challengeView #myChallengesOverviewTable .challenge-item .joinChallenge {
+  margin-bottom: 10px;
+}
+/* line 2907, ../../../../Development/dev/sass/application.scss */
 #challengeView #challengesOverviewTable .challenge-item:nth-child(even), #challengeView #myChallengesOverviewTable .challenge-item:nth-child(even) {
   margin-right: 0;
 }
-/* line 2901, ../../../../Development/dev/sass/application.scss */
+/* line 2913, ../../../../Development/dev/sass/application.scss */
 #challengeView #badgesOverview .badge_img, #challengeView #challengesOverviewTable .badge_img, #challengeView #myChallengesOverviewTable .badge_img, #challengeView #badgesView .badge_img {
   float: left;
   display: inline-block;
@@ -3006,16 +3018,16 @@ input.error {
 /** 
 * Friend
 */
-/* line 2923, ../../../../Development/dev/sass/application.scss */
+/* line 2935, ../../../../Development/dev/sass/application.scss */
 #friendView {
   position: relative;
   height: calc(100%-61px);
 }
-/* line 2927, ../../../../Development/dev/sass/application.scss */
+/* line 2939, ../../../../Development/dev/sass/application.scss */
 #friendView #friendAddContainer {
   clear: both;
 }
-/* line 2930, ../../../../Development/dev/sass/application.scss */
+/* line 2942, ../../../../Development/dev/sass/application.scss */
 #friendView #friendAddContainer #addFriendButton {
   padding: 10px 10px 10px 20px;
   margin: 10px;
@@ -3025,16 +3037,16 @@ input.error {
   font-family: "source_sans_prosemibold";
   font-size: 14px;
 }
-/* line 2942, ../../../../Development/dev/sass/application.scss */
+/* line 2954, ../../../../Development/dev/sass/application.scss */
 #friendView #avatarView #barContainer {
   display: none;
 }
-/* line 2947, ../../../../Development/dev/sass/application.scss */
+/* line 2959, ../../../../Development/dev/sass/application.scss */
 #friendView #avatarView {
   height: 300px;
   position: relative;
 }
-/* line 2952, ../../../../Development/dev/sass/application.scss */
+/* line 2964, ../../../../Development/dev/sass/application.scss */
 #friendView .avatar {
   display: inline-block;
   width: 100%;
@@ -3045,13 +3057,13 @@ input.error {
   background-size: cover;
   float: left;
 }
-/* line 2964, ../../../../Development/dev/sass/application.scss */
+/* line 2976, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content {
   padding: 0;
   clear: both;
   height: calc(100% - 44px);
 }
-/* line 2970, ../../../../Development/dev/sass/application.scss */
+/* line 2982, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #mediaContainer .user-box {
   background: #dadada;
   padding: 10px 5px;
@@ -3061,11 +3073,11 @@ input.error {
   font-family: "ropa_sansregular";
   font-size: 1.2em;
 }
-/* line 2981, ../../../../Development/dev/sass/application.scss */
+/* line 2993, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #avatarView {
   height: 250px;
 }
-/* line 2985, ../../../../Development/dev/sass/application.scss */
+/* line 2997, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #avatarView #avatarDisplay {
   height: 200px;
   width: auto;
@@ -3074,19 +3086,19 @@ input.error {
   display: block;
   z-index: 200;
 }
-/* line 2994, ../../../../Development/dev/sass/application.scss */
+/* line 3006, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #avatarView #avatar {
   height: auto;
   padding: 0;
 }
-/* line 2999, ../../../../Development/dev/sass/application.scss */
+/* line 3011, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #avatarView #avatar .avatar-container #avatarFloor {
   position: absolute;
   height: 100px;
   bottom: 0;
   display: none;
 }
-/* line 3006, ../../../../Development/dev/sass/application.scss */
+/* line 3018, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content h3 {
   font-family: "source_sans_prosemibold";
   text-transform: uppercase;
@@ -3101,14 +3113,14 @@ input.error {
   margin-bottom: 10px;
   color: #292929;
 }
-/* line 3021, ../../../../Development/dev/sass/application.scss */
+/* line 3033, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview {
   background: #a3917d;
   border-bottom: 3px solid #837361;
   overflow: auto;
   width: 100%;
 }
-/* line 3027, ../../../../Development/dev/sass/application.scss */
+/* line 3039, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview .badge_img {
   float: left;
   display: inline-block;
@@ -3125,19 +3137,20 @@ input.error {
   margin-top: 0;
   float: left;
 }
-/* line 3044, ../../../../Development/dev/sass/application.scss */
+/* line 3056, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview h3 {
   margin: 0;
   padding-bottom: 0;
   color: #fff;
 }
-/* line 3050, ../../../../Development/dev/sass/application.scss */
+/* line 3062, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview ul {
   margin-left: 12px;
   margin-right: 12px;
   overflow: auto;
+  width: 100%;
 }
-/* line 3054, ../../../../Development/dev/sass/application.scss */
+/* line 3067, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview ul li {
   width: 50px;
   height: 50px;
@@ -3151,30 +3164,30 @@ input.error {
   padding: 0;
   margin: 12px 12px 12px 0;
 }
-/* line 3067, ../../../../Development/dev/sass/application.scss */
+/* line 3080, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview ul li .badge_img {
   margin: 0;
 }
-/* line 3071, ../../../../Development/dev/sass/application.scss */
+/* line 3084, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview ul li:last-child {
   margin-right: 0;
 }
-/* line 3075, ../../../../Development/dev/sass/application.scss */
+/* line 3088, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #badgesOverview ul li.badger {
   border: none;
 }
-/* line 3081, ../../../../Development/dev/sass/application.scss */
+/* line 3094, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #mediaContainer {
   clear: both;
   padding: 0 10px 10px 10px;
 }
-/* line 3085, ../../../../Development/dev/sass/application.scss */
+/* line 3098, ../../../../Development/dev/sass/application.scss */
 #friendView .cl-content #mediaContainer img {
   width: 100%;
   height: auto;
 }
 
-/* line 3094, ../../../../Development/dev/sass/application.scss */
+/* line 3107, ../../../../Development/dev/sass/application.scss */
 #noConnection .cl-message {
   padding: 10px;
   display: block;
@@ -3184,24 +3197,24 @@ input.error {
 /**
 * Navigation
 */
-/* line 3105, ../../../../Development/dev/sass/application.scss */
+/* line 3118, ../../../../Development/dev/sass/application.scss */
 #navigationView {
   overflow-x: hidden;
   width: 100%;
   height: 100% !important;
 }
-/* line 3110, ../../../../Development/dev/sass/application.scss */
+/* line 3123, ../../../../Development/dev/sass/application.scss */
 #navigationView .cl-content {
   height: calc(100% - 54px);
   padding-bottom: 20px;
 }
 
-/* line 3117, ../../../../Development/dev/sass/application.scss */
+/* line 3130, ../../../../Development/dev/sass/application.scss */
 #profileContent, .avatar-page, #avatarView, #avatar {
   height: 100%;
 }
 
-/* line 3121, ../../../../Development/dev/sass/application.scss */
+/* line 3134, ../../../../Development/dev/sass/application.scss */
 .required-ast {
   color: #e71409;
   font-size: 15px;
@@ -3211,24 +3224,24 @@ input.error {
 /** 
 * Offline
 */
-/* line 3135, ../../../../Development/dev/sass/application.scss */
+/* line 3148, ../../../../Development/dev/sass/application.scss */
 #container.offline #createActivityButton, #container.offline #goingList, #container.offline #addMediaButton, #container.offline #messageBox, #container.offline #sportSelectorButton, #container.offline #changeAvatar, #container.offline #mediaButton, #container.offline #friendsButton, #container.offline #favouriteSportSection, #container.offline #navigateButton, #container.offline #challengesButton, #container.offline #shareButton, #container.offline #sortBar,
 #container.offline .add-icon, #container.offline #fullScreenButton, #container.offline #goingList .radio-list, #container.offline .edit-badge-hitbox {
   display: none;
 }
-/* line 3137, ../../../../Development/dev/sass/application.scss */
+/* line 3150, ../../../../Development/dev/sass/application.scss */
 #container.offline #dashboard {
   height: 100%;
 }
-/* line 3140, ../../../../Development/dev/sass/application.scss */
+/* line 3153, ../../../../Development/dev/sass/application.scss */
 #container.offline #dashboard #map_canvas {
   display: none;
 }
-/* line 3143, ../../../../Development/dev/sass/application.scss */
+/* line 3156, ../../../../Development/dev/sass/application.scss */
 #container.offline #dashboard .cl-content {
   height: calc(100%) !important;
 }
-/* line 3146, ../../../../Development/dev/sass/application.scss */
+/* line 3159, ../../../../Development/dev/sass/application.scss */
 #container.offline #dashboard .cl-content #activityTable {
   margin-top: 90px;
 }

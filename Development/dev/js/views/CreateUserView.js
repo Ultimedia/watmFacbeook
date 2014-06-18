@@ -49,12 +49,14 @@ appData.views.CreateUserView = Backbone.View.extend({
     },
 
     createUserHandler: function(){
+
+
         Backbone.off('createUserHandler');
         appData.router.navigate('dashboard', true);
     },
 
     createUserErrorHandler: function(){
-        alert('cannot create user');
+        alert('Fout bij het aanmaken van de gebruiker');
     },
 
 	setValidator: function(){
@@ -117,7 +119,7 @@ appData.views.CreateUserView = Backbone.View.extend({
     locationSuccesHandler: function(location){
         var myLocation = location.coords.latitude + "," + location.coords.longitude;
         appData.models.userModel.attributes.current_location = myLocation;
-        
+
         Backbone.on('createUserHandler', appData.views.CreateUserView.createUserHandler);
         appData.services.phpService.createUser();
     },

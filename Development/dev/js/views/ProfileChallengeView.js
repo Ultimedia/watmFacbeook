@@ -70,10 +70,11 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
 
     updateChallenges: function(){
         // badges grid
-        var bwidth = $('#badgesOverview ul', appData.settings.currentModuleHTML).width();
-        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 13 + 2;
+        var bwidth = $('#badgesOverview', appData.settings.currentModuleHTML).width();
+        var bdwidth = $('#badgesOverview ul li',appData.settings.currentModuleHTML).first().width() + 12;
             bdwidth = parseInt(bdwidth);
 
+        var oneLine = Math.floor(bwidth / bdwidth);
         var howMany = appData.models.userModel.attributes.challengesCount;
         if(!isNaN(howMany)){
             $('#badgesOverview ul', appData.settings.currentModuleHTML).empty();
@@ -82,6 +83,10 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
             }          
         }
         $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
+        $('#badgesOverview ul li:eq(' +  oneLine + ')', appData.settings.currentModuleHTML).css({
+            'margin-right':'0'
+        });
+
 
         appData.views.challengeListView = [];
         appData.collections.challenges.each(function(challenge) {

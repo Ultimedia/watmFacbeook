@@ -66,7 +66,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:50000});
 				var location = [];
 
 				function onSuccess(position) {
@@ -89,6 +89,7 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
+
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');

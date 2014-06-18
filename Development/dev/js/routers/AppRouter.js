@@ -84,6 +84,7 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
     loading: function () {
 
+
         if(!appData.settings.dataLoaded){
             appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
         }else{
@@ -92,6 +93,7 @@ appData.routers.AppRouter = Backbone.Router.extend({
     },
     
     dashboard: function () {
+
         appData.settings.created = false;
         clearInterval(appData.settings.timer);
 
@@ -100,7 +102,10 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
         if(appData.settings.userLoggedIn){
 
+
+
             if(appData.settings.dataLoaded){    
+            
                 appData.slider.slidePage(new appData.views.DashboardView().render().$el);
         
 
@@ -111,6 +116,8 @@ appData.routers.AppRouter = Backbone.Router.extend({
                         $('#container').addClass('offline');
                     }*/
                 }
+            }else{
+                window.location.hash = "loading";
             }
         }else{
             window.location.hash = "";
