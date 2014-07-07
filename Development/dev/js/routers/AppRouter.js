@@ -84,10 +84,25 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
     loading: function () {
 
-
         if(!appData.settings.dataLoaded){
-            appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+        
+            if(appData.settings.native){
+                // load it
+                if(appData.services.utilService.getNetworkConnection()){
+                    appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+                }else{
+                    if(appData.settings.storageFound){
+                        window.location.hash = "#dashboard";
+                    }else{
+                        window.location.hash = "#noconnection"
+                    }
+                }
+            }else{
+                appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+            }
+
         }else{
+
             window.location.hash = "dashboard";
         }
     },
@@ -101,8 +116,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
         $('#mainMenu ul li').first().addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
-
-
 
             if(appData.settings.dataLoaded){    
             

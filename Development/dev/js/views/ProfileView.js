@@ -29,8 +29,6 @@ appData.views.ProfileView = Backbone.View.extend({
                 $('#friendsButton', appData.settings.currentPageHTML).remove();
             }
         }
-
-
         return this; 
     },
 

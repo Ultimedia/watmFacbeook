@@ -21,7 +21,7 @@ var appData = {
 
 // settings
 appData.settings.rootPath = "http://localhost/";
-appData.settings.forwardPath = "http://ultimedia.biz/watm";
+appData.settings.forwardPath = "http://localhost/";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
 appData.settings.badgesPath = appData.settings.rootPath + "common/badges/";
@@ -117,25 +117,32 @@ appData.start = function(nativeApp){
   }
 
   // phonegap when the user returns to the app after minimizing it
-  function onResumeHandler(){
+  function onResumeHandler(){ 
 
   }
 
   // phonegap device offline
   function deviceOnlineHandler(){
-
-
     $('#container').addClass('online').removeClass('offline');
 
     appData.settings.network = true;
     Backbone.trigger('networkFoundEvent');
+    
+    // back to the landing page
+    window.localStorage.clear()
+
+    // not signed in
+    appData.settings.userLoggedIn = false;
+    appData.settings.storageFound = false;
+    appData.settings.dataLoaded = false;
+
+    // back to the landing page
+    location.reload(); 
   }
 
   // phonegap device back online
   function deviceOfflineHandler(){
     $('#container').removeClass('online').addClass('offline');
-
-
 
     appData.settings.network = false;
     Backbone.trigger('networkLostEvent');
@@ -362,6 +369,7 @@ appData.start = function(nativeApp){
 
           // see if we have a user in our localstorage
           if(window.localStorage.getItem("userModel")){
+
 
             var localUser = JSON.parse(window.localStorage.getItem("userModel"));
             appData.models.userModel = new User(localUser);

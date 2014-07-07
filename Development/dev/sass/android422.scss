@@ -3,6 +3,7 @@ body{
 }
 
 .cl-content {
+  overflow: scroll !important;
 overflow-y: scroll;
 }
 
@@ -324,4 +325,12 @@ overflow-y: scroll;
 
 #challengesContainer{
   min-height: 2000px;
+}
+
+#createButton{
+    display: inline-block;
+}
+
+#challengeView #challengesOverviewTable .challenge-item, #challengeView #myChallengesOverviewTable .challenge-item{
+  width: 100% !important;
 }

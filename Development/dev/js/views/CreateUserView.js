@@ -86,6 +86,7 @@ appData.views.CreateUserView = Backbone.View.extend({
             },
 
     		submitHandler: function(form) {
+
     			// CreateUser form logic
 				var name = $('#nameInput', appData.settings.currentPageHTML).val();
 				var password = $('#passwordInput', appData.settings.currentPageHTML).val();

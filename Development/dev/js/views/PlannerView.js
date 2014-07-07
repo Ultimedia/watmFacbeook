@@ -17,6 +17,8 @@ appData.views.PlannerView = Backbone.View.extend({
     if(appData.settings.native){
         if(appData.services.utilService.getNetworkConnection()){
             appData.services.phpService.getActivities(false, null);
+        }else{
+          this.generateTimeLine();
         }
     }else{
         appData.services.phpService.getActivities(false, null);
@@ -66,62 +68,69 @@ appData.views.PlannerView = Backbone.View.extend({
       var lastDate;
       var savedDate;
 
-      _(appData.views.activityListView).each(function(element, index) {
+      if(appData.views.activityListView.length !== 0){
+          $('#bd').css({
+              "display":"none"
+          });
 
+        _(appData.views.activityListView).each(function(element, index) {
 
-          // same date
-          if(lastDate == element.model.attributes.savedDate){
-              $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el);
-          
-          // andere datum (nieuwe tijdlijn)
-          }else{
-            var savedDate = "";
-            var dateCheck = element.model.attributes.date.split(" ");
-
-            switch(dateCheck[0]){
-              case "Vandaag":
-                savedDate = dateCheck[0];
-              break;
-
-              case "Morgen":
-                savedDate = dateCheck[0];
-              break;
-            }
-
-            // convert to readable date
-            if(savedDate === ""){
-              savedDate = element.model.attributes.date;
-            }
-
-            fr = new appData.views.PlannerTimelineWrap();
-            $('#plannerMap',appData.settings.currentPageHTML).append(fr.render().$el);
-            $('#plannerMap h3', appData.settings.currentPageHTML).last().text(savedDate);
-            $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el).hide();
-
-            if(appData.views.PlannerView.firstRet){
-              appData.views.PlannerView.firstRet = false;
-              $('.plan-list', appData.settings.currentPageHTML).show(600);
+            // same date
+            if(lastDate == element.model.attributes.savedDate){
+                $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el);
+            
+            // andere datum (nieuwe tijdlijn)
             }else{
-              $('.plan-list', appData.settings.currentPageHTML).show();
-            }
-          }
+              var savedDate = "";
+              var dateCheck = element.model.attributes.date.split(" ");
 
-          lastDate = element.model.attributes.savedDate;
-        });
+              switch(dateCheck[0]){
+                case "Vandaag":
+                  savedDate = dateCheck[0];
+                break;
 
-        // bind click handler
-        $('.plan-list li', appData.settings.currentPageHTML).click(function(evt){
-          
-            var id = $('h2',evt.currentTarget).attr('data-id');
-            if(id){
-              
-              if($(evt.target).hasClass('edit-badge-hitbox')){
-                window.location.href = "#update/" + id;
+                case "Morgen":
+                  savedDate = dateCheck[0];
+                break;
+              }
+
+              // convert to readable date
+              if(savedDate === ""){
+                savedDate = element.model.attributes.date;
+              }
+
+              fr = new appData.views.PlannerTimelineWrap();
+              $('#plannerMap',appData.settings.currentPageHTML).append(fr.render().$el);
+              $('#plannerMap h3', appData.settings.currentPageHTML).last().text(savedDate);
+              $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el).hide();
+
+              if(appData.views.PlannerView.firstRet){
+                appData.views.PlannerView.firstRet = false;
+                $('.plan-list', appData.settings.currentPageHTML).show(600);
               }else{
-                window.location.href = "#activity/" + id;
+                $('.plan-list', appData.settings.currentPageHTML).show();
               }
             }
-        });
+
+            lastDate = element.model.attributes.savedDate;
+          });
+
+          // bind click handler
+          $('.plan-list li', appData.settings.currentPageHTML).click(function(evt){
+            
+              var id = $('h2',evt.currentTarget).attr('data-id');
+              if(id){
+                
+                if($(evt.target).hasClass('edit-badge-hitbox')){
+                  window.location.href = "#update/" + id;
+                }else{
+                  window.location.href = "#activity/" + id;
+                }
+              }
+          });
+        }else{
+          $('#bd').removeAttr('style');
+        }
 
         appData.services.utilService.updateLocalStorage();
   },

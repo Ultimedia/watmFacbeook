@@ -76,17 +76,16 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
 
         var oneLine = Math.floor(bwidth / bdwidth);
         var howMany = appData.models.userModel.attributes.challengesCount;
+
         if(!isNaN(howMany)){
             $('#badgesOverview ul', appData.settings.currentModuleHTML).empty();
             for (var i=0; i<howMany; i++){
                 $('#badgesOverview ul', appData.settings.currentModuleHTML).append('<li></li>');
             }          
         }
-        $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
-        $('#badgesOverview ul li:eq(' +  oneLine + ')', appData.settings.currentModuleHTML).css({
-            'margin-right':'0'
-        });
+        oneLine = oneLine++;
 
+        $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
 
         appData.views.challengeListView = [];
         appData.collections.challenges.each(function(challenge) {

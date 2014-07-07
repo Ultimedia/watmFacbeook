@@ -2373,6 +2373,24 @@ input.error{
     background: #4dd6d1;
     overflow-x: hidden;
 
+    .cl-message{
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      background: #fff !important;
+      width: calc(100% - 30px);
+      float: left;
+      position: relative;
+      padding: 10px;
+      margin-left: 15px;
+      color: #505050;
+      font-family: "ropa_sansregular";
+      font-size: 1.3em;
+      margin-bottom: 5px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
     #plannerMap{
       margin: 10px 16px;
       width: 100%;
@@ -2620,7 +2638,7 @@ input.error{
       #equipmentDisplay{
         position: absolute;
         width: 482px;
-        height: 213px;
+        height: 241px;
         bottom: 0;
         right: 0;
         overflow: hidden;
@@ -2630,7 +2648,7 @@ input.error{
           margin-left: auto;
           margin-right: auto;
           width: 482px;
-          height: 213px;
+          height: 241px;
         }
       }
 
@@ -2896,7 +2914,7 @@ input.error{
         p{
           font-size: 13px;
           text-align: center;
-          line-height: 14px;
+          line-height: 16px;
         }
 
         .joinChallenge{
@@ -3001,6 +3019,7 @@ input.error{
       margin-right: auto;
       display: block;
       z-index: 200;
+      overflow: none;
     }
 
     #avatarView #avatar{
@@ -3143,7 +3162,7 @@ input.error{
 */
 
 #container.offline{
-  #createActivityButton, #goingList, #addMediaButton, #messageBox, #sportSelectorButton, #changeAvatar, #mediaButton, #friendsButton, #favouriteSportSection, #navigateButton, #challengesButton, #shareButton, #sortBar,
+  #createActivityButton, #goingList, #addMediaButton, #messageBox, #sportSelectorButton, #changeAvatar, #mediaButton, #friendsButton, #favouriteSportSection, #navigateButton, #challengesButton, #shareButton, #sortBar, #createButton, #activityMap, 
   .add-icon, #fullScreenButton, #goingList .radio-list, .edit-badge-hitbox
   { display: none; }
 

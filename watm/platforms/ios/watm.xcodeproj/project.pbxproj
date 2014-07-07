@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		03E93006541A4D74B333E5C3 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A8AB333E4D6CA8A1F3E1 /* CDVCamera.m */; };
 		17753591C1E942F7B2AC5D22 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D02D9D7B68C41DC81A80813 /* CDVLocalFilesystem.m */; };
@@ -684,7 +685,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "watm";
+				PRODUCT_NAME = watm;
 				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -724,7 +725,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "watm";
+				PRODUCT_NAME = watm;
 				PROVISIONING_PROFILE = "35EBB93E-4E49-4F56-8984-2E6EC11BBE51";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -770,7 +771,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "B2365557-6F84-4DB2-9042-65575616DFF1";
+				PROVISIONING_PROFILE = "FDB601DD-A5D7-4891-8528-49FF9004FBA1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -816,7 +817,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
 					"-ObjC",
 				);
-				PROVISIONING_PROFILE = "B2365557-6F84-4DB2-9042-65575616DFF1";
+				PROVISIONING_PROFILE = "FDB601DD-A5D7-4891-8528-49FF9004FBA1";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";

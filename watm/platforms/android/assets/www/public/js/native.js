@@ -23,7 +23,6 @@ var app = {
         switch(device.platform){
 
             case "Android":
-
                 // webkit issues in android 4.2.2 so we need a custom css here
                 switch(device.version){
                     case "4.2.2":
@@ -35,6 +34,10 @@ var app = {
 
             break;
 
+            // iOS specific stylsheet
+            case "iOS":
+                $('html head').append('<link rel="stylesheet" type="text/css" href="public/css/ios.css" />');
+            break;
         }
 
 

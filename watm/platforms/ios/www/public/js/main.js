@@ -20,7 +20,7 @@ var appData = {
 
 
 // settings
-appData.settings.rootPath = "http://localhost/";
+appData.settings.rootPath = "http://ultimedia.biz/watm/";
 appData.settings.forwardPath = "http://ultimedia.biz/watm";
 appData.settings.servicePath =  appData.settings.rootPath + "services/";
 appData.settings.imagePath = appData.settings.rootPath + "common/uploads/";
@@ -117,25 +117,32 @@ appData.start = function(nativeApp){
   }
 
   // phonegap when the user returns to the app after minimizing it
-  function onResumeHandler(){
+  function onResumeHandler(){ 
 
   }
 
   // phonegap device offline
   function deviceOnlineHandler(){
-
-
     $('#container').addClass('online').removeClass('offline');
 
     appData.settings.network = true;
     Backbone.trigger('networkFoundEvent');
+    
+    // back to the landing page
+    window.localStorage.clear()
+
+    // not signed in
+    appData.settings.userLoggedIn = false;
+    appData.settings.storageFound = false;
+    appData.settings.dataLoaded = false;
+
+    // back to the landing page
+    location.reload(); 
   }
 
   // phonegap device back online
   function deviceOfflineHandler(){
     $('#container').removeClass('online').addClass('offline');
-
-
 
     appData.settings.network = false;
     Backbone.trigger('networkLostEvent');
@@ -362,6 +369,7 @@ appData.start = function(nativeApp){
 
           // see if we have a user in our localstorage
           if(window.localStorage.getItem("userModel")){
+
 
             var localUser = JSON.parse(window.localStorage.getItem("userModel"));
             appData.models.userModel = new User(localUser);
@@ -3663,6 +3671,8 @@ appData.views.PlannerView = Backbone.View.extend({
     if(appData.settings.native){
         if(appData.services.utilService.getNetworkConnection()){
             appData.services.phpService.getActivities(false, null);
+        }else{
+          this.generateTimeLine();
         }
     }else{
         appData.services.phpService.getActivities(false, null);
@@ -3712,62 +3722,69 @@ appData.views.PlannerView = Backbone.View.extend({
       var lastDate;
       var savedDate;
 
-      _(appData.views.activityListView).each(function(element, index) {
+      if(appData.views.activityListView.length !== 0){
+          $('#bd').css({
+              "display":"none"
+          });
 
+        _(appData.views.activityListView).each(function(element, index) {
 
-          // same date
-          if(lastDate == element.model.attributes.savedDate){
-              $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el);
-          
-          // andere datum (nieuwe tijdlijn)
-          }else{
-            var savedDate = "";
-            var dateCheck = element.model.attributes.date.split(" ");
-
-            switch(dateCheck[0]){
-              case "Vandaag":
-                savedDate = dateCheck[0];
-              break;
-
-              case "Morgen":
-                savedDate = dateCheck[0];
-              break;
-            }
-
-            // convert to readable date
-            if(savedDate === ""){
-              savedDate = element.model.attributes.date;
-            }
-
-            fr = new appData.views.PlannerTimelineWrap();
-            $('#plannerMap',appData.settings.currentPageHTML).append(fr.render().$el);
-            $('#plannerMap h3', appData.settings.currentPageHTML).last().text(savedDate);
-            $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el).hide();
-
-            if(appData.views.PlannerView.firstRet){
-              appData.views.PlannerView.firstRet = false;
-              $('.plan-list', appData.settings.currentPageHTML).show(600);
+            // same date
+            if(lastDate == element.model.attributes.savedDate){
+                $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el);
+            
+            // andere datum (nieuwe tijdlijn)
             }else{
-              $('.plan-list', appData.settings.currentPageHTML).show();
-            }
-          }
+              var savedDate = "";
+              var dateCheck = element.model.attributes.date.split(" ");
 
-          lastDate = element.model.attributes.savedDate;
-        });
+              switch(dateCheck[0]){
+                case "Vandaag":
+                  savedDate = dateCheck[0];
+                break;
 
-        // bind click handler
-        $('.plan-list li', appData.settings.currentPageHTML).click(function(evt){
-          
-            var id = $('h2',evt.currentTarget).attr('data-id');
-            if(id){
-              
-              if($(evt.target).hasClass('edit-badge-hitbox')){
-                window.location.href = "#update/" + id;
+                case "Morgen":
+                  savedDate = dateCheck[0];
+                break;
+              }
+
+              // convert to readable date
+              if(savedDate === ""){
+                savedDate = element.model.attributes.date;
+              }
+
+              fr = new appData.views.PlannerTimelineWrap();
+              $('#plannerMap',appData.settings.currentPageHTML).append(fr.render().$el);
+              $('#plannerMap h3', appData.settings.currentPageHTML).last().text(savedDate);
+              $('#plannerMap .planner-section .plan-list', appData.settings.currentPageHTML).last().append(element.render().$el).hide();
+
+              if(appData.views.PlannerView.firstRet){
+                appData.views.PlannerView.firstRet = false;
+                $('.plan-list', appData.settings.currentPageHTML).show(600);
               }else{
-                window.location.href = "#activity/" + id;
+                $('.plan-list', appData.settings.currentPageHTML).show();
               }
             }
-        });
+
+            lastDate = element.model.attributes.savedDate;
+          });
+
+          // bind click handler
+          $('.plan-list li', appData.settings.currentPageHTML).click(function(evt){
+            
+              var id = $('h2',evt.currentTarget).attr('data-id');
+              if(id){
+                
+                if($(evt.target).hasClass('edit-badge-hitbox')){
+                  window.location.href = "#update/" + id;
+                }else{
+                  window.location.href = "#activity/" + id;
+                }
+              }
+          });
+        }else{
+          $('#bd').removeAttr('style');
+        }
 
         appData.services.utilService.updateLocalStorage();
   },
@@ -4015,17 +4032,16 @@ appData.views.ProfileChallengeView = Backbone.View.extend({
 
         var oneLine = Math.floor(bwidth / bdwidth);
         var howMany = appData.models.userModel.attributes.challengesCount;
+
         if(!isNaN(howMany)){
             $('#badgesOverview ul', appData.settings.currentModuleHTML).empty();
             for (var i=0; i<howMany; i++){
                 $('#badgesOverview ul', appData.settings.currentModuleHTML).append('<li></li>');
             }          
         }
-        $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
-        $('#badgesOverview ul li:eq(' +  oneLine + ')', appData.settings.currentModuleHTML).css({
-            'margin-right':'0'
-        });
+        oneLine = oneLine++;
 
+        $('#badgesOverview', appData.settings.currentModuleHTML).slideDown(200);
 
         appData.views.challengeListView = [];
         appData.collections.challenges.each(function(challenge) {
@@ -4222,8 +4238,6 @@ appData.views.ProfileView = Backbone.View.extend({
                 $('#friendsButton', appData.settings.currentPageHTML).remove();
             }
         }
-
-
         return this; 
     },
 
@@ -4708,10 +4722,25 @@ appData.routers.AppRouter = Backbone.Router.extend({
 
     loading: function () {
 
-
         if(!appData.settings.dataLoaded){
-            appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+        
+            if(appData.settings.native){
+                // load it
+                if(appData.services.utilService.getNetworkConnection()){
+                    appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+                }else{
+                    if(appData.settings.storageFound){
+                        window.location.hash = "#dashboard";
+                    }else{
+                        window.location.hash = "#noconnection"
+                    }
+                }
+            }else{
+                appData.slider.slidePage(new appData.views.LoadingView({model: appData.models.userModel}).render().$el);
+            }
+
         }else{
+
             window.location.hash = "dashboard";
         }
     },
@@ -4725,8 +4754,6 @@ appData.routers.AppRouter = Backbone.Router.extend({
         $('#mainMenu ul li').first().addClass('mm-selected');
 
         if(appData.settings.userLoggedIn){
-
-
 
             if(appData.settings.dataLoaded){    
             
