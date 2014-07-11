@@ -58,8 +58,14 @@ overflow-y: scroll;
 
 
 #createUser, #createActivity, #settings{
+  .cl-bar-title{
+    position: fixed;
+    z-index: 100000;
+  }
+
   .cl-form{
-      position: relative;
+    padding-top: 80px;
+    position: relative;
 
     #genderSelect{
       display: block;
@@ -158,6 +164,13 @@ overflow-y: scroll;
   }
 }
 
+#settings{
+  #avatarSection{
+    padding-top: 40px;
+    display: block;
+  }
+}
+
 #profile{
   #profileContent{
     overflow-y: auto;
@@ -185,9 +198,23 @@ overflow-y: scroll;
 }
 
 #createActivity{
+  #createActivityTabs{
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+  }
+
     #locationInput{
       background: #ededed url("assets/map2-icon@x2.png") no-repeat 10px 15px !important;
       background-size: 14px 14px;
+  }
+
+  .button-container{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
   }
 }
 
@@ -242,6 +269,14 @@ overflow-y: scroll;
     #nameInput{
       background: #ededed url('assets/speech-icon@x2.png') no-repeat 10px 12px;
       background-size: 15px 15px;
+    }
+
+    .button-container{
+      z-index: 1000;
+      #createUserButton{
+        position: relative;
+        z-index: 10000;
+      }
     }
   }
 }
@@ -323,7 +358,7 @@ overflow-y: scroll;
   background-size: 320px 568px;
 }
 
-#challengesContainer{
+#challengesContainer, #activityTable{
   min-height: 2000px;
 }
 
@@ -333,4 +368,17 @@ overflow-y: scroll;
 
 #challengeView #challengesOverviewTable .challenge-item, #challengeView #myChallengesOverviewTable .challenge-item{
   width: 100% !important;
+}
+
+#favouriteSportList{
+  padding-bottom: 10000px;
+  display: none;
+  overflow: auto;
+  min-height: 2500px;
+}
+
+#settings{
+  .cl-content{
+    padding-top: 60px;
+  }
 }

@@ -75,7 +75,7 @@ appData.settings.updateActivityService = "updateActivity.php";
 appData.settings.getUserMediaService = "getUserMedia.php";
 appData.settings.getChallengesCount = "getChallengesCount.php";
 
-appData.settings.defaultLocation = [51.20935, 3.22470];
+appData.settings.defaultLocation = [51.208723, 3.223860];
 appData.settings.dataLoaded = false;
 appData.settings.userLoggedIn = false;
 
@@ -545,7 +545,7 @@ User = Backbone.Model.extend({
 	    gender: '1',
 	    facebook_data: {},
 	    facebookUser: false,
-	    current_location: "50.827404, 3.254647",
+	    current_location: "51.208723, 3.223860",
 		strength_score: 0,
 		stamina_score: 0,
 		equipment_score: 0,
@@ -2153,7 +2153,6 @@ appData.views.CreateUserView = Backbone.View.extend({
             },
 
     		submitHandler: function(form) {
-
     			// CreateUser form logic
 				var name = $('#nameInput', appData.settings.currentPageHTML).val();
 				var password = $('#passwordInput', appData.settings.currentPageHTML).val();
@@ -2174,6 +2173,8 @@ appData.views.CreateUserView = Backbone.View.extend({
 
                     // First lets get the location
                     Backbone.on('createUserLocationHandler', appData.views.CreateUserView.locationSuccesHandler);
+                    Backbone.on('locationErrorHandler', appData.views.CreateUserView.locationErrorHandler);
+
                     appData.services.utilService.getLocationService("create");
 
                 }else{
@@ -2193,6 +2194,7 @@ appData.views.CreateUserView = Backbone.View.extend({
     },
 
     locationErrorHandler: function(){
+
         Backbone.off('locationError');
 
         Backbone.on('createUserHandler', appData.views.CreateUserView.createUserHandler);
@@ -2409,11 +2411,13 @@ appData.views.DashboardView = Backbone.View.extend({
 
                 // fix for old android
                 if($('body').hasClass('422')){
-                    var myHeight = appData.views.activityListView.length * 250;
+/*                    var myHeight = appData.views.activityListView.length * 250;
+
                     $('#activityTable', appData.settings.currentPageHTML).css({
                         'height':myHeight + 'px !important',
-                        'min-height': myHeight + 'px'
-                    });
+                        'min-height': myHeight + 'px',
+                        'overflow': 'scroll'
+                    });*/
                 }
             }
         }
@@ -4604,7 +4608,13 @@ appData.views.SportSelectorView = Backbone.View.extend({
     },
 
     favouriteSportClickHandler: function(evt){
-        $(evt.target).toggleClass('selected');
+        //$(evt.target).html().addClass('selected');
+        if($('body').hasClass('422')){
+            $(evt.currentTarget).toggleClass('selected');
+        }else{
+            $(evt.target).toggleClass('selected');
+        }
+        //alert(event.target)
     },
 
     confirmSportsHandler: function(){
@@ -5298,37 +5308,40 @@ appData.services.FacebookServices = Backbone.Model.extend({
 		if(appData.settings.native){
 	    	var fbLoginSuccess = function (userData) {
 
-	    		console.log(userData.authResponse + "maarten");
-
 			   	if (userData.authResponse) {
 			    	appData.settings.userLoggedIn = true;
 
 					// store the data in the user profile
 					appData.models.userModel.attributes.facebookUser = true;
-					appData.models.userModel.attributes.name = userData.name;
-					appData.models.userModel.attributes.email = userData.email;
+					appData.models.userModel.attributes.facebook_id = userData.authResponse.userId;
 
-					var gender;
-					if(userData.gender == "male"){
-						gender = 1;
-					}else{
-						gender = 0;
-					}
 
-					appData.models.userModel.attributes.gender = gender;
-					appData.models.userModel.attributes.facebook_id =userData.id;
+					facebookConnectPlugin.api("me?fields=name,email,id,picture,gender,first_name", ["user_birthday"],function(re,bd){
+						appData.models.userModel.attributes.name = re.first_name;
+						appData.models.userModel.attributes.email = re.email;
+						appData.models.userModel.attributes.facebook_avatar = re.picture.data.url;
 
-					facebookConnectPlugin.api("/me/picture", function(response) {
-						appData.models.userModel.attributes.facebook_avatar = response.data.url;
-					});
+						var gender;
+						if(re.gender == "male"){
+							gender = 1;
+						}else{
+							gender = 0;
+						}
+						appData.models.userModel.attributes.gender = gender;
 
-					Backbone.trigger("facebookLoginHandler");
+
+						Backbone.trigger("facebookLoginHandler");
+
+					},function (error) {
+                		alert("Failed: " + error);
+            		});
+
 				}else{
 					alert("Je kan nu niet inloggen met Facebook, probeer het later opnieuw");
 				}
 			}
 
-	    	facebookConnectPlugin.login(["basic_info"], 
+	    	facebookConnectPlugin.login(["basic_info", "gender", "name", "username"], 
 	    	    fbLoginSuccess, 
 	    	    function (error) { alert("" + error) }
 	    	);
@@ -6219,11 +6232,10 @@ appData.services.UtilServices = Backbone.Model.extend({
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:50000});
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:8000});
 				var location = [];
 
 				function onSuccess(position) {
-
 					switch(target){
 					case "login":
 						appData.events.locationHomeEvent.trigger('locationSuccesHandler', position);
@@ -6242,7 +6254,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
-
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');
@@ -6250,9 +6261,13 @@ appData.services.UtilServices = Backbone.Model.extend({
 					case "createActivity":
 						appData.events.locationCreateActivityEvent.trigger('locationSuccesHandler', location);
 						break;
+					case "create":
+						Backbone.trigger('locationErrorHandler');
+						break;
 					}
 				}
 		}else{
+
 			appData.events.locationEvent.trigger('locationErrorHandler', location);
 		}
 	},

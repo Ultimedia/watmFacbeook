@@ -168,11 +168,13 @@ appData.views.DashboardView = Backbone.View.extend({
 
                 // fix for old android
                 if($('body').hasClass('422')){
-                    var myHeight = appData.views.activityListView.length * 250;
+/*                    var myHeight = appData.views.activityListView.length * 250;
+
                     $('#activityTable', appData.settings.currentPageHTML).css({
                         'height':myHeight + 'px !important',
-                        'min-height': myHeight + 'px'
-                    });
+                        'min-height': myHeight + 'px',
+                        'overflow': 'scroll'
+                    });*/
                 }
             }
         }

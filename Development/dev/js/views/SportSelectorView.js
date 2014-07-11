@@ -106,7 +106,13 @@ appData.views.SportSelectorView = Backbone.View.extend({
     },
 
     favouriteSportClickHandler: function(evt){
-        $(evt.target).toggleClass('selected');
+        //$(evt.target).html().addClass('selected');
+        if($('body').hasClass('422')){
+            $(evt.currentTarget).toggleClass('selected');
+        }else{
+            $(evt.target).toggleClass('selected');
+        }
+        //alert(event.target)
     },
 
     confirmSportsHandler: function(){

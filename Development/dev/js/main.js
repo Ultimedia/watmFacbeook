@@ -75,7 +75,7 @@ appData.settings.updateActivityService = "updateActivity.php";
 appData.settings.getUserMediaService = "getUserMedia.php";
 appData.settings.getChallengesCount = "getChallengesCount.php";
 
-appData.settings.defaultLocation = [51.20935, 3.22470];
+appData.settings.defaultLocation = [51.208723, 3.223860];
 appData.settings.dataLoaded = false;
 appData.settings.userLoggedIn = false;
 

@@ -86,7 +86,6 @@ appData.views.CreateUserView = Backbone.View.extend({
             },
 
     		submitHandler: function(form) {
-
     			// CreateUser form logic
 				var name = $('#nameInput', appData.settings.currentPageHTML).val();
 				var password = $('#passwordInput', appData.settings.currentPageHTML).val();
@@ -107,6 +106,8 @@ appData.views.CreateUserView = Backbone.View.extend({
 
                     // First lets get the location
                     Backbone.on('createUserLocationHandler', appData.views.CreateUserView.locationSuccesHandler);
+                    Backbone.on('locationErrorHandler', appData.views.CreateUserView.locationErrorHandler);
+
                     appData.services.utilService.getLocationService("create");
 
                 }else{
@@ -126,6 +127,7 @@ appData.views.CreateUserView = Backbone.View.extend({
     },
 
     locationErrorHandler: function(){
+
         Backbone.off('locationError');
 
         Backbone.on('createUserHandler', appData.views.CreateUserView.createUserHandler);

@@ -6,7 +6,7 @@ User = Backbone.Model.extend({
 	    gender: '1',
 	    facebook_data: {},
 	    facebookUser: false,
-	    current_location: "50.827404, 3.254647",
+	    current_location: "51.208723, 3.223860",
 		strength_score: 0,
 		stamina_score: 0,
 		equipment_score: 0,

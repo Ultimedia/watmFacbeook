@@ -66,11 +66,10 @@ appData.services.UtilServices = Backbone.Model.extend({
 		// geolocate
 		if(navigator.geolocation){
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:50000});
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:8000});
 				var location = [];
 
 				function onSuccess(position) {
-
 					switch(target){
 					case "login":
 						appData.events.locationHomeEvent.trigger('locationSuccesHandler', position);
@@ -89,7 +88,6 @@ appData.services.UtilServices = Backbone.Model.extend({
 
 				// onError Callback receives a PositionError object
 				function onError(error) {
-
 					switch(target){
 					case "login":
 						Backbone.trigger('locationError');
@@ -97,9 +95,13 @@ appData.services.UtilServices = Backbone.Model.extend({
 					case "createActivity":
 						appData.events.locationCreateActivityEvent.trigger('locationSuccesHandler', location);
 						break;
+					case "create":
+						Backbone.trigger('locationErrorHandler');
+						break;
 					}
 				}
 		}else{
+
 			appData.events.locationEvent.trigger('locationErrorHandler', location);
 		}
 	},

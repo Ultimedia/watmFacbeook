@@ -72,37 +72,40 @@ appData.services.FacebookServices = Backbone.Model.extend({
 		if(appData.settings.native){
 	    	var fbLoginSuccess = function (userData) {
 
-	    		console.log(userData.authResponse + "maarten");
-
 			   	if (userData.authResponse) {
 			    	appData.settings.userLoggedIn = true;
 
 					// store the data in the user profile
 					appData.models.userModel.attributes.facebookUser = true;
-					appData.models.userModel.attributes.name = userData.name;
-					appData.models.userModel.attributes.email = userData.email;
+					appData.models.userModel.attributes.facebook_id = userData.authResponse.userId;
 
-					var gender;
-					if(userData.gender == "male"){
-						gender = 1;
-					}else{
-						gender = 0;
-					}
 
-					appData.models.userModel.attributes.gender = gender;
-					appData.models.userModel.attributes.facebook_id =userData.id;
+					facebookConnectPlugin.api("me?fields=name,email,id,picture,gender,first_name", ["user_birthday"],function(re,bd){
+						appData.models.userModel.attributes.name = re.first_name;
+						appData.models.userModel.attributes.email = re.email;
+						appData.models.userModel.attributes.facebook_avatar = re.picture.data.url;
 
-					facebookConnectPlugin.api("/me/picture", function(response) {
-						appData.models.userModel.attributes.facebook_avatar = response.data.url;
-					});
+						var gender;
+						if(re.gender == "male"){
+							gender = 1;
+						}else{
+							gender = 0;
+						}
+						appData.models.userModel.attributes.gender = gender;
 
-					Backbone.trigger("facebookLoginHandler");
+
+						Backbone.trigger("facebookLoginHandler");
+
+					},function (error) {
+                		alert("Failed: " + error);
+            		});
+
 				}else{
 					alert("Je kan nu niet inloggen met Facebook, probeer het later opnieuw");
 				}
 			}
 
-	    	facebookConnectPlugin.login(["basic_info"], 
+	    	facebookConnectPlugin.login(["basic_info", "gender", "name", "username"], 
 	    	    fbLoginSuccess, 
 	    	    function (error) { alert("" + error) }
 	    	);
